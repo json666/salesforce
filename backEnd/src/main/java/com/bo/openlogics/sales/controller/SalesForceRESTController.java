@@ -75,4 +75,24 @@ public class SalesForceRESTController {
             return new JsonResult(false,"Error: "+e.getMessage(),null);
         }
     }
+
+    @RequestMapping(value = "/proveedores", method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResult listadoProveedores() {
+        try{
+            JsonResult jsonResult=null;
+            jsonResult=clasif_proveedorService.listadoProveedores();
+            if(jsonResult!=null){
+                return jsonResult;
+            }else{
+                return jsonResult;
+            }
+        }catch(NullPointerException e){
+            e.printStackTrace();
+            return new JsonResult(false,"Error: "+e.getMessage(),null);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new JsonResult(false,"Error: "+e.getMessage(),null);
+        }
+    }
 }

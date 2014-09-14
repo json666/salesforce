@@ -9,4 +9,6 @@ import com.bo.openlogics.sales.model.JsonResult;
 public interface Clasif_ProveedorService {
     public JsonResult save(Clasif_Proveedor clasif_proveedor);
 
+    public JsonResult listadoProveedores();
+
 }
