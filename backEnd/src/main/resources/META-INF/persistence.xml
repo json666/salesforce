@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<persistence version="2.0"
+	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://java.sun.com/xml/ns/persistence
+        http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+
+    <persistence-unit name="jpa.salesforce">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+
+        <class>com.bo.openlogics.sales.model.Clasif_Articulo</class>
+        <class>com.bo.openlogics.sales.model.Clasif_Categoria</class>
+        <class>com.bo.openlogics.sales.model.Clasif_Clase</class>
+        <class>com.bo.openlogics.sales.model.Clasif_Marca</class>
+        <class>com.bo.openlogics.sales.model.Clasif_Movimiento</class>
+        <class>com.bo.openlogics.sales.model.Clasif_Proveedor</class>
+        <class>com.bo.openlogics.sales.model.Clasif_Unidad</class>
+        <class>com.bo.openlogics.sales.model.Detalle_Movimiento</class>
+        <class>com.bo.openlogics.sales.model.Movimiento</class>
+        <class>com.bo.openlogics.sales.model.Clasif_Marcas</class>
+        <class>com.bo.openlogics.sales.model.Clasif_Unidades</class>
+        <class>com.bo.openlogics.sales.model.Bodega_articulo</class>
+
+		<properties>
+			<property name="hibernate.hbm2ddl.auto" value="update" />			
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
+			<property name="hibernate.show_sql" value="false" />
+			<property name="hibernate.format_sql" value="true" />
+			<property name="hibernate.max_fetch_depth" value="10" />
+		</properties>
+	</persistence-unit>
+</persistence>
