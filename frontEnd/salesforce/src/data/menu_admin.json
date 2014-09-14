@@ -1,0 +1,115 @@
+[
+    {
+        "menu": "Configuracion",
+        "opciones": [
+            {
+                "titulo": "Opciones",
+                "url": "#/"
+            },
+            {
+                "titulo": "Usuarios",
+                "url": "#/usuarios-lista"
+            },
+            {
+                "titulo": "Productos",
+                "url": "#/productos"
+            },
+            {
+                "titulo": "Interes",
+                "url": "#/interes"
+            },
+            {
+                "titulo": "Empresas",
+                "url": "#/empresas"
+            }
+
+        ]
+
+    },
+    {
+        "menu": "Clientes",
+        "opciones": [
+            {
+                "titulo": "Registrar Cliente",
+                "url": "#/clientes"
+            },
+            {
+                "titulo": "Lista de Clientes",
+                "url": "#/clientes-Lista"
+            }
+        ]
+
+    },
+    {
+        "menu": "Solicitudes",
+        "opciones": [
+            {
+                "titulo": "Registrar Solicitudes",
+                "url": "#/solicitudes"
+            },
+            {
+                "titulo": "Lista de Solicitudes",
+                "url": "#/solicitudes-lista"
+            }
+        ]
+    },
+    {
+        "menu": "Valuaciones",
+        "opciones": [
+            {
+                "titulo": "Registrar Valuacion",
+                "url": "#/valuaciones"
+            },
+            {
+                "titulo": "Lista de Valuaciones",
+                "url": "#/valuaciones-lista"
+            }
+        ]
+    },
+
+    {
+        "menu": "Creditos",
+        "opciones": [
+            {
+                "titulo": "Registrar Credito",
+                "url": "#/creditos"
+            },
+            {
+                "titulo": "Lista de Creditos",
+                "url": "#/creditos-lista"
+            }
+        ]
+
+    },
+    {
+        "menu": "Pagos",
+        "opciones": [
+            {
+                "titulo": "Registrar Pagos",
+                "url": "#/pagos"
+            },
+            {
+                "titulo": "Lista de Pagos",
+                "url": "#/pagos-lista"
+            }
+        ]
+
+    },
+    {
+        "menu": "Reportes",
+        "opciones": [
+            {
+                "titulo": "Reporte General",
+                "url": "#/reporte"
+            },
+            {
+                "titulo": "Reporte de Creditos",
+                "url": "#/reporte-creditos"
+            }
+        ]
+
+    }
+]
+
+
+

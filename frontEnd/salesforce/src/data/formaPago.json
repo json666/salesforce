@@ -1,0 +1,19 @@
+[{
+	"id": "1",
+	"dsc": "Pago anticipado"
+}, {
+	"id": "2",
+	"dsc": "Pago al contado"
+}, {
+	"id": "3",
+	"dsc": "Pago a crédito"
+}, {
+	"id": "4",
+	"dsc": "Pago Mixto (especifique)"
+}, {
+	"id": "5",
+	"dsc": "Sin pago"
+}, {
+	"id": "6",
+	"dsc": "Otro "
+}]
