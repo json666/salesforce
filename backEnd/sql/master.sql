@@ -32,5 +32,9 @@ INSERT INTO salesforce.clasif_marcas(desabilitado, codigo_marca, descripcion_mar
 INSERT INTO salesforce.clasif_marcas(desabilitado, codigo_marca, descripcion_marca, fecha_desde,fecha_hasta, usuario_act) VALUES (FALSE, '0004', 'PROVEEDOR NACIONAL', now(),now(), 'JSON');
 INSERT INTO salesforce.clasif_marcas(desabilitado, codigo_marca, descripcion_marca, fecha_desde,fecha_hasta, usuario_act) VALUES (FALSE, '0005', 'RIO GRANDE', now(),now(), 'JSON');
 
-
+/*
+SALESFORCE CLASIF_MOVIMIENTO
+ */
+ INSERT INTO salesforce.clasif_movimientos(desabilitado, clasif_movimientos, descripcion_movimiento,fecha_desde, fecha_hasta, usuario_act) VALUES (false, 'COMPRA','COMPRA DE MERCANCIA',,now(),now(), 'JSON');
+ INSERT INTO salesforce.clasif_movimientos(desabilitado, clasif_movimientos, descripcion_movimiento,fecha_desde, fecha_hasta, usuario_act) VALUES (false, 'VENTA','VENTA DE MERCANCIA',,now(),now(), 'JSON');
 
