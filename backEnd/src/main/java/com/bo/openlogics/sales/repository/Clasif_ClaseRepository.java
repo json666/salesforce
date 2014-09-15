@@ -13,6 +13,6 @@ import java.util.List;
 public interface Clasif_ClaseRepository extends JpaRepository<Clasif_Clase, Long> {
     public Clasif_Clase findById(Long id);
 
-    @Query(value="SELECT cl FROM Clasif_Clase cl WHERE cl.disabled=false AND  cl.clasif_categoria.id=:idCategoria" )
+        @Query(value="SELECT cl FROM Clasif_Clase cl WHERE cl.disabled=false AND  cl.clasif_categoria.id=:idCategoria" )
     public List<Clasif_Clase> findByCategoriaAndDisabled(@Param("idCategoria") Long idCategoria);
 }

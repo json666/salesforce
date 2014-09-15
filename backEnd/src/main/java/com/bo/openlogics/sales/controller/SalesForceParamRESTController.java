@@ -2,10 +2,7 @@ package com.bo.openlogics.sales.controller;
 
 import com.bo.openlogics.sales.model.Clasif_Articulo;
 import com.bo.openlogics.sales.model.JsonResult;
-import com.bo.openlogics.sales.service.Clasif_CategoriaService;
-import com.bo.openlogics.sales.service.Clasif_ClaseService;
-import com.bo.openlogics.sales.service.Clasif_MarcaService;
-import com.bo.openlogics.sales.service.Clasif_UnidadService;
+import com.bo.openlogics.sales.service.*;
 import com.bo.openlogics.sales.service.impl.Clasif_ClaseServiceImpl;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +29,9 @@ public class SalesForceParamRESTController {
 
     @Autowired
     Clasif_ClaseService clasif_claseService;
+
+    @Autowired
+    Clasif_MovimientoService clasif_movimientoService;
 
     private Logger logger = Logger.getLogger(SalesForceParamRESTController.class);
 
@@ -106,6 +106,21 @@ public class SalesForceParamRESTController {
             }else{
                 return jsonResult;
             }
+        }catch(NullPointerException e){
+            e.printStackTrace();
+            return new JsonResult(false,"Error: "+e.getMessage(),null);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new JsonResult(false,"Error: "+e.getMessage(),null);
+        }
+    }
+    @RequestMapping(value = "/tipoMovimiento", method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResult findByTipoMovimiento() {
+        try{
+            JsonResult jsonResult=null;
+            jsonResult=clasif_movimientoService.listaTipoMovimiento();
+            return jsonResult;
         }catch(NullPointerException e){
             e.printStackTrace();
             return new JsonResult(false,"Error: "+e.getMessage(),null);
