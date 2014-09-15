@@ -1,5 +1,7 @@
 package com.bo.openlogics.sales.service.impl;
 
+import com.bo.openlogics.sales.beans.parametricas.CategoriaBean;
+import com.bo.openlogics.sales.dozer.UtilTransport;
 import com.bo.openlogics.sales.model.Clasif_Proveedor;
 import com.bo.openlogics.sales.model.JsonResult;
 import com.bo.openlogics.sales.repository.Clasif_ProveedorRespository;
@@ -8,6 +10,7 @@ import com.thoughtworks.xstream.alias.ClassMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,6 +19,9 @@ import java.util.List;
 
 @Service
 public class Clasif_ProveedorServiceImpl implements Clasif_ProveedorService {
+
+
+
     @Autowired
     Clasif_ProveedorRespository clasif_proveedorRespository;
 
@@ -48,7 +54,9 @@ public class Clasif_ProveedorServiceImpl implements Clasif_ProveedorService {
         try {
             JsonResult jsonResult = null;
             List<Clasif_Proveedor> listadoProveedores = clasif_proveedorRespository.findByDisabled(Boolean.FALSE);
+
             if (listadoProveedores.size() > 0) {
+
                 jsonResult = new JsonResult(true, "Consulta exitosa.", listadoProveedores);
             } else {
                 jsonResult = new JsonResult(true, "No existen proveedores.", null);
