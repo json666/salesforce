@@ -97,4 +97,20 @@ public class SalesForceRESTController {
             return new JsonResult(false,"Error: "+e.getMessage(),null);
         }
     }
+
+    @RequestMapping(value = "/articulosHabilitados", method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResult listadoAriculosHabilitados() {
+        try{
+            JsonResult jsonResult=null;
+            jsonResult=clasif_articuloService.listadoArticulosHabilitados();
+                return jsonResult;
+        }catch(NullPointerException e){
+            e.printStackTrace();
+            return new JsonResult(false,"Error: "+e.getMessage(),null);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new JsonResult(false,"Error: "+e.getMessage(),null);
+        }
+    }
 }
