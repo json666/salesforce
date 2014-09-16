@@ -14,17 +14,21 @@ app.service("paramService", function ($http) {
              function (data) {
              scope.marcasList = data.result;
              });
-//            $.ajax({
-//                type: 'GET',
-//                async: false,
-//                url: 'http://localhost:8080/b-param/rest/pais',
-//                success: function(data) {
-//                    scope.paisesList = data.result;
-//                },
-//                error: function (msg) {
-//                    console.log(msg);
-//                }
-//            });
+//
+        },
+        paramUnidadList: function (scope) {
+            $http.get(service + '/unidad_medida').success( //
+                function (data) {
+                    scope.unidadList = data.result;
+                });
+//
+        },
+        paramClaseList: function (scope) {
+            $http.get(service + '/unidad_medida').success( //
+                function (data) {
+                    scope.unidadList = data.result;
+                });
+//
         }
     };
 

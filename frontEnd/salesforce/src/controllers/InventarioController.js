@@ -12,6 +12,7 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
 
     //Cargando parametricas
     paramService.paramMarcasList($scope);
+    paramService.paramUnidadList($scope);
 
     $scope.formData = {}
 
@@ -37,11 +38,11 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
     }
 //Lista proveedores
     var tableProveedores = new Array();
-    var oTable = $('#dataTableProveedores');
-    $http.get(service+'/proveedores').success(
+    var oTable = $('#dataTableProdcutos');
+    $http.get(service+'/articulosHabilitados').success(
         function (data, status, headers, config) {
             $scope.tableProveedores = data.result;
-            oTable = $('#dataTableProveedores').dataTable(
+            oTable = $('#dataTableProdcutos').dataTable(
                 {
                     "bJQueryUI":true,
                     "bAutoWidth":true,
@@ -61,13 +62,16 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
                             "bSortable":  false
                         },
                         {
-                            "mData": "numeroDocumento"
+                            "mData": "id"
                         },
                         {
-                            "mData":"nombre"
+                            "mData":"descripcionArticulo"
                         },
                         {
-                            "mData":"direccion"
+                            "mData":"cantidadReorden"
+                        },
+                        {
+                            "mData":"precioCosto"
                         },
                         {
                             "bSortable": false,

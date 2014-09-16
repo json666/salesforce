@@ -25,3 +25,9 @@ app.directive('frmArticulo', function () {
     };
 });
 
+app.directive('listArticulo', function () {
+    return {
+        templateUrl: 'src/templates/articuloTplList.html'
+    };
+});
+
