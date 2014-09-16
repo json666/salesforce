@@ -6,15 +6,20 @@
  * To change this template use File | Settings | File Templates.
  */
 
-function InventarioController($scope, $http, $cookies, $routeParams, serviceShare, adminService) {
+function InventarioController($scope, $http, $cookies, $routeParams, serviceShare, inventarioService, paramService) {
     console.log('--->admin');
     var id = $routeParams.id;
+
+    //Cargando parametricas
+    paramService.paramMarcasList($scope);
+
     $scope.formData = {}
 
 // begin process the form proveedores
     if (id == null || id.length == 0) {
         $scope.save = function () {
-            adminService.saveProveedor($scope.formData);//
+            inventarioService.saveArticulo($scope.formData);//
+            $scope.formData = null
         };
     } else {
         //get de form by Id    //
