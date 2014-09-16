@@ -12,3 +12,9 @@ app.directive('frmProveedor', function () {
         templateUrl: 'src/templates/proveedorTpl.html'
     };
 });
+
+app.directive('listProveedor', function () {
+    return {
+        templateUrl: 'src/templates/proveedorTplList.html'
+    };
+});

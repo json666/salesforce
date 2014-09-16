@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-function AdminController($scope, $http, $cookies, $routeParams, serviceShare) {
+function AdminController($scope, $http, $cookies, $routeParams, serviceShare, adminService) {
     console.log('--->admin');
     var id = $routeParams.id;
     $scope.formData = {}
@@ -14,37 +14,7 @@ function AdminController($scope, $http, $cookies, $routeParams, serviceShare) {
 // begin process the form proveedores
     if (id == null || id.length == 0) {
         $scope.save = function () {
-//            $("#loading-div-background").css("display", "block");
-            $http({
-                method: 'POST',
-                url: service + '/proveedor/guardar',
-                data: JSON.stringify($scope.formData), // pass in data as strings//
-                headers: { 'Content-Type': 'application/json; charset=utf-8' }  // set the headers so angular passing info as form data (not request payload)
-            })
-                // if successful, bind success message to message
-                .success(function (data, status, headers, config) {  //
-                    if (!data.success) {
-                        // if not successful, bind errors to error variables
-//                        $("#loading-div-background").css("display", "none");
-//                        $('#alertError').modal('show');
-//                        $("#mensajeAlertError").text(data.result+ 'Error! intente nuevamente' )
-                        alert('Error!')
-                    } else {
-                        // if successful, bind success message to message
-                        $scope.formData = null
-//                        $("#loading-div-background").css("display", "none");
-//                        $('#alertSucces').modal('show');
-//                        $("#mensajeAlertSucces").text('Registro Guardado');
-                        console.log(data.message)
-                        alert(JSON.stringify(data.message))
-                    }     //
-                }).// if not successful, bind errors to error variables
-                error(function (data, status, headers, config) {
-//                    $("#loading-div-background").css("display", "none");
-//                    $('#alertError').modal('show');
-//                    $("#mensajeAlertError").text(data.result+ 'Error! intente nuevamente' )
-                    alert("ERROR! intente mas tarde")
-                });
+            adminService.saveProveedor($scope.formData);//
         };
     } else {
         //get de form by Id    //
@@ -60,6 +30,70 @@ function AdminController($scope, $http, $cookies, $routeParams, serviceShare) {
                 alert("Error de conexion con el servidor.");
             });
     }
+//Lista proveedores
+    var tableProveedores = new Array();
+    var oTable = $('#dataTableProveedores');
+    $http.get(service+'/proveedores').success(
+        function (data, status, headers, config) {
+            $scope.tableProveedores = data.result;
+            oTable = $('#dataTableProveedores').dataTable(
+                {
+                    "bJQueryUI":true,
+                    "bAutoWidth":true,
+                    "bProcessing":true,
+                    "oLanguage":{
+                        "sUrl":"src/js/i18n/dataTable_es.txt"
+                    },
+                    "aaData":$scope.tableProveedores,
+                    "aoColumns":[
+//                        {
+//                            "mData": "id",
+//                            "bSearchable": false,
+//                            "bVisible": false
+//                        },
+                        {
+                            "mData":null,
+                            "bSortable":  false
+                        },
+                        {
+                            "mData": "numeroDocumento"
+                        },
+                        {
+                            "mData":"nombre"
+                        },
+                        {
+                            "mData":"direccion"
+                        },
+                        {
+                            "bSortable": false,
+                            "mData":function (oObj) {
+                                var a = " <a href='#/clientes/"+oObj.id+"' class='btn btn-primary'><i class='fa fa-edit'></i></a>";
+                                return a;
+
+                            }
+
+                        }
+//                        {
+//                            "mData":function (oObj) {
+//                                var b = " <a href='#/cliente-info/"+oObj.id+"' class='btn btn-success'><i class='icon-zoom-in'></i></a>";
+//                                return b;
+//                            }
+//                        }
+
+
+                    ],
+                    "fnRowCallback":function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+                        $('td:eq(0)', nRow).html(iDisplayIndexFull + 1);
+                        return nRow;
+                    }
+                });
+
+        }).
+        error(function (data, status, headers, config) {
+            alert(data.result);
+            // called asynchronously if an error occurs
+            // or server returns response with an error status.
+        });
 // ends proveedores
 }
 
