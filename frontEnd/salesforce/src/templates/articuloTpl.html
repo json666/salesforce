@@ -16,22 +16,31 @@
                 <form>
                     <div class="row">
                         <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>MARCA</label>
                         <select class="form-control" id="selectMarca" name="interes" ng-model="formData.clasif_marca"
                                 ng-options="item.descripcionMarca for item in marcasList">
                             <option value="">-- Seleccione --</option>
                         </select>
+                                </div>
                         </div>
                         <div class="col-lg-4">
-                        <select class="form-control" id="selectUnidad" name="interes" ng-model="formData.interes"
+                            <div class="form-group">
+                                <label>UNIDAD</label>
+                        <select class="form-control" id="selectUnidad" name="interes" ng-model="formData.clasif_unidad"
                                 ng-options="item.descripcion for item in intList">
                             <option value="">-- Seleccione --</option>
                         </select>
                             </div>
+                            </div>
                         <div class="col-lg-4">
-                        <select class="form-control" id="selectClase" name="interes" ng-model="formData.interes"
+                            <div class="form-group">
+                                <label>CLASE</label>
+                        <select class="form-control" id="selectClase" name="interes" ng-model="formData.clasif_clase"
                                 ng-options="item.valor for item in intList">
                             <option value="">-- Seleccione --</option>
                         </select>
+                            </div>
                             </div>
                     </div>
                     <div class="row">
