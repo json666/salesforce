@@ -18,3 +18,10 @@ app.directive('listProveedor', function () {
         templateUrl: 'src/templates/proveedorTplList.html'
     };
 });
+
+app.directive('frmArticulo', function () {
+    return {
+        templateUrl: 'src/templates/articuloTpl.html'
+    };
+});
+
