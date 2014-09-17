@@ -347,3 +347,6 @@ table.dataTable thead .sorting:after {
 .ui-datepicker{
     z-index: 1050 !important;
 }
+.test{
+    background: #f0c069;
+}
