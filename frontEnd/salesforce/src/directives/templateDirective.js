@@ -43,3 +43,9 @@ app.directive('listClase', function () {
     };
 });
 
+app.directive('listMov', function () {
+    return {
+        templateUrl: 'src/templates/movimientoList.html'
+    };
+});
+
