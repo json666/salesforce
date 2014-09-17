@@ -31,3 +31,15 @@ app.directive('listArticulo', function () {
     };
 });
 
+app.directive('listCategoria', function () {
+    return {
+        templateUrl: 'src/templates/categoriaList.html'
+    };
+});
+
+app.directive('listClase', function () {
+    return {
+        templateUrl: 'src/templates/claseList.html'
+    };
+});
+

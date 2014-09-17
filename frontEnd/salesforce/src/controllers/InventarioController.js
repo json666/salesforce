@@ -132,6 +132,118 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
             // or server returns response with an error status.
         });
 // ends proveedores
+
+    //Lista categorias
+    var oTable = $('#dataTableCategorias');
+    $http.get(service + '/categoria').success(
+        function (data, status, headers, config) {
+            $scope.tableProveedores = data.result;
+            oTable = $('#dataTableCategorias').dataTable(
+                {
+                    "bJQueryUI": true,
+                    "bAutoWidth": true,
+                    "bProcessing": true,
+                    "oLanguage": {
+                        "sUrl": "src/js/i18n/dataTable_es.txt"
+                    },
+                    "aaData": $scope.tableProveedores,
+                    "aoColumns": [
+//
+                        {
+                            "mData": null,
+                            "bSortable": false
+                        },
+                        {
+                            "mData": "descripcionCategoria"
+                        },
+                        {
+                            "bSortable": false,
+                            "mData": function (oObj) {
+                                var ac = " <a href='#/clientes/" + oObj.id + "' class='btn btn-primary'><i class='fa fa-edit'></i></a>";
+                                return ac;
+
+                            }
+
+                        },
+                        {
+                            "bSortable": false,
+                            "mData": function (oObj) {
+                                var bc = " <a href='#/cliente-info/" + oObj.id + "' class='btn btn-danger'><i class='fa fa-trash-o'></i></a>";
+                                return bc;
+                            }
+                        }
+
+
+                    ],
+                    "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+                        $('td:eq(0)', nRow).html(iDisplayIndexFull + 1);
+                        return nRow;
+                    }
+                });
+
+        }).
+        error(function (data, status, headers, config) {
+            alert(data.result);
+            // called asynchronously if an error occurs
+            // or server returns response with an error status.
+        });
+// ends categorias
+
+    //Lista clases
+    var oTable = $('#dataTableClases');
+    $http.get(service + '/unidad_medida').success(
+        function (data, status, headers, config) {
+            $scope.tableProveedores = data.result;
+            oTable = $('#dataTableClases').dataTable(
+                {
+                    "bJQueryUI": true,
+                    "bAutoWidth": true,
+                    "bProcessing": true,
+                    "oLanguage": {
+                        "sUrl": "src/js/i18n/dataTable_es.txt"
+                    },
+                    "aaData": $scope.tableProveedores,
+                    "aoColumns": [
+//
+                        {
+                            "mData": null,
+                            "bSortable": false
+                        },
+                        {
+                            "mData": "descripcionUnidad"
+                        },
+                        {
+                            "bSortable": false,
+                            "mData": function (oObj) {
+                                var ad = " <a href='#/clientes/" + oObj.id + "' class='btn btn-primary'><i class='fa fa-edit'></i></a>";
+                                return ad;
+
+                            }
+
+                        },
+                        {
+                            "bSortable": false,
+                            "mData": function (oObj) {
+                                var bd = " <a href='#/cliente-info/" + oObj.id + "' class='btn btn-danger'><i class='fa fa-trash-o'></i></a>";
+                                return bd;
+                            }
+                        }
+
+
+                    ],
+                    "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+                        $('td:eq(0)', nRow).html(iDisplayIndexFull + 1);
+                        return nRow;
+                    }
+                });
+
+        }).
+        error(function (data, status, headers, config) {
+            alert(data.result);
+            // called asynchronously if an error occurs
+            // or server returns response with an error status.
+        });
+// ends clses
 }
 
 

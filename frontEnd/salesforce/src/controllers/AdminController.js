@@ -24,7 +24,7 @@ function AdminController($scope, $http, $cookies, $routeParams, serviceShare) {
                 alert(result.message)
                 $scope.formData = null
                 $("#ModalProveedor").modal('hide')
-            }). error(function (response) {   //
+            }).error(function (response) {   //
                 alert("ERROR! intente mas tarde")
 
             });
@@ -46,56 +46,57 @@ function AdminController($scope, $http, $cookies, $routeParams, serviceShare) {
 //Lista proveedores
     var tableProveedores = new Array();
     var oTable = $('#dataTableProveedores');
-    $http.get(service+'/proveedores').success(
+    $http.get(service + '/proveedores').success(
         function (data, status, headers, config) {
             $scope.tableProveedores = data.result;
             oTable = $('#dataTableProveedores').dataTable(
                 {
-                    "bJQueryUI":true,
-                    "bAutoWidth":true,
-                    "bProcessing":true,
-                    "oLanguage":{
-                        "sUrl":"src/js/i18n/dataTable_es.txt"
+                    "bJQueryUI": true,
+                    "bAutoWidth": true,
+                    "bProcessing": true,
+                    "oLanguage": {
+                        "sUrl": "src/js/i18n/dataTable_es.txt"
                     },
-                    "aaData":$scope.tableProveedores,
-                    "aoColumns":[
+                    "aaData": $scope.tableProveedores,
+                    "aoColumns": [
 //                        {
 //                            "mData": "id",
 //                            "bSearchable": false,
 //                            "bVisible": false
 //                        },
                         {
-                            "mData":null,
-                            "bSortable":  false
+                            "mData": null,
+                            "bSortable": false
                         },
                         {
                             "mData": "numeroDocumento"
                         },
                         {
-                            "mData":"nombre"
+                            "mData": "nombre"
                         },
                         {
-                            "mData":"direccion"
+                            "mData": "direccion"
                         },
                         {
                             "bSortable": false,
-                            "mData":function (oObj) {
-                                var a = " <a href='#/clientes/"+oObj.id+"' class='btn btn-primary'><i class='fa fa-edit'></i></a>";
+                            "mData": function (oObj) {
+                                var a = " <a href='#/clientes/" + oObj.id + "' class='btn btn-primary'><i class='fa fa-edit'></i></a>";
                                 return a;
 
                             }
 
+                        },
+                        {
+                            "bSortable": false,
+                            "mData":function (oObj) {
+                                var b = " <a href='#/cliente-info/"+oObj.id+"' class='btn btn-danger'><i class='fa fa-trash-o'></i></a>";
+                                return b;
+                            }
                         }
-//                        {
-//                            "mData":function (oObj) {
-//                                var b = " <a href='#/cliente-info/"+oObj.id+"' class='btn btn-success'><i class='icon-zoom-in'></i></a>";
-//                                return b;
-//                            }
-//                        }
 
 
                     ],
-                    "fnRowCallback":function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+                    "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
                         $('td:eq(0)', nRow).html(iDisplayIndexFull + 1);
                         return nRow;
                     }
@@ -108,6 +109,8 @@ function AdminController($scope, $http, $cookies, $routeParams, serviceShare) {
             // or server returns response with an error status.
         });
 // ends proveedores
+
+
 }
 
 
