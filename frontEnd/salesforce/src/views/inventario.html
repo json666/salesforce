@@ -1,3 +1,25 @@
-<h3>Inventarios</h3>
+<h2><small><i class="fa fa-table"></i> Inventarios</small></h2>
 <div list-Articulo></div>
-<div frm-Articulo></div>
+<!--<div frm-Articulo></div>-->
+
+<div aria-hidden="false" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="ModalArticulo" class="modal fade in">
+    <div class="modal-dialog" style="width: 1024px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                <h4 id="myModalLabel" class="modal-title">Registro de articulo</h4>
+            </div>
+            <div class="modal-body">
+                <div frm-Articulo></div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" ng-click="save()" class="btn btn-primary"><i class="fa fa-save"></i> Guardar</button>
+                <button type="reset" class="btn btn-default">Limpiar</button>
+                <button data-dismiss="modal" class="btn btn-danger" type="button">Cancelar</button>
+
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

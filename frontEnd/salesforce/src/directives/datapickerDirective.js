@@ -25,15 +25,13 @@ app.directive('datepicker', function() {
                     dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
                     dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
                     weekHeader: 'Sm',
-                    dateFormat: 'dd-mm-yy',
+                    dateFormat: 'yy-dd-mm',
                     firstDay: 1,
                     isRTL: false,
                     showMonthAfterYear: false,
                     changeYear: true,
                     changeMonth: true,
-                    minDate: new Date(1900,1-1,1), maxDate: '-18Y',
-                    defaultDate: new Date(1996,1-1,1),
-                    yearRange: '-110:-18',
+                    yearRange: "-100:+1",
                     yearSuffix: ''
 
                 };

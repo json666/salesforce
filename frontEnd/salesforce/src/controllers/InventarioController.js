@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-function InventarioController($scope, $http, $cookies, $routeParams, serviceShare, inventarioService, paramService) {
+function InventarioController($scope, $http, $cookies, $routeParams, serviceShare, paramService) {
     console.log('--->admin');
     var id = $routeParams.id;
 
@@ -18,10 +18,24 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
 
 // begin process the form proveedores
     if (id == null || id.length == 0) {
+
         $scope.save = function () {
-            inventarioService.saveArticulo($scope.formData);//
-            $scope.formData = null
-        };
+                $http({
+                    method: 'POST',
+                    url: service + '/articulo/guardar',
+                    data: JSON.stringify($scope.formData)
+                }).success(function (response) {
+                        result = response;
+                        alert(result.message)
+                        $scope.formData = null
+                        $("#ModalArticulo").modal('hide')
+                }). error(function (response) {   //
+                        alert("ERROR! intente mas tarde")
+//                        alert(result.message)
+                    });
+            }
+           //inventarioService.saveArticulo($scope.formData);
+
     } else {
         //get de form by Id    //
         $http({
@@ -81,13 +95,13 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
 
                             }
 
+                        },
+                        {
+                            "mData":function (oObj) {
+                                var b = " <a href='#/cliente-info/"+oObj.id+"' class='btn btn-danger'><i class='fa fa-trash-o'></i></a>";
+                                return b;
+                            }
                         }
-//                        {
-//                            "mData":function (oObj) {
-//                                var b = " <a href='#/cliente-info/"+oObj.id+"' class='btn btn-success'><i class='icon-zoom-in'></i></a>";
-//                                return b;
-//                            }
-//                        }
 
 
                     ],
