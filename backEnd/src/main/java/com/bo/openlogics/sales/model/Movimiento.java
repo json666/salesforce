@@ -36,6 +36,9 @@ public class Movimiento extends EntidadBase{
     @ManyToOne
     private Clasif_Proveedor clasif_proveedor;
 
+    @ManyToOne
+    private Detalle_Movimiento detalle_movimiento;
+
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "MOVIMIENTOS_DETALLE_MOV", schema = "SALESFORCE",
             joinColumns = {@JoinColumn(name = "MOVIMIENTOS_ID", referencedColumnName = "id")},

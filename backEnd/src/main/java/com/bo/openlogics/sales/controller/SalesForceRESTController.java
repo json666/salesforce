@@ -1,8 +1,10 @@
 package com.bo.openlogics.sales.controller;
 
+import com.bo.openlogics.sales.model.Bodega_articulo;
 import com.bo.openlogics.sales.model.Clasif_Articulo;
 import com.bo.openlogics.sales.model.Clasif_Proveedor;
 import com.bo.openlogics.sales.model.JsonResult;
+import com.bo.openlogics.sales.service.Bodega_ArticuloService;
 import com.bo.openlogics.sales.service.Clasif_ArticuloService;
 import com.bo.openlogics.sales.service.Clasif_ProveedorService;
 import org.apache.log4j.Logger;
@@ -24,6 +26,9 @@ public class SalesForceRESTController {
 
     @Autowired
     Clasif_ProveedorService clasif_proveedorService;
+
+    @Autowired
+    Bodega_ArticuloService bodega_articuloService;
 
 
     private Logger logger = Logger.getLogger(SalesForceRESTController.class);
@@ -136,6 +141,22 @@ public class SalesForceRESTController {
         try{
             JsonResult jsonResult=null;
             jsonResult=clasif_articuloService.listadoArticulosHabilitados();
+            return jsonResult;
+        }catch(NullPointerException e){
+            e.printStackTrace();
+            return new JsonResult(false,"Error: "+e.getMessage(),null);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new JsonResult(false,"Error: "+e.getMessage(),null);
+        }
+    }
+
+    @RequestMapping(value = "/registro/bodega", method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResult registrarBodega(@RequestBody Bodega_articulo bodegaArticulo) {
+        try{
+            JsonResult jsonResult=null;
+            jsonResult=bodega_articuloService.save(bodegaArticulo);
             return jsonResult;
         }catch(NullPointerException e){
             e.printStackTrace();

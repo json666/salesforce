@@ -25,6 +25,7 @@ public class Detalle_Movimiento extends EntidadBase {
     @Column(name = "COSTO_TOTAL")
     private Double costoTotal;
 
+
     private Detalle_Movimiento(){
 
     }
