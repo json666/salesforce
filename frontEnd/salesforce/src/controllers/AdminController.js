@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-function AdminController($scope, $http, $cookies, $routeParams, serviceShare, adminService) {
+function AdminController($scope, $http, $cookies, $routeParams, serviceShare) {
     console.log('--->admin');
     var id = $routeParams.id;
     $scope.formData = {}
@@ -14,7 +14,20 @@ function AdminController($scope, $http, $cookies, $routeParams, serviceShare, ad
 // begin process the form proveedores
     if (id == null || id.length == 0) {
         $scope.save = function () {
-            adminService.saveProveedor($scope.formData);//
+//            adminService.saveProveedor($scope.formData);//
+            $http({
+                method: 'POST',
+                url: service + '/proveedor/guardar',
+                data: JSON.stringify($scope.formData)
+            }).success(function (response) {
+                result = response;
+                alert(result.message)
+                $scope.formData = null
+                $("#ModalProveedor").modal('hide')
+            }). error(function (response) {   //
+                alert("ERROR! intente mas tarde")
+
+            });
         };
     } else {
         //get de form by Id    //

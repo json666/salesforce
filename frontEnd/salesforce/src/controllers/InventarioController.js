@@ -45,7 +45,7 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
                         $("#ModalArticulo").modal('hide')
                 }). error(function (response) {   //
                         alert("ERROR! intente mas tarde")
-//                        alert(result.message)
+
                     });
             }
            //inventarioService.saveArticulo($scope.formData);

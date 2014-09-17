@@ -9,25 +9,25 @@
 
 app.directive('frmProveedor', function () {
     return {
-        templateUrl: 'src/templates/proveedorTpl.html'
+        templateUrl: 'src/templates/proveedorSave.html'
     };
 });
 
 app.directive('listProveedor', function () {
     return {
-        templateUrl: 'src/templates/proveedorTplList.html'
+        templateUrl: 'src/templates/proveedorList.html'
     };
 });
 
 app.directive('frmArticulo', function () {
     return {
-        templateUrl: 'src/templates/articuloTpl.html'
+        templateUrl: 'src/templates/articuloSave.html'
     };
 });
 
 app.directive('listArticulo', function () {
     return {
-        templateUrl: 'src/templates/articuloTplList.html'
+        templateUrl: 'src/templates/articuloList.html'
     };
 });
 
