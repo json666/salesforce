@@ -30,7 +30,7 @@
                             <div class="form-group">
                                 <label>CLASE</label>
                         <select class="form-control" id="selectClase" name="interes" ng-model="formData.clasif_clase"
-                                ng-options="item.valor for item in intList">
+                                 ng-options="item.descripcionClase for item in claseList" ng-change="cargarClase()">
                             <option value="">-- Seleccione --</option>
                         </select>
                             </div>
