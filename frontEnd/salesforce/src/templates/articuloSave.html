@@ -48,9 +48,21 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="form-group">
+                                <label>CATEGORIA</label>
+                                <select class="form-control" id="selectCategoria" name="categoria"
+                                        ng-model="formData.clasif_categoria"
+                                        ng-options="item.descripcionCategoria for item in categoriaList"
+                                        ng-change="cargarClase()">
+                                    <option value="">-- Seleccione --</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
                                 <label>CLASE</label>
-                                <select class="form-control" id="selectClase" name="interes" ng-model="formData.clasif_clase"
-                                        ng-options="item.descripcionClase for item in claseList" ng-change="cargarClase()">
+                                <select class="form-control" id="selectClase" name="clase"
+                                        ng-model="formData.clasif_clase"
+                                        ng-options="item.descripcionClase for item in claseList">
                                     <option value="">-- Seleccione --</option>
                                 </select>
                             </div>

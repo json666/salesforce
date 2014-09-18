@@ -15,6 +15,25 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
     paramService.paramUnidadList($scope);
 
     $scope.formData = {}
+    $http.get(service + '/categoria').success( //
+        function (data) {
+            var codigoCategoria;
+            $scope.categoriaList = data.result;
+        });
+
+    $scope.cargarClase=function(){
+        //console.log("CODIGO"+$scope.formData.clasif_categoria.id);
+        if($scope.formData.clasif_categoria!=null){
+            codigoCategoria=$scope.formData.clasif_categoria.id
+        }else{
+            codigoCategoria=0;
+        }
+
+        $http.get(service + '/categoria/'+codigoCategoria+'/clase').success( //
+            function (data) {
+                $scope.claseList = data.result;
+            });
+    }
 
     $scope.cargarClase=function(){
         alert("sdfds");
