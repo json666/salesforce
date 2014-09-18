@@ -1,6 +1,7 @@
 package com.bo.openlogics.sales.service.impl;
 
 import com.bo.openlogics.sales.beans.ArticuloBean;
+import com.bo.openlogics.sales.beans.parametricas.ArticuloHabilitadoBean;
 import com.bo.openlogics.sales.beans.parametricas.UnidadBean;
 import com.bo.openlogics.sales.dozer.UtilTransport;
 import com.bo.openlogics.sales.model.Clasif_Articulo;
@@ -50,6 +51,26 @@ public class Clasif_ArticuloServiceImpl implements Clasif_ArticuloService {
 
     @Override
     public JsonResult listadoArticulosHabilitados() {
+        try{
+            JsonResult jsonResult=null;
+            List<Clasif_Articulo> listadoArticulos=clasif_articuloRepository.findByDisabled();
+            List<ArticuloHabilitadoBean> articuloBeans= new ArrayList<ArticuloHabilitadoBean>();
+            if(listadoArticulos.size()>0){
+                articuloBeans=utilTransport.convert(listadoArticulos,ArticuloHabilitadoBean.class);
+                jsonResult= new JsonResult(true,"Consulta Exitosa.",articuloBeans);
+            }else{
+                jsonResult= new JsonResult(false,"No existen Datos.",null);
+            }
+            return jsonResult;
+        }catch(NullPointerException e){
+            return new JsonResult(false,e.getMessage(),null);
+        }catch(Exception e){
+            return new JsonResult(false,"Error: "+e.getMessage(),null);
+        }
+    }
+
+    @Override
+    public JsonResult listadoArticulos() {
         try{
             JsonResult jsonResult=null;
             List<Clasif_Articulo> listadoArticulos=clasif_articuloRepository.findByDisabled();

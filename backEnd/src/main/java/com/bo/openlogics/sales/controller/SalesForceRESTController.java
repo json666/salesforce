@@ -103,8 +103,40 @@ public class SalesForceRESTController {
     public JsonResult listadoAriculosHabilitados() {
         try{
             JsonResult jsonResult=null;
-            jsonResult=clasif_articuloService.listadoArticulosHabilitados();
+            jsonResult=clasif_articuloService.listadoArticulos();
                 return jsonResult;
+        }catch(NullPointerException e){
+            e.printStackTrace();
+            return new JsonResult(false,"Error: "+e.getMessage(),null);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new JsonResult(false,"Error: "+e.getMessage(),null);
+        }
+    }
+
+    @RequestMapping(value = "/proveedorMovimiento", method = RequestMethod.GET)
+     @ResponseBody
+     public JsonResult listadoProveedoresHabilitados() {
+        try{
+            JsonResult jsonResult=null;
+            jsonResult=clasif_proveedorService.listadoProveedoresHabilitados();
+            return jsonResult;
+        }catch(NullPointerException e){
+            e.printStackTrace();
+            return new JsonResult(false,"Error: "+e.getMessage(),null);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new JsonResult(false,"Error: "+e.getMessage(),null);
+        }
+    }
+
+    @RequestMapping(value = "/articuloMovimiento", method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResult listadoArticulo() {
+        try{
+            JsonResult jsonResult=null;
+            jsonResult=clasif_articuloService.listadoArticulosHabilitados();
+            return jsonResult;
         }catch(NullPointerException e){
             e.printStackTrace();
             return new JsonResult(false,"Error: "+e.getMessage(),null);

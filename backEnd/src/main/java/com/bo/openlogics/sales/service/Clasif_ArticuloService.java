@@ -10,4 +10,6 @@ public interface Clasif_ArticuloService {
     public void save(Clasif_Articulo clasif_articulo);
 
     public JsonResult listadoArticulosHabilitados();
+
+    public JsonResult listadoArticulos();
 }

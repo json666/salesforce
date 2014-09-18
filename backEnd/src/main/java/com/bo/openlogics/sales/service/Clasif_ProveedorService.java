@@ -11,4 +11,6 @@ public interface Clasif_ProveedorService {
 
     public JsonResult listadoProveedores();
 
+    public JsonResult listadoProveedoresHabilitados();
+
 }
