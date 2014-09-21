@@ -36,7 +36,7 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
     }
 
     $scope.cargarClase=function(){
-        alert("sdfds");
+//        alert("sdfds");
         console.log("CODIGO"+$scope.formData.clasif_categoria.id);
         if($scope.formData.clasif_categoria!=null){
             codigoCategoria=$scope.formData.clasif_categoria.id
