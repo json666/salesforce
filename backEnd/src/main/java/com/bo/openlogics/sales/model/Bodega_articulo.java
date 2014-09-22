@@ -1,5 +1,8 @@
 package com.bo.openlogics.sales.model;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -13,6 +16,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "BODEGA_ARTICULO", schema = "SALESFORCE")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Bodega_articulo extends EntidadBase{
 
     /**
@@ -30,26 +34,27 @@ public class Bodega_articulo extends EntidadBase{
     @Column(name = "MONTO")
     private  Double monto ;
 
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy ="pk.bodega_articulo", cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+            orphanRemoval = true)
+    @Cascade({org.hibernate.annotations.CascadeType.ALL, org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
+    private List<BodegaDetalleMovimiento> bodegaDetalleMovimientos;
+
     @ManyToOne
     private Clasif_Articulo clasif_articulo;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "BODEGA_ART_DETALLE_MOV", schema = "SALESFORCE",
-            joinColumns = {@JoinColumn(name = "BODEGA_ART_ID", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "DETALLE_MOV_ID", referencedColumnName = "id")})
-    private List<Detalle_Movimiento> detalle_movimientos;
 
     private Bodega_articulo(){
 
     }
 
-    public Bodega_articulo(String tipoBodega, String descripcionBodega, String cantidad, Double monto, Clasif_Articulo clasif_articulo, List<Detalle_Movimiento> detalle_movimientos) {
+    public Bodega_articulo(String tipoBodega, String descripcionBodega, String cantidad, Double monto, Clasif_Articulo clasif_articulo) {
         this.tipoBodega = tipoBodega;
         this.descripcionBodega = descripcionBodega;
         this.cantidad = cantidad;
         this.monto = monto;
         this.clasif_articulo = clasif_articulo;
-        this.detalle_movimientos = detalle_movimientos;
+
     }
 
     public String getCantidad() {
@@ -76,13 +81,6 @@ public class Bodega_articulo extends EntidadBase{
         this.clasif_articulo = clasif_articulo;
     }
 
-    public List<Detalle_Movimiento> getDetalle_movimientos() {
-        return detalle_movimientos;
-    }
-
-    public void setDetalle_movimientos(List<Detalle_Movimiento> detalle_movimientos) {
-        this.detalle_movimientos = detalle_movimientos;
-    }
 
     public String getTipoBodega() {
         return tipoBodega;
@@ -99,4 +97,13 @@ public class Bodega_articulo extends EntidadBase{
     public void setDescripcionBodega(String descripcionBodega) {
         this.descripcionBodega = descripcionBodega;
     }
+
+    public List<BodegaDetalleMovimiento> getBodegaDetalleMovimientos() {
+        return bodegaDetalleMovimientos;
+    }
+
+    public void setBodegaDetalleMovimientos(List<BodegaDetalleMovimiento> bodegaDetalleMovimientos) {
+        this.bodegaDetalleMovimientos = bodegaDetalleMovimientos;
+    }
+
 }

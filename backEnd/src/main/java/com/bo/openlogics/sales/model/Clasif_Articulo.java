@@ -61,10 +61,33 @@ public class Clasif_Articulo extends EntidadBase {
     private Clasif_Unidad clasif_unidad;
 
     @ManyToOne
+    private Clasif_Categoria clasif_categoria;
+
+    @ManyToOne
     private Clasif_Clase clasif_clase;
 
     public Clasif_Articulo(){
 
+    }
+
+    public Clasif_Articulo(String descripcionArticulo, String codigoArticulo, String metodoCosto, Double precio, Double precioCosto, String upc, int nivelReorden, int cantidadReorden, int nSerie, byte[] fotografia, Date fechaDesde, Date fechaHasta, String usuarioAct, Clasif_Marca clasif_marca, Clasif_Unidad clasif_unidad, Clasif_Categoria clasif_categoria, Clasif_Clase clasif_clase) {
+        this.descripcionArticulo = descripcionArticulo;
+        this.codigoArticulo = codigoArticulo;
+        this.metodoCosto = metodoCosto;
+        this.precio = precio;
+        this.precioCosto = precioCosto;
+        this.upc = upc;
+        this.nivelReorden = nivelReorden;
+        this.cantidadReorden = cantidadReorden;
+        this.nSerie = nSerie;
+        this.fotografia = fotografia;
+        this.fechaDesde = fechaDesde;
+        this.fechaHasta = fechaHasta;
+        this.usuarioAct = usuarioAct;
+        this.clasif_marca = clasif_marca;
+        this.clasif_unidad = clasif_unidad;
+        this.clasif_categoria = clasif_categoria;
+        this.clasif_clase = clasif_clase;
     }
 
     public Clasif_Articulo(String descripcionArticulo, String metodoCosto, Double precio, Double precioCosto, String upc, int nivelReorden, int cantidadReorden, int nSerie, byte[] fotografia, Date fechaDesde, Date fechaHasta, String usuarioAct, Clasif_Marca clasif_marca, Clasif_Unidad clasif_unidad, Clasif_Clase clasif_clase) {
@@ -213,5 +236,13 @@ public class Clasif_Articulo extends EntidadBase {
 
     public void setCodigoArticulo(String codigoArticulo) {
         this.codigoArticulo = codigoArticulo;
+    }
+
+    public Clasif_Categoria getClasif_categoria() {
+        return clasif_categoria;
+    }
+
+    public void setClasif_categoria(Clasif_Categoria clasif_categoria) {
+        this.clasif_categoria = clasif_categoria;
     }
 }

@@ -12,8 +12,8 @@ import java.util.Date;
  * Time: 11:24
  * To change this template use File | Settings | File Templates.
  */
-@Entity
-@Table(name = "DETALLE_MOVIMIENTOS", schema = "SALESFORCE")
+//@Entity
+//@Table(name = "DETALLE_MOVIMIENTOS", schema = "SALESFORCE")
 public class Detalle_Movimiento extends EntidadBase {
 
     @Column(name = "CANTIDAD")

@@ -1,5 +1,7 @@
 package com.bo.openlogics.sales.model;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -13,6 +15,9 @@ import java.util.List;
  */
 @Entity
 @Table(name = "MOVIMIENTOS", schema = "SALESFORCE")
+
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Movimiento extends EntidadBase{
 
     @Column(name = "FECHA")
@@ -36,14 +41,9 @@ public class Movimiento extends EntidadBase{
     @ManyToOne
     private Clasif_Proveedor clasif_proveedor;
 
-    @ManyToOne
-    private Detalle_Movimiento detalle_movimiento;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "MOVIMIENTOS_DETALLE_MOV", schema = "SALESFORCE",
-            joinColumns = {@JoinColumn(name = "MOVIMIENTOS_ID", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "DETALLE_MOVIMIENTO_ID", referencedColumnName = "id")})
-    private List<Detalle_Movimiento> detalle_movimientos;
+
+
 
     public Movimiento(){
 

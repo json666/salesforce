@@ -4,16 +4,15 @@ import com.bo.openlogics.sales.beans.ArticuloBean;
 import com.bo.openlogics.sales.beans.parametricas.ArticuloHabilitadoBean;
 import com.bo.openlogics.sales.beans.parametricas.UnidadBean;
 import com.bo.openlogics.sales.dozer.UtilTransport;
-import com.bo.openlogics.sales.model.Clasif_Articulo;
-import com.bo.openlogics.sales.model.Clasif_Unidad;
-import com.bo.openlogics.sales.model.JsonResult;
-import com.bo.openlogics.sales.repository.Clasif_ArticuloRepository;
+import com.bo.openlogics.sales.model.*;
+import com.bo.openlogics.sales.repository.*;
 import com.bo.openlogics.sales.service.Clasif_ArticuloService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -26,6 +25,18 @@ public class Clasif_ArticuloServiceImpl implements Clasif_ArticuloService {
     Clasif_ArticuloRepository clasif_articuloRepository;
 
     @Autowired
+    Clasif_UnidadRepository clasif_unidadRepository;
+
+    @Autowired
+    Clasif_MarcaRepository clasif_marcaRepository;
+
+    @Autowired
+    Clasif_ClaseRepository clasif_claseRepository;
+
+    @Autowired
+    Clasif_CategoriaRepository clasif_categoriaRepository;
+
+    @Autowired
     UtilTransport utilTransport;
 
 
@@ -35,8 +46,33 @@ public class Clasif_ArticuloServiceImpl implements Clasif_ArticuloService {
     public void save(Clasif_Articulo clasif_articulo) {
         try{
             Clasif_Articulo clasifArticulo=null;
+            Clasif_Unidad clasifUnidad=null;
+            Clasif_Clase clasifClase=null;
+            Clasif_Categoria clasifCategoria=null;
+            Clasif_Marca clasifMarca=null;
+
             clasifArticulo=clasif_articuloRepository.findByCodigoArticulo(clasif_articulo.getCodigoArticulo());
             if(clasifArticulo==null){
+                if(clasif_articulo.getClasif_unidad()!=null){
+                    clasifUnidad=clasif_unidadRepository.findOne(clasif_articulo.getClasif_unidad().getId());
+                    clasif_articulo.setClasif_unidad(clasifUnidad);
+                }
+
+                if(clasif_articulo.getClasif_clase()!=null){
+                    clasifClase=clasif_claseRepository.findById(clasif_articulo.getClasif_clase().getId());
+                    clasif_articulo.setClasif_clase(clasifClase);
+                }
+
+                if(clasif_articulo.getClasif_marca()!=null){
+                    clasifMarca=clasif_marcaRepository.findOne(clasif_articulo.getClasif_marca().getId());
+                    clasif_articulo.setClasif_marca(clasifMarca);
+                }
+
+                if(clasif_articulo.getClasif_categoria()!=null){
+                    clasifCategoria=clasif_categoriaRepository.findOne(clasif_articulo.getClasif_categoria().getId());
+                    clasif_articulo.setClasif_categoria(clasifCategoria);
+                }
+                //clasif_articulo.setFechaDesde(new Date());
                 clasif_articuloRepository.save(clasif_articulo);
             } else{
                 logger.info("******Articulo ya esta registrado*******");

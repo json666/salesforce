@@ -17,6 +17,7 @@
         <class>com.bo.openlogics.sales.model.Clasif_Proveedor</class>
         <class>com.bo.openlogics.sales.model.Clasif_Unidad</class>
         <class>com.bo.openlogics.sales.model.Detalle_Movimiento</class>
+        <class>com.bo.openlogics.sales.model.BodegaDetalleMovimiento</class>
         <class>com.bo.openlogics.sales.model.Movimiento</class>
         <class>com.bo.openlogics.sales.model.Clasif_Marcas</class>
         <class>com.bo.openlogics.sales.model.Clasif_Unidades</class>
