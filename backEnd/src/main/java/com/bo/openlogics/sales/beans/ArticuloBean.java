@@ -1,5 +1,10 @@
 package com.bo.openlogics.sales.beans;
 
+import com.bo.openlogics.sales.beans.parametricas.CategoriaBean;
+import com.bo.openlogics.sales.beans.parametricas.ClaseBean;
+import com.bo.openlogics.sales.beans.parametricas.MarcaBean;
+import com.bo.openlogics.sales.beans.parametricas.UnidadBean;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -46,9 +51,22 @@ public class ArticuloBean implements Serializable {
 
 
     private String usuarioAct ;
+
+    private ClaseBean claseBean;
+
+    private MarcaBean marcaBean;
+
+    private CategoriaBean categoriaBean;
+
+    private UnidadBean unidadBean;
+
     public ArticuloBean() {}
 
-    public ArticuloBean(Long id, String descripcionArticulo, String codigoArticulo, String metodoCosto, Double precio, Double precioCosto, String upc, int nivelReorden, int cantidadReorden, int nSerie, byte[] fotografia, Date fechaDesde, Date fechaHasta, String usuarioAct) {
+    public ArticuloBean(Long id, String descripcionArticulo, String codigoArticulo,
+                        String metodoCosto, Double precio, Double precioCosto,
+                        String upc, int nivelReorden, int cantidadReorden,
+                        int nSerie, byte[] fotografia, Date fechaDesde,
+                        Date fechaHasta, String usuarioAct) {
         this.id = id;
         this.descripcionArticulo = descripcionArticulo;
         this.codigoArticulo = codigoArticulo;
@@ -63,7 +81,58 @@ public class ArticuloBean implements Serializable {
         this.fechaDesde = fechaDesde;
         this.fechaHasta = fechaHasta;
         this.usuarioAct = usuarioAct;
+
     }
+
+    public ArticuloBean(Long id, String descripcionArticulo, String codigoArticulo,
+                        String metodoCosto, Double precio, Double precioCosto,
+                        String upc, int nivelReorden, int cantidadReorden,
+                        int nSerie, byte[] fotografia, Date fechaDesde,
+                        Date fechaHasta, String usuarioAct, ClaseBean claseBean,
+                        MarcaBean marcaBean, CategoriaBean categoriaBean, UnidadBean unidadBean) {
+        this.id = id;
+        this.descripcionArticulo = descripcionArticulo;
+        this.codigoArticulo = codigoArticulo;
+        this.metodoCosto = metodoCosto;
+        this.precio = precio;
+        this.precioCosto = precioCosto;
+        this.upc = upc;
+        this.nivelReorden = nivelReorden;
+        this.cantidadReorden = cantidadReorden;
+        this.nSerie = nSerie;
+        this.fotografia = fotografia;
+        this.fechaDesde = fechaDesde;
+        this.fechaHasta = fechaHasta;
+        this.usuarioAct = usuarioAct;
+        this.claseBean = claseBean;
+        this.marcaBean = marcaBean;
+        this.categoriaBean = categoriaBean;
+        this.unidadBean = unidadBean;
+    }
+
+    public ArticuloBean(Long id, String descripcionArticulo, String codigoArticulo,
+                        String metodoCosto, Double precio, Double precioCosto,
+                        String upc, int nivelReorden, int cantidadReorden,
+                        int nSerie, byte[] fotografia, Date fechaDesde,
+                        Date fechaHasta, String usuarioAct, ClaseBean claseBean) {
+        this.id = id;
+        this.descripcionArticulo = descripcionArticulo;
+        this.codigoArticulo = codigoArticulo;
+        this.metodoCosto = metodoCosto;
+        this.precio = precio;
+        this.precioCosto = precioCosto;
+        this.upc = upc;
+        this.nivelReorden = nivelReorden;
+        this.cantidadReorden = cantidadReorden;
+        this.nSerie = nSerie;
+        this.fotografia = fotografia;
+        this.fechaDesde = fechaDesde;
+        this.fechaHasta = fechaHasta;
+        this.usuarioAct = usuarioAct;
+        this.claseBean = claseBean;
+    }
+
+
 
     public Long getId() {
         return id;
@@ -175,5 +244,37 @@ public class ArticuloBean implements Serializable {
 
     public void setUsuarioAct(String usuarioAct) {
         this.usuarioAct = usuarioAct;
+    }
+
+    public ClaseBean getClaseBean() {
+        return claseBean;
+    }
+
+    public void setClaseBean(ClaseBean claseBean) {
+        this.claseBean = claseBean;
+    }
+
+    public MarcaBean getMarcaBean() {
+        return marcaBean;
+    }
+
+    public void setMarcaBean(MarcaBean marcaBean) {
+        this.marcaBean = marcaBean;
+    }
+
+    public CategoriaBean getCategoriaBean() {
+        return categoriaBean;
+    }
+
+    public void setCategoriaBean(CategoriaBean categoriaBean) {
+        this.categoriaBean = categoriaBean;
+    }
+
+    public UnidadBean getUnidadBean() {
+        return unidadBean;
+    }
+
+    public void setUnidadBean(UnidadBean unidadBean) {
+        this.unidadBean = unidadBean;
     }
 }

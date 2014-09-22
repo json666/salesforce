@@ -1,8 +1,7 @@
 package com.bo.openlogics.sales.service.impl;
 
 import com.bo.openlogics.sales.beans.ArticuloBean;
-import com.bo.openlogics.sales.beans.parametricas.ArticuloHabilitadoBean;
-import com.bo.openlogics.sales.beans.parametricas.UnidadBean;
+import com.bo.openlogics.sales.beans.parametricas.*;
 import com.bo.openlogics.sales.dozer.UtilTransport;
 import com.bo.openlogics.sales.model.*;
 import com.bo.openlogics.sales.repository.*;
@@ -107,12 +106,34 @@ public class Clasif_ArticuloServiceImpl implements Clasif_ArticuloService {
 
     @Override
     public JsonResult listadoArticulos() {
+        ClaseBean claseBean=null;
+        MarcaBean marcaBean=null;
+        UnidadBean unidadBean=null;
+        CategoriaBean categoriaBean=null;
         try{
             JsonResult jsonResult=null;
             List<Clasif_Articulo> listadoArticulos=clasif_articuloRepository.findByDisabled();
             List<ArticuloBean> articuloBeans= new ArrayList<ArticuloBean>();
             if(listadoArticulos.size()>0){
-                articuloBeans=utilTransport.convert(listadoArticulos,ArticuloBean.class);
+                ArticuloBean articuloBean=null;
+                for (Clasif_Articulo articulo : listadoArticulos) {
+                    articuloBean=null;
+                    claseBean=null;
+                    claseBean= new ClaseBean(articulo.getClasif_clase().getId(),articulo.getClasif_clase().getDescripcionClase());
+                    marcaBean=null;
+                    marcaBean=new MarcaBean(articulo.getClasif_marca().getId(),articulo.getClasif_marca().getDescripcionMarca());
+                    unidadBean= null;
+                    unidadBean= new UnidadBean(articulo.getClasif_unidad().getId(),articulo.getClasif_unidad().getDescripcionUnidad());
+                    categoriaBean=null;
+                    categoriaBean= new CategoriaBean(articulo.getClasif_categoria().getId(),articulo.getClasif_categoria().getDescripcionCategoria());
+                    articuloBean= new ArticuloBean(articulo.getId(),articulo.getDescripcionArticulo(),articulo.getCodigoArticulo(),
+                            articulo.getMetodoCosto(),articulo.getPrecio(),articulo.getPrecioCosto(),
+                            articulo.getUpc(),articulo.getNivelReorden(),articulo.getCantidadReorden(),
+                            articulo.getnSerie(),articulo.getFotografia(),articulo.getFechaDesde(),articulo.getFechaHasta(),
+                            articulo.getUsuarioAct(),claseBean,marcaBean,categoriaBean,unidadBean);
+                    articuloBeans.add(articuloBean);
+                }
+                //articuloBeans=utilTransport.convert(listadoArticulos,ArticuloBean.class);
 
                 jsonResult= new JsonResult(true,"Consulta Exitosa.",articuloBeans);
             }else{
