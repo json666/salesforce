@@ -146,4 +146,83 @@ public class Clasif_ArticuloServiceImpl implements Clasif_ArticuloService {
             return new JsonResult(false,"Error: "+e.getMessage(),null);
         }
     }
+
+    @Override
+    public JsonResult editarArticulo(Clasif_Articulo clasif_articulo) {
+        Clasif_Articulo clasifArticulo=null;
+        Clasif_Unidad clasifUnidad=null;
+        Clasif_Clase clasifClase=null;
+        Clasif_Categoria clasifCategoria=null;
+        Clasif_Marca clasifMarca=null;
+        JsonResult jsonResult=null;
+        try{
+            clasifArticulo=clasif_articuloRepository.findOne(clasif_articulo.getId());
+            if(clasifArticulo!=null){
+                if(clasif_articulo.getClasif_unidad()!=null){
+                    clasifUnidad=clasif_unidadRepository.findOne(clasif_articulo.getClasif_unidad().getId());
+                    clasif_articulo.setClasif_unidad(clasifUnidad);
+                }
+
+                if(clasif_articulo.getClasif_clase()!=null){
+                    clasifClase=clasif_claseRepository.findById(clasif_articulo.getClasif_clase().getId());
+                    clasif_articulo.setClasif_clase(clasifClase);
+                }
+
+                if(clasif_articulo.getClasif_marca()!=null){
+                    clasifMarca=clasif_marcaRepository.findOne(clasif_articulo.getClasif_marca().getId());
+                    clasif_articulo.setClasif_marca(clasifMarca);
+                }
+
+                if(clasif_articulo.getClasif_categoria()!=null){
+                    clasifCategoria=clasif_categoriaRepository.findOne(clasif_articulo.getClasif_categoria().getId());
+                    clasif_articulo.setClasif_categoria(clasifCategoria);
+                }
+                //clasif_articulo.setFechaDesde(new Date());
+                clasif_articuloRepository.save(clasif_articulo);
+                jsonResult=new JsonResult(false,"El Articulo Seleccionado, fue actualizado satisfactoriamente.",null);
+            } else{
+                jsonResult=new JsonResult(false,"Articulo no Existe",null);
+                logger.info("******Articulo no Existe*******");
+            }
+
+        }catch(NullPointerException e){
+            e.printStackTrace();
+            jsonResult=new JsonResult(false,e.getMessage(),null);
+        }catch(Exception e){
+            e.printStackTrace();
+            jsonResult=new JsonResult(false,e.getMessage(),null);
+        }
+        return jsonResult;
+    }
+
+    @Override
+    public JsonResult desabilitarArticulo(Long IdArticulo) {
+        Clasif_Articulo clasifArticulo=null;
+        Clasif_Unidad clasifUnidad=null;
+        Clasif_Clase clasifClase=null;
+        Clasif_Categoria clasifCategoria=null;
+        Clasif_Marca clasifMarca=null;
+        JsonResult jsonResult=null;
+        Clasif_Articulo clasif_articulo=null;
+        try{
+            clasifArticulo=clasif_articuloRepository.findOne(IdArticulo);
+            if(clasifArticulo!=null){
+                clasifArticulo.setDisabled(true);
+                clasifArticulo.setFechaHasta(new Date());
+                clasif_articuloRepository.save(clasifArticulo);
+                jsonResult=new JsonResult(false,"El Articulo Seleccionado, fue desabilitado satisfactoriamente.",null);
+            } else{
+                jsonResult=new JsonResult(false,"Articulo no Existe",null);
+                logger.info("******Articulo no Existe*******");
+            }
+
+        }catch(NullPointerException e){
+            e.printStackTrace();
+            jsonResult=new JsonResult(false,e.getMessage(),null);
+        }catch(Exception e){
+            e.printStackTrace();
+            jsonResult=new JsonResult(false,e.getMessage(),null);
+        }
+        return jsonResult;
+    }
 }

@@ -166,4 +166,52 @@ public class SalesForceRESTController {
             return new JsonResult(false,"Error: "+e.getMessage(),null);
         }
     }
+    /***
+     * Descripcion: Actualizacion del articulo
+     */
+
+    @RequestMapping(value = "/articulo/editar", method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResult editarArticulo(@RequestBody Clasif_Articulo clasif_articulo) {
+        try{
+            JsonResult jsonResult=null;
+            jsonResult=clasif_articuloService.editarArticulo(clasif_articulo);
+            if(jsonResult.getSuccess()){
+                return jsonResult;
+            }else{
+                return new JsonResult(false,jsonResult.getMessage(),null);
+            }
+        }catch(NullPointerException e){
+            e.printStackTrace();
+            return new JsonResult(false,"Error: "+e.getMessage(),null);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new JsonResult(false,"Error: "+e.getMessage(),null);
+        }
+    }
+
+    /****
+     * Descripcion: Desabilitar Articulo
+     * @param idArticulo
+     * @return
+     */
+    @RequestMapping(value = "/articulo/desabilitar/{idArticulo}", method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResult desabilitarArticulo(@PathVariable Long idArticulo) {
+        try{
+            JsonResult jsonResult=null;
+            jsonResult=clasif_articuloService.desabilitarArticulo(idArticulo);
+            if(jsonResult.getSuccess()){
+                return jsonResult;
+            }else{
+                return new JsonResult(false,jsonResult.getMessage(),null);
+            }
+        }catch(NullPointerException e){
+            e.printStackTrace();
+            return new JsonResult(false,"Error: "+e.getMessage(),null);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new JsonResult(false,"Error: "+e.getMessage(),null);
+        }
+    }
 }

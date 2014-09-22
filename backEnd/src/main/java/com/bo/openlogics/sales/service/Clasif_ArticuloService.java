@@ -12,4 +12,8 @@ public interface Clasif_ArticuloService {
     public JsonResult listadoArticulosHabilitados();
 
     public JsonResult listadoArticulos();
+
+    public JsonResult editarArticulo(Clasif_Articulo clasif_articulo);
+
+    public JsonResult desabilitarArticulo(Long IdArticulo);
 }
