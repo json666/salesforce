@@ -31,6 +31,12 @@ app.directive('listArticulo', function () {
     };
 });
 
+app.directive('frmCategoria', function () {
+    return {
+        templateUrl: 'src/templates/categoriaSave.html'
+    };
+});
+
 app.directive('listCategoria', function () {
     return {
         templateUrl: 'src/templates/categoriaList.html'

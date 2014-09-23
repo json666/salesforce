@@ -152,6 +152,39 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
         });
 // ends proveedores
 
+//categorias begin
+    if (id == null || id.length == 0) {
+        $scope.saveCategoria = function () {
+            $http({
+                method: 'POST',
+                url: service + '/categoria/guardar',
+                data: JSON.stringify($scope.formData)
+            }).success(function (response) {
+                result = response;
+                alert(result.message)
+                $scope.formData = null
+                $("#ModalCategoria").modal('hide')
+            }). error(function (response) {   //
+                alert("ERROR! intente mas tarde")
+
+            });
+        }
+        //inventarioService.saveArticulo($scope.formData);
+
+    } else {
+        //get de form by Id    //
+        $http({
+            method: 'GET',
+            url: service + '/proveedor/get/' + id
+        }).success(
+            function (data, status) {
+//                $("#loading-div-background").css("display", "none");
+                $scope.formData = data.result;
+                console.log(angular.toJson(data.result));
+            }).error(function (data, status) {
+                alert("Error de conexion con el servidor.");
+            });
+    }
     //Lista categorias
     var oTable = $('#dataTableCategorias');
     $http.get(service + '/categoria').success(

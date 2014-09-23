@@ -1,6 +1,8 @@
 package com.bo.openlogics.sales.controller;
 
 import com.bo.openlogics.sales.model.Clasif_Articulo;
+import com.bo.openlogics.sales.model.Clasif_Categoria;
+import com.bo.openlogics.sales.model.Clasif_Clase;
 import com.bo.openlogics.sales.model.JsonResult;
 import com.bo.openlogics.sales.service.*;
 import com.bo.openlogics.sales.service.impl.Clasif_ClaseServiceImpl;
@@ -75,6 +77,30 @@ public class SalesForceParamRESTController {
         }
     }
 
+    //CATEGORIAS
+
+    @RequestMapping(value = "/categoria/guardar", method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResult save(@RequestBody Clasif_Categoria clasif_categoria) {
+        try{
+            JsonResult jsonResult=null;
+            if(clasif_categoria!=null){
+
+                jsonResult= clasif_categoriaService.save(clasif_categoria);
+                return jsonResult;
+
+            }else{
+                return new JsonResult(false,"El objeto Categoria tiene problemas.",null);
+            }
+        }catch(NullPointerException e){
+            e.printStackTrace();
+            return new JsonResult(false,"Error: "+e.getMessage(),null);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new JsonResult(false,"Error: "+e.getMessage(),null);
+        }
+    }
+
     @RequestMapping(value = "/categoria", method = RequestMethod.GET)
     @ResponseBody
     public JsonResult findByCategoria() {
@@ -114,6 +140,30 @@ public class SalesForceParamRESTController {
             return new JsonResult(false,"Error: "+e.getMessage(),null);
         }
     }
+
+    //CLASES
+    @RequestMapping(value = "/clases/guardar", method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResult saveClase(@RequestBody Clasif_Clase clasif_clase) {
+        try{
+            JsonResult jsonResult=null;
+            if(clasif_clase!=null){
+
+                jsonResult= clasif_claseService.saveClase(clasif_clase);
+                return jsonResult;
+
+            }else{
+                return new JsonResult(false,"El objeto Categoria tiene problemas.",null);
+            }
+        }catch(NullPointerException e){
+            e.printStackTrace();
+            return new JsonResult(false,"Error: "+e.getMessage(),null);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new JsonResult(false,"Error: "+e.getMessage(),null);
+        }
+    }
+
     @RequestMapping(value = "/tipoMovimiento", method = RequestMethod.GET)
     @ResponseBody
     public JsonResult findByTipoMovimiento() {

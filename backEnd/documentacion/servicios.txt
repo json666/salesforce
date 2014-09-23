@@ -1,0 +1,32 @@
+http://localhost:8080/b-salesforce/rest/clases/guardar
+
+    {
+       "success": true,
+       "message": "Se registro satisfactoriamente.",
+       "result":
+       {
+           "disabled": false,
+           "descripcionClase": "ANY",
+           "fechaDesde": null,
+           "fechaHasta": null,
+           "usuarioAct": null,
+           "clasif_categoria": null
+       }
+    }
+
+
+http://localhost:8080/b-salesforce/rest/categoria/guardar
+
+    {
+       "success": true,
+       "message": "Se registro satisfactoriamente.",
+       "result":
+       {
+           "disabled": false,
+           "descripcionCategoria": "JOYAS DE PLATA",
+           "fechaDesde": null,
+           "fechaHasta": null,
+           "usuarioAct": "JSON"
+       }
+    }
+

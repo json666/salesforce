@@ -30,20 +30,26 @@ public class Clasif_CategoriaServiceImpl implements Clasif_CategoriaService {
     private Logger logger = Logger.getLogger(Clasif_CategoriaServiceImpl.class);
 
     @Override
-    public void save(Clasif_Categoria clasif_categoria) {
+    public JsonResult save(Clasif_Categoria clasif_categoria) {
+        JsonResult jsonResult = null;
         try{
             Clasif_Categoria clasifCategoria=null;
             clasifCategoria=clasif_categoriaRepository.findByDescripcionCategoria(clasif_categoria.getDescripcionCategoria());
             if(clasifCategoria==null){
-                clasif_categoriaRepository.save(clasif_categoria);
+                clasifCategoria = clasif_categoriaRepository.save(clasif_categoria);
+                jsonResult = new JsonResult(true, "Se registro satisfactoriamente.", clasifCategoria);
             }else{
+                jsonResult = new JsonResult(true, "Ya existe el registro.", null);
                 logger.info("******El tipo categoria ya esta registrada*******");
             }
+            return jsonResult;
 
         }catch(NullPointerException e){
             e.printStackTrace();
+            return new JsonResult(false, e.getMessage(), null);
         }catch(Exception e){
             e.printStackTrace();
+            return new JsonResult(false, "Error: " + e.getMessage(), null);
         }
 
     }
