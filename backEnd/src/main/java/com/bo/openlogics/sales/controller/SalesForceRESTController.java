@@ -4,6 +4,7 @@ import com.bo.openlogics.sales.model.Bodega_articulo;
 import com.bo.openlogics.sales.model.Clasif_Articulo;
 import com.bo.openlogics.sales.model.Clasif_Proveedor;
 import com.bo.openlogics.sales.model.JsonResult;
+import com.bo.openlogics.sales.service.Bodega_ArticuloService;
 import com.bo.openlogics.sales.service.Clasif_ArticuloService;
 import com.bo.openlogics.sales.service.Clasif_ProveedorService;
 import org.apache.log4j.Logger;
@@ -25,6 +26,9 @@ public class SalesForceRESTController {
 
     @Autowired
     Clasif_ProveedorService clasif_proveedorService;
+
+    @Autowired
+    Bodega_ArticuloService bodega_articuloService;
 
 
     private Logger logger = Logger.getLogger(SalesForceRESTController.class);
@@ -182,6 +186,37 @@ public class SalesForceRESTController {
         try{
             JsonResult jsonResult=null;
             jsonResult=clasif_articuloService.desabilitarArticulo(idArticulo);
+            if(jsonResult.getSuccess()){
+                return jsonResult;
+            }else{
+                return new JsonResult(false,jsonResult.getMessage(),null);
+            }
+        }catch(NullPointerException e){
+            e.printStackTrace();
+            return new JsonResult(false,"Error: "+e.getMessage(),null);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new JsonResult(false,"Error: "+e.getMessage(),null);
+        }
+    }
+
+
+    /****
+     * Descripcion: Desabilitar Articulo
+     * @param bodega_articulo
+     * @return
+     */
+    @RequestMapping(value = "/bodega/articulos/guardar", method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResult adicionarBodegaArticulos(@PathVariable Bodega_articulo bodega_articulo)  {
+
+        Bodega_articulo bodegaArticulo=null;
+        try{
+            JsonResult jsonResult=null;
+            //jsonResult=clasif_articuloService.desabilitarArticulo(idArticulo);
+            bodega_articuloService.adicionarBodegaArticulo(bodega_articulo);
+            logger.info("Se adiciono una bodega con id: "
+                    + bodega_articulo.getId() + ".");
             if(jsonResult.getSuccess()){
                 return jsonResult;
             }else{

@@ -49,6 +49,16 @@ public class Movimiento extends EntidadBase{
 
     }
 
+    public Movimiento(Date fecha, String experiencia, String estado, String observacines, Date fechaAct, Clasif_Movimiento clasif_movimiento, Clasif_Proveedor clasif_proveedor) {
+        this.fecha = fecha;
+        this.experiencia = experiencia;
+        this.estado = estado;
+        this.observacines = observacines;
+        this.fechaAct = fechaAct;
+        this.clasif_movimiento = clasif_movimiento;
+        this.clasif_proveedor = clasif_proveedor;
+    }
+
     public Movimiento(Date fecha, String experiencia, String estado, String observacines, Date fechaAct) {
         this.fecha = fecha;
         this.experiencia = experiencia;
@@ -95,5 +105,21 @@ public class Movimiento extends EntidadBase{
 
     public void setFechaAct(Date fechaAct) {
         this.fechaAct = fechaAct;
+    }
+
+    public Clasif_Movimiento getClasif_movimiento() {
+        return clasif_movimiento;
+    }
+
+    public void setClasif_movimiento(Clasif_Movimiento clasif_movimiento) {
+        this.clasif_movimiento = clasif_movimiento;
+    }
+
+    public Clasif_Proveedor getClasif_proveedor() {
+        return clasif_proveedor;
+    }
+
+    public void setClasif_proveedor(Clasif_Proveedor clasif_proveedor) {
+        this.clasif_proveedor = clasif_proveedor;
     }
 }

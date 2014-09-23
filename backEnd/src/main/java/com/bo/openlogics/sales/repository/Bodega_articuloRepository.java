@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 /**
  * Created by json on 24/09/14.
  */
-public interface BodegaRepository extends JpaRepository<Bodega_articulo,Long> {
+public interface Bodega_articuloRepository extends JpaRepository<Bodega_articulo,Long> {
 }

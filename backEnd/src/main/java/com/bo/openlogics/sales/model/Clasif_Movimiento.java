@@ -39,6 +39,8 @@ public class Clasif_Movimiento extends EntidadBase {
 
     }
 
+
+
     public Clasif_Movimiento(String clasifMovimientos, String descripcionMovimientos, Date fechaDesde, Date fechaHasta, String usuarioActual) {
         this.clasifMovimientos = clasifMovimientos;
         this.descripcionMovimientos = descripcionMovimientos;

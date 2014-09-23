@@ -2,10 +2,13 @@ package com.bo.openlogics.sales.service.impl;
 
 import com.bo.openlogics.sales.model.Bodega_articulo;
 import com.bo.openlogics.sales.model.JsonResult;
-import com.bo.openlogics.sales.repository.BodegaRepository;
+import com.bo.openlogics.sales.model.Movimiento;
+import com.bo.openlogics.sales.repository.Bodega_articuloRepository;
 import com.bo.openlogics.sales.service.Bodega_ArticuloService;
+import com.bo.openlogics.sales.service.MovimientoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created by osanchez on 17/09/14.
@@ -15,23 +18,36 @@ import org.springframework.stereotype.Service;
 public class Bodega_ArticuloServiceImpl implements Bodega_ArticuloService {
 
     @Autowired
-    BodegaRepository bodegaRepository;
+    Bodega_articuloRepository bodegaRepository;
+
+    @Autowired
+    MovimientoService movimientoService;
 
     @Override
-    public JsonResult save(Bodega_articulo bodega_articulo) {
+    @Transactional(rollbackFor = Exception.class)
+    public JsonResult adicionarBodegaArticulo(Bodega_articulo bodega_articuloBean) {
         JsonResult jsonResult=null;
+        Movimiento movimiento=null;
+
+        Bodega_articulo bodegaArticulo= new Bodega_articulo();
+
         try{
-            if(bodega_articulo!=null){
-                Bodega_articulo bodegaArticulo=bodegaRepository.save(bodega_articulo);
-                jsonResult= new JsonResult(true,"Registro Exitoso",bodegaArticulo);
+            System.out.println("SERVICE BODEGA ARTICULO...");
+            //bodegaArticulo.setMovimiento(bodega_articuloBean.getMovimiento());
+            movimiento=bodega_articuloBean.getMovimiento();
+            if(bodega_articuloBean!=null){
+                movimiento=movimientoService.create(bodega_articuloBean.getMovimiento());
+                bodegaArticulo.addBodegaDetalleMovimiento(movimiento);
+                bodegaRepository.save(bodegaArticulo);
+                jsonResult= new JsonResult(true,"Registro Exitoso",bodega_articuloBean);
             }else{
                 jsonResult= new JsonResult(false,"No se pudo registrar la Bodega",null);
             }
+            return jsonResult;
         }catch(NullPointerException e){
             return new JsonResult(false,e.getMessage(),null);
         }catch(Exception e){
             return new JsonResult(false,e.getMessage(),null);
         }
-        return null;
     }
 }

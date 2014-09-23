@@ -4,6 +4,7 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,39 +17,39 @@ import java.util.List;
 
 @Entity
 @Table(name = "BODEGA_ARTICULO", schema = "SALESFORCE")
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class Bodega_articulo extends EntidadBase{
+public class Bodega_articulo extends EntidadBase {
 
     /**
      * To do Adicionar Clasificador Bodega
      */
     @Column(name = "TIPO_BODEGA")
-    private String tipoBodega ;
+    private String tipoBodega;
 
     @Column(name = "DESCRIPCION_BODEGA")
-    private String descripcionBodega ;
+    private String descripcionBodega;
 
     @Column(name = "CANTIDAD")
-    private String cantidad ;
+    private String cantidad;
 
     @Column(name = "MONTO")
-    private  Double monto ;
+    private Double monto;
+
+    @Column(name = "COSTO_TOTAL")
+    private Double costoTotal;
 
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy ="pk.bodega_articulo", cascade = {CascadeType.PERSIST, CascadeType.MERGE},
-            orphanRemoval = true)
-    @Cascade({org.hibernate.annotations.CascadeType.ALL, org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.bodega_articulo", cascade = CascadeType.ALL)
+    //@Cascade({org.hibernate.annotations.CascadeType.ALL, org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
     private List<BodegaDetalleMovimiento> bodegaDetalleMovimientos;
 
     @ManyToOne
     private Clasif_Articulo clasif_articulo;
 
     @Transient
-    private
-    Movimiento movimiento;
+    private Movimiento movimiento;
 
 
-    private Bodega_articulo(){
+    public Bodega_articulo() {
 
     }
 
@@ -59,6 +60,16 @@ public class Bodega_articulo extends EntidadBase{
         this.monto = monto;
         this.clasif_articulo = clasif_articulo;
 
+    }
+
+    public Bodega_articulo(String tipoBodega, String descripcionBodega, String cantidad, Double monto, List<BodegaDetalleMovimiento> bodegaDetalleMovimientos, Clasif_Articulo clasif_articulo, Movimiento movimiento) {
+        this.tipoBodega = tipoBodega;
+        this.descripcionBodega = descripcionBodega;
+        this.cantidad = cantidad;
+        this.monto = monto;
+        this.bodegaDetalleMovimientos = bodegaDetalleMovimientos;
+        this.clasif_articulo = clasif_articulo;
+        this.movimiento = movimiento;
     }
 
     public String getCantidad() {
@@ -103,6 +114,10 @@ public class Bodega_articulo extends EntidadBase{
     }
 
     public List<BodegaDetalleMovimiento> getBodegaDetalleMovimientos() {
+        if (bodegaDetalleMovimientos == null) {
+            bodegaDetalleMovimientos = new ArrayList<BodegaDetalleMovimiento>();
+        }
+
         return bodegaDetalleMovimientos;
     }
 
@@ -110,11 +125,13 @@ public class Bodega_articulo extends EntidadBase{
         this.bodegaDetalleMovimientos = bodegaDetalleMovimientos;
     }
 
-    public void addBodegaDetalleMovimiento(Movimiento movimiento){
-        BodegaDetalleMovimiento bodegaDetalleMovimiento= new BodegaDetalleMovimiento();
+    public void addBodegaDetalleMovimiento(Movimiento movimiento) {
+        BodegaDetalleMovimiento bodegaDetalleMovimiento = new BodegaDetalleMovimiento();
         bodegaDetalleMovimiento.setBodega_articulo(this);
         bodegaDetalleMovimiento.setMovimiento(movimiento);
-
+        bodegaDetalleMovimiento.setCostoTotal(this.getCostoTotal());
+        bodegaDetalleMovimiento.setMonto(this.getMonto());
+        bodegaDetalleMovimiento.setCantidad(this.getCantidad());
         this.getBodegaDetalleMovimientos().add(bodegaDetalleMovimiento);
 
     }
@@ -126,5 +143,13 @@ public class Bodega_articulo extends EntidadBase{
 
     public void setMovimiento(Movimiento movimiento) {
         this.movimiento = movimiento;
+    }
+
+    public Double getCostoTotal() {
+        return costoTotal;
+    }
+
+    public void setCostoTotal(Double costoTotal) {
+        this.costoTotal = costoTotal;
     }
 }
