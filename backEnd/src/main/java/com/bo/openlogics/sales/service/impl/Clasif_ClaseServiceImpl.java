@@ -2,8 +2,10 @@ package com.bo.openlogics.sales.service.impl;
 
 import com.bo.openlogics.sales.beans.parametricas.ClaseBean;
 import com.bo.openlogics.sales.dozer.UtilTransport;
+import com.bo.openlogics.sales.model.Clasif_Categoria;
 import com.bo.openlogics.sales.model.Clasif_Clase;
 import com.bo.openlogics.sales.model.JsonResult;
+import com.bo.openlogics.sales.repository.Clasif_CategoriaRepository;
 import com.bo.openlogics.sales.repository.Clasif_ClaseRepository;
 import com.bo.openlogics.sales.service.Clasif_ClaseService;
 import org.apache.log4j.Logger;
@@ -21,6 +23,9 @@ public class Clasif_ClaseServiceImpl implements Clasif_ClaseService {
 
     @Autowired
     Clasif_ClaseRepository clasif_claseRepository;
+
+    @Autowired
+    Clasif_CategoriaRepository clasif_categoriaRepository;
 
     @Autowired
     UtilTransport utilTransport;
@@ -50,14 +55,24 @@ public class Clasif_ClaseServiceImpl implements Clasif_ClaseService {
     @Override
     public JsonResult saveClase(Clasif_Clase clasif_clase) {
         JsonResult jsonResult = null;
+        Clasif_Categoria clasif_categoria=null;
         try{
             Clasif_Clase clasifClase=null;
-            clasifClase=clasif_claseRepository.findByDescripcionClase(clasif_clase.getDescripcionClase());
-            if(clasifClase==null){
-                clasifClase = clasif_claseRepository.save(clasif_clase);
-                jsonResult = new JsonResult(true, "Se registro satisfactoriamente.", clasifClase);
+            //clasifClase=clasif_claseRepository.findByDescripcionClase(clasif_clase.getDescripcionClase());
+            //clasifClase=clasif_claseRepository.findOne(clasif_clase.getId());
+            if(clasifClase!=null){
+                if(clasif_clase.getClasif_categoria()!=null){
+                    clasif_categoria=clasif_categoriaRepository.findOne(clasif_clase.getClasif_categoria().getId());
+                    clasif_clase.setClasif_categoria(clasif_categoria);
+                    clasifClase = clasif_claseRepository.save(clasif_clase);
+                    jsonResult = new JsonResult(true, "Se registro satisfactoriamente.", clasifClase);
+                }else{
+                    //Campo Obligatorio
+                    jsonResult = new JsonResult(false, "El tipo categoria es obligatorio.", null);
+                }
+
             }else{
-                jsonResult = new JsonResult(true, "Ya existe el registro.", null);
+                jsonResult = new JsonResult(true, "El registro se encuentra vacio.", null);
                 logger.info("******El tipo categoria ya esta registrada*******");
             }
             return jsonResult;

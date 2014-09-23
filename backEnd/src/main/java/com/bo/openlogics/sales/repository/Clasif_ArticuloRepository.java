@@ -13,6 +13,6 @@ public interface Clasif_ArticuloRepository extends JpaRepository<Clasif_Articulo
 
     public Clasif_Articulo findByCodigoArticulo(String codigoArticulo);
 
-    @Query(value="SELECT ca FROM Clasif_Articulo ca WHERE ca.disabled=false")
+    @Query(value="SELECT ca FROM Clasif_Articulo ca WHERE ca.disabled=FALSE")
     public List<Clasif_Articulo> findByDisabled();
 }
