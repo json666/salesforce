@@ -42,33 +42,30 @@ public class Bodega_articulo extends EntidadBase {
     //@Cascade({org.hibernate.annotations.CascadeType.ALL, org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
     private List<BodegaDetalleMovimiento> bodegaDetalleMovimientos;
 
-    @ManyToOne
-    private Clasif_Articulo clasif_articulo;
+    /*@ManyToOne
+    private Clasif_Articulo clasif_articulo;*/
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "BODEGA_CLASIF_ARTICULOS", schema = "SALESFORCE",
+            joinColumns = {@JoinColumn(name = "BODEGA_ID", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "CLASFARTICULO_ID", referencedColumnName = "id")})
+    private List<Clasif_Articulo> clasif_articulos;
+
 
     @Transient
     private Movimiento movimiento;
 
 
-    public Bodega_articulo() {
+    public Bodega_articulo() {}
 
-    }
-
-    public Bodega_articulo(String tipoBodega, String descripcionBodega, String cantidad, Double monto, Clasif_Articulo clasif_articulo) {
+    public Bodega_articulo(String tipoBodega, String descripcionBodega, String cantidad, Double monto, Double costoTotal, List<BodegaDetalleMovimiento> bodegaDetalleMovimientos, List<Clasif_Articulo> clasif_articulos, Movimiento movimiento) {
         this.tipoBodega = tipoBodega;
         this.descripcionBodega = descripcionBodega;
         this.cantidad = cantidad;
         this.monto = monto;
-        this.clasif_articulo = clasif_articulo;
-
-    }
-
-    public Bodega_articulo(String tipoBodega, String descripcionBodega, String cantidad, Double monto, List<BodegaDetalleMovimiento> bodegaDetalleMovimientos, Clasif_Articulo clasif_articulo, Movimiento movimiento) {
-        this.tipoBodega = tipoBodega;
-        this.descripcionBodega = descripcionBodega;
-        this.cantidad = cantidad;
-        this.monto = monto;
+        this.costoTotal = costoTotal;
         this.bodegaDetalleMovimientos = bodegaDetalleMovimientos;
-        this.clasif_articulo = clasif_articulo;
+        this.clasif_articulos = clasif_articulos;
         this.movimiento = movimiento;
     }
 
@@ -88,13 +85,7 @@ public class Bodega_articulo extends EntidadBase {
         this.monto = monto;
     }
 
-    public Clasif_Articulo getClasif_articulo() {
-        return clasif_articulo;
-    }
 
-    public void setClasif_articulo(Clasif_Articulo clasif_articulo) {
-        this.clasif_articulo = clasif_articulo;
-    }
 
 
     public String getTipoBodega() {
@@ -152,5 +143,13 @@ public class Bodega_articulo extends EntidadBase {
 
     public void setCostoTotal(Double costoTotal) {
         this.costoTotal = costoTotal;
+    }
+
+    public List<Clasif_Articulo> getClasif_articulos() {
+        return clasif_articulos;
+    }
+
+    public void setClasif_articulos(List<Clasif_Articulo> clasif_articulos) {
+        this.clasif_articulos = clasif_articulos;
     }
 }
