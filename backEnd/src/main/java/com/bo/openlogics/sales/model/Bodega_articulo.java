@@ -43,6 +43,10 @@ public class Bodega_articulo extends EntidadBase{
     @ManyToOne
     private Clasif_Articulo clasif_articulo;
 
+    @Transient
+    private
+    Movimiento movimiento;
+
 
     private Bodega_articulo(){
 
@@ -106,4 +110,21 @@ public class Bodega_articulo extends EntidadBase{
         this.bodegaDetalleMovimientos = bodegaDetalleMovimientos;
     }
 
+    public void addBodegaDetalleMovimiento(Movimiento movimiento){
+        BodegaDetalleMovimiento bodegaDetalleMovimiento= new BodegaDetalleMovimiento();
+        bodegaDetalleMovimiento.setBodega_articulo(this);
+        bodegaDetalleMovimiento.setMovimiento(movimiento);
+
+        this.getBodegaDetalleMovimientos().add(bodegaDetalleMovimiento);
+
+    }
+
+
+    public Movimiento getMovimiento() {
+        return movimiento;
+    }
+
+    public void setMovimiento(Movimiento movimiento) {
+        this.movimiento = movimiento;
+    }
 }
