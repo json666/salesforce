@@ -38,7 +38,7 @@ public class Bodega_ArticuloServiceImpl implements Bodega_ArticuloService {
             if(bodega_articuloBean!=null){
                 movimiento=movimientoService.create(bodega_articuloBean.getMovimiento());
                 bodegaArticulo.addBodegaDetalleMovimiento(movimiento);
-                bodegaRepository.save(bodegaArticulo);
+                bodegaRepository.save(bodega_articuloBean);
                 jsonResult= new JsonResult(true,"Registro Exitoso",bodega_articuloBean);
             }else{
                 jsonResult= new JsonResult(false,"No se pudo registrar la Bodega",null);

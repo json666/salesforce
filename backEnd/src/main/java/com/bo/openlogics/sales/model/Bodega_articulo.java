@@ -129,6 +129,7 @@ public class Bodega_articulo extends EntidadBase {
         BodegaDetalleMovimiento bodegaDetalleMovimiento = new BodegaDetalleMovimiento();
         bodegaDetalleMovimiento.setBodega_articulo(this);
         bodegaDetalleMovimiento.setMovimiento(movimiento);
+        System.out.println("MONTO:"+this.getMonto());
         bodegaDetalleMovimiento.setCostoTotal(this.getCostoTotal());
         bodegaDetalleMovimiento.setMonto(this.getMonto());
         bodegaDetalleMovimiento.setCantidad(this.getCantidad());
