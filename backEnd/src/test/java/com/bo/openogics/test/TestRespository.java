@@ -20,7 +20,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by json on 7/09/14.
@@ -194,7 +196,7 @@ public class TestRespository {
             Bodega_articulo bodegaArticulo = new Bodega_articulo();
             Movimiento movimiento = new Movimiento();
             Clasif_Movimiento clasif_movimiento = new Clasif_Movimiento();
-            clasif_movimiento = clasif_movimientoRepository.findOne(1l);
+            clasif_movimiento = clasif_movimientoRepository.findOne(1L);
             Clasif_Proveedor clasif_proveedor = new Clasif_Proveedor();
             clasif_proveedor = clasif_proveedorRespository.findOne(1L);
             Clasif_Articulo clasif_articulo = clasif_articuloRepository.findOne(1L);
@@ -203,11 +205,14 @@ public class TestRespository {
             movimiento.setEstado("ACTIVO");
             movimiento.setFecha(new Date());
             bodegaArticulo.setMovimiento(movimiento);
-
-
-            bodegaArticulo.setClasif_articulo(clasif_articulo);
-            bodegaArticulo.setCantidad("100");
-            bodegaArticulo.setCostoTotal(10000.0);
+            List<Clasif_Articulo> clasifArticuloList=  new ArrayList<Clasif_Articulo>();
+            //bodegaArticulo.setClasif_articulo(clasif_articulo);
+            clasifArticuloList.add(clasif_articulo);
+            Clasif_Articulo clasif_articulo1 = clasif_articuloRepository.findOne(2L);
+            clasifArticuloList.add(clasif_articulo1);
+            bodegaArticulo.setClasif_articulos(clasifArticuloList);
+            bodegaArticulo.setCantidad("150");
+            bodegaArticulo.setCostoTotal(15000.0);
             bodegaArticulo.setMonto(100.0);
             bodegaArticulo.setDescripcionBodega("BODEGA INICIAL");
             bodegaArticulo.setTipoBodega("GENERAL");

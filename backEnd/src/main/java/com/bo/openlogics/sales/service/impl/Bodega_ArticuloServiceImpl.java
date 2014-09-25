@@ -34,11 +34,17 @@ public class Bodega_ArticuloServiceImpl implements Bodega_ArticuloService {
         try{
             System.out.println("SERVICE BODEGA ARTICULO...");
             //bodegaArticulo.setMovimiento(bodega_articuloBean.getMovimiento());
+            bodegaArticulo.setCantidad(bodega_articuloBean.getCantidad());
+            bodegaArticulo.setMonto(bodega_articuloBean.getMonto());
+            bodegaArticulo.setTipoBodega(bodega_articuloBean.getTipoBodega());
+            bodegaArticulo.setCostoTotal(bodega_articuloBean.getMonto()*100);
+            bodegaArticulo.setDescripcionBodega(bodega_articuloBean.getDescripcionBodega());
+            bodegaArticulo.setClasif_articulos(bodega_articuloBean.getClasif_articulos());
             movimiento=bodega_articuloBean.getMovimiento();
             if(bodega_articuloBean!=null){
                 movimiento=movimientoService.create(bodega_articuloBean.getMovimiento());
                 bodegaArticulo.addBodegaDetalleMovimiento(movimiento);
-                bodegaRepository.save(bodega_articuloBean);
+                bodegaRepository.save(bodegaArticulo);
                 jsonResult= new JsonResult(true,"Registro Exitoso",bodega_articuloBean);
             }else{
                 jsonResult= new JsonResult(false,"No se pudo registrar la Bodega",null);
