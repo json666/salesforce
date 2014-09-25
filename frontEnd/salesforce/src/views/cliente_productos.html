@@ -1,0 +1,89 @@
+<h2><small> Modulo X</small></h2>
+<hr>
+<div class="row">
+<div class="col-lg-12">
+    <div class="panel panel-default">
+        <div class="panel-heading center">
+            Datos Cliente
+        </div>
+        <div class="panel-body">
+            <!-- /.row (nested) -->
+            <table class="table">
+                <tr>
+                    <td>
+                        <div class="align-right">
+                            <div><strong>FECHA:</strong> {{a}}</div>
+                            <div><strong>NOMBRE:</strong> {{a}}</div>
+                            <div><strong>DIRECCION:</strong> {{a}}</div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="align-right">
+                            <div><strong>TIPO MOVIMIENTO:</strong> {{a}}</div>
+                            <div><strong>TELEFONO:</strong> {{a}}</div>
+                            <div><strong>EMAIL:</strong> {{a}}</div>
+
+                        </div>
+                    </td>
+                </tr>
+
+            </table>
+
+        </div>
+        <!-- /.panel-body -->
+    </div>
+    <div class="panel-heading center">
+        Detalle Producto
+    </div>
+    <div class="widget-body">
+        <!--<div class="widget-main">-->
+        <table class="table table-bordered table-hover">
+            <thead>
+            <tr>
+                <th style="min-width: 20px;">#</th>
+                <th style="min-width: 20px;">Clave</th>
+                <th style="min-width: 80px;">Producto</th>
+                <th style="min-width: 80px;">Cantidad</th>
+                <th style="min-width: 80px;">Precio</th>
+                <th style="min-width: 80px;">Importe</th>
+                <th style="min-width: 80px;">Acciones</th>
+                <!--<th style="width:35px;">OPciones</th>-->
+
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="obj in productoList.items">
+                <td><span class="badge">{{$index + 1}}</span></td>
+                <td>{{obj.clave}}</td>
+                <td>{{obj.producto}}</td>
+                <td>{{obj.cantida}}</td>
+                <td>{{obj.precio}}</td>
+                <td>{{obj.importe | currency :""}}</td>
+                <td align="center">
+                    <button ng-click="select(obj.id)" class="btn btn-small btn-primary"
+                            data-dismiss="modal" title="Adicionar"><i
+                            class="fa fa-plus"></i></button>
+                    <button ng-click="select(obj.id)" class="btn btn-small btn-warning"
+                            data-dismiss="modal"><i
+                            class="fa fa-edit" title="Editar"></i></button>
+                    <button ng-click="select(obj.id)" class="btn btn-small btn-danger"
+                            data-dismiss="modal"><i
+                            class="fa fa-trash-o" title="Borrar"></i></button>
+                </td>
+                <!--<a href="#/edit/{{user.id}}" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-pencil"></i></button-->
+
+
+                <!--<td><a href="#/usuarioremove/{{id}}" class="btn btn-small btn-danger"><i class="icon-trash"></i></a></td>-->
+            </tr>
+            </tbody>
+        </table>
+
+        <!--</div>-->
+    </div>
+
+    <!-- /.panel -->
+</div>
+<!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
