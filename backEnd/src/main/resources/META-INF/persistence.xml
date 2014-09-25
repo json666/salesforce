@@ -22,6 +22,7 @@
         <class>com.bo.openlogics.sales.model.Clasif_Marcas</class>
         <class>com.bo.openlogics.sales.model.Clasif_Unidades</class>
         <class>com.bo.openlogics.sales.model.Bodega_articulo</class>
+        <class>com.bo.openlogics.sales.model.Clasif_Bodega</class>
 
 		<properties>
 			<property name="hibernate.hbm2ddl.auto" value="update" />			

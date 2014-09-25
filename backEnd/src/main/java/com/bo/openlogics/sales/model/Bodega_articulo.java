@@ -42,8 +42,8 @@ public class Bodega_articulo extends EntidadBase {
     //@Cascade({org.hibernate.annotations.CascadeType.ALL, org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
     private List<BodegaDetalleMovimiento> bodegaDetalleMovimientos;
 
-    /*@ManyToOne
-    private Clasif_Articulo clasif_articulo;*/
+    @ManyToOne
+    private Clasif_Bodega clasif_bodega;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "BODEGA_CLASIF_ARTICULOS", schema = "SALESFORCE",
@@ -58,13 +58,16 @@ public class Bodega_articulo extends EntidadBase {
 
     public Bodega_articulo() {}
 
-    public Bodega_articulo(String tipoBodega, String descripcionBodega, String cantidad, Double monto, Double costoTotal, List<BodegaDetalleMovimiento> bodegaDetalleMovimientos, List<Clasif_Articulo> clasif_articulos, Movimiento movimiento) {
+    public Bodega_articulo(String tipoBodega, String descripcionBodega, String cantidad,
+                           Double monto, Double costoTotal, List<BodegaDetalleMovimiento> bodegaDetalleMovimientos,
+                           Clasif_Bodega clasif_bodega, List<Clasif_Articulo> clasif_articulos, Movimiento movimiento) {
         this.tipoBodega = tipoBodega;
         this.descripcionBodega = descripcionBodega;
         this.cantidad = cantidad;
         this.monto = monto;
         this.costoTotal = costoTotal;
         this.bodegaDetalleMovimientos = bodegaDetalleMovimientos;
+        this.clasif_bodega = clasif_bodega;
         this.clasif_articulos = clasif_articulos;
         this.movimiento = movimiento;
     }
@@ -84,9 +87,6 @@ public class Bodega_articulo extends EntidadBase {
     public void setMonto(Double monto) {
         this.monto = monto;
     }
-
-
-
 
     public String getTipoBodega() {
         return tipoBodega;
@@ -151,5 +151,13 @@ public class Bodega_articulo extends EntidadBase {
 
     public void setClasif_articulos(List<Clasif_Articulo> clasif_articulos) {
         this.clasif_articulos = clasif_articulos;
+    }
+
+    public Clasif_Bodega getClasif_bodega() {
+        return clasif_bodega;
+    }
+
+    public void setClasif_bodega(Clasif_Bodega clasif_bodega) {
+        this.clasif_bodega = clasif_bodega;
     }
 }

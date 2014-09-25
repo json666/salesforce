@@ -1,9 +1,6 @@
 package com.bo.openlogics.sales.controller;
 
-import com.bo.openlogics.sales.model.Clasif_Articulo;
-import com.bo.openlogics.sales.model.Clasif_Categoria;
-import com.bo.openlogics.sales.model.Clasif_Clase;
-import com.bo.openlogics.sales.model.JsonResult;
+import com.bo.openlogics.sales.model.*;
 import com.bo.openlogics.sales.service.*;
 import com.bo.openlogics.sales.service.impl.Clasif_ClaseServiceImpl;
 import org.apache.log4j.Logger;
@@ -34,6 +31,9 @@ public class SalesForceParamRESTController {
 
     @Autowired
     Clasif_MovimientoService clasif_movimientoService;
+
+    @Autowired
+    Clasif_BodegaService clasif_bodegaService;
 
     private Logger logger = Logger.getLogger(SalesForceParamRESTController.class);
 
@@ -170,6 +170,47 @@ public class SalesForceParamRESTController {
         try{
             JsonResult jsonResult=null;
             jsonResult=clasif_movimientoService.listaTipoMovimiento();
+            return jsonResult;
+        }catch(NullPointerException e){
+            e.printStackTrace();
+            return new JsonResult(false,"Error: "+e.getMessage(),null);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new JsonResult(false,"Error: "+e.getMessage(),null);
+        }
+    }
+
+    /**
+     * Descripcion: Registro Clasificador Bodega
+     * @param clasif_bodega
+     * @return
+     */
+    @RequestMapping(value = "/clasificadorBodega/guardar", method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResult guardarClasifBodega(@RequestBody Clasif_Bodega clasif_bodega) {
+        try{
+            JsonResult jsonResult=null;
+            if(clasif_bodega!=null){
+                jsonResult= clasif_bodegaService.saveClasifBodega(clasif_bodega);
+                return jsonResult;
+            }else{
+                return new JsonResult(false,"El objeto Categoria tiene problemas.",null);
+            }
+        }catch(NullPointerException e){
+            e.printStackTrace();
+            return new JsonResult(false,"Error: "+e.getMessage(),null);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new JsonResult(false,"Error: "+e.getMessage(),null);
+        }
+    }
+
+    @RequestMapping(value = "/clasif_Bodega", method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResult listadoClasifBodega() {
+        try{
+            JsonResult jsonResult=null;
+            jsonResult=clasif_bodegaService.listadoClasifBodega();
             return jsonResult;
         }catch(NullPointerException e){
             e.printStackTrace();
