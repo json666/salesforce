@@ -49,10 +49,11 @@ app.service("inventarioService", function ($http,$cookies) {
                                 {
                                     "bSortable": false,
                                     "mData":function (oObj) {
-                                        var a = " <a href='#/clientes/"+oObj.id+"' class='btn btn-primary'><i class='fa fa-edit'></i></a>";
+                                        var a = " <a href='#/inventarios/"+oObj.id+"' class='btn btn-primary'><i class='fa fa-edit'></i></a>";
                                         return a;
 
                                     }
+//                                <div style="float: right"><button class="btn btn-primary btn-sm" data-toggle='modal'  data-target="#ModalArticulo"><i class="fa fa-plus"></i> Reg. Producto</button></div>
 
                                 },
                                 {

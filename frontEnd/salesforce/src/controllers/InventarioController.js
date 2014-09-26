@@ -73,14 +73,18 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
 
     } else {
         //get de form by Id    //
+
         $http({
             method: 'GET',
-            url: service + '/proveedor/get/' + id
+            url: service + '/articulo/get/' + id
+
         }).success(
             function (data, status) {
 //                $("#loading-div-background").css("display", "none");
-                $scope.formData = data.result;
-                console.log(angular.toJson(data.result));
+                console.log("---->ARTICULO:"+id);
+                $scope.formData = data;
+                console.log(angular.toJson("DATA:"+data.result));
+                $("#ModalArticulo").modal('show');
             }).error(function (data, status) {
                 alert("Error de conexion con el servidor.");
             });
@@ -114,7 +118,7 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
         //get de form by Id    //
         $http({
             method: 'GET',
-            url: service + '/proveedor/get/' + id
+            url: service + '/articulo/get/' + id
         }).success(
             function (data, status) {
 //                $("#loading-div-background").css("display", "none");

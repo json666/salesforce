@@ -7,7 +7,6 @@ import com.bo.openlogics.sales.model.*;
 import com.bo.openlogics.sales.repository.*;
 import com.bo.openlogics.sales.service.Clasif_ArticuloService;
 import org.apache.log4j.Logger;
-import org.hibernate.annotations.SourceType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -231,5 +230,32 @@ public class Clasif_ArticuloServiceImpl implements Clasif_ArticuloService {
             jsonResult=new JsonResult(false,e.getMessage(),null);
         }
         return jsonResult;
+    }
+
+    @Override
+    public JsonResult getById(Long IdArticulo) throws Exception {
+        JsonResult jsonResult = null;
+        Clasif_Articulo clasifArticulo;
+        try {
+            /**
+             * TODO: Logica de negocio para buscar Articulo por id
+             */
+
+            clasifArticulo = clasif_articuloRepository.findOne(IdArticulo);
+
+            if (clasifArticulo != null){
+                jsonResult=new JsonResult(true,"Articulo Seleccionado",clasifArticulo);
+            }
+            else{
+                jsonResult=new JsonResult(false,"Articulo no Existe",null);
+                logger.info("******Articulo no Existe*******");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            jsonResult=new JsonResult(false,e.getMessage(),null);
+        }
+        return jsonResult;
+
     }
 }

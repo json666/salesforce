@@ -34,200 +34,223 @@ public class SalesForceRESTController {
     private Logger logger = Logger.getLogger(SalesForceRESTController.class);
 
     /**
-     *  Descripcion: Registra un Articulo;
+     * Descripcion: Registra un Articulo;
      */
 
     @RequestMapping(value = "/articulo/guardar", method = RequestMethod.POST)
     @ResponseBody
     public JsonResult save(@RequestBody Clasif_Articulo clasif_articulo) {
-        try{
-            JsonResult jsonResult=null;
-            if(clasif_articulo!=null){
+        try {
+            JsonResult jsonResult = null;
+            if (clasif_articulo != null) {
                 clasif_articuloService.save(clasif_articulo);
-                jsonResult= new JsonResult(true, "Se registro el articulo satisfatoriamente.",null);
+                jsonResult = new JsonResult(true, "Se registro el articulo satisfatoriamente.", null);
                 return jsonResult;
 
-            }else{
-                return new JsonResult(false,"El objeto Articulo tiene problemas.",null);
+            } else {
+                return new JsonResult(false, "El objeto Articulo tiene problemas.", null);
             }
-        }catch(NullPointerException e){
+        } catch (NullPointerException e) {
             e.printStackTrace();
-            return new JsonResult(false,"Error: "+e.getMessage(),null);
-        }catch (Exception e){
+            return new JsonResult(false, "Error: " + e.getMessage(), null);
+        } catch (Exception e) {
             e.printStackTrace();
-            return new JsonResult(false,"Error: "+e.getMessage(),null);
+            return new JsonResult(false, "Error: " + e.getMessage(), null);
         }
     }
+
     /*
     PROCESOS PROVEEDORES
      */
     @RequestMapping(value = "/proveedor/guardar", method = RequestMethod.POST)
     @ResponseBody
-    public JsonResult saveProveedor(@RequestBody Clasif_Proveedor  clasif_proveedor) {
-        try{
-            JsonResult jsonResult=null;
-            if(clasif_proveedor!=null){
+    public JsonResult saveProveedor(@RequestBody Clasif_Proveedor clasif_proveedor) {
+        try {
+            JsonResult jsonResult = null;
+            if (clasif_proveedor != null) {
 
-                jsonResult= clasif_proveedorService.save(clasif_proveedor);
+                jsonResult = clasif_proveedorService.save(clasif_proveedor);
                 return jsonResult;
 
-            }else{
-                return new JsonResult(false,"El objeto Proveedor tiene problemas.",null);
+            } else {
+                return new JsonResult(false, "El objeto Proveedor tiene problemas.", null);
             }
-        }catch(NullPointerException e){
+        } catch (NullPointerException e) {
             e.printStackTrace();
-            return new JsonResult(false,"Error: "+e.getMessage(),null);
-        }catch (Exception e){
+            return new JsonResult(false, "Error: " + e.getMessage(), null);
+        } catch (Exception e) {
             e.printStackTrace();
-            return new JsonResult(false,"Error: "+e.getMessage(),null);
+            return new JsonResult(false, "Error: " + e.getMessage(), null);
         }
     }
 
     @RequestMapping(value = "/proveedores", method = RequestMethod.GET)
     @ResponseBody
     public JsonResult listadoProveedores() {
-        try{
-            JsonResult jsonResult=null;
-            jsonResult=clasif_proveedorService.listadoProveedores();
-            if(jsonResult!=null){
+        try {
+            JsonResult jsonResult = null;
+            jsonResult = clasif_proveedorService.listadoProveedores();
+            if (jsonResult != null) {
                 return jsonResult;
-            }else{
+            } else {
                 return jsonResult;
             }
-        }catch(NullPointerException e){
+        } catch (NullPointerException e) {
             e.printStackTrace();
-            return new JsonResult(false,"Error: "+e.getMessage(),null);
-        }catch (Exception e){
+            return new JsonResult(false, "Error: " + e.getMessage(), null);
+        } catch (Exception e) {
             e.printStackTrace();
-            return new JsonResult(false,"Error: "+e.getMessage(),null);
+            return new JsonResult(false, "Error: " + e.getMessage(), null);
         }
     }
 
     @RequestMapping(value = "/articulosHabilitados", method = RequestMethod.GET)
     @ResponseBody
     public JsonResult listadoAriculosHabilitados() {
-        try{
-            JsonResult jsonResult=null;
-            jsonResult=clasif_articuloService.listadoArticulos();
-                return jsonResult;
-        }catch(NullPointerException e){
+        try {
+            JsonResult jsonResult = null;
+            jsonResult = clasif_articuloService.listadoArticulos();
+            return jsonResult;
+        } catch (NullPointerException e) {
             e.printStackTrace();
-            return new JsonResult(false,"Error: "+e.getMessage(),null);
-        }catch (Exception e){
+            return new JsonResult(false, "Error: " + e.getMessage(), null);
+        } catch (Exception e) {
             e.printStackTrace();
-            return new JsonResult(false,"Error: "+e.getMessage(),null);
+            return new JsonResult(false, "Error: " + e.getMessage(), null);
         }
     }
 
     @RequestMapping(value = "/proveedorMovimiento", method = RequestMethod.GET)
-     @ResponseBody
-     public JsonResult listadoProveedoresHabilitados() {
-        try{
-            JsonResult jsonResult=null;
-            jsonResult=clasif_proveedorService.listadoProveedoresHabilitados();
+    @ResponseBody
+    public JsonResult listadoProveedoresHabilitados() {
+        try {
+            JsonResult jsonResult = null;
+            jsonResult = clasif_proveedorService.listadoProveedoresHabilitados();
             return jsonResult;
-        }catch(NullPointerException e){
+        } catch (NullPointerException e) {
             e.printStackTrace();
-            return new JsonResult(false,"Error: "+e.getMessage(),null);
-        }catch (Exception e){
+            return new JsonResult(false, "Error: " + e.getMessage(), null);
+        } catch (Exception e) {
             e.printStackTrace();
-            return new JsonResult(false,"Error: "+e.getMessage(),null);
+            return new JsonResult(false, "Error: " + e.getMessage(), null);
         }
     }
 
     @RequestMapping(value = "/articuloMovimiento", method = RequestMethod.GET)
     @ResponseBody
     public JsonResult listadoArticulo() {
-        try{
-            JsonResult jsonResult=null;
-            jsonResult=clasif_articuloService.listadoArticulosHabilitados();
+        try {
+            JsonResult jsonResult = null;
+            jsonResult = clasif_articuloService.listadoArticulosHabilitados();
             return jsonResult;
-        }catch(NullPointerException e){
+        } catch (NullPointerException e) {
             e.printStackTrace();
-            return new JsonResult(false,"Error: "+e.getMessage(),null);
-        }catch (Exception e){
+            return new JsonResult(false, "Error: " + e.getMessage(), null);
+        } catch (Exception e) {
             e.printStackTrace();
-            return new JsonResult(false,"Error: "+e.getMessage(),null);
+            return new JsonResult(false, "Error: " + e.getMessage(), null);
         }
     }
 
-    /***
+    /**
      * Descripcion: Actualizacion del articulo
      */
 
     @RequestMapping(value = "/articulo/editar", method = RequestMethod.POST)
     @ResponseBody
     public JsonResult editarArticulo(@RequestBody Clasif_Articulo clasif_articulo) {
-        try{
-            JsonResult jsonResult=null;
-            jsonResult=clasif_articuloService.editarArticulo(clasif_articulo);
-            if(jsonResult.getSuccess()){
+        try {
+            JsonResult jsonResult = null;
+            jsonResult = clasif_articuloService.editarArticulo(clasif_articulo);
+            if (jsonResult.getSuccess()) {
                 return jsonResult;
-            }else{
-                return new JsonResult(false,jsonResult.getMessage(),null);
+            } else {
+                return new JsonResult(false, jsonResult.getMessage(), null);
             }
-        }catch(NullPointerException e){
+        } catch (NullPointerException e) {
             e.printStackTrace();
-            return new JsonResult(false,"Error: "+e.getMessage(),null);
-        }catch (Exception e){
+            return new JsonResult(false, "Error: " + e.getMessage(), null);
+        } catch (Exception e) {
             e.printStackTrace();
-            return new JsonResult(false,"Error: "+e.getMessage(),null);
+            return new JsonResult(false, "Error: " + e.getMessage(), null);
         }
     }
 
-    /****
+    /**
+     * *
      * Descripcion: Desabilitar Articulo
+     *
      * @param idArticulo
      * @return
      */
     @RequestMapping(value = "/articulo/desabilitar/{idArticulo}", method = RequestMethod.POST)
     @ResponseBody
     public JsonResult desabilitarArticulo(@PathVariable Long idArticulo) {
-        try{
-            JsonResult jsonResult=null;
-            jsonResult=clasif_articuloService.desabilitarArticulo(idArticulo);
-            if(jsonResult.getSuccess()){
+        try {
+            JsonResult jsonResult = null;
+            jsonResult = clasif_articuloService.desabilitarArticulo(idArticulo);
+            if (jsonResult.getSuccess()) {
                 return jsonResult;
-            }else{
-                return new JsonResult(false,jsonResult.getMessage(),null);
+            } else {
+                return new JsonResult(false, jsonResult.getMessage(), null);
             }
-        }catch(NullPointerException e){
+        } catch (NullPointerException e) {
             e.printStackTrace();
-            return new JsonResult(false,"Error: "+e.getMessage(),null);
-        }catch (Exception e){
+            return new JsonResult(false, "Error: " + e.getMessage(), null);
+        } catch (Exception e) {
             e.printStackTrace();
-            return new JsonResult(false,"Error: "+e.getMessage(),null);
+            return new JsonResult(false, "Error: " + e.getMessage(), null);
+        }
+    }
+
+    @RequestMapping(value = "articulo/get/{idArticulo}", method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResult getById(@PathVariable Long idArticulo) {
+        try {
+            JsonResult jsonResult = null;
+            jsonResult = clasif_articuloService.getById(idArticulo);
+//            return new JsonResult(true, Clasif_ArticuloService.getById(idArticulo));
+            if (jsonResult.getSuccess()) {
+                return jsonResult;
+            } else {
+                return new JsonResult(false, jsonResult.getMessage(), null);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new JsonResult(false, "Error: " + e.getMessage(), null);
         }
     }
 
 
-    /****
+    /**
+     * *
      * Descripcion: Desabilitar Articulo
+     *
      * @param bodega_articulo
      * @return
      */
     @RequestMapping(value = "/bodega/articulos/guardar", method = RequestMethod.POST)
     @ResponseBody
-    public JsonResult adicionarBodegaArticulos(@PathVariable Bodega_articulo bodega_articulo)  {
+    public JsonResult adicionarBodegaArticulos(@PathVariable Bodega_articulo bodega_articulo) {
 
-        Bodega_articulo bodegaArticulo=null;
-        try{
-            JsonResult jsonResult=null;
+        Bodega_articulo bodegaArticulo = null;
+        try {
+            JsonResult jsonResult = null;
             //jsonResult=clasif_articuloService.desabilitarArticulo(idArticulo);
             bodega_articuloService.adicionarBodegaArticulo(bodega_articulo);
             logger.info("Se adiciono una bodega con id: "
                     + bodega_articulo.getId() + ".");
-            if(jsonResult.getSuccess()){
+            if (jsonResult.getSuccess()) {
                 return jsonResult;
-            }else{
-                return new JsonResult(false,jsonResult.getMessage(),null);
+            } else {
+                return new JsonResult(false, jsonResult.getMessage(), null);
             }
-        }catch(NullPointerException e){
+        } catch (NullPointerException e) {
             e.printStackTrace();
-            return new JsonResult(false,"Error: "+e.getMessage(),null);
-        }catch (Exception e){
+            return new JsonResult(false, "Error: " + e.getMessage(), null);
+        } catch (Exception e) {
             e.printStackTrace();
-            return new JsonResult(false,"Error: "+e.getMessage(),null);
+            return new JsonResult(false, "Error: " + e.getMessage(), null);
         }
     }
 }

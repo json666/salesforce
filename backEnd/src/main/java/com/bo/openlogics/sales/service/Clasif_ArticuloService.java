@@ -16,4 +16,6 @@ public interface Clasif_ArticuloService {
     public JsonResult editarArticulo(Clasif_Articulo clasif_articulo);
 
     public JsonResult desabilitarArticulo(Long IdArticulo);
+
+    public JsonResult getById(Long IdArticulo) throws Exception;
 }
