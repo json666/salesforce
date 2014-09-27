@@ -69,22 +69,20 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
 
                     });
             }
-
-
     } else {
         //get de form by Id    //
-
         $http({
             method: 'GET',
             url: service + '/articulo/get/' + id
-
         }).success(
             function (data, status) {
 //                $("#loading-div-background").css("display", "none");
                 console.log("---->ARTICULO:"+id);
-                $scope.formData = data;
-                console.log(angular.toJson("DATA:"+data.result));
-                $("#ModalArticulo").modal('show');
+
+                console.log(JSON.stringify(data));
+//                alert(JSON.stringify($scope.formData));//
+                $scope.formData = data.result;
+                $("#ModalArticuloInfo").modal('show');
             }).error(function (data, status) {
                 alert("Error de conexion con el servidor.");
             });
@@ -92,7 +90,10 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
 //Lista proveedores
     inventarioService.articuloList($scope);
 
+$scope.link = function(){
+    location.href = '#/inventarios';
 
+};
 // ends proveedores
 
 //categorias begin
@@ -105,7 +106,7 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
             }).success(function (response) {
                 result = response;
                 alert(result.message)
-                $scope.formData = null
+                $scope.formDatazzz = null
                 $("#ModalCategoria").modal('hide')
             }). error(function (response) {   //
                 alert("ERROR! intente mas tarde")
@@ -118,11 +119,11 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
         //get de form by Id    //
         $http({
             method: 'GET',
-            url: service + '/articulo/get/' + id
+            url: service + '/categoria'
         }).success(
             function (data, status) {
 //                $("#loading-div-background").css("display", "none");
-                $scope.formData = data.result;
+                $scope.formDataxxx = data.result;
                 console.log(angular.toJson(data.result));
             }).error(function (data, status) {
                 alert("Error de conexion con el servidor.");

@@ -10,7 +10,7 @@ app.service("inventarioService", function ($http,$cookies) {
 
     return {
         articuloList: function ($scope) {
-            var tableProveedores = new Array();
+            var tableProductos = new Array();
             var oTable = $('#dataTableProdcutos');
             $http.get(service+'/articulosHabilitados').success(
                 function (data, status, headers, config) {

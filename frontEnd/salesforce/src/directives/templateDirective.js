@@ -19,6 +19,12 @@ app.directive('listProveedor', function () {
     };
 });
 
+app.directive('infoArticulo', function () {
+    return {
+        templateUrl: 'src/templates/articuloInfo.html'
+    };
+});
+
 app.directive('frmArticulo', function () {
     return {
         templateUrl: 'src/templates/articuloSave.html'

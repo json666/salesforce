@@ -418,3 +418,27 @@ color: #428bca;
     -moz-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
     box-shadow: 0 5px 7px rgba(0, 0, 0, 0.3);
 }
+
+/*css form readonly*/
+.info-name{
+    font-size: 12px;
+    font-weight: bold;
+    color: #707070;
+    /*background-color: #EDF3F4;*/
+    /*border-top: 1px solid #F7FBFF;*/
+    padding: 4px;
+    margin-top: 5px;
+}
+
+.info-value{
+    /*display: table-cell;*/
+    /*padding: 4px;*/
+
+    padding: 2px 4px;
+    background-color: #eeeeee;
+    /*border: 1px dotted #DCEBF7;*/
+    /*border-top: 1px solid #F7FBFF;*/
+    border: 1px solid #d5d5d5;
+    min-height: 25px;
+}
+
