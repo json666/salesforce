@@ -49,6 +49,12 @@ app.directive('listCategoria', function () {
     };
 });
 
+app.directive('frmClase', function () {
+    return {
+        templateUrl: 'src/templates/claseSave.html'
+    };
+});
+
 app.directive('listClase', function () {
     return {
         templateUrl: 'src/templates/claseList.html'
