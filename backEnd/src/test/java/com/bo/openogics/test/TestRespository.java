@@ -241,7 +241,7 @@ public class TestRespository {
     public void savesClaBodega(){
         Clasif_Bodega clasif_bodega= new Clasif_Bodega();
         clasif_bodega.setTipoBodega("GENERAL");
-        clasif_bodega.setDescripcionBodega("ALMACEN SUR CALACOTO.");
+        clasif_bodega.setDescripcionBodega("ALMACEN CENTRAL.");
         clasif_bodega.setFechaHasta(new Date());
         clasif_bodega.setFechaHasta(new Date());
         JsonResult jsonResult=clasif_bodegaService.saveClasifBodega(clasif_bodega);

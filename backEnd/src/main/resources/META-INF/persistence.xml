@@ -24,8 +24,10 @@
         <class>com.bo.openlogics.sales.model.Bodega_articulo</class>
         <class>com.bo.openlogics.sales.model.Clasif_Bodega</class>
 
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+
 		<properties>
-			<property name="hibernate.hbm2ddl.auto" value="update" />			
+			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
 			<property name="hibernate.show_sql" value="false" />
 			<property name="hibernate.format_sql" value="true" />
