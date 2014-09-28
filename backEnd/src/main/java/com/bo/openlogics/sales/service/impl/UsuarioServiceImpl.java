@@ -30,11 +30,6 @@ public class UsuarioServiceImpl implements UsuarioService {
              */
             logger.info("******USUARIO******");
             logger.info(nombre_usuario);
-            logger.info("*****PASSWORD******");
-            logger.info(password);
-            usuario = usuarioRepository.findUserAndPass(nombre_usuario, password);
-            logger.info("*****USUARIO:"+usuario+"*******");
-            logger.info("="+usuario.getPassword());
             if(usuario!= null && usuario.getPassword().equals(password)){
                 return usuario;
             }
