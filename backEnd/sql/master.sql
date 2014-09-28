@@ -38,3 +38,9 @@ SALESFORCE CLASIF_MOVIMIENTO
  INSERT INTO salesforce.clasif_movimientos(desabilitado, clasif_movimientos, descripcion_movimiento,fecha_desde, fecha_hasta, usuario_act) VALUES (false, 'COMPRA','COMPRA DE MERCANCIA',now(),now(), 'JSON');
  INSERT INTO salesforce.clasif_movimientos(desabilitado, clasif_movimientos, descripcion_movimiento,fecha_desde, fecha_hasta, usuario_act) VALUES (false, 'VENTA','VENTA DE MERCANCIA',now(),now(), 'JSON');
 
+/*SALESFORCE USUARIOS
+ */
+
+INSERT INTO salesforce.usuarios(desabilitado, estado, materno, nombre_usuario, nombre, password, paterno, rol, email) VALUES (false, 'AC', 'admin', 'admin', 'admin', 'admin','admin', 'ADMINISTRADOR', 'admin@pcruz.com');
+INSERT INTO salesforce.usuarios(desabilitado, estado, materno, nombre_usuario, nombre, password, paterno, rol, email) VALUES (false, 'AC', 'TABOADA', 'pcruz', 'PABLO', 'pcruz','CRUZ', 'ADMINISTRADOR', 'admin@pcruz.com');
+

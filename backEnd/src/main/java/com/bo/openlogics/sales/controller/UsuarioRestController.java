@@ -27,7 +27,7 @@ public class UsuarioRestController {
     @ResponseBody
     public JsonResult findUserAndPass(@PathVariable String nombre_usuario, @PathVariable String password) {
         try {
-            return new JsonResult(true, usuarioService.existUserAndPass(nombre_usuario, password));
+            return new JsonResult(true,"",usuarioService.existUserAndPass(nombre_usuario, password));
         } catch (Exception e) {
             return new JsonResult(false, e.getMessage());
         }
