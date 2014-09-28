@@ -1,8 +1,5 @@
 package com.bo.openlogics.sales.model;
 
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import org.hibernate.annotations.Cascade;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,11 +19,6 @@ public class Bodega_articulo extends EntidadBase {
     /**
      * To do Adicionar Clasificador Bodega
      */
-    @Column(name = "TIPO_BODEGA")
-    private String tipoBodega;
-
-    @Column(name = "DESCRIPCION_BODEGA")
-    private String descripcionBodega;
 
     @Column(name = "CANTIDAD")
     private String cantidad;
@@ -42,34 +34,37 @@ public class Bodega_articulo extends EntidadBase {
     //@Cascade({org.hibernate.annotations.CascadeType.ALL, org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
     private List<BodegaDetalleMovimiento> bodegaDetalleMovimientos;
 
-    @ManyToOne
-    private Clasif_Bodega clasif_bodega;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+
+    /*@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    //@Cascade({org.hibernate.annotations.CascadeType.ALL, org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
     @JoinTable(name = "BODEGA_CLASIF_ARTICULOS", schema = "SALESFORCE",
             joinColumns = {@JoinColumn(name = "BODEGA_ID", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "CLASFARTICULO_ID", referencedColumnName = "id")})
-    private List<Clasif_Articulo> clasif_articulos;
+    private List<Clasif_Articulo> clasif_articulos;*/
+
+    @ManyToOne
+    private Clasif_Articulo clasif_articulo;
 
 
     @Transient
     private Movimiento movimiento;
 
+    @ManyToOne(cascade=CascadeType.PERSIST, fetch = FetchType.LAZY)
+    //@JoinColumn(name="CLASIF_BODEGA_ID")
+    private Clasif_Bodega clasif_bodega;
 
     public Bodega_articulo() {}
 
-    public Bodega_articulo(String tipoBodega, String descripcionBodega, String cantidad,
-                           Double monto, Double costoTotal, List<BodegaDetalleMovimiento> bodegaDetalleMovimientos,
-                           Clasif_Bodega clasif_bodega, List<Clasif_Articulo> clasif_articulos, Movimiento movimiento) {
-        this.tipoBodega = tipoBodega;
-        this.descripcionBodega = descripcionBodega;
+    public Bodega_articulo(String cantidad, Double monto, Double costoTotal, List<BodegaDetalleMovimiento> bodegaDetalleMovimientos,
+                           Clasif_Articulo clasif_articulo, Movimiento movimiento, Clasif_Bodega clasif_bodega) {
         this.cantidad = cantidad;
         this.monto = monto;
         this.costoTotal = costoTotal;
         this.bodegaDetalleMovimientos = bodegaDetalleMovimientos;
-        this.clasif_bodega = clasif_bodega;
-        this.clasif_articulos = clasif_articulos;
+        this.setClasif_articulo(clasif_articulo);
         this.movimiento = movimiento;
+        this.clasif_bodega = clasif_bodega;
     }
 
     public String getCantidad() {
@@ -86,22 +81,6 @@ public class Bodega_articulo extends EntidadBase {
 
     public void setMonto(Double monto) {
         this.monto = monto;
-    }
-
-    public String getTipoBodega() {
-        return tipoBodega;
-    }
-
-    public void setTipoBodega(String tipoBodega) {
-        this.tipoBodega = tipoBodega;
-    }
-
-    public String getDescripcionBodega() {
-        return descripcionBodega;
-    }
-
-    public void setDescripcionBodega(String descripcionBodega) {
-        this.descripcionBodega = descripcionBodega;
     }
 
     public List<BodegaDetalleMovimiento> getBodegaDetalleMovimientos() {
@@ -145,19 +124,19 @@ public class Bodega_articulo extends EntidadBase {
         this.costoTotal = costoTotal;
     }
 
-    public List<Clasif_Articulo> getClasif_articulos() {
-        return clasif_articulos;
-    }
-
-    public void setClasif_articulos(List<Clasif_Articulo> clasif_articulos) {
-        this.clasif_articulos = clasif_articulos;
-    }
-
     public Clasif_Bodega getClasif_bodega() {
         return clasif_bodega;
     }
 
     public void setClasif_bodega(Clasif_Bodega clasif_bodega) {
         this.clasif_bodega = clasif_bodega;
+    }
+
+    public Clasif_Articulo getClasif_articulo() {
+        return clasif_articulo;
+    }
+
+    public void setClasif_articulo(Clasif_Articulo clasif_articulo) {
+        this.clasif_articulo = clasif_articulo;
     }
 }

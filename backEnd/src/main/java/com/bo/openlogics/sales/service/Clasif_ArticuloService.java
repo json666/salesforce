@@ -18,4 +18,5 @@ public interface Clasif_ArticuloService {
     public JsonResult desabilitarArticulo(Long IdArticulo);
 
     public JsonResult getById(Long IdArticulo) throws Exception;
+
 }

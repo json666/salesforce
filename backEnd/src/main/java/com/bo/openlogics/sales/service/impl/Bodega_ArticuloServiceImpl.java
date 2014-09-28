@@ -36,10 +36,12 @@ public class Bodega_ArticuloServiceImpl implements Bodega_ArticuloService {
             //bodegaArticulo.setMovimiento(bodega_articuloBean.getMovimiento());
             bodegaArticulo.setCantidad(bodega_articuloBean.getCantidad());
             bodegaArticulo.setMonto(bodega_articuloBean.getMonto());
-            bodegaArticulo.setTipoBodega(bodega_articuloBean.getTipoBodega());
+            //bodegaArticulo.setTipoBodega(bodega_articuloBean.getTipoBodega());
             bodegaArticulo.setCostoTotal(bodega_articuloBean.getMonto()*100);
-            bodegaArticulo.setDescripcionBodega(bodega_articuloBean.getDescripcionBodega());
-            bodegaArticulo.setClasif_articulos(bodega_articuloBean.getClasif_articulos());
+            //bodegaArticulo.setDescripcionBodega(bodega_articuloBean.getDescripcionBodega());
+            //bodegaArticulo.setClasif_articulos(bodega_articuloBean.getClasif_articulos());
+            bodegaArticulo.setClasif_articulo(bodega_articuloBean.getClasif_articulo());
+            bodegaArticulo.setClasif_bodega(bodega_articuloBean.getClasif_bodega());
             movimiento=bodega_articuloBean.getMovimiento();
             if(bodega_articuloBean!=null){
                 movimiento=movimientoService.create(bodega_articuloBean.getMovimiento());

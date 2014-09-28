@@ -63,11 +63,18 @@ public class TestRespository {
     @Autowired
     Clasif_ProveedorRespository clasif_proveedorRespository;
 
+
     @Autowired
     Clasif_ArticuloRepository clasif_articuloRepository;
 
     @Autowired
     Bodega_ArticuloService bodega_articuloService;
+
+    @Autowired
+    Clasif_BodegaService clasif_bodegaService;
+
+    @Autowired
+    Clasif_BodegaRepository clasif_bodegaRepository;
 
     private Logger logger = Logger.getLogger(TestRespository.class);
 
@@ -198,6 +205,11 @@ public class TestRespository {
             Clasif_Movimiento clasif_movimiento = new Clasif_Movimiento();
             clasif_movimiento = clasif_movimientoRepository.findOne(1L);
             Clasif_Proveedor clasif_proveedor = new Clasif_Proveedor();
+            Clasif_Bodega clasif_bodega= new Clasif_Bodega();
+            clasif_bodega=clasif_bodegaRepository.findOne(2L);
+            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+            String jsonArt = ow.writeValueAsString(clasif_bodega);
+            System.out.println("JSON CLASIF BODEGA:" + jsonArt);
             clasif_proveedor = clasif_proveedorRespository.findOne(1L);
             Clasif_Articulo clasif_articulo = clasif_articuloRepository.findOne(1L);
             movimiento.setClasif_proveedor(clasif_proveedor);
@@ -205,19 +217,20 @@ public class TestRespository {
             movimiento.setEstado("ACTIVO");
             movimiento.setFecha(new Date());
             bodegaArticulo.setMovimiento(movimiento);
+            bodegaArticulo.setClasif_bodega(clasif_bodega);
             List<Clasif_Articulo> clasifArticuloList=  new ArrayList<Clasif_Articulo>();
             //bodegaArticulo.setClasif_articulo(clasif_articulo);
             clasifArticuloList.add(clasif_articulo);
             Clasif_Articulo clasif_articulo1 = clasif_articuloRepository.findOne(2L);
             clasifArticuloList.add(clasif_articulo1);
-            bodegaArticulo.setClasif_articulos(clasifArticuloList);
-            bodegaArticulo.setCantidad("150");
+            bodegaArticulo.setClasif_articulo(clasif_articulo);
+            bodegaArticulo.setCantidad("50");
             bodegaArticulo.setCostoTotal(15000.0);
             bodegaArticulo.setMonto(100.0);
-            bodegaArticulo.setDescripcionBodega("BODEGA INICIAL");
-            bodegaArticulo.setTipoBodega("GENERAL");
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            String jsonArt = ow.writeValueAsString(bodegaArticulo);
+            //bodegaArticulo.setDescripcionBodega("BODEGA INICIAL");
+            //bodegaArticulo.setTipoBodega("GENERAL");
+            ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+            jsonArt = ow.writeValueAsString(bodegaArticulo);
             System.out.println("JSON:" + jsonArt);
             bodega_articuloService.adicionarBodegaArticulo(bodegaArticulo);
         } catch (NullPointerException e) {
@@ -227,6 +240,24 @@ public class TestRespository {
             e.printStackTrace();
             System.out.println(e.getMessage());
         }
+    }
+
+    @Test
+    public void savesClaBodega(){
+        Clasif_Bodega clasif_bodega= new Clasif_Bodega();
+        clasif_bodega.setTipoBodega("GENERAL");
+        clasif_bodega.setDescripcionBodega("ALMACEN SUR CALACOTO.");
+        clasif_bodega.setFechaHasta(new Date());
+        clasif_bodega.setFechaHasta(new Date());
+        JsonResult jsonResult=clasif_bodegaService.saveClasifBodega(clasif_bodega);
+        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        String jsonArt = null;
+        try {
+            jsonArt = ow.writeValueAsString(clasif_bodega);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("JSON:" + jsonArt);
     }
 
 

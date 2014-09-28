@@ -6,6 +6,7 @@ import com.bo.openlogics.sales.model.Clasif_Proveedor;
 import com.bo.openlogics.sales.model.JsonResult;
 import com.bo.openlogics.sales.service.Bodega_ArticuloService;
 import com.bo.openlogics.sales.service.Clasif_ArticuloService;
+import com.bo.openlogics.sales.service.Clasif_BodegaService;
 import com.bo.openlogics.sales.service.Clasif_ProveedorService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,9 @@ public class SalesForceRESTController {
 
     @Autowired
     Bodega_ArticuloService bodega_articuloService;
+
+    @Autowired
+    Clasif_BodegaService clasif_bodegaService;
 
 
     private Logger logger = Logger.getLogger(SalesForceRESTController.class);
@@ -251,6 +255,22 @@ public class SalesForceRESTController {
         } catch (Exception e) {
             e.printStackTrace();
             return new JsonResult(false, "Error: " + e.getMessage(), null);
+        }
+    }
+
+    @RequestMapping(value = "/clasificador_bodega", method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResult getClasifBodega() {
+        try{
+            JsonResult jsonResult=null;
+            jsonResult=clasif_bodegaService.getClasif_Bodega();
+            return jsonResult;
+        }catch(NullPointerException e){
+            e.printStackTrace();
+            return new JsonResult(false,"Error: "+e.getMessage(),null);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new JsonResult(false,"Error: "+e.getMessage(),null);
         }
     }
 }

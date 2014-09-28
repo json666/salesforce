@@ -9,4 +9,5 @@ import com.bo.openlogics.sales.model.JsonResult;
 public interface Clasif_BodegaService {
     public JsonResult saveClasifBodega(Clasif_Bodega clasif_bodega);
     public JsonResult listadoClasifBodega();
+    public JsonResult getClasif_Bodega();
 }
