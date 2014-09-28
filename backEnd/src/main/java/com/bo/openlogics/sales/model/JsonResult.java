@@ -15,6 +15,12 @@ public class JsonResult {
         this.result = result;
     }
 
+    public JsonResult(boolean b, Usuario usuario) {
+    }
+
+    public JsonResult(boolean b, String message) {
+    }
+
     public Boolean getSuccess() {
         return success;
     }
