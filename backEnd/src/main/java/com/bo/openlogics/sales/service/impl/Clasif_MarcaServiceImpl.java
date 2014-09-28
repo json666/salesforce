@@ -28,23 +28,28 @@ public class Clasif_MarcaServiceImpl implements Clasif_MarcaService {
     private Logger logger = Logger.getLogger(Clasif_MarcaServiceImpl.class);
 
     @Override
-    public void save(Clasif_Marca clasif_marca) {
+    public JsonResult saveMarca(Clasif_Marca clasif_marca) {
         try {
+            JsonResult jsonResult=null;
             Clasif_Marca clasifMarca = null;
             System.out.println("COD_MARCA:"+clasif_marca.getCodigoMarca());
             System.out.println("ESTATUS:"+Boolean.FALSE);
             clasifMarca = clasif_marcaRepository.findByCodigoMarca(clasif_marca.getCodigoMarca());
             if (clasifMarca == null) {
                 clasif_marcaRepository.save(clasif_marca);
+                jsonResult= new JsonResult(true,"Registrado.",null);
             } else {
                 logger.info("******La marca ya esta registrada*******");
+                jsonResult= new JsonResult(true,"Error.",null);
             }
+            return jsonResult;
         } catch (NullPointerException e) {
             e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+        return null;
     }
 
     @Override

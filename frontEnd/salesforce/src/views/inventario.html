@@ -1,12 +1,23 @@
 <!--Formulario articulo Begin-->
-<h2><small><i class="fa fa-table"></i> Inventarios</small></h2>
-        <hr>
+<h2>
+    <small><i class="fa fa-table"></i> Inventarios</small>
+</h2>
+<hr>
 <div list-Articulo></div>
-<div list-Categoria></div>
-<div list-Clase></div>
+<hr>
+<div class="row">
+    <div list-Categoria></div>
+    <div list-Clase></div>
+</div>
+<hr>
+<div class="row">
+    <div list-Marca></div>
+    <div list-Unidad></div>
+</div>
 
 
-<div aria-hidden="false" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="ModalArticulo" class="modal fade in">
+<div aria-hidden="false" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="ModalArticulo"
+     class="modal fade in">
     <div class="modal-dialog" style="width:100%; max-width: 1024px">
         <div class="modal-content">
             <div class="modal-header">
@@ -17,7 +28,8 @@
                 <div frm-Articulo></div>
             </div>
             <div class="modal-footer">
-                <button type="submit" ng-click="save()" class="btn btn-primary"><i class="fa fa-save"></i> Guardar</button>
+                <button type="submit" ng-click="save()" class="btn btn-primary"><i class="fa fa-save"></i> Guardar
+                </button>
                 <button type="reset" class="btn btn-default">Limpiar</button>
                 <button data-dismiss="modal" class="btn btn-danger" type="button">Cancelar</button>
 
@@ -28,7 +40,8 @@
     <!-- /.modal-dialog -->
 </div>
 
-<div aria-hidden="false" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="ModalArticuloInfo" class="modal fade in">
+<div aria-hidden="false" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="ModalArticuloInfo"
+     class="modal fade in">
     <div class="modal-dialog" style="width:100%; max-width: 1024px">
         <div class="modal-content">
             <div class="modal-header">
@@ -41,7 +54,9 @@
             <div class="modal-footer">
                 <!--<button type="submit" ng-click="save()" class="btn btn-primary"><i class="fa fa-save"></i> Guardar</button>-->
                 <!--<button type="reset" class="btn btn-default">Limpiar</button>-->
-                <button ng-click="link()"data-dismiss="modal" class="btn btn-default" type="button"><i class="fa fa-backward"></i> Volver</button>
+                <button ng-click="link()" data-dismiss="modal" class="btn btn-default" type="button"><i
+                        class="fa fa-backward"></i> Volver
+                </button>
 
             </div>
         </div>
@@ -50,7 +65,8 @@
     <!-- /.modal-dialog -->
 </div>
 
-<div aria-hidden="false" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="ModalCategoria" class="modal fade in">
+<div aria-hidden="false" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="ModalCategoria"
+     class="modal fade in">
     <div class="modal-dialog" style="width:100%; max-width: 1024px">
         <div class="modal-content">
             <div class="modal-header">
@@ -61,7 +77,9 @@
                 <div frm-Categoria></div>
             </div>
             <div class="modal-footer">
-                <button type="submit" ng-click="saveCategoria()" class="btn btn-primary"><i class="fa fa-save"></i> Guardar</button>
+                <button type="submit" ng-click="saveCategoria()" class="btn btn-primary"><i class="fa fa-save"></i>
+                    Guardar
+                </button>
                 <button type="reset" class="btn btn-default">Limpiar</button>
                 <button data-dismiss="modal" class="btn btn-danger" type="button">Cancelar</button>
 
@@ -72,7 +90,8 @@
     <!-- /.modal-dialog -->
 </div>
 
-<div aria-hidden="false" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="ModalClase" class="modal fade in">
+<div aria-hidden="false" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="ModalClase"
+     class="modal fade in">
     <div class="modal-dialog" style="width:100%; max-width: 1024px">
         <div class="modal-content">
             <div class="modal-header">
@@ -83,7 +102,32 @@
                 <div frm-Clase></div>
             </div>
             <div class="modal-footer">
-                <button type="submit" ng-click="saveClase()" class="btn btn-primary"><i class="fa fa-save"></i> Guardar</button>
+                <button type="submit" ng-click="saveClase()" class="btn btn-primary"><i class="fa fa-save"></i> Guardar
+                </button>
+                <button type="reset" class="btn btn-default">Limpiar</button>
+                <button data-dismiss="modal" class="btn btn-danger" type="button">Cancelar</button>
+
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<div aria-hidden="false" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="ModalMarca"
+     class="modal fade in">
+    <div class="modal-dialog" style="width:100%; max-width: 1024px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                <h4 id="myModalLabel" class="modal-title">Registro de Marca</h4>
+            </div>
+            <div class="modal-body">
+                <div frm-Marca></div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" ng-click="saveClase()" class="btn btn-primary"><i class="fa fa-save"></i> Guardar
+                </button>
                 <button type="reset" class="btn btn-default">Limpiar</button>
                 <button data-dismiss="modal" class="btn btn-danger" type="button">Cancelar</button>
 
@@ -97,17 +141,20 @@
 <div id="loading">
     <div id="load-div">
         <img src="src/img/load.gif" width="50px"/>
+
         <div style="position: relative; padding-top: 10px;">Procesando...</div>
     </div>
 </div>
 
 
-<div class="modal fade" id="alertError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="z-index: 1050">
+<div class="modal fade" id="alertError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+     style="z-index: 1050">
     <div class="modal-dialog" style="width: 300px">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title red" id="myModalLabel"><i class="icon-warning-sign"></i><strong> Advertencia </strong> </h4>
+                <h4 class="modal-title red" id="myModalLabel"><i class="icon-warning-sign"></i><strong>
+                    Advertencia </strong></h4>
             </div>
             <div class="modal-body">
                 <p id="mensajeAlertError"></p>
@@ -117,16 +164,19 @@
                 <button type="button" class="btn btn-danger" data-dismiss="modal">OK</button>
                 <!--<button type="button" class="btn btn-primary">Save changes</button>-->
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-<div class="modal fade" id="alertSucces" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="z-index: 1050">
+<div class="modal fade" id="alertSucces" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+     style="z-index: 1050">
     <div class="modal-dialog" style="width: 300px">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title green" id=""><i class="icon-ok-sign"></i><strong> Confirmacion </strong> </h4>
+                <h4 class="modal-title green" id=""><i class="icon-ok-sign"></i><strong> Confirmacion </strong></h4>
             </div>
             <div class="modal-body">
                 <p id="mensajeAlertSucces"></p>
@@ -136,6 +186,8 @@
                 <button type="button" ng-click="load()" class="btn btn-success" data-dismiss="modal">OK</button>
                 <!--<button type="button" class="btn btn-primary">Save changes</button>-->
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
 </div><!-- /.modal -->
