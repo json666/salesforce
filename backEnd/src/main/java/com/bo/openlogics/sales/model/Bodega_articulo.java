@@ -1,5 +1,8 @@
 package com.bo.openlogics.sales.model;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +17,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "BODEGA_ARTICULO", schema = "SALESFORCE")
+//@JsonIgnoreProperties(ignoreUnknown = true)
 public class Bodega_articulo extends EntidadBase {
 
     /**
@@ -32,6 +36,7 @@ public class Bodega_articulo extends EntidadBase {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.bodega_articulo", cascade = CascadeType.ALL)
     //@Cascade({org.hibernate.annotations.CascadeType.ALL, org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
+    @JsonIgnore
     private List<BodegaDetalleMovimiento> bodegaDetalleMovimientos;
 
 
@@ -100,10 +105,15 @@ public class Bodega_articulo extends EntidadBase {
         bodegaDetalleMovimiento.setBodega_articulo(this);
         bodegaDetalleMovimiento.setMovimiento(movimiento);
         System.out.println("MONTO:"+this.getMonto());
+        System.out.println("ABDM 1");
         bodegaDetalleMovimiento.setCostoTotal(this.getCostoTotal());
+        System.out.println("ABDM 2");
         bodegaDetalleMovimiento.setMonto(this.getMonto());
+        System.out.println("ABDM 3");
         bodegaDetalleMovimiento.setCantidad(this.getCantidad());
+        System.out.println("ABDM 4");
         this.getBodegaDetalleMovimientos().add(bodegaDetalleMovimiento);
+        System.out.println("ABDM 5");
 
     }
 

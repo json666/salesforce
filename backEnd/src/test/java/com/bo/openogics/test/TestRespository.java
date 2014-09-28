@@ -200,7 +200,9 @@ public class TestRespository {
     public void saveBodega() {
         try {
             System.out.println("PROCESANDO..........");
+
             Bodega_articulo bodegaArticulo = new Bodega_articulo();
+
             Movimiento movimiento = new Movimiento();
             Clasif_Movimiento clasif_movimiento = new Clasif_Movimiento();
             clasif_movimiento = clasif_movimientoRepository.findOne(1L);
@@ -209,7 +211,6 @@ public class TestRespository {
             clasif_bodega=clasif_bodegaRepository.findOne(2L);
             ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
             String jsonArt = ow.writeValueAsString(clasif_bodega);
-            System.out.println("JSON CLASIF BODEGA:" + jsonArt);
             clasif_proveedor = clasif_proveedorRespository.findOne(1L);
             Clasif_Articulo clasif_articulo = clasif_articuloRepository.findOne(1L);
             movimiento.setClasif_proveedor(clasif_proveedor);
@@ -218,17 +219,11 @@ public class TestRespository {
             movimiento.setFecha(new Date());
             bodegaArticulo.setMovimiento(movimiento);
             bodegaArticulo.setClasif_bodega(clasif_bodega);
-            List<Clasif_Articulo> clasifArticuloList=  new ArrayList<Clasif_Articulo>();
-            //bodegaArticulo.setClasif_articulo(clasif_articulo);
-            clasifArticuloList.add(clasif_articulo);
-            Clasif_Articulo clasif_articulo1 = clasif_articuloRepository.findOne(2L);
-            clasifArticuloList.add(clasif_articulo1);
             bodegaArticulo.setClasif_articulo(clasif_articulo);
+            String jsonArt1 = ow.writeValueAsString(clasif_articulo);
             bodegaArticulo.setCantidad("50");
             bodegaArticulo.setCostoTotal(15000.0);
             bodegaArticulo.setMonto(100.0);
-            //bodegaArticulo.setDescripcionBodega("BODEGA INICIAL");
-            //bodegaArticulo.setTipoBodega("GENERAL");
             ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
             jsonArt = ow.writeValueAsString(bodegaArticulo);
             System.out.println("JSON:" + jsonArt);

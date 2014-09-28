@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.*;
  */
 
 @Controller
-@Transactional
 @RequestMapping(value = "/rest")
+@Transactional(readOnly = false)
 public class SalesForceRESTController {
     @Autowired
     Clasif_ArticuloService clasif_articuloService;
@@ -235,13 +235,12 @@ public class SalesForceRESTController {
      */
     @RequestMapping(value = "/bodega/articulos/guardar", method = RequestMethod.POST)
     @ResponseBody
-    public JsonResult adicionarBodegaArticulos(@PathVariable Bodega_articulo bodega_articulo) {
-
+    public JsonResult adicionarBodegaArticulos(@RequestBody Bodega_articulo bodega_articulo) {
+        System.out.println("....................INGRESANDO AL SERVICIO...................");
         Bodega_articulo bodegaArticulo = null;
         try {
             JsonResult jsonResult = null;
-            //jsonResult=clasif_articuloService.desabilitarArticulo(idArticulo);
-            bodega_articuloService.adicionarBodegaArticulo(bodega_articulo);
+            jsonResult=bodega_articuloService.adicionarBodegaArticulo(bodega_articulo);
             logger.info("Se adiciono una bodega con id: "
                     + bodega_articulo.getId() + ".");
             if (jsonResult.getSuccess()) {
