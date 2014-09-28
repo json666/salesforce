@@ -82,7 +82,10 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
                 console.log(JSON.stringify(data));
 //                alert(JSON.stringify($scope.formData));//
                 $scope.formData = data.result;
-                $("#ModalArticuloInfo").modal('show');
+                $("#ModalArticuloInfo").modal({
+                    backdrop: false,
+                    keyboard: false
+                });
             }).error(function (data, status) {
                 alert("Error de conexion con el servidor.");
             });
