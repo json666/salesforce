@@ -9,6 +9,6 @@ import java.util.List;
  * Created by json on 7/09/14.
  */
 public interface Clasif_MarcaService {
-    public void  save(Clasif_Marca clasif_marca);
+    public JsonResult  saveMarca(Clasif_Marca clasif_marca);
     public JsonResult listadoMarcas();
 }

@@ -61,6 +61,30 @@ app.directive('listClase', function () {
     };
 });
 
+app.directive('frmMarca', function () {
+    return {
+        templateUrl: 'src/templates/marcaSave.html'
+    };
+});
+
+app.directive('listMarca', function () {
+    return {
+        templateUrl: 'src/templates/marcaList.html'
+    };
+});
+
+app.directive('listClase', function () {
+    return {
+        templateUrl: 'src/templates/claseList.html'
+    };
+});
+
+app.directive('listUnidad', function () {
+    return {
+        templateUrl: 'src/templates/unidadList.html'
+    };
+});
+
 app.directive('listMov', function () {
     return {
         templateUrl: 'src/templates/movimientoList.html'

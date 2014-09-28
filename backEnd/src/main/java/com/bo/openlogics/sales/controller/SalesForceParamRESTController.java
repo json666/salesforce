@@ -57,6 +57,28 @@ public class SalesForceParamRESTController {
         }
     }
 
+    @RequestMapping(value = "/marcas/guardar", method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResult saveMarca(@RequestBody Clasif_Marca clasif_marca) {
+        try{
+            JsonResult jsonResult=null;
+            if(clasif_marca!=null){
+
+                jsonResult= clasif_marcaService.saveMarca(clasif_marca);
+                return jsonResult;
+
+            }else{
+                return new JsonResult(false,"El objeto Marcas tiene problemas.",null);
+            }
+        }catch(NullPointerException e){
+            e.printStackTrace();
+            return new JsonResult(false,"Error: "+e.getMessage(),null);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new JsonResult(false,"Error: "+e.getMessage(),null);
+        }
+    }
+
     @RequestMapping(value = "/unidad_medida", method = RequestMethod.GET)
     @ResponseBody
     public JsonResult findByUnidadMedida() {

@@ -107,7 +107,7 @@ public class TestRespository {
 
             clasifMarca.setFechaDesde(formatter.parse("06/09/2014"));
             //clasif_marcaRepository.save(clasifMarca);
-            clasif_marcaService.save(clasifMarca);
+            clasif_marcaService.saveMarca(clasifMarca);
 
 
         } catch (ParseException e) {
