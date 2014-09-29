@@ -43,16 +43,19 @@
 
 </head>
 
-<body>
+<body style="background: #222">
 
     <div class="container">
         <div class="row">
-            <div class="col-md-4 col-md-offset-4">
-                <div class="login-panel panel panel-default">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="login-panel panel panel-default" style="box-shadow: 0 0 5px 5px #444;">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Ingreso al Sistema</h3>
+                        <h3 class="panel-title"><strong>Ingreso al Sistema</strong></h3>
                     </div>
                     <div class="panel-body">
+                        <div class="row">
+                        <div class="col-lg-3 center"><br><i class="fa fa-sign-in fa-5x "></i></div>
+                        <div class="col-lg-7">
                         <form role="form" ng-submit="submit()" ng-controller="LoginController">
                             <fieldset>
                                 <div class="form-group">
@@ -75,60 +78,17 @@
                                 <!--<a href="index.html" class="btn btn-lg btn-success btn-block">Login</a>-->
                                 <button class="btn btn-lg btn-success btn-block"
                                         type="submit"
-                                        ng-click="login()">
-                                    <i class="icon-key"></i> Ingresar
+                                        ng-click="login()" ng-disabled="!nombreUsuario || !password">
+                                    <i class="fa fa-key"></i> Ingresar
                                 </button>
+                                <hr>
                                 <div class='alert alert-danger {{mensaje_clase}}'>
                                     {{mensaje_error}}
                                 </div>
                             </fieldset>
                         </form>
-
-
-                        <!--<form class="form-signin" ng-submit="submit()" ng-controller="LoginController">-->
-                            <!--<fieldset>-->
-                                <!--<label class="block clearfix">-->
-														<!--<span class="block input-icon input-icon-right">-->
-                                        <!--<input ng-model="nombreUsuario" type="text" class="form-control"-->
-                                               <!--placeholder="Usuario"-->
-                                               <!--name="nombreUsuario"-->
-                                               <!--required autofocus>-->
-                                                            <!--<i class="icon-user"></i>-->
-														<!--</span>-->
-                                <!--</label>-->
-                                <!--<label class="block clearfix">-->
-														<!--<span class="block input-icon input-icon-right">-->
-                                        <!--<input ng-model="password" type="password" class="form-control" name="password"-->
-                                               <!--placeholder="Contraseña"-->
-                                               <!--required>-->
-                                                             <!--<i class="icon-lock"></i>-->
-														<!--</span>-->
-                                <!--</label>-->
-
-                                <!--<div class="space"></div>-->
-                                <!--<div class="clearfix">-->
-                                    <!--&lt;!&ndash;<label class="inline">&ndash;&gt;-->
-                                    <!--&lt;!&ndash;<input class="ace" type="checkbox" value="remember-me">&ndash;&gt;-->
-                                    <!--&lt;!&ndash;<span class="lbl"> Recordarme</span>&ndash;&gt;-->
-                                    <!--&lt;!&ndash;</label>&ndash;&gt;-->
-                                    <!--<button class="width-35 pull-right btn btn-info"-->
-                                            <!--type="submit"-->
-                                            <!--ng-click="login()">-->
-                                        <!--<i class="icon-key"></i> Ingresar-->
-                                    <!--</button>-->
-                                <!--</div>-->
-
-
-                                <!--<div class='alert alert-danger {{mensaje_clase}}'>-->
-                                    <!--{{mensaje_error}}-->
-                                <!--</div>-->
-
-                                <!--<div class="space"></div>-->
-                                <!--<p class="blue" id="id-company-text">© Ramiro loza A.  </p>-->
-
-                                <!--&lt;!&ndash;</span> <span class="pull-right"><a href="registroNuevoOperador.html" class="treeNode">Registrarme Ahora</a></span>&ndash;&gt;-->
-                            <!--</fieldset>-->
-                        <!--</form>-->
+                        </div>
+                        </div>
                     </div>
                 </div>
             </div>
