@@ -9,6 +9,8 @@ import com.bo.openlogics.sales.service.Clasif_ArticuloService;
 import com.bo.openlogics.sales.service.Clasif_BodegaService;
 import com.bo.openlogics.sales.service.Clasif_ProveedorService;
 import org.apache.log4j.Logger;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.map.ObjectWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -238,7 +240,10 @@ public class SalesForceRESTController {
     public JsonResult adicionarBodegaArticulos(@RequestBody Bodega_articulo bodega_articulo) {
         System.out.println("....................INGRESANDO AL SERVICIO...................");
         Bodega_articulo bodegaArticulo = null;
+        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         try {
+            String jsonArt = ow.writeValueAsString(bodega_articulo);
+            System.out.println("JSON QUE VIENE DEL REST:"+jsonArt);
             JsonResult jsonResult = null;
             jsonResult=bodega_articuloService.adicionarBodegaArticulo(bodega_articulo);
             logger.info("Se adiciono una bodega con id: "

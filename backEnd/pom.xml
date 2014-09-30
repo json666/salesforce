@@ -357,9 +357,6 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <aplicacion.url>http://localhost/sso/indexLogin.html</aplicacion.url>
-                <mensajeria.url>http://localhost:8089/b-gestor-mensajeria/rest/</mensajeria.url>
-                <proxy.url>http://10.0.3.66:18080/s-proxy/rest/</proxy.url>
                 <db.test.url>jdbc:postgresql://localhost:5432/salesforce</db.test.url>
                 <db.test.usuario>postgres</db.test.usuario>
                 <db.test.password>postgres</db.test.password>
@@ -375,40 +372,19 @@
         <profile>
             <id>dev</id>
             <properties>
-                <aplicacion.url>http://10.0.4.77/sso/indexLogin.html</aplicacion.url>
-                <mensajeria.url>http://10.0.4.77:8080/b-gestor-mensajeria/rest/</mensajeria.url>
-                <proxy.url>http://10.0.3.66:18080/s-proxy/rest/</proxy.url>
-                <db.test.url>jdbc:postgresql://localhost:5432/sga_test</db.test.url>
+                <db.test.url>jdbc:postgresql://localhost:5432/salesforce</db.test.url>
                 <db.test.usuario>postgres</db.test.usuario>
                 <db.test.password>postgres</db.test.password>
-                <db.populate.url>jdbc:postgresql://localhost:5432/sga</db.populate.url>
+                <db.populate.url>jdbc:postgresql://localhost:5432/salesforce</db.populate.url>
                 <db.populate.usuario>postgres</db.populate.usuario>
                 <db.populate.password>postgres</db.populate.password>
             </properties>
         </profile>
 
         <profile>
-            <id>test</id>
-            <properties>
-                <aplicacion.url>http://nsga_test.aduana.gob.bo/sso/indexLogin.html</aplicacion.url>
-                <mensajeria.url>http://10.100.70.112/b-gestor-mensajeria/rest/</mensajeria.url>
-                <proxy.url>http://10.0.3.66:18080/s-proxy/rest/</proxy.url>
-                <db.test.url>jdbc:postgresql://host.test:5432/sga_test</db.test.url>
-                <db.test.usuario>postgres</db.test.usuario>
-                <db.test.password>postgres</db.test.password>
-                <db.populate.url>jdbc:postgresql://10.100.70.101:5434/desa03</db.populate.url>
-                <db.populate.usuario>sga_auth</db.populate.usuario>
-                <db.populate.password>1234</db.populate.password>
-            </properties>
-        </profile>
-
-        <profile>
             <id>prod</id>
             <properties>
-                <aplicacion.url>http://nsga.aduana.gob.bo/sso/indexLogin.html</aplicacion.url>
-                <mensajeria.url>http://10.100.100.227/b-gestor-mensajeria/rest/</mensajeria.url>
-                <proxy.url>http://10.0.3.66:8080/s-proxy/rest/</proxy.url>
-                <db.populate.url>jdbc:postgresql://10.100.100.230:5434/bds01</db.populate.url>
+                <db.populate.url>jdbc:postgresql://10.100.100.230:5432/salesforce</db.populate.url>
                 <db.populate.usuario></db.populate.usuario>
                 <db.populate.password></db.populate.password>
             </properties>
