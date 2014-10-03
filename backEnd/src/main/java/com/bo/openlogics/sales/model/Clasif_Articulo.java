@@ -15,6 +15,9 @@ import java.util.Date;
 @Table(name = "CLASIF_ARTICULOS", schema = "SALESFORCE")
 public class Clasif_Articulo extends EntidadBase {
 
+    @Column(name = "NOMBRE_ARTICULO")
+    private String nombreArticulo ;
+
     @Column(name = "DESCRIPCION_ARTICULO")
     private String descripcionArticulo ;
 
@@ -70,7 +73,8 @@ public class Clasif_Articulo extends EntidadBase {
 
     }
 
-    public Clasif_Articulo(String descripcionArticulo, String codigoArticulo, String metodoCosto, Double precio, Double precioCosto, String upc, int nivelReorden, int cantidadReorden, int nSerie, byte[] fotografia, Date fechaDesde, Date fechaHasta, String usuarioAct, Clasif_Marca clasif_marca, Clasif_Unidad clasif_unidad, Clasif_Categoria clasif_categoria, Clasif_Clase clasif_clase) {
+    public Clasif_Articulo(String nombreArticulo, String descripcionArticulo, String codigoArticulo, String metodoCosto, Double precio, Double precioCosto, String upc, int nivelReorden, int cantidadReorden, int nSerie, byte[] fotografia, Date fechaDesde, Date fechaHasta, String usuarioAct, Clasif_Marca clasif_marca, Clasif_Unidad clasif_unidad, Clasif_Categoria clasif_categoria, Clasif_Clase clasif_clase) {
+        this.nombreArticulo = nombreArticulo;
         this.descripcionArticulo = descripcionArticulo;
         this.codigoArticulo = codigoArticulo;
         this.metodoCosto = metodoCosto;
@@ -90,7 +94,8 @@ public class Clasif_Articulo extends EntidadBase {
         this.clasif_clase = clasif_clase;
     }
 
-    public Clasif_Articulo(String descripcionArticulo, String metodoCosto, Double precio, Double precioCosto, String upc, int nivelReorden, int cantidadReorden, int nSerie, byte[] fotografia, Date fechaDesde, Date fechaHasta, String usuarioAct, Clasif_Marca clasif_marca, Clasif_Unidad clasif_unidad, Clasif_Clase clasif_clase) {
+    public Clasif_Articulo(String nombreArticulo, String descripcionArticulo, String metodoCosto, Double precio, Double precioCosto, String upc, int nivelReorden, int cantidadReorden, int nSerie, byte[] fotografia, Date fechaDesde, Date fechaHasta, String usuarioAct, Clasif_Marca clasif_marca, Clasif_Unidad clasif_unidad, Clasif_Clase clasif_clase) {
+        this.nombreArticulo = nombreArticulo;
         this.descripcionArticulo = descripcionArticulo;
         this.metodoCosto = metodoCosto;
         this.precio = precio;
@@ -106,6 +111,14 @@ public class Clasif_Articulo extends EntidadBase {
         this.clasif_marca = clasif_marca;
         this.clasif_unidad = clasif_unidad;
         this.clasif_clase = clasif_clase;
+    }
+
+    public String getNombreArticulo() {
+        return nombreArticulo;
+    }
+
+    public void setNombreArticulo(String nombreArticulo) {
+        this.nombreArticulo = nombreArticulo;
     }
 
     public String getDescripcionArticulo() {

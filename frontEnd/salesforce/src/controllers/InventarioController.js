@@ -124,8 +124,11 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
         });
     }
 
+//    if ($("#itemFrm").valid()) {
+
     if (id == null || id.length == 0) {
         $scope.save = function () {
+            if ($("#artForm").valid()) {
             $http({
                 method: 'POST',
                 url: service + '/articulo/guardar',
@@ -143,6 +146,9 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
                 $("#mensajeAlertError").text(data.result + 'Error! intente nuevamente')
 
             });
+        }else{
+            } $('#alertError').modal('show');
+            $("#mensajeAlertError").html('Error! debe llenar los campos requeridos')
         }
     } else {
         //get de form by Id    //
