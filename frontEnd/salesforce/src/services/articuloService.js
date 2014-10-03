@@ -68,12 +68,14 @@ app.service("inventarioService", function ($http,$cookies) {
                             "fnRowCallback":function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
                                 $('td:eq(0)', nRow).html(iDisplayIndexFull + 1);
                                 return nRow;
-                            }
+                            },
+                            "bDestroy": true
+
                         });
 
                 }).
                 error(function (data, status, headers, config) {
-                    alert(data.result);
+                    alert('Error:'+data.result);
                     // called asynchronously if an error occurs
                     // or server returns response with an error status.
                 });

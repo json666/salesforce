@@ -174,8 +174,14 @@
                                     <!--<input type="file" ng-model="formData.fotografia" placeholder="fotografia">-->
 
                                     <span class="btn btn-default btn-file">
-                                    <i class="fa fa-upload"></i> Subir Imágen <input type="file" ng-model="formData.fotografia">
-                                    </span>
+                                    <i class="fa fa-upload"></i> Subir Imágen
+                                        <input
+                                                class="inputFiles upload"
+                                                type="file"
+                                                ng-model="formData.fotografia"
+                                                ng-click="cargarImagen()"
+                                                accept="image/x-png, image/gif, image/jpeg"/>
+                                   </span>
 
                                 </div>
                             </div>

@@ -99,7 +99,8 @@ function AdminController($scope, $http, $cookies, $routeParams, serviceShare) {
                     "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
                         $('td:eq(0)', nRow).html(iDisplayIndexFull + 1);
                         return nRow;
-                    }
+                    },
+                    "bDestroy": true
                 });
 
         }).

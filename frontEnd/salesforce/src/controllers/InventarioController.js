@@ -21,54 +21,129 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
             $scope.categoriaList = data.result;
         });
 
-    $scope.cargarClase=function(){
+    $scope.cargarClase = function () {
         //console.log("CODIGO"+$scope.formData.clasif_categoria.id);
-        if($scope.formData.clasif_categoria!=null){
-            codigoCategoria=$scope.formData.clasif_categoria.id
-        }else{
-            codigoCategoria=0;
+        if ($scope.formData.clasif_categoria != null) {
+            codigoCategoria = $scope.formData.clasif_categoria.id
+        } else {
+            codigoCategoria = 0;
         }
 
-        $http.get(service + '/categoria/'+codigoCategoria+'/clase').success( //
+        $http.get(service + '/categoria/' + codigoCategoria + '/clase').success( //
             function (data) {
                 $scope.claseList = data.result;
             });
     }
 
-    $scope.cargarClase=function(){
+    $scope.cargarClase = function () {
 //        alert("sdfds");
-        console.log("CODIGO"+$scope.formData.clasif_categoria.id);
-        if($scope.formData.clasif_categoria!=null){
-            codigoCategoria=$scope.formData.clasif_categoria.id
-        }else{
-            codigoCategoria=0;
+        console.log("CODIGO" + $scope.formData.clasif_categoria.id);
+        if ($scope.formData.clasif_categoria != null) {
+            codigoCategoria = $scope.formData.clasif_categoria.id
+        } else {
+            codigoCategoria = 0;
         }
 
-        $http.get(service + '/categoria/'+codigoCategoria+'/clase').success( //
+        $http.get(service + '/categoria/' + codigoCategoria + '/clase').success( //
             function (data) {
                 $scope.claseList = data.result;
             });
     }
     //console.log('CODIGO'+angular.toJson($scope.formData.clasif_categoria.id));
 // begin process the form proveedores
+
+    inventarioService.articuloList($scope);
+    console.log('PARTE UPLOAD IMAGE');
+    $scope.cargarImagen = function () {
+        console.log('CARGANDO IMAGEN........');
+        console.log(service+'/uploadFiles');
+        $('.inputFiles').fileupload({
+            //                formData: {idDocumento: id},
+            url: service + '/uploadFiles',
+            method:'POST',
+            crossDomain:true,
+            add: function (e, data) {
+                console.log('ADD'+service+'/uploadFiles');
+                var FileExt = (data.originalFiles[0].name).substring((data.originalFiles[0].name).lastIndexOf('.') + 1, data.originalFiles[0].name.length);
+                if (FileExt.toLocaleLowerCase() == "png" || FileExt.toLocaleLowerCase() == "jpg" || FileExt.toLocaleLowerCase() == "gif") {
+                    if (data.originalFiles[0].size <= 2097152) {//archivos <= 2 MB
+                        console.log('DATA IMAGE:' + data);
+                        data.submit();
+
+                    } else {
+                        $('#mensajeAdjuntarArchivo').html('Archivo demasiado grande, se le recomienda cargar un archivo menor o igual a 2 MB.');
+                        $('#tipoArchivoIncorrecto').modal('show');
+                    }
+                } else {
+                    $('#mensajeAdjuntarArchivo').html('Tipo de archivo incorrecto, solo se permiten archivos PDF.');
+                    $('#tipoArchivoIncorrecto').modal('show');
+                }
+
+            },
+            beforeSend: function (request) {
+                request.setRequestHeader("Access-Control-Allow-Origin", "*");
+                //alert('...........Loading');
+                //$scope.loading=true;
+                $("#loading-div-background-img").css("display", "block");
+            },
+            headers: {
+                'Access-Control-Allow-Origin': '*'
+            },
+            done: function (e, data) {
+                //$scope.loading=false;
+                console.log('DONE::::::::::::::::::::::::');
+                if (data.result.success != false) {
+                    //$("#imagenUpload").find("img").css("display", "block");
+                    if (data.result.result[0] != null) {
+                        if (data.result.result[0].idArchivo != null) {
+
+                        } else {
+                            $scope.$apply();
+                            $('#mensajeAdjuntarArchivo').html('Ocurrio un error al adjuntar el archivo.');
+                            $('#tipoArchivoIncorrecto').modal('show');
+                        }
+                    } else {
+                        $scope.$apply();
+                        $('#mensajeAdjuntarArchivo').html('Ocurrio un error al adjuntar el archivo.');
+                        $('#tipoArchivoIncorrecto').modal('show');
+                    }
+                } else {
+                    $scope.$apply();
+                    $('#mensajeAdjuntarArchivo').html('Ocurrio un error al adjuntar el archivo.');
+                    $('#tipoArchivoIncorrecto').modal('show');
+                }
+            }/*),
+             progressall : function(e, data) {
+             $scope.loading=false;
+             }*/,
+            error: function (e, data) {
+                console.log("error cargando...");
+                //$("#loading-div-background").css("display", "none");
+                console.log(e);
+            }
+        });
+    }
+
     if (id == null || id.length == 0) {
         $scope.save = function () {
-                $http({
-                    method: 'POST',
-                    url: service + '/articulo/guardar',
-                    data: JSON.stringify($scope.formData)
-                }).success(function (response) {
-                        result = response;
-                        $scope.formData = null
-                    $("#ModalArticulo").modal('hide');
-                    $('#alertSucces').modal('show');
-                    $("#mensajeAlertSucces").text('Registro Guardado');
-                }). error(function (response) {   //
-                    $('#alertError').modal('show');
-                    $("#mensajeAlertError").text(data.result + 'Error! intente nuevamente')
+            $http({
+                method: 'POST',
+                url: service + '/articulo/guardar',
+                data: JSON.stringify($scope.formData)
+            }).success(function (response) {
+                result = response;
+                $scope.formData = null;
+                inventarioService.articuloList($scope);
 
-                    });
-            }
+                $("#ModalArticulo").modal('hide');
+                $('#alertSucces').modal('show');
+                $("#mensajeAlertSucces").text('Registro Guardado');
+            }).error(function (response) {   //
+                $('#alertError').modal('show');
+                $("#mensajeAlertError").text(data.result + 'Error! intente nuevamente')
+
+            });
+        }
     } else {
         //get de form by Id    //
         $http({
@@ -77,7 +152,7 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
         }).success(
             function (data, status) {
 //                $("#loading-div-background").css("display", "none");
-                console.log("---->ARTICULO:"+id);
+                console.log("---->ARTICULO:" + id);
 
                 console.log(JSON.stringify(data));
 //                alert(JSON.stringify($scope.formData));//
@@ -91,12 +166,12 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
             });
     }
 //Lista proveedores
-    inventarioService.articuloList($scope);
 
-$scope.link = function(){
-    location.href = '#/inventarios';
 
-};
+    $scope.link = function () {
+        location.href = '#/inventarios';
+
+    };
 // ends proveedores
 
 //categorias begin
@@ -114,7 +189,7 @@ $scope.link = function(){
                 $('#alertSucces').modal('show');
                 $("#mensajeAlertSucces").text('Registro Guardado');
 
-            }). error(function (response) {   //
+            }).error(function (response) {   //
                 alert("ERROR! intente mas tarde")
 
             });
@@ -180,7 +255,8 @@ $scope.link = function(){
                     "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
                         $('td:eq(0)', nRow).html(iDisplayIndexFull + 1);
                         return nRow;
-                    }
+                    },
+                    "bDestroy": true
                 });
 
         }).
@@ -206,7 +282,7 @@ $scope.link = function(){
                 $('#alertSucces').modal('show');
                 $("#mensajeAlertSucces").text('Registro Guardado');
 
-            }). error(function (response) {   //
+            }).error(function (response) {   //
                 alert("ERROR! intente mas tarde")
 
             });
@@ -271,7 +347,8 @@ $scope.link = function(){
                     "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
                         $('td:eq(0)', nRow).html(iDisplayIndexFull + 1);
                         return nRow;
-                    }
+                    },
+                    "bDestroy": true
                 });
 
         }).
@@ -297,7 +374,7 @@ $scope.link = function(){
                 $('#alertSucces').modal('show');
                 $("#mensajeAlertSucces").text('Registro Guardado');
 
-            }). error(function (response) {   //
+            }).error(function (response) {   //
                 alert("ERROR! intente mas tarde")
 
             });
@@ -362,7 +439,8 @@ $scope.link = function(){
                     "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
                         $('td:eq(0)', nRow).html(iDisplayIndexFull + 1);
                         return nRow;
-                    }
+                    },
+                    "bDestroy": true
                 });
 
         }).
@@ -388,7 +466,7 @@ $scope.link = function(){
                 $('#alertSucces').modal('show');
                 $("#mensajeAlertSucces").text('Registro Guardado');
 
-            }). error(function (response) {   //
+            }).error(function (response) {   //
                 alert("ERROR! intente mas tarde")
 
             });
@@ -453,7 +531,8 @@ $scope.link = function(){
                     "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
                         $('td:eq(0)', nRow).html(iDisplayIndexFull + 1);
                         return nRow;
-                    }
+                    },
+                    "bDestroy": true
                 });
 
         }).
@@ -463,9 +542,6 @@ $scope.link = function(){
             // or server returns response with an error status.
         });
 // ends marcas
-
-
-
 
 
 }
