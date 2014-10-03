@@ -64,10 +64,10 @@ public class Bodega_ArticuloServiceImpl implements Bodega_ArticuloService {
         Bodega_articulo bodegaArticulo= new Bodega_articulo();
 
         try{
-            String jsonArt = ow.writeValueAsString(bodega_articuloBean);
-            System.out.println("LO QUE LLEGA:"+jsonArt);
-            System.out.println("SERVICE BODEGA ARTICULO...");
-            logger.info("******JSON INICIAL*******"+jsonArt);
+            //String jsonArt = ow.writeValueAsString(bodega_articuloBean);
+            //System.out.println("LO QUE LLEGA:"+jsonArt);
+            //System.out.println("SERVICE BODEGA ARTICULO...");
+            //logger.info("******JSON INICIAL*******"+jsonArt);
             if(bodega_articuloBean.getClasif_articulo()!=null){
                 clasifArticulo= clasif_articuloRepository.findOne(bodega_articuloBean.getClasif_articulo().getId());
                 bodega_articuloBean.setClasif_articulo(clasifArticulo);
@@ -87,22 +87,22 @@ public class Bodega_ArticuloServiceImpl implements Bodega_ArticuloService {
             bodegaArticulo.setCostoTotal(bodega_articuloBean.getMonto() * 100);
             //bodegaArticulo.setClasif_articulo(bodega_articuloBean.getClasif_articulo());
             bodegaArticulo.setClasif_bodega(bodega_articuloBean.getClasif_bodega());
-            bodegaArticulo.setMovimiento(bodega_articuloBean.getMovimiento());
+            //bodegaArticulo.setMovimiento(bodega_articuloBean.getMovimiento());
             bodegaArticulo.setClasif_articulo(bodega_articuloBean.getClasif_articulo());
-            movimiento=bodega_articuloBean.getMovimiento();
+            //movimiento=bodega_articuloBean.getMovimiento();
             logger.info("******INICIANDO*******");
             logger.info("******MOV:"+movimiento);
             if(bodega_articuloBean!=null){
-                movimiento=movimientoService.create(bodega_articuloBean.getMovimiento());
-                bodegaArticulo.addBodegaDetalleMovimiento(movimiento);
+                //movimiento=movimientoService.create(bodega_articuloBean.getMovimiento());
+                //bodegaArticulo.addBodegaDetalleMovimiento(movimiento);
 
-                jsonArt = ow.writeValueAsString(bodegaArticulo);
-                System.out.println("JSON A GUARDAR:"+jsonArt);
+                //String jsonArt = ow.writeValueAsString(bodegaArticulo);
+                //System.out.println("JSON A GUARDAR:"+jsonArt);
                 String jsonArt1 = ow.writeValueAsString(bodega_articuloBean);
                 System.out.println("JSON A GUARDAR (1):"+jsonArt1);
                 logger.info("******REGISTRANDO*******");
                 logger.info("******OBJETO*******"+bodegaArticulo);
-                bodegaRepository.save(bodegaArticulo);
+                //bodegaRepository.save(bodegaArticulo);
                 jsonResult= new JsonResult(true,"Registro Exitoso",bodega_articuloBean);
             }else{
                 jsonResult= new JsonResult(false,"No se pudo registrar la Bodega",null);

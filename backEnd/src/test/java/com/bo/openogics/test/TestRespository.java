@@ -215,18 +215,18 @@ public class TestRespository {
             Clasif_Articulo clasif_articulo = clasif_articuloRepository.findOne(1L);
             movimiento.setClasif_proveedor(clasif_proveedor);
             movimiento.setClasif_movimiento(clasif_movimiento);
-            movimiento.setEstado("ACTIVO");
+            movimiento.setEstado("DESACTIVADO");
             movimiento.setFecha(new Date());
             bodegaArticulo.setMovimiento(movimiento);
             bodegaArticulo.setClasif_bodega(clasif_bodega);
             bodegaArticulo.setClasif_articulo(clasif_articulo);
             String jsonArt1 = ow.writeValueAsString(clasif_articulo);
             bodegaArticulo.setCantidad("50");
-            bodegaArticulo.setCostoTotal(15000.0);
-            bodegaArticulo.setMonto(100.0);
+            bodegaArticulo.setCostoTotal(25000.0);
+            bodegaArticulo.setMonto(150.0);
             ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
             jsonArt = ow.writeValueAsString(bodegaArticulo);
-            System.out.println("JSON:" + jsonArt);
+            System.out.println("JSON ARMADO DE BEANS:" + jsonArt);
             bodega_articuloService.adicionarBodegaArticulo(bodegaArticulo);
         } catch (NullPointerException e) {
             e.printStackTrace();
