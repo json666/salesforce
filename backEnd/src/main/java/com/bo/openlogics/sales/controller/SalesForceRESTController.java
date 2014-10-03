@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping(value = "/rest")
-@Transactional(readOnly = false)
+@Transactional(readOnly = true)
 public class SalesForceRESTController {
     @Autowired
     Clasif_ArticuloService clasif_articuloService;

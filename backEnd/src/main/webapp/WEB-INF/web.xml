@@ -29,7 +29,7 @@
 
         <init-param>
             <param-name>cors.supportedHeaders</param-name>
-            <param-value>Content-Type, X-Requested-With, Origin, Accept</param-value>
+            <param-value>Content-Type, X-Requested-With,Accept, Access-Control-Allow-Origin, Origin</param-value>
         </init-param>
     </filter>
 

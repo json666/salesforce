@@ -30,8 +30,8 @@ import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:applicationContextTest.xml"})
-@Transactional
-@TransactionConfiguration(defaultRollback = false)
+//@Transactional
+//@TransactionConfiguration(defaultRollback = false)
 public class TestRespository {
 
     @Autowired
@@ -208,7 +208,7 @@ public class TestRespository {
             clasif_movimiento = clasif_movimientoRepository.findOne(1L);
             Clasif_Proveedor clasif_proveedor = new Clasif_Proveedor();
             Clasif_Bodega clasif_bodega= new Clasif_Bodega();
-            clasif_bodega=clasif_bodegaRepository.findOne(2L);
+            clasif_bodega=clasif_bodegaRepository.findOne(1L);
             ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
             String jsonArt = ow.writeValueAsString(clasif_bodega);
             clasif_proveedor = clasif_proveedorRespository.findOne(1L);
@@ -241,7 +241,7 @@ public class TestRespository {
     public void savesClaBodega(){
         Clasif_Bodega clasif_bodega= new Clasif_Bodega();
         clasif_bodega.setTipoBodega("GENERAL");
-        clasif_bodega.setDescripcionBodega("ALMACEN CENTRAL.");
+        clasif_bodega.setDescripcionBodega("ALMACEN CENTRAL (1).");
         clasif_bodega.setFechaHasta(new Date());
         clasif_bodega.setFechaHasta(new Date());
         JsonResult jsonResult=clasif_bodegaService.saveClasifBodega(clasif_bodega);
