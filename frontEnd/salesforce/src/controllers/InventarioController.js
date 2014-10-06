@@ -62,6 +62,17 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
             url: service + '/uploadFiles',
             method:'POST',
             crossDomain:true,
+            beforeSend : function(request) {
+                request.setRequestHeader("Access-control-Allow-Origin","*");
+                request.setRequestHeader('Access-Control-Allow-Methods', 'OPTIONS,GET,POST,PUT,DELETE');
+                request.setRequestHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+                request.setRequestHeader('Access-Control-Allow-Credentials: true');
+
+            },
+            xhrFields: {
+                withCredentials: true
+            },
+            forceIframeTransport: true,
             add: function (e, data) {
                 console.log('ADD'+service+'/uploadFiles');
                 var FileExt = (data.originalFiles[0].name).substring((data.originalFiles[0].name).lastIndexOf('.') + 1, data.originalFiles[0].name.length);
