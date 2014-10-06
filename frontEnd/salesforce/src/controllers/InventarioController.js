@@ -55,24 +55,31 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
     inventarioService.articuloList($scope);
     console.log('PARTE UPLOAD IMAGE');
     $scope.cargarImagen = function () {
+        //$("#imageUpload").empty();
+        $("#imageUpload").empty();
+        $('<div id="content_image" style="width: 300px">' + '<img class="img-responsive" src="src/img/upload.jpg">' + '</div> ').appendTo('#imageUpload');
+
         console.log('CARGANDO IMAGEN........');
         console.log(service+'/uploadFiles');
         $('.inputFiles').fileupload({
             //                formData: {idDocumento: id},
             url: service + '/uploadFiles',
+            //contentType:'multipart/form-data',
+            headers: {'Content-Type': 'multipart/form-data'},
+            dataType: 'json',
             method:'POST',
-            crossDomain:true,
+            //crossDomain:true,
             beforeSend : function(request) {
-                request.setRequestHeader("Access-control-Allow-Origin","*");
+                /*request.setRequestHeader("Access-control-Allow-Origin","*");
                 request.setRequestHeader('Access-Control-Allow-Methods', 'OPTIONS,GET,POST,PUT,DELETE');
                 request.setRequestHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-                request.setRequestHeader('Access-Control-Allow-Credentials: true');
+                request.setRequestHeader('Access-Control-Allow-Credentials: true');*/
 
             },
-            xhrFields: {
+            /*xhrFields: {
                 withCredentials: true
             },
-            forceIframeTransport: true,
+            forceIframeTransport: true,*/
             add: function (e, data) {
                 console.log('ADD'+service+'/uploadFiles');
                 var FileExt = (data.originalFiles[0].name).substring((data.originalFiles[0].name).lastIndexOf('.') + 1, data.originalFiles[0].name.length);
@@ -104,15 +111,20 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
                 //$scope.loading=false;
                 console.log('DONE::::::::::::::::::::::::');
                 if (data.result.success != false) {
+                    console.log('DONE 1::::::::::::::::::::::::');
                     //$("#imagenUpload").find("img").css("display", "block");
                     if (data.result.result[0] != null) {
-                        if (data.result.result[0].idArchivo != null) {
+                        console.log('TOJSONBYTES:'+angular.toJson(data.result.result[0].bytes));
+                        console.log('DONE 2::::::::::::::::::::::::');
+                            console.log('DONE 3::::::::::::::::::::::::');
+                            console.log('IMAGEN..');
+                        $.each(data.result.result, function (index, file) {
+                            $("#imageUpload").empty();
+                            $('<div id="content_image" style="width: 300px">' + '<img class="img-responsive" src="'+service + '/getImage/'+index+'">' + '</div> ').appendTo('#imageUpload');
+                        });
 
-                        } else {
-                            $scope.$apply();
-                            $('#mensajeAdjuntarArchivo').html('Ocurrio un error al adjuntar el archivo.');
-                            $('#tipoArchivoIncorrecto').modal('show');
-                        }
+
+
                     } else {
                         $scope.$apply();
                         $('#mensajeAdjuntarArchivo').html('Ocurrio un error al adjuntar el archivo.');
