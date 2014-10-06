@@ -15,6 +15,9 @@ public class JsonResult {
         this.result = result;
     }
 
+    public JsonResult() {
+    }
+
     public JsonResult(boolean b, Usuario usuario) {
     }
 

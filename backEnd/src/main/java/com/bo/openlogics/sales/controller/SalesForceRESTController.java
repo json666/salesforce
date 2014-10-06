@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.*;
  */
 
 @Controller
-@RequestMapping(value = "/rest")
 @Transactional(readOnly = true)
 public class SalesForceRESTController {
     @Autowired

@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @Transactional
-@RequestMapping(value = "/rest")
 public class SalesForceParamRESTController {
     @Autowired
     Clasif_MarcaService clasif_marcaService;

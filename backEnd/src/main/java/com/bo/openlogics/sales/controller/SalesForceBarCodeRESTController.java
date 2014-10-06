@@ -25,7 +25,6 @@ import java.io.OutputStream;
 
 @Controller
 @Transactional
-@RequestMapping(value = "/rest")
 public class SalesForceBarCodeRESTController {
 
 

@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 
 @Controller
-@RequestMapping(value = "/rest")
 public class UsuarioRestController {
     @Autowired
     UsuarioService usuarioService;
