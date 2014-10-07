@@ -73,12 +73,6 @@ app.directive('listMarca', function () {
     };
 });
 
-app.directive('listClase', function () {
-    return {
-        templateUrl: 'src/templates/claseList.html'
-    };
-});
-
 app.directive('listUnidad', function () {
     return {
         templateUrl: 'src/templates/unidadList.html'

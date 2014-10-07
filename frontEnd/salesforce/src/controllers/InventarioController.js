@@ -148,34 +148,42 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
         });
     }
 
-//    if ($("#itemFrm").valid()) {
+
+
 
     if (id == null || id.length == 0) {
         console.log('FORMDATA:'+angular.toJson($scope.formData));
+
         $scope.save = function () {
-            if ($("#artForm").valid()) {
-            $http({
-                method: 'POST',
-                url: service + '/articulo/guardar',
-                data: JSON.stringify($scope.formData)
-            }).success(function (response) {
-                result = response;
-                $scope.formData = null;
-                inventarioService.articuloList($scope);
 
-                $("#ModalArticulo").modal('hide');
-                $('#alertSucces').modal('show');
-                $("#mensajeAlertSucces").text('Registro Guardado');
-            }).error(function (response) {   //
-                $('#alertError').modal('show');
-                $("#mensajeAlertError").text(data.result + 'Error! intente nuevamente')
-
-            });
-        }else{
-            } $('#alertError').modal('show');
+            if (!$("#artForm").valid()) {
+            $('#alertError').modal('show');
             $("#mensajeAlertError").html('Error! debe llenar los campos requeridos')
+                return false
+            }
+            else {
+                 $http({
+                    method: 'POST',
+                    url: service + '/articulo/guardar',
+                    data: JSON.stringify($scope.formData)
+                }).success(function (response) {
+                        result = response;
+                        $scope.formData = null;
+                        inventarioService.articuloList($scope);
+
+                        $("#ModalArticulo").modal('hide');
+                        $('#alertSucces').modal('show');
+                        $("#mensajeAlertSucces").text('Registro Guardado');
+                    }).error(function (response) {   //
+                        $('#alertError').modal('show');
+                        $("#mensajeAlertError").text(data.result + 'Error! intente nuevamente')
+
+                    });
+            }
+
         }
-    } else {
+    }
+    else {
         //get de form by Id    //
         $http({
             method: 'GET',
