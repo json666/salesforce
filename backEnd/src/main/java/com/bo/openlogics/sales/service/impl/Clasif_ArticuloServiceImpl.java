@@ -1,15 +1,22 @@
 package com.bo.openlogics.sales.service.impl;
 
+import com.bo.openlogics.sales.barcode.BarCodeGenerator;
+import com.bo.openlogics.sales.barcode.impl.BarCodeGeneratorImpl;
 import com.bo.openlogics.sales.beans.ArticuloBean;
 import com.bo.openlogics.sales.beans.parametricas.*;
 import com.bo.openlogics.sales.dozer.UtilTransport;
 import com.bo.openlogics.sales.model.*;
 import com.bo.openlogics.sales.repository.*;
 import com.bo.openlogics.sales.service.Clasif_ArticuloService;
+import com.bo.openlogics.sales.util.LectorArchivosProperties;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -37,6 +44,10 @@ public class Clasif_ArticuloServiceImpl implements Clasif_ArticuloService {
 
     @Autowired
     UtilTransport utilTransport;
+
+    /*@Autowired
+    BarCodeGenerator barCodeGenerator;*/
+
 
 
     private Logger logger = Logger.getLogger(Clasif_ArticuloServiceImpl.class);
@@ -72,6 +83,19 @@ public class Clasif_ArticuloServiceImpl implements Clasif_ArticuloService {
                     clasifCategoria=clasif_categoriaRepository.findOne(clasif_articulo.getClasif_categoria().getId());
                     clasif_articulo.setClasif_categoria(clasifCategoria);
                 }
+                String codigoArticulo=clasif_articulo.getCodigoArticulo();
+                BarCodeGenerator barCodeGenerator= new BarCodeGeneratorImpl();
+                barCodeGenerator.drawToFile(LectorArchivosProperties.REPORTES_LOCAL_OUTPUT_FOLDER + "/barcode-"+codigoArticulo+"-afrodita.png",codigoArticulo);
+                File codigoBarras=new File(LectorArchivosProperties.REPORTES_LOCAL_OUTPUT_FOLDER + "/barcode-"+codigoArticulo+"-afrodita.png");
+                byte[] imageInByte;
+                BufferedImage originalImage = ImageIO.read(new File(LectorArchivosProperties.REPORTES_LOCAL_OUTPUT_FOLDER + "/barcode-"+codigoArticulo+"-afrodita.png"));
+                // convert BufferedImage to byte array
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                ImageIO.write(originalImage, "png", baos);
+                baos.flush();
+                imageInByte = baos.toByteArray();
+                baos.close();
+                clasif_articulo.setUpc(imageInByte);
                 //clasif_articulo.setFechaDesde(new Date());
                 clasif_articuloRepository.save(clasif_articulo);
             } else{

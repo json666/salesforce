@@ -33,8 +33,9 @@ public class Clasif_Articulo extends EntidadBase {
     @Column(name = "PRECIO_COSTO")
     private Double precioCosto ;
 
+    @Lob
     @Column(name = "UPC")
-    private String upc ;
+    private byte[] upc ;
 
     @Column(name = "NIVEL_REORDEN")
     private int nivelReorden ;
@@ -73,7 +74,7 @@ public class Clasif_Articulo extends EntidadBase {
 
     }
 
-    public Clasif_Articulo(String nombreArticulo, String descripcionArticulo, String codigoArticulo, String metodoCosto, Double precio, Double precioCosto, String upc, int nivelReorden, int cantidadReorden, int nSerie, byte[] fotografia, Date fechaDesde, Date fechaHasta, String usuarioAct, Clasif_Marca clasif_marca, Clasif_Unidad clasif_unidad, Clasif_Categoria clasif_categoria, Clasif_Clase clasif_clase) {
+    public Clasif_Articulo(String nombreArticulo, String descripcionArticulo, String codigoArticulo, String metodoCosto, Double precio, Double precioCosto, byte[] upc, int nivelReorden, int cantidadReorden, int nSerie, byte[] fotografia, Date fechaDesde, Date fechaHasta, String usuarioAct, Clasif_Marca clasif_marca, Clasif_Unidad clasif_unidad, Clasif_Categoria clasif_categoria, Clasif_Clase clasif_clase) {
         this.nombreArticulo = nombreArticulo;
         this.descripcionArticulo = descripcionArticulo;
         this.codigoArticulo = codigoArticulo;
@@ -91,25 +92,6 @@ public class Clasif_Articulo extends EntidadBase {
         this.clasif_marca = clasif_marca;
         this.clasif_unidad = clasif_unidad;
         this.clasif_categoria = clasif_categoria;
-        this.clasif_clase = clasif_clase;
-    }
-
-    public Clasif_Articulo(String nombreArticulo, String descripcionArticulo, String metodoCosto, Double precio, Double precioCosto, String upc, int nivelReorden, int cantidadReorden, int nSerie, byte[] fotografia, Date fechaDesde, Date fechaHasta, String usuarioAct, Clasif_Marca clasif_marca, Clasif_Unidad clasif_unidad, Clasif_Clase clasif_clase) {
-        this.nombreArticulo = nombreArticulo;
-        this.descripcionArticulo = descripcionArticulo;
-        this.metodoCosto = metodoCosto;
-        this.precio = precio;
-        this.precioCosto = precioCosto;
-        this.upc = upc;
-        this.nivelReorden = nivelReorden;
-        this.cantidadReorden = cantidadReorden;
-        this.nSerie = nSerie;
-        this.fotografia=fotografia;
-        this.fechaDesde = fechaDesde;
-        this.fechaHasta = fechaHasta;
-        this.usuarioAct = usuarioAct;
-        this.clasif_marca = clasif_marca;
-        this.clasif_unidad = clasif_unidad;
         this.clasif_clase = clasif_clase;
     }
 
@@ -151,14 +133,6 @@ public class Clasif_Articulo extends EntidadBase {
 
     public void setPrecioCosto(Double precioCosto) {
         this.precioCosto = precioCosto;
-    }
-
-    public String getUpc() {
-        return upc;
-    }
-
-    public void setUpc(String upc) {
-        this.upc = upc;
     }
 
     public int getNivelReorden() {
@@ -257,5 +231,13 @@ public class Clasif_Articulo extends EntidadBase {
 
     public void setClasif_categoria(Clasif_Categoria clasif_categoria) {
         this.clasif_categoria = clasif_categoria;
+    }
+
+    public byte[] getUpc() {
+        return upc;
+    }
+
+    public void setUpc(byte[] upc) {
+        this.upc = upc;
     }
 }

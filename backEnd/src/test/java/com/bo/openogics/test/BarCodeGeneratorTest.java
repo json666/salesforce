@@ -20,7 +20,7 @@ public class BarCodeGeneratorTest {
         try {
             BarCodeGenerator BarCodeGenerator = new BarCodeGeneratorImpl("1ANILLO2014000001");
 
-            BarCodeGenerator.drawToFile(LectorArchivosProperties.REPORTES_LOCAL_OUTPUT_FOLDER + "/barcode-qrcode-test.png");
+            BarCodeGenerator.drawToFile(LectorArchivosProperties.REPORTES_LOCAL_OUTPUT_FOLDER + "/barcode-qrcode-test.png","123456789KA");
         } catch (Exception e) {
             e.printStackTrace();
         }

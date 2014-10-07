@@ -30,7 +30,7 @@ public class ArticuloBean implements Serializable {
     private Double precioCosto ;
 
 
-    private String upc ;
+    private byte[] upc ;
 
 
     private int nivelReorden ;
@@ -64,7 +64,7 @@ public class ArticuloBean implements Serializable {
 
     public ArticuloBean(Long id, String descripcionArticulo, String codigoArticulo,
                         String metodoCosto, Double precio, Double precioCosto,
-                        String upc, int nivelReorden, int cantidadReorden,
+                        byte[] upc, int nivelReorden, int cantidadReorden,
                         int nSerie, byte[] fotografia, Date fechaDesde,
                         Date fechaHasta, String usuarioAct) {
         this.id = id;
@@ -86,7 +86,7 @@ public class ArticuloBean implements Serializable {
 
     public ArticuloBean(Long id, String descripcionArticulo, String codigoArticulo,
                         String metodoCosto, Double precio, Double precioCosto,
-                        String upc, int nivelReorden, int cantidadReorden,
+                        byte[] upc, int nivelReorden, int cantidadReorden,
                         int nSerie, byte[] fotografia, Date fechaDesde,
                         Date fechaHasta, String usuarioAct, ClaseBean claseBean,
                         MarcaBean marcaBean, CategoriaBean categoriaBean, UnidadBean unidadBean) {
@@ -112,7 +112,7 @@ public class ArticuloBean implements Serializable {
 
     public ArticuloBean(Long id, String descripcionArticulo, String codigoArticulo,
                         String metodoCosto, Double precio, Double precioCosto,
-                        String upc, int nivelReorden, int cantidadReorden,
+                        byte[] upc, int nivelReorden, int cantidadReorden,
                         int nSerie, byte[] fotografia, Date fechaDesde,
                         Date fechaHasta, String usuarioAct, ClaseBean claseBean) {
         this.id = id;
@@ -182,11 +182,11 @@ public class ArticuloBean implements Serializable {
         this.precioCosto = precioCosto;
     }
 
-    public String getUpc() {
+    public byte[] getUpc() {
         return upc;
     }
 
-    public void setUpc(String upc) {
+    public void setUpc(byte[] upc) {
         this.upc = upc;
     }
 

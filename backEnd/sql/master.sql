@@ -38,10 +38,11 @@ SALESFORCE CLASIF_MOVIMIENTO
  INSERT INTO salesforce.clasif_movimientos(desabilitado, clasif_movimientos, descripcion_movimiento,fecha_desde, fecha_hasta, usuario_act) VALUES (false, 'COMPRA','COMPRA DE MERCANCIA',now(),now(), 'JSON');
  INSERT INTO salesforce.clasif_movimientos(desabilitado, clasif_movimientos, descripcion_movimiento,fecha_desde, fecha_hasta, usuario_act) VALUES (false, 'VENTA','VENTA DE MERCANCIA',now(),now(), 'JSON');
 
-/*SALESFORCE USUARIOS
+/*
+SALESFORCE USUARIOS
  */
 
 INSERT INTO salesforce.usuarios(desabilitado, estado, materno, nombre_usuario, nombre, password, paterno, rol, email) VALUES (false, 'AC', 'admin', 'admin', 'admin', 'admin','admin', 'ADMINISTRADOR', 'admin@afrodita.com');
 INSERT INTO salesforce.usuarios(desabilitado, estado, materno, nombre_usuario, nombre, password, paterno, rol, email) VALUES (false, 'AC', 'CUISI', 'acuisi', 'CUISIS', 'acuisi','CUISI', 'ADMINISTRADOR', 'acuisi@afrodita.com');
-INSERT INTO salesforce.usuarios(desabilitado, estado, materno, nombre_usuario, nombre, password, paterno, rol, email) VALUES (false, 'AC', 'CUISI', 'acuisi', 'CUISIS', 'acuisi','CUISI', 'ADMINISTRADOR', 'acuisi@afrodita.com');
+--INSERT INTO salesforce.usuarios(desabilitado, estado, materno, nombre_usuario, nombre, password, paterno, rol, email) VALUES (false, 'AC', 'CUISI', 'acuisi', 'CUISIS', 'acuisi','CUISI', 'ADMINISTRADOR', 'acuisi@afrodita.com');
 

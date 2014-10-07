@@ -19,5 +19,5 @@ public interface BarCodeGenerator {
      * @param fileName Nombre del archivo de imagen
      * @throws Exception
      */
-    public void drawToFile(String fileName) throws Exception;
+    public void drawToFile(String fileName, String codigoArticulo) throws Exception;
 }

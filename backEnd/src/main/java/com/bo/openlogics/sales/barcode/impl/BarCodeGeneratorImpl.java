@@ -14,6 +14,7 @@ import net.glxn.qrgen.image.ImageType;
 import javax.imageio.ImageIO;
 import javax.imageio.stream.ImageOutputStream;
 import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferByte;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
@@ -75,30 +76,32 @@ public class BarCodeGeneratorImpl implements BarCodeGenerator {
      * @throws Exception
      */
     @Override
-    public void drawToFile(String fileName) throws Exception {
-        generateBarCode(new File(fileName), data, width, height);
+    public void drawToFile(String fileName, String codigoArticulo) throws Exception {
+        generateBarCode(new File(fileName),codigoArticulo, width, height);
     }
 
     /**
      * Generar archivo con Bar Code
      *
      * @param imageFile Archivo de imagen
-     * @param input     Data del Bar Code
+     * @param codigo     Data del Bar Code
      */
-    private void generateBarCode(File imageFile, String input, Integer width, Integer height) {
+    private void generateBarCode(File imageFile, String codigo, Integer width, Integer height) {
 
         BitMatrix mtx;
         Hashtable<EncodeHintType, String> hints = new Hashtable<EncodeHintType, String>();
         hints.put(EncodeHintType.CHARACTER_SET, "utf-8");
         Code128Writer writer= new Code128Writer();
         try {
-            mtx = writer.encode(input, BarcodeFormat.CODE_128, width, height,hints);
+            mtx = writer.encode(codigo, BarcodeFormat.CODE_128, width, height,hints);
         } catch (WriterException e) {
             return;
         }
 
         if (mtx != null) {
             BufferedImage image = MatrixToImageWriter.toBufferedImage(mtx);
+
+
             try {
 
                 ImageIO.write(image, "png", imageFile);

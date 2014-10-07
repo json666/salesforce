@@ -48,6 +48,7 @@ public class SalesForceRESTController {
         try {
             JsonResult jsonResult = null;
             if (clasif_articulo != null) {
+
                 clasif_articuloService.save(clasif_articulo);
                 jsonResult = new JsonResult(true, "Se registro el articulo satisfatoriamente.", null);
                 return jsonResult;
