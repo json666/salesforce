@@ -3,6 +3,7 @@ package com.bo.openlogics.sales.service.impl;
 import com.bo.openlogics.sales.model.FileMeta;
 import com.bo.openlogics.sales.model.JsonResult;
 import com.bo.openlogics.sales.service.FileUpDownLoadService;
+import com.bo.openlogics.sales.util.LectorArchivosProperties;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
@@ -83,9 +84,9 @@ public class FileUpDownLoadServiceImpl implements FileUpDownLoadService {
                     fileMeta.setFileType(mpf.getContentType());
                     //fileMeta.setBytes(mpf.getBytes());
 
-
+                    System.out.println("PATH"+LectorArchivosProperties.REPORTES_SERVLET_OUTPUT_FOLDER_IMAGE + mpf.getOriginalFilename());
                     fileMeta.setBytes(mpf.getBytes());
-                    FileOutputStream fileOutputStream=new FileOutputStream("D://var//" + mpf.getOriginalFilename());
+                    FileOutputStream fileOutputStream=new FileOutputStream(LectorArchivosProperties.REPORTES_SERVLET_OUTPUT_FOLDER_IMAGE + mpf.getOriginalFilename());
 
                     // copy file to local disk (make sure the path "e.g. D:/temp/files" exists)
                     FileCopyUtils.copy(mpf.getBytes(),fileOutputStream);
@@ -104,8 +105,10 @@ public class FileUpDownLoadServiceImpl implements FileUpDownLoadService {
             // [{"fileName":"app_engine-85x77.png","fileSize":"8 Kb","fileType":"image/png"},...]
             return jsonResult;
         } catch (IOException e) {
+            System.out.println("Error:"+e.getMessage());
             jsonResult=new JsonResult(false, e.getMessage(),"");
         }catch(Exception e){
+            System.out.println("Error:"+e.getMessage());
             jsonResult=new JsonResult(false, e.getMessage(),"");
         }
         return jsonResult;

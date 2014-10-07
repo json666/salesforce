@@ -394,6 +394,8 @@
                 <reportes.local.output.folder>d:\</reportes.local.output.folder>
                 <!--<reportes.servlet.output.folder>d:\/home/ralbarracin/reportes</reportes.servlet.output.folder>-->
                 <reportes.servlet.output.folder>d:\</reportes.servlet.output.folder>
+                <reportes.servlet.output.folder.image>d:/var/image/</reportes.servlet.output.folder.image>
+                <reportes.servlet.output.folder.codbar>d:/var/codBar/</reportes.servlet.output.folder.codbar>
             </properties>
         </profile>
 
@@ -406,6 +408,9 @@
                 <db.populate.url>jdbc:postgresql://localhost:5432/salesforce</db.populate.url>
                 <db.populate.usuario>postgres</db.populate.usuario>
                 <db.populate.password>postgres</db.populate.password>
+                <reportes.servlet.output.folder>d:\</reportes.servlet.output.folder>
+                <reportes.servlet.output.folder.image>d:\var\image\</reportes.servlet.output.folder.image>
+                <reportes.servlet.output.folder.codbar>d:\var\codBar\</reportes.servlet.output.folder.codbar>
             </properties>
         </profile>
 
@@ -415,6 +420,9 @@
                 <db.populate.url>jdbc:postgresql://10.100.100.230:5432/salesforce</db.populate.url>
                 <db.populate.usuario></db.populate.usuario>
                 <db.populate.password></db.populate.password>
+                <reportes.servlet.output.folder>d:\</reportes.servlet.output.folder>
+                <reportes.servlet.output.folder.image>d:\var\image\</reportes.servlet.output.folder.image>
+                <reportes.servlet.output.folder.codbar>d:\var\codBar\</reportes.servlet.output.folder.codbar>
             </properties>
         </profile>
 

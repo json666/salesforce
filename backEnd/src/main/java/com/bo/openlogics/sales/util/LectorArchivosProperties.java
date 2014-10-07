@@ -15,6 +15,9 @@ public class LectorArchivosProperties {
 	public final static String APPLICATION_URL_OCE_SERVICE;
 	public final static String REPORTES_LOCAL_OUTPUT_FOLDER;
 	public final static String REPORTES_SERVLET_OUTPUT_FOLDER;
+	public final static String REPORTES_SERVLET_OUTPUT_FOLDER_IMAGE;
+	public final static String REPORTES_SERVLET_OUTPUT_FOLDER_CODBAR;
+
 
 	static {
 		InputStream stream = LectorArchivosProperties.class
@@ -39,5 +42,9 @@ public class LectorArchivosProperties {
 				.getProperty("reportes.local.output.folder");
 		REPORTES_SERVLET_OUTPUT_FOLDER = properties
 				.getProperty("reportes.servlet.output.folder");
+        REPORTES_SERVLET_OUTPUT_FOLDER_IMAGE = properties
+                .getProperty("reportes.servlet.output.folder.image");
+        REPORTES_SERVLET_OUTPUT_FOLDER_CODBAR = properties
+                .getProperty("reportes.servlet.output.folder.codbar");
 	}
 }

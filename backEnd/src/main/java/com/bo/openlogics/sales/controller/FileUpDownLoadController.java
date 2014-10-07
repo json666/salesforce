@@ -1,5 +1,6 @@
 package com.bo.openlogics.sales.controller;
 
+import com.bo.openlogics.sales.dozer.UtilTransport;
 import com.bo.openlogics.sales.model.FileMeta;
 import com.bo.openlogics.sales.model.JsonResult;
 import com.bo.openlogics.sales.service.FileUpDownLoadService;
@@ -28,6 +29,9 @@ public class FileUpDownLoadController {
     @Autowired
     FileUpDownLoadService fileUpDownLoadService;
 
+    @Autowired
+    UtilTransport utilTransport;
+
     LinkedList<FileMeta> files = new LinkedList<FileMeta>();
     FileMeta fileMeta = null;
 
@@ -37,11 +41,13 @@ public class FileUpDownLoadController {
     @ResponseBody
     JsonResult handleFileUpload(MultipartHttpServletRequest request) throws IOException {
         JsonResult jsonResult = fileUpDownLoadService.subirArchivos(request);
-        files = (LinkedList<FileMeta>) jsonResult.getResult();
-        System.out.println("TAMAÑO:" + files.size());
-        fileMeta = files.get(0);
-        System.out.println("FILEMETA:" + fileMeta.getFileName());
-        return jsonResult;
+        if(jsonResult.getSuccess()){
+            //files=utilTransport.convert(jsonResult.getResult(),FileMeta.class);
+            files = (LinkedList<FileMeta>) jsonResult.getResult();
+            System.out.println("TAMAÑO:" + files.size());
+            fileMeta = files.get(0);
+            System.out.println("FILEMETA:" + fileMeta.getFileName());
+            return jsonResult;
         /*try {
             response.setContentType(fileMeta.getFileType());
             response.setHeader("Content-disposition", "attachment; filename=\"" + fileMeta.getFileName() + "\"");
@@ -49,6 +55,11 @@ public class FileUpDownLoadController {
         } catch (IOException e) {
             e.printStackTrace();
         }*/
+        }else{
+            return jsonResult;
+        }
+
+
     }
 
     @RequestMapping(value = "/getImage/{value}", method = RequestMethod.GET)
