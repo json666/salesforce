@@ -114,6 +114,7 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
                     console.log('DONE 1::::::::::::::::::::::::');
                     //$("#imagenUpload").find("img").css("display", "block");
                     if (data.result.result[0] != null) {
+                        $scope.formData.fotografia=data.result.result[0].bytes;
                         console.log('TOJSONBYTES:'+angular.toJson(data.result.result[0].bytes));
                         console.log('DONE 2::::::::::::::::::::::::');
                             console.log('DONE 3::::::::::::::::::::::::');
@@ -150,6 +151,7 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
 //    if ($("#itemFrm").valid()) {
 
     if (id == null || id.length == 0) {
+        console.log('FORMDATA:'+angular.toJson($scope.formData));
         $scope.save = function () {
             if ($("#artForm").valid()) {
             $http({
