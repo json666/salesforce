@@ -166,17 +166,28 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
                     method: 'POST',
                     url: service + '/articulo/guardar',
                     data: JSON.stringify($scope.formData)
-                }).success(function (response) {
-                        result = response;
-                        $scope.formData = null;
-                        inventarioService.articuloList($scope);
+                }).success(function (data) {
+                        result = data;
+                        console.log('STATUS'+data.success);
+                        if(data.success){
+                            $scope.formData = null;
+                            inventarioService.articuloList($scope);
 
-                        $("#ModalArticulo").modal('hide');
-                        $('#alertSucces').modal('show');
-                        $("#mensajeAlertSucces").text('Registro Guardado');
-                    }).error(function (response) {   //
+                            $("#ModalArticulo").modal('hide');
+                            $('#alertSucces').modal('show');
+                            $("#mensajeAlertSucces").text('Registro Guardado');
+                        }else{
+                            $("#ModalArticulo").modal('hide');
+                            $('#alertSucces').modal('show');
+                            $("#mensajeAlertSucces").text('Verifique el codigo de Articulo ya se encuentra Registrado');
+                            $scope.formData = null;
+                            inventarioService.articuloList($scope);
+                        }
+
+                    }).error(function (data) {   //
                         $('#alertError').modal('show');
-                        $("#mensajeAlertError").text(data.result + 'Error! intente nuevamente')
+                        $("#mensajeAlertError").text(data.result + 'Error! intente nuevamente');
+                        inventarioService.articuloList($scope);
 
                     });
             }
