@@ -53,7 +53,8 @@ public class Clasif_ArticuloServiceImpl implements Clasif_ArticuloService {
     private Logger logger = Logger.getLogger(Clasif_ArticuloServiceImpl.class);
 
     @Override
-    public void save(Clasif_Articulo clasif_articulo) {
+    public JsonResult save(Clasif_Articulo clasif_articulo) {
+        JsonResult jsonResult=null;
         try{
             Clasif_Articulo clasifArticulo=null;
             Clasif_Unidad clasifUnidad=null;
@@ -61,6 +62,7 @@ public class Clasif_ArticuloServiceImpl implements Clasif_ArticuloService {
             Clasif_Categoria clasifCategoria=null;
             Clasif_Marca clasifMarca=null;
 
+            System.out.println("CODIGO ART.:------>"+clasif_articulo.getCodigoArticulo());
             clasifArticulo=clasif_articuloRepository.findByCodigoArticulo(clasif_articulo.getCodigoArticulo());
             if(clasifArticulo==null){
                 if(clasif_articulo.getClasif_unidad()!=null){
@@ -98,15 +100,24 @@ public class Clasif_ArticuloServiceImpl implements Clasif_ArticuloService {
                 clasif_articulo.setUpc(imageInByte);
                 //clasif_articulo.setFechaDesde(new Date());
                 clasif_articuloRepository.save(clasif_articulo);
+                jsonResult= new JsonResult();
+                jsonResult.setMessage("Articulo Registrado");
+                jsonResult.setSuccess(true);
             } else{
+                jsonResult= new JsonResult();
+                jsonResult.setMessage("Articulo ya esta registrado");
+                jsonResult.setSuccess(false);
                 logger.info("******Articulo ya esta registrado*******");
             }
 
         }catch(NullPointerException e){
             e.printStackTrace();
+            jsonResult= new JsonResult(false,e.getMessage(),null);
         }catch(Exception e){
             e.printStackTrace();
+            jsonResult= new JsonResult(false,e.getMessage(),null);
         }
+        return jsonResult;
     }
 
     @Override

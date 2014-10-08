@@ -20,6 +20,8 @@ public class ArticuloBean implements Serializable {
 
     private String codigoArticulo ;
 
+    private String nombreArticulo ;
+
 
     private String metodoCosto;
 
@@ -62,14 +64,11 @@ public class ArticuloBean implements Serializable {
 
     public ArticuloBean() {}
 
-    public ArticuloBean(Long id, String descripcionArticulo, String codigoArticulo,
-                        String metodoCosto, Double precio, Double precioCosto,
-                        byte[] upc, int nivelReorden, int cantidadReorden,
-                        int nSerie, byte[] fotografia, Date fechaDesde,
-                        Date fechaHasta, String usuarioAct) {
+    public ArticuloBean(Long id, String descripcionArticulo, String codigoArticulo, String nombreArticulo, String metodoCosto, Double precio, Double precioCosto, byte[] upc, int nivelReorden, int cantidadReorden, int nSerie, byte[] fotografia, Date fechaDesde, Date fechaHasta, String usuarioAct, ClaseBean claseBean, MarcaBean marcaBean, CategoriaBean categoriaBean, UnidadBean unidadBean) {
         this.id = id;
         this.descripcionArticulo = descripcionArticulo;
         this.codigoArticulo = codigoArticulo;
+        this.nombreArticulo = nombreArticulo;
         this.metodoCosto = metodoCosto;
         this.precio = precio;
         this.precioCosto = precioCosto;
@@ -81,7 +80,10 @@ public class ArticuloBean implements Serializable {
         this.fechaDesde = fechaDesde;
         this.fechaHasta = fechaHasta;
         this.usuarioAct = usuarioAct;
-
+        this.claseBean = claseBean;
+        this.marcaBean = marcaBean;
+        this.categoriaBean = categoriaBean;
+        this.unidadBean = unidadBean;
     }
 
     public ArticuloBean(Long id, String descripcionArticulo, String codigoArticulo,
@@ -276,5 +278,13 @@ public class ArticuloBean implements Serializable {
 
     public void setUnidadBean(UnidadBean unidadBean) {
         this.unidadBean = unidadBean;
+    }
+
+    public String getNombreArticulo() {
+        return nombreArticulo;
+    }
+
+    public void setNombreArticulo(String nombreArticulo) {
+        this.nombreArticulo = nombreArticulo;
     }
 }

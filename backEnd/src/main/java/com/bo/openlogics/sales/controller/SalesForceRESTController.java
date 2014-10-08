@@ -46,16 +46,7 @@ public class SalesForceRESTController {
     @ResponseBody
     public JsonResult save(@RequestBody Clasif_Articulo clasif_articulo) {
         try {
-            JsonResult jsonResult = null;
-            if (clasif_articulo != null) {
-
-                clasif_articuloService.save(clasif_articulo);
-                jsonResult = new JsonResult(true, "Se registro el articulo satisfatoriamente.", null);
-                return jsonResult;
-
-            } else {
-                return new JsonResult(false, "El objeto Articulo tiene problemas.", null);
-            }
+            return clasif_articuloService.save(clasif_articulo);
         } catch (NullPointerException e) {
             e.printStackTrace();
             return new JsonResult(false, "Error: " + e.getMessage(), null);
@@ -243,9 +234,9 @@ public class SalesForceRESTController {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         try {
             String jsonArt = ow.writeValueAsString(bodega_articulo);
-            System.out.println("JSON QUE VIENE DEL REST:"+jsonArt);
+            System.out.println("JSON QUE VIENE DEL REST:" + jsonArt);
             JsonResult jsonResult = null;
-            jsonResult=bodega_articuloService.adicionarBodegaArticulo(bodega_articulo);
+            jsonResult = bodega_articuloService.adicionarBodegaArticulo(bodega_articulo);
             logger.info("Se adiciono una bodega con id: "
                     + bodega_articulo.getId() + ".");
             if (jsonResult.getSuccess()) {
@@ -265,16 +256,16 @@ public class SalesForceRESTController {
     @RequestMapping(value = "/clasificador_bodega", method = RequestMethod.GET)
     @ResponseBody
     public JsonResult getClasifBodega() {
-        try{
-            JsonResult jsonResult=null;
-            jsonResult=clasif_bodegaService.getClasif_Bodega();
+        try {
+            JsonResult jsonResult = null;
+            jsonResult = clasif_bodegaService.getClasif_Bodega();
             return jsonResult;
-        }catch(NullPointerException e){
+        } catch (NullPointerException e) {
             e.printStackTrace();
-            return new JsonResult(false,"Error: "+e.getMessage(),null);
-        }catch (Exception e){
+            return new JsonResult(false, "Error: " + e.getMessage(), null);
+        } catch (Exception e) {
             e.printStackTrace();
-            return new JsonResult(false,"Error: "+e.getMessage(),null);
+            return new JsonResult(false, "Error: " + e.getMessage(), null);
         }
     }
 }
