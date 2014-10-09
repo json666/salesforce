@@ -173,15 +173,19 @@
                             </div>
 
                             <div class="col-lg-4">
-                                <div id="imageUpload" class="well center">
-                                    <img src="src/img/upload.jpg">
+                                <div id="imageUpload">
+                                <div class="center-block">
+                                    <img src="src/img/upload.jpg" class="img-responsive img-thumbnail">
                                 </div>
+                                </div>
+
+                                <br>
                                 <div class="col-lg-4">
-                                    <div class="form-group">
+                                    <div class="form-group center">
                                         <!--<label>FOTOGRAFIA</label>-->
                                         <!--<input type="file" ng-model="formData.fotografia" placeholder="fotografia">-->
 
-                                    <span class="btn btn-default btn-file">
+                                    <span class="btn btn-primary btn-file">
                                     <i class="fa fa-upload"></i> Subir Imágen
                                         <input
                                                 class="inputFiles upload"
@@ -202,7 +206,7 @@
                 <button type="submit" ng-click="save()" class="btn btn-primary"><i class="fa fa-save"></i> Guardar
                 </button>
                 <button type="reset" class="btn btn-default">Limpiar</button>
-                <button data-dismiss="modal" class="btn btn-danger" type="button">Cancelar</button>
+                <button data-dismiss="modal" ng-click="cancel()" class="btn btn-danger" type="button">Cancelar</button>
 
             </div>
         </div>

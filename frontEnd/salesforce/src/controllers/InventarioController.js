@@ -53,11 +53,13 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
 // begin process the form proveedores
 
     inventarioService.articuloList($scope);
+    $("#imageUpload").empty();
     console.log('PARTE UPLOAD IMAGE');
+    $scope.formData.fotografia = {};
     $scope.cargarImagen = function () {
         //$("#imageUpload").empty();
         $("#imageUpload").empty();
-        $('<div id="content_image" style="width: 300px">' + '<img class="img-responsive" src="src/img/upload.jpg">' + '</div> ').appendTo('#imageUpload');
+        $('<div id="content_image" style="width: 300px">' + '<img class="img-thumbnail img-responsive " src="src/img/upload.jpg">' + '</div> ').appendTo('#imageUpload');
 
         console.log('CARGANDO IMAGEN........');
         console.log(service+'/uploadFiles');
@@ -121,7 +123,7 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
                             console.log('IMAGEN..');
                         $.each(data.result.result, function (index, file) {
                             $("#imageUpload").empty();
-                            $('<div id="content_image" style="width: 300px">' + '<img class="img-responsive" src="'+service + '/getImage/'+index+'">' + '</div> ').appendTo('#imageUpload');
+                            $('<div id="content_image" style="max-width: 350px">' + '<img class="img-thumbnail img-responsive" src="'+service + '/getImage/'+index+'">' + '</div> ').appendTo('#imageUpload');
                         });
 
 
@@ -148,8 +150,14 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
         });
     }
 
+    $scope.cancel = function (){
+        var validator = $("#artForm").validate();
+        validator.resetForm()
+        $(".form-group").removeClass('has-error');
+        $("#imageUpload").empty();
 
 
+    }
 
     if (id == null || id.length == 0) {
         console.log('FORMDATA:'+angular.toJson($scope.formData));
@@ -207,6 +215,14 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
                 console.log(JSON.stringify(data));
 //                alert(JSON.stringify($scope.formData));//
                 $scope.formData = data.result;
+                if ($scope.formData.fotografia == null){
+                    alert("Imagen no disponible");
+                    $scope.show=false
+//                    $('<div id="content_image" style="width: 300px">' + '<img class="img-thumbnail img-responsive " src="src/img/upload.jpg">' + '</div> ').appendTo('#imageUpload');
+//                    $('<div id="content_image" style="width: 300px">' + '<img class="img-thumbnail img-responsive " src="src/img/upload.jpg">' + '</div> ').appendTo('#imageUpload');
+                }else{
+                    $scope.show = true;
+                }
                 $("#ModalArticuloInfo").modal({
                     backdrop: false,
                     keyboard: false
