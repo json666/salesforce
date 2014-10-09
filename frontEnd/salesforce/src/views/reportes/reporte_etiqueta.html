@@ -1,0 +1,232 @@
+<!--Formulario articulo Begin-->
+<h2>
+    <small><i class="fa fa-table"></i> Reportes</small>
+</h2>
+
+<hr>
+<div list-Articulo></div>
+
+
+
+<div aria-hidden="false" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="ModalArticulo"
+     class="modal fade in">
+    <div class="modal-dialog" style="width:100%; max-width: 1024px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                <h4 id="myModalLabelp" class="modal-title">Registro de Producto</h4>
+            </div>
+            <div class="modal-body">
+                <art-form>
+                    <form id="artForm" name="artForm">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="codigoArticulo">CODIGO ARTICULO</label>
+                                            <input class="form-control" ng-model="formData.codigoArticulo"
+                                                   id="codigoArticulo" placeholder="codigoArticulo" name="formData.codigoArticulo">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="nombreArticulo">NOMBRE PRODUCTO</label>
+                                            <input class="form-control" ng-model="formData.nombreArticulo"
+                                                   id="nombreArticulo" placeholder="nombreArticulo" name="formData.nombreArticulo">
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="descripcionArticulo">DESCRIPCION</label>
+                                            <input class="form-control" ng-model="formData.descripcionArticulo"
+                                                   id="descripcionArticulo" placeholder="descripcionArticulo" name="formData.descripcionArticulo">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label>UNIDAD</label>
+                                            <select class="form-control" id="selectUnidad" name="interes"
+                                                    ng-model="formData.clasif_unidad"
+                                                    ng-options="item.descripcionUnidad for item in unidadList">
+                                                <option value="">-- Seleccione --</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <legend><i class="fa fa-info-circle"></i> Información Almacen</legend>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label>MARCA</label>
+                                            <select class="form-control" id="selectMarca" name="interes"
+                                                    ng-model="formData.clasif_marca"
+                                                    ng-options="item.descripcionMarca for item in marcasList">
+                                                <option value="">-- Seleccione --</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label>CATEGORIA</label>
+                                            <select class="form-control" id="selectCategoria" name="categoria"
+                                                    ng-model="formData.clasif_categoria"
+                                                    ng-options="item.descripcionCategoria for item in categoriaList"
+                                                    ng-change="cargarClase()">
+                                                <option value="">-- Seleccione --</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label>CLASE</label>
+                                            <select class="form-control" id="selectClase" name="clase"
+                                                    ng-model="formData.clasif_clase"
+                                                    ng-options="item.descripcionClase for item in claseList">
+                                                <option value="">-- Seleccione --</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label>PRECIO</label>
+                                            <input class="form-control" ng-model="formData.precio" placeholder="precio">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label>PRECIO COSTO</label>
+                                            <input class="form-control" ng-model="formData.precioCosto"
+                                                   placeholder="precioCosto">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label>METODO_COSTO</label>
+                                            <input class="form-control" ng-model="formData.metodoCosto"
+                                                   placeholder="metodoCosto">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label>NIVEL REORDEN</label>
+                                            <input class="form-control" ng-model="formData.nivelReorden"
+                                                   placeholder="nivelReorden">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label>CANTIDAD REORDEN</label>
+                                            <input class="form-control" ng-model="formData.cantidadReorden">
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label>FECHA DESDE</label>
+
+                                            <div class="input-group date">
+                                                <input class="form-control" ng-model="formData.fechaDesde" datepicker=""
+                                                       type="text">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i>
+                             </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label>FECHA HASTA</label>
+
+                                            <div class="input-group date">
+                                                <input class="form-control" ng-model="formData.fechaHasta" datepicker=""
+                                                       type="text">
+                                    <span class="input-group-addon"><i class="fa fa-calendar"></i>
+                             </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <!--<button type="submit" ng-click="save()" class="btn btn-primary"><i class="fa fa-save"></i> Guardar</button>-->
+                                    <!--<button type="reset" class="btn btn-default">Limpiar</button>-->
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <div id="imageUpload">
+                                <div class="center-block">
+                                    <img src="src/img/upload.jpg" class="img-responsive img-thumbnail">
+                                </div>
+                                </div>
+
+                                <br>
+                                <div class="col-lg-4">
+                                    <div class="form-group center">
+                                        <!--<label>FOTOGRAFIA</label>-->
+                                        <!--<input type="file" ng-model="formData.fotografia" placeholder="fotografia">-->
+
+                                    <span class="btn btn-primary btn-file">
+                                    <i class="fa fa-upload"></i> Subir Imágen
+                                        <input
+                                                class="inputFiles upload"
+                                                type="file"
+                                                ng-model="formData.fotografia"
+                                                ng-click="cargarImagen()"
+                                                accept="image/x-png, image/gif, image/jpeg"/>
+                                   </span>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </art-form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" ng-click="save()" class="btn btn-primary"><i class="fa fa-save"></i> Guardar
+                </button>
+                <button type="reset" class="btn btn-default">Limpiar</button>
+                <button data-dismiss="modal" ng-click="cancel()" class="btn btn-danger" type="button">Cancelar</button>
+
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<div aria-hidden="false" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="ModalArticuloInfo"
+     class="modal fade in">
+    <div class="modal-dialog" style="width:100%; max-width: 1024px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                <h4 id="myModalLabel" class="modal-title">Informacion del Producto</h4>
+            </div>
+            <div class="modal-body">
+                <div info-Articulo></div>
+            </div>
+            <div class="modal-footer">
+                <!--<button type="submit" ng-click="save()" class="btn btn-primary"><i class="fa fa-save"></i> Guardar</button>-->
+                <!--<button type="reset" class="btn btn-default">Limpiar</button>-->
+                <button ng-click="link()" data-dismiss="modal" class="btn btn-default" type="button"><i
+                        class="fa fa-backward"></i> Volver
+                </button>
+
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
