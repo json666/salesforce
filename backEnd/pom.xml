@@ -246,6 +246,7 @@
             <version>1.3.1</version>
         </dependency>
 
+
         <!-- <dependency> -->
         <!-- <groupId>com.sun.xml.ws</groupId> -->
         <!-- <artifactId>jaxws-rt</artifactId> -->
@@ -391,8 +392,8 @@
                 <db.populate.url>jdbc:postgresql://localhost:5432/salesforce</db.populate.url>
                 <db.populate.usuario>postgres</db.populate.usuario>
                 <db.populate.password>postgres</db.populate.password>
-                <reportes.local.output.folder>d:\</reportes.local.output.folder>
-                <!--<reportes.servlet.output.folder>d:\/home/ralbarracin/reportes</reportes.servlet.output.folder>-->
+                <application.url_reportes>http://localhost:8080/s-reportes/rest/</application.url_reportes>
+                <reportes.local.output.folder>d:\reportes</reportes.local.output.folder>
                 <reportes.servlet.output.folder>d:\</reportes.servlet.output.folder>
                 <reportes.servlet.output.folder.image>d:/var/image/</reportes.servlet.output.folder.image>
                 <reportes.servlet.output.folder.codbar>d:/var/codBar/</reportes.servlet.output.folder.codbar>
@@ -408,6 +409,8 @@
                 <db.populate.url>jdbc:postgresql://localhost:5432/salesforce</db.populate.url>
                 <db.populate.usuario>postgres</db.populate.usuario>
                 <db.populate.password>postgres</db.populate.password>
+                <application.url_reportes>http://localhost:8080/s-reportes/rest/</application.url_reportes>
+                <reportes.local.output.folder>d:\reportes</reportes.local.output.folder>
                 <reportes.servlet.output.folder>d:\</reportes.servlet.output.folder>
                 <reportes.servlet.output.folder.image>d:\var\image\</reportes.servlet.output.folder.image>
                 <reportes.servlet.output.folder.codbar>d:\var\codBar\</reportes.servlet.output.folder.codbar>
@@ -420,6 +423,8 @@
                 <db.populate.url>jdbc:postgresql://10.100.100.230:5432/salesforce</db.populate.url>
                 <db.populate.usuario></db.populate.usuario>
                 <db.populate.password></db.populate.password>
+                <application.url_reportes>http://localhost:8080/s-reportes/rest/</application.url_reportes>
+                <reportes.local.output.folder>d:\reportes</reportes.local.output.folder>
                 <reportes.servlet.output.folder>d:\</reportes.servlet.output.folder>
                 <reportes.servlet.output.folder.image>d:\var\image\</reportes.servlet.output.folder.image>
                 <reportes.servlet.output.folder.codbar>d:\var\codBar\</reportes.servlet.output.folder.codbar>
@@ -465,7 +470,7 @@
                 folder. -->
             <!-- http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
             <id>openshift</id>
-            <build>
+            <!--<build>
                 <plugins>
                     <plugin>
                         <artifactId>maven-war-plugin</artifactId>
@@ -476,7 +481,7 @@
                         </configuration>
                     </plugin>
                 </plugins>
-            </build>
+            </build>-->
         </profile>
     </profiles>
 </project>
