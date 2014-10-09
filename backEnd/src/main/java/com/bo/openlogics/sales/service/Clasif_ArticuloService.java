@@ -19,4 +19,6 @@ public interface Clasif_ArticuloService {
 
     public JsonResult getById(Long IdArticulo) throws Exception;
 
+    public JsonResult getByIdArticuloReporte(Long id);
+
 }

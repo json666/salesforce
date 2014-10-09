@@ -4,6 +4,7 @@ import com.bo.openlogics.sales.barcode.BarCodeGenerator;
 import com.bo.openlogics.sales.barcode.impl.BarCodeGeneratorImpl;
 import com.bo.openlogics.sales.beans.ArticuloBean;
 import com.bo.openlogics.sales.beans.parametricas.*;
+import com.bo.openlogics.sales.beans.reportes.ArticulosReportes;
 import com.bo.openlogics.sales.dozer.UtilTransport;
 import com.bo.openlogics.sales.model.*;
 import com.bo.openlogics.sales.repository.*;
@@ -292,5 +293,33 @@ public class Clasif_ArticuloServiceImpl implements Clasif_ArticuloService {
         }
         return jsonResult;
 
+    }
+
+    @Override
+    public JsonResult getByIdArticuloReporte(Long id) {
+        JsonResult jsonResult = null;
+        Clasif_Articulo clasifArticulo;
+        ArticulosReportes articulosReportes=null;
+        try {
+            /**
+             * TODO: Logica de negocio para buscar Articulo por id
+             */
+            articulosReportes= new ArticulosReportes();
+            clasifArticulo = clasif_articuloRepository.findOne(id);
+            articulosReportes=utilTransport.convert(clasifArticulo, ArticulosReportes.class);
+
+            if (articulosReportes != null){
+                jsonResult=new JsonResult(true,"Articulo solicitado",articulosReportes);
+            }
+            else{
+                jsonResult=new JsonResult(false,"Articulo no Existe",null);
+                logger.info("******Articulo no Existe*******");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            jsonResult=new JsonResult(false,e.getMessage(),null);
+        }
+        return jsonResult;
     }
 }
