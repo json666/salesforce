@@ -20,4 +20,11 @@ function ReportesController($scope, $http, $cookies, serviceShare) {
 
 ]
     }
+
+
+    $http({
+        method: 'GET',
+        url: service+'/articulosHabilitados'
+//        url: 'src/data/emp.json'
+    }).success(function (data) { $scope.artList = data.result; });
 }
