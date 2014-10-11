@@ -208,6 +208,12 @@
         </dependency>
 
         <dependency>
+            <groupId>com.bo.openlogics</groupId>
+            <artifactId>core</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+        <dependency>
             <groupId>com.google.zxing</groupId>
             <artifactId>javase</artifactId>
             <version>2.2</version>
@@ -392,9 +398,9 @@
                 <db.populate.url>jdbc:postgresql://localhost:5432/salesforce</db.populate.url>
                 <db.populate.usuario>postgres</db.populate.usuario>
                 <db.populate.password>postgres</db.populate.password>
-                <application.url_reportes>http://localhost:8080/s-reportes/rest/</application.url_reportes>
-                <reportes.local.output.folder>d:\reportes</reportes.local.output.folder>
-                <reportes.servlet.output.folder>d:\</reportes.servlet.output.folder>
+                <application.url_reportes_service>http://localhost:8089/s-reportes/rest/</application.url_reportes_service>
+                <reportes.local.output.folder>d:/reportOutput</reportes.local.output.folder>
+                <reportes.servlet.output.folder>d:/reportOutput</reportes.servlet.output.folder>
                 <reportes.servlet.output.folder.image>d:/var/image/</reportes.servlet.output.folder.image>
                 <reportes.servlet.output.folder.codbar>d:/var/codBar/</reportes.servlet.output.folder.codbar>
             </properties>
@@ -409,7 +415,7 @@
                 <db.populate.url>jdbc:postgresql://localhost:5432/salesforce</db.populate.url>
                 <db.populate.usuario>postgres</db.populate.usuario>
                 <db.populate.password>postgres</db.populate.password>
-                <application.url_reportes>http://localhost:8080/s-reportes/rest/</application.url_reportes>
+                <application.url_reportes>http://localhost:8089/s-reportes/rest/</application.url_reportes>
                 <reportes.local.output.folder>d:\reportes</reportes.local.output.folder>
                 <reportes.servlet.output.folder>d:\</reportes.servlet.output.folder>
                 <reportes.servlet.output.folder.image>d:\var\image\</reportes.servlet.output.folder.image>

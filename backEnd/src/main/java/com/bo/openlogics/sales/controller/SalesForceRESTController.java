@@ -1,9 +1,10 @@
 package com.bo.openlogics.sales.controller;
 
+import com.bo.openlogic.core.bean.JsonResult;
 import com.bo.openlogics.sales.model.Bodega_articulo;
 import com.bo.openlogics.sales.model.Clasif_Articulo;
 import com.bo.openlogics.sales.model.Clasif_Proveedor;
-import com.bo.openlogics.sales.model.JsonResult;
+
 import com.bo.openlogics.sales.service.Bodega_ArticuloService;
 import com.bo.openlogics.sales.service.Clasif_ArticuloService;
 import com.bo.openlogics.sales.service.Clasif_BodegaService;

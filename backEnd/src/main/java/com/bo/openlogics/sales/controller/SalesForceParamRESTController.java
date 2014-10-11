@@ -1,6 +1,11 @@
 package com.bo.openlogics.sales.controller;
 
-import com.bo.openlogics.sales.model.*;
+
+import com.bo.openlogic.core.bean.JsonResult;
+import com.bo.openlogics.sales.model.Clasif_Bodega;
+import com.bo.openlogics.sales.model.Clasif_Categoria;
+import com.bo.openlogics.sales.model.Clasif_Clase;
+import com.bo.openlogics.sales.model.Clasif_Marca;
 import com.bo.openlogics.sales.service.*;
 import com.bo.openlogics.sales.service.impl.Clasif_ClaseServiceImpl;
 import org.apache.log4j.Logger;

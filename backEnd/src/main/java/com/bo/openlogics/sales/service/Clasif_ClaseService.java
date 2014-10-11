@@ -1,7 +1,8 @@
 package com.bo.openlogics.sales.service;
 
+import com.bo.openlogic.core.bean.JsonResult;
 import com.bo.openlogics.sales.model.Clasif_Clase;
-import com.bo.openlogics.sales.model.JsonResult;
+
 
 /**
  * Created by json on 15/09/14.

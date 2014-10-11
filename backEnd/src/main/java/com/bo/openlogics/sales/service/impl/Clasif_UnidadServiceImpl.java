@@ -1,11 +1,12 @@
 package com.bo.openlogics.sales.service.impl;
 
+import com.bo.openlogic.core.bean.JsonResult;
 import com.bo.openlogics.sales.beans.parametricas.MarcaBean;
 import com.bo.openlogics.sales.beans.parametricas.UnidadBean;
 import com.bo.openlogics.sales.dozer.UtilTransport;
 import com.bo.openlogics.sales.model.Clasif_Marca;
 import com.bo.openlogics.sales.model.Clasif_Unidad;
-import com.bo.openlogics.sales.model.JsonResult;
+
 import com.bo.openlogics.sales.repository.Clasif_UnidadRepository;
 import com.bo.openlogics.sales.service.Clasif_UnidadService;
 import org.apache.log4j.Logger;

@@ -2,18 +2,13 @@ package com.bo.openlogics.sales.controller;
 
 import com.bo.openlogics.sales.barcode.BarCodeGenerator;
 import com.bo.openlogics.sales.barcode.impl.BarCodeGeneratorImpl;
-import com.bo.openlogics.sales.model.Bodega_articulo;
-import com.bo.openlogics.sales.model.Clasif_Articulo;
-import com.bo.openlogics.sales.model.Clasif_Proveedor;
-import com.bo.openlogics.sales.model.JsonResult;
-import com.bo.openlogics.sales.service.Bodega_ArticuloService;
-import com.bo.openlogics.sales.service.Clasif_ArticuloService;
-import com.bo.openlogics.sales.service.Clasif_ProveedorService;
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayOutputStream;

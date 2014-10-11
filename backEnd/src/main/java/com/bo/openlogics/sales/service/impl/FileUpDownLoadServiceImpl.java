@@ -1,7 +1,8 @@
 package com.bo.openlogics.sales.service.impl;
 
+import com.bo.openlogic.core.bean.JsonResult;
 import com.bo.openlogics.sales.model.FileMeta;
-import com.bo.openlogics.sales.model.JsonResult;
+
 import com.bo.openlogics.sales.service.FileUpDownLoadService;
 import com.bo.openlogics.sales.util.LectorArchivosProperties;
 import org.springframework.core.io.FileSystemResource;

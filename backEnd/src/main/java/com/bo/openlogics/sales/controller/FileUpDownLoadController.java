@@ -1,8 +1,9 @@
 package com.bo.openlogics.sales.controller;
 
+import com.bo.openlogic.core.bean.JsonResult;
 import com.bo.openlogics.sales.dozer.UtilTransport;
 import com.bo.openlogics.sales.model.FileMeta;
-import com.bo.openlogics.sales.model.JsonResult;
+
 import com.bo.openlogics.sales.service.FileUpDownLoadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

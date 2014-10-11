@@ -1,11 +1,12 @@
 package com.bo.openlogics.sales.service.impl;
 
+import com.bo.openlogic.core.bean.JsonResult;
 import com.bo.openlogics.sales.beans.ClasifBodegaBean;
 import com.bo.openlogics.sales.beans.parametricas.UnidadBean;
 import com.bo.openlogics.sales.dozer.UtilTransport;
 import com.bo.openlogics.sales.model.Clasif_Bodega;
 import com.bo.openlogics.sales.model.Clasif_Unidad;
-import com.bo.openlogics.sales.model.JsonResult;
+
 import com.bo.openlogics.sales.repository.Clasif_BodegaRepository;
 import com.bo.openlogics.sales.service.Clasif_BodegaService;
 import org.springframework.beans.factory.annotation.Autowired;

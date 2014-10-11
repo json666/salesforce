@@ -1,10 +1,11 @@
 package com.bo.openlogics.sales.service.impl;
 
+import com.bo.openlogic.core.bean.JsonResult;
 import com.bo.openlogics.sales.beans.parametricas.ClaseBean;
 import com.bo.openlogics.sales.dozer.UtilTransport;
 import com.bo.openlogics.sales.model.Clasif_Categoria;
 import com.bo.openlogics.sales.model.Clasif_Clase;
-import com.bo.openlogics.sales.model.JsonResult;
+
 import com.bo.openlogics.sales.repository.Clasif_CategoriaRepository;
 import com.bo.openlogics.sales.repository.Clasif_ClaseRepository;
 import com.bo.openlogics.sales.service.Clasif_ClaseService;

@@ -1,7 +1,8 @@
 package com.bo.openlogics.sales.service;
 
+import com.bo.openlogic.core.bean.JsonResult;
 import com.bo.openlogics.sales.model.Clasif_Bodega;
-import com.bo.openlogics.sales.model.JsonResult;
+
 
 /**
  * Created by osanchez on 25/09/14.
