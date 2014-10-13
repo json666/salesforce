@@ -51,6 +51,7 @@
     <script type="text/javascript" src="src/controllers/ComprasController.js"></script>
     <script type="text/javascript" src="src/controllers/LoginController.js"></script>
     <script type="text/javascript" src="src/controllers/ReportesController.js"></script>
+    <script type="text/javascript" src="src/controllers/ReportePdfController.js"></script>
 
     <!--Directives-->
     <script type="text/javascript" src="src/directives/templateDirective.js"></script>
@@ -67,6 +68,7 @@
     <!-- jQuery Version 1.11.0 -->
     <script src="src/js/jquery-1.11.0.js"></script>
     <script src="src/js/jquery.validate.min.js"></script>
+    <script src="src/js/jspdf.debug.js"></script>
 
     <script type="text/javascript" >
     function MenuController ($scope, $http, $cookies, serviceShare) {
@@ -127,7 +129,6 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <!--<a class="navbar-brand" href="#">Project name</a>-->
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -162,7 +163,6 @@
                     </ul>
                 </li>
             </ul>
-
         </div><!--/.nav-collapse -->
     </div><!--/.container-fluid -->
 </div>

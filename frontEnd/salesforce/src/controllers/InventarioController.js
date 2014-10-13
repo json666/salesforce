@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-function InventarioController($scope, $http, $cookies, $routeParams, serviceShare, paramService, inventarioService) {
+function InventarioController($scope, $http, $cookies, $routeParams, serviceShare, paramService) {
     console.log('--->admin');
     var id = $routeParams.id;
 
@@ -52,7 +52,7 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
     //console.log('CODIGO'+angular.toJson($scope.formData.clasif_categoria.id));
 // begin process the form proveedores
 
-    inventarioService.articuloList($scope);
+//    inventarioService.articuloList($scope);
     $("#imageUpload").empty();
     console.log('PARTE UPLOAD IMAGE');
     $scope.formData.fotografia = {};
@@ -240,6 +240,79 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
     };
 // ends proveedores
 
+
+// lista articulos begin
+    var oTable = $('#dataTableProductos');
+    $http.get(service+'/articulosHabilitados').success(
+        function (data, status, headers, config) {
+            $scope.tableProveedores = data.result;
+            oTable = $('#dataTableProductos').dataTable(
+                {
+                    "bJQueryUI":true,
+                    "bAutoWidth":true,
+                    "bProcessing":true,
+                    "oLanguage":{
+                        "sUrl":"src/js/i18n/dataTable_es.txt"
+                    },
+                    "aaData":$scope.tableProveedores,
+                    "aoColumns":[
+//                        {
+//                            "mData": "id",
+//                            "bSearchable": false,
+//                            "bVisible": false
+//                        },
+                        {
+                            "mData":null,
+                            "bSortable":  false
+                        },
+                        {
+                            "mData": "id"
+                        },
+                        {
+                            "mData":"descripcionArticulo"
+                        },
+                        {
+                            "mData":"cantidadReorden"
+                        },
+                        {
+                            "mData":"precioCosto"
+                        },
+                        {
+                            "bSortable": false,
+                            "mData":function (oObj) {
+                                var a = " <a href='#/inventarios/"+oObj.id+"' class='btn btn-primary'><i class='fa fa-edit'></i></a>";
+                                return a;
+
+                            }
+//                                <div style="float: right"><button class="btn btn-primary btn-sm" data-toggle='modal'  data-target="#ModalArticulo"><i class="fa fa-plus"></i> Reg. Producto</button></div>
+
+                        },
+                        {
+                            "mData":function (oObj) {
+                                var b = " <a href='#/cliente-info/"+oObj.id+"' class='btn btn-danger'><i class='fa fa-trash-o'></i></a>";
+                                return b;
+                            }
+                        }
+
+
+                    ],
+                    "fnRowCallback":function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+                        $('td:eq(0)', nRow).html(iDisplayIndexFull + 1);
+                        return nRow;
+                    },
+                    "bDestroy": true
+
+                });
+
+        }).
+        error(function (data, status, headers, config) {
+            alert('Error:'+data.result);
+            // called asynchronously if an error occurs
+            // or server returns response with an error status.
+        });
+
+//    lista articlus ends
+
 //categorias begin
     //categorias save
     if (id == null || id.length == 0) {
@@ -271,7 +344,8 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
             function (data, status) {
 //                $("#loading-div-background").css("display", "none");
                 $scope.formDataCategoria = data.result;
-                console.log(angular.toJson(data.result));
+                console.log("#####categorias")
+                console.log(angular.toJson($scope.formDataCategoria));
             }).error(function (data, status) {
                 alert("Error de conexion con el servidor.");
             });
@@ -364,7 +438,8 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
             function (data, status) {
 //                $("#loading-div-background").css("display", "none");
                 $scope.formDataClase = data.result;
-                console.log(angular.toJson(data.result));
+                console.log("####categorias")
+                console.log(angular.toJson($scope.formDataClase));
             }).error(function (data, status) {
                 alert("Error de conexion con el servidor.");
             });
@@ -451,12 +526,13 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
         //get de form by Id    //
         $http({
             method: 'GET',
-            url: service + '/categoria'
+            url: service + '/marcas_producto'
         }).success(
             function (data, status) {
 //                $("#loading-div-background").css("display", "none");
-                $scope.formDataClase = data.result;
-                console.log(angular.toJson(data.result));
+                $scope.formDataMarcas = data.result;
+                console.log("####marcas")
+                console.log(angular.toJson($scope.formDataMarcas));
             }).error(function (data, status) {
                 alert("Error de conexion con el servidor.");
             });
@@ -543,10 +619,11 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
         //get de form by Id    //
         $http({
             method: 'GET',
-            url: service + '/categoria'
+            url: service + '/unidad_medida'
         }).success(
             function (data, status) {
 //                $("#loading-div-background").css("display", "none");
+                console.log("###unidades");
                 $scope.formDataClase = data.result;
                 console.log(angular.toJson(data.result));
             }).error(function (data, status) {
@@ -609,6 +686,44 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
         });
 // ends marcas
 
+
+
+    $scope.pdf = function(){
+        alert("testaaaa")
+//    function demoFromHTML() {
+        var pdf = new jsPDF('p', 'pt', 'letter')
+            , source = $('#test')[0]
+            , specialElementHandlers = {
+                // element with id of "bypass" - jQuery style selector
+                '#bypassme': function(element, renderer){
+                    // true = "handled elsewhere, bypass text extraction"
+                    return true
+                }
+            }
+
+        margins = {
+            top: 80,
+            bottom: 60,
+            left: 40,
+            width: 522
+        };
+        pdf.fromHTML(
+            source // HTML string or DOM elem ref.
+            , margins.left // x coord
+            , margins.top // y coord
+            , {
+                'width': margins.width // max width of content on PDF
+                , 'elementHandlers': specialElementHandlers
+            },
+            function (dispose) {
+                // dispose: object with X, Y of the last line add to the PDF
+                //          this allow the insertion of new lines after html
+                pdf.save('Test.pdf');
+            },
+            margins
+        )
+//    }
+    }
 
 }
 
