@@ -62,28 +62,28 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
         $('<div id="content_image" style="width: 300px">' + '<img class="img-thumbnail img-responsive " src="src/img/upload.jpg">' + '</div> ').appendTo('#imageUpload');
 
         console.log('CARGANDO IMAGEN........');
-        console.log(service+'/uploadFiles');
+        console.log(service + '/uploadFiles');
         $('.inputFiles').fileupload({
             //                formData: {idDocumento: id},
             url: service + '/uploadFiles',
             //contentType:'multipart/form-data',
             headers: {'Content-Type': 'multipart/form-data'},
             dataType: 'json',
-            method:'POST',
+            method: 'POST',
             //crossDomain:true,
-            beforeSend : function(request) {
+            beforeSend: function (request) {
                 /*request.setRequestHeader("Access-control-Allow-Origin","*");
-                request.setRequestHeader('Access-Control-Allow-Methods', 'OPTIONS,GET,POST,PUT,DELETE');
-                request.setRequestHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-                request.setRequestHeader('Access-Control-Allow-Credentials: true');*/
+                 request.setRequestHeader('Access-Control-Allow-Methods', 'OPTIONS,GET,POST,PUT,DELETE');
+                 request.setRequestHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+                 request.setRequestHeader('Access-Control-Allow-Credentials: true');*/
 
             },
             /*xhrFields: {
-                withCredentials: true
-            },
-            forceIframeTransport: true,*/
+             withCredentials: true
+             },
+             forceIframeTransport: true,*/
             add: function (e, data) {
-                console.log('ADD'+service+'/uploadFiles');
+                console.log('ADD' + service + '/uploadFiles');
                 var FileExt = (data.originalFiles[0].name).substring((data.originalFiles[0].name).lastIndexOf('.') + 1, data.originalFiles[0].name.length);
                 if (FileExt.toLocaleLowerCase() == "png" || FileExt.toLocaleLowerCase() == "jpg" || FileExt.toLocaleLowerCase() == "gif") {
                     if (data.originalFiles[0].size <= 2097152) {//archivos <= 2 MB
@@ -116,16 +116,15 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
                     console.log('DONE 1::::::::::::::::::::::::');
                     //$("#imagenUpload").find("img").css("display", "block");
                     if (data.result.result[0] != null) {
-                        $scope.formData.fotografia=data.result.result[0].bytes;
-                        console.log('TOJSONBYTES:'+angular.toJson(data.result.result[0].bytes));
+                        $scope.formData.fotografia = data.result.result[0].bytes;
+                        console.log('TOJSONBYTES:' + angular.toJson(data.result.result[0].bytes));
                         console.log('DONE 2::::::::::::::::::::::::');
-                            console.log('DONE 3::::::::::::::::::::::::');
-                            console.log('IMAGEN..');
+                        console.log('DONE 3::::::::::::::::::::::::');
+                        console.log('IMAGEN..');
                         $.each(data.result.result, function (index, file) {
                             $("#imageUpload").empty();
-                            $('<div id="content_image" style="max-width: 350px">' + '<img class="img-thumbnail img-responsive" src="'+service + '/getImage/'+index+'">' + '</div> ').appendTo('#imageUpload');
+                            $('<div id="content_image" style="max-width: 350px">' + '<img class="img-thumbnail img-responsive" src="' + service + '/getImage/' + index + '">' + '</div> ').appendTo('#imageUpload');
                         });
-
 
 
                     } else {
@@ -150,7 +149,7 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
         });
     }
 
-    $scope.cancel = function (){
+    $scope.cancel = function () {
         var validator = $("#artForm").validate();
         validator.resetForm()
         $(".form-group").removeClass('has-error');
@@ -160,44 +159,44 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
     }
 
     if (id == null || id.length == 0) {
-        console.log('FORMDATA:'+angular.toJson($scope.formData));
+        console.log('FORMDATA:' + angular.toJson($scope.formData));
 
         $scope.save = function () {
 
             if (!$("#artForm").valid()) {
-            $('#alertError').modal('show');
-            $("#mensajeAlertError").html('Error! debe llenar los campos requeridos')
+                $('#alertError').modal('show');
+                $("#mensajeAlertError").html('Error! debe llenar los campos requeridos')
                 return false
             }
             else {
-                 $http({
+                $http({
                     method: 'POST',
                     url: service + '/articulo/guardar',
                     data: JSON.stringify($scope.formData)
                 }).success(function (data) {
-                        result = data;
-                        console.log('STATUS'+data.success);
-                        if(data.success){
-                            $scope.formData = null;
-                            inventarioService.articuloList($scope);
-
-                            $("#ModalArticulo").modal('hide');
-                            $('#alertSucces').modal('show');
-                            $("#mensajeAlertSucces").text('Registro Guardado');
-                        }else{
-                            $("#ModalArticulo").modal('hide');
-                            $('#alertSucces').modal('show');
-                            $("#mensajeAlertSucces").text('Verifique el codigo de Articulo ya se encuentra Registrado');
-                            $scope.formData = null;
-                            inventarioService.articuloList($scope);
-                        }
-
-                    }).error(function (data) {   //
-                        $('#alertError').modal('show');
-                        $("#mensajeAlertError").text(data.result + 'Error! intente nuevamente');
+                    result = data;
+                    console.log('STATUS' + data.success);
+                    if (data.success) {
+                        $scope.formData = null;
                         inventarioService.articuloList($scope);
 
-                    });
+                        $("#ModalArticulo").modal('hide');
+                        $('#alertSucces').modal('show');
+                        $("#mensajeAlertSucces").text('Registro Guardado');
+                    } else {
+                        $("#ModalArticulo").modal('hide');
+                        $('#alertSucces').modal('show');
+                        $("#mensajeAlertSucces").text('Verifique el codigo de Articulo ya se encuentra Registrado');
+                        $scope.formData = null;
+                        inventarioService.articuloList($scope);
+                    }
+
+                }).error(function (data) {   //
+                    $('#alertError').modal('show');
+                    $("#mensajeAlertError").text(data.result + 'Error! intente nuevamente');
+                    inventarioService.articuloList($scope);
+
+                });
             }
 
         }
@@ -215,12 +214,12 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
                 console.log(JSON.stringify(data));
 //                alert(JSON.stringify($scope.formData));//
                 $scope.formData = data.result;
-                if ($scope.formData.fotografia == null){
+                if ($scope.formData.fotografia == null) {
                     alert("Imagen no disponible");
-                    $scope.show=false
+                    $scope.show = false
 //                    $('<div id="content_image" style="width: 300px">' + '<img class="img-thumbnail img-responsive " src="src/img/upload.jpg">' + '</div> ').appendTo('#imageUpload');
 //                    $('<div id="content_image" style="width: 300px">' + '<img class="img-thumbnail img-responsive " src="src/img/upload.jpg">' + '</div> ').appendTo('#imageUpload');
-                }else{
+                } else {
                     $scope.show = true;
                 }
                 $("#ModalArticuloInfo").modal({
@@ -250,7 +249,8 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
                 data: JSON.stringify($scope.formData)
             }).success(function (response) {
                 result = response;
-                $scope.formDatazzz = null
+                $scope.formData = null
+                $scope.listaCategorias();
                 $("#ModalCategoria").modal('hide')
                 $('#alertSucces').modal('show');
                 $("#mensajeAlertSucces").text('Registro Guardado');
@@ -276,62 +276,67 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
                 alert("Error de conexion con el servidor.");
             });
     }
+
     //categorias list
-    var oTable = $('#dataTableCategorias');
-    $http.get(service + '/categoria').success(
-        function (data, status, headers, config) {
-            $scope.tableProveedores = data.result;
-            oTable = $('#dataTableCategorias').dataTable(
-                {
-                    "bJQueryUI": true,
-                    "bAutoWidth": true,
-                    "bProcessing": true,
-                    "oLanguage": {
-                        "sUrl": "src/js/i18n/dataTable_es.txt"
-                    },
-                    "aaData": $scope.tableProveedores,
-                    "aoColumns": [
+    $scope.listaCategorias = function () {
+        var oTable = $('#dataTableCategorias');
+        $http.get(service + '/categoria').success(
+            function (data, status, headers, config) {
+                $scope.tableProveedores = data.result;
+                oTable = $('#dataTableCategorias').dataTable(
+                    {
+                        "bJQueryUI": true,
+                        "bAutoWidth": true,
+                        "bProcessing": true,
+                        "oLanguage": {
+                            "sUrl": "src/js/i18n/dataTable_es.txt"
+                        },
+                        "aaData": $scope.tableProveedores,
+                        "aoColumns": [
 //
-                        {
-                            "mData": null,
-                            "bSortable": false
-                        },
-                        {
-                            "mData": "descripcionCategoria"
-                        },
-                        {
-                            "bSortable": false,
-                            "mData": function (oObj) {
-                                var ac = " <a href='#/clientes/" + oObj.id + "' class='btn btn-primary'><i class='fa fa-edit'></i></a>";
-                                return ac;
+                            {
+                                "mData": null,
+                                "bSortable": false
+                            },
+                            {
+                                "mData": "descripcionCategoria"
+                            },
+                            {
+                                "bSortable": false,
+                                "mData": function (oObj) {
+                                    var ac = " <a href='#/clientes/" + oObj.id + "' class='btn btn-primary'><i class='fa fa-edit'></i></a>";
+                                    return ac;
 
+                                }
+
+                            },
+                            {
+                                "bSortable": false,
+                                "mData": function (oObj) {
+                                    var bc = " <a href='#/cliente-info/" + oObj.id + "' class='btn btn-danger'><i class='fa fa-trash-o'></i></a>";
+                                    return bc;
+                                }
                             }
 
+
+                        ],
+                        "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+                            $('td:eq(0)', nRow).html(iDisplayIndexFull + 1);
+                            return nRow;
                         },
-                        {
-                            "bSortable": false,
-                            "mData": function (oObj) {
-                                var bc = " <a href='#/cliente-info/" + oObj.id + "' class='btn btn-danger'><i class='fa fa-trash-o'></i></a>";
-                                return bc;
-                            }
-                        }
+                        "bDestroy": true
+                    });
 
-
-                    ],
-                    "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
-                        $('td:eq(0)', nRow).html(iDisplayIndexFull + 1);
-                        return nRow;
-                    },
-                    "bDestroy": true
-                });
-
-        }).
-        error(function (data, status, headers, config) {
-            alert(data.result);
-            // called asynchronously if an error occurs
-            // or server returns response with an error status.
-        });
+            }).
+            error(function (data, status, headers, config) {
+                alert(data.result);
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+            });
 // ends categorias
+    }
+    $scope.listaCategorias();
+
 
 //begin clases
     //clases save
@@ -343,7 +348,8 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
                 data: JSON.stringify($scope.formData)
             }).success(function (response) {
                 result = response;
-                $scope.formData = null
+                $scope.formData = null;
+                $scope.listadoClases();
                 $("#ModalClase").modal('hide')
                 $('#alertSucces').modal('show');
                 $("#mensajeAlertSucces").text('Registro Guardado');
@@ -369,61 +375,66 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
                 alert("Error de conexion con el servidor.");
             });
     }
-    var oTable = $('#dataTableClases');
-    $http.get(service + '/unidad_medida').success(
-        function (data, status, headers, config) {
-            $scope.tableProveedores = data.result;
-            oTable = $('#dataTableClases').dataTable(
-                {
-                    "bJQueryUI": true,
-                    "bAutoWidth": true,
-                    "bProcessing": true,
-                    "oLanguage": {
-                        "sUrl": "src/js/i18n/dataTable_es.txt"
-                    },
-                    "aaData": $scope.tableProveedores,
-                    "aoColumns": [
+
+    $scope.listadoClases = function () {
+        var oTable = $('#dataTableClases');
+        $http.get(service + '/categoria').success(
+            function (data, status, headers, config) {
+                $scope.tableProveedores = data.result;
+                oTable = $('#dataTableClases').dataTable(
+                    {
+                        "bJQueryUI": true,
+                        "bAutoWidth": true,
+                        "bProcessing": true,
+                        "oLanguage": {
+                            "sUrl": "src/js/i18n/dataTable_es.txt"
+                        },
+                        "aaData": $scope.tableProveedores,
+                        "aoColumns": [
 //
-                        {
-                            "mData": null,
-                            "bSortable": false
-                        },
-                        {
-                            "mData": "descripcionUnidad"
-                        },
-                        {
-                            "bSortable": false,
-                            "mData": function (oObj) {
-                                var ad = " <a href='#/clientes/" + oObj.id + "' class='btn btn-primary'><i class='fa fa-edit'></i></a>";
-                                return ad;
+                            {
+                                "mData": null,
+                                "bSortable": false
+                            },
+                            {
+                                "mData": "descripcionCategoria"
+                            },
+                            {
+                                "bSortable": false,
+                                "mData": function (oObj) {
+                                    var ad = " <a href='#/clientes/" + oObj.id + "' class='btn btn-primary'><i class='fa fa-edit'></i></a>";
+                                    return ad;
 
+                                }
+
+                            },
+                            {
+                                "bSortable": false,
+                                "mData": function (oObj) {
+                                    var bd = " <a href='#/cliente-info/" + oObj.id + "' class='btn btn-danger'><i class='fa fa-trash-o'></i></a>";
+                                    return bd;
+                                }
                             }
 
+
+                        ],
+                        "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+                            $('td:eq(0)', nRow).html(iDisplayIndexFull + 1);
+                            return nRow;
                         },
-                        {
-                            "bSortable": false,
-                            "mData": function (oObj) {
-                                var bd = " <a href='#/cliente-info/" + oObj.id + "' class='btn btn-danger'><i class='fa fa-trash-o'></i></a>";
-                                return bd;
-                            }
-                        }
+                        "bDestroy": true
+                    });
 
-
-                    ],
-                    "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
-                        $('td:eq(0)', nRow).html(iDisplayIndexFull + 1);
-                        return nRow;
-                    },
-                    "bDestroy": true
-                });
-
-        }).
-        error(function (data, status, headers, config) {
-            alert(data.result);
-            // called asynchronously if an error occurs
-            // or server returns response with an error status.
-        });
+            }).
+            error(function (data, status, headers, config) {
+                alert(data.result);
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+            });
 // ends clses
+    }
+    $scope.listadoClases();
+
 
 //begin marcas
     //marcas save
@@ -435,7 +446,8 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
                 data: JSON.stringify($scope.formData)
             }).success(function (response) {
                 result = response;
-                $scope.formData = null
+                $scope.formData = null;
+                $scope.listadoMarcasProducto();
                 $("#ModalMarca").modal('hide')
                 $('#alertSucces').modal('show');
                 $("#mensajeAlertSucces").text('Registro Guardado');
@@ -461,61 +473,65 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
                 alert("Error de conexion con el servidor.");
             });
     }
-    var oTable = $('#dataTableMarcas');
-    $http.get(service + '/marcas_producto').success(
-        function (data, status, headers, config) {
-            $scope.tableMarcas = data.result;
-            oTable = $('#dataTableMarcas').dataTable(
-                {
-                    "bJQueryUI": true,
-                    "bAutoWidth": true,
-                    "bProcessing": true,
-                    "oLanguage": {
-                        "sUrl": "src/js/i18n/dataTable_es.txt"
-                    },
-                    "aaData": $scope.tableMarcas,
-                    "aoColumns": [
+    $scope.listadoMarcasProducto = function () {
+        var oTable = $('#dataTableMarcas');
+        $http.get(service + '/marcas_producto').success(
+            function (data, status, headers, config) {
+                $scope.tableMarcas = data.result;
+                oTable = $('#dataTableMarcas').dataTable(
+                    {
+                        "bJQueryUI": true,
+                        "bAutoWidth": true,
+                        "bProcessing": true,
+                        "oLanguage": {
+                            "sUrl": "src/js/i18n/dataTable_es.txt"
+                        },
+                        "aaData": $scope.tableMarcas,
+                        "aoColumns": [
 //
-                        {
-                            "mData": null,
-                            "bSortable": false
-                        },
-                        {
-                            "mData": "descripcionMarca"
-                        },
-                        {
-                            "bSortable": false,
-                            "mData": function (oObj) {
-                                var ad = " <a href='#/clientes/" + oObj.id + "' class='btn btn-primary'><i class='fa fa-edit'></i></a>";
-                                return ad;
+                            {
+                                "mData": null,
+                                "bSortable": false
+                            },
+                            {
+                                "mData": "descripcionMarca"
+                            },
+                            {
+                                "bSortable": false,
+                                "mData": function (oObj) {
+                                    var ad = " <a href='#/clientes/" + oObj.id + "' class='btn btn-primary'><i class='fa fa-edit'></i></a>";
+                                    return ad;
 
+                                }
+
+                            },
+                            {
+                                "bSortable": false,
+                                "mData": function (oObj) {
+                                    var bd = " <a href='#/cliente-info/" + oObj.id + "' class='btn btn-danger'><i class='fa fa-trash-o'></i></a>";
+                                    return bd;
+                                }
                             }
 
+
+                        ],
+                        "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+                            $('td:eq(0)', nRow).html(iDisplayIndexFull + 1);
+                            return nRow;
                         },
-                        {
-                            "bSortable": false,
-                            "mData": function (oObj) {
-                                var bd = " <a href='#/cliente-info/" + oObj.id + "' class='btn btn-danger'><i class='fa fa-trash-o'></i></a>";
-                                return bd;
-                            }
-                        }
+                        "bDestroy": true
+                    });
 
-
-                    ],
-                    "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
-                        $('td:eq(0)', nRow).html(iDisplayIndexFull + 1);
-                        return nRow;
-                    },
-                    "bDestroy": true
-                });
-
-        }).
-        error(function (data, status, headers, config) {
-            alert(data.result);
-            // called asynchronously if an error occurs
-            // or server returns response with an error status.
-        });
+            }).
+            error(function (data, status, headers, config) {
+                alert(data.result);
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+            });
 // ends marcas
+    }
+    $scope.listadoMarcasProducto();
+
 
 //begin unidades
     //unidades save

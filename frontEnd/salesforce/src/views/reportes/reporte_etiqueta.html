@@ -20,7 +20,8 @@
                                         <div class="form-group">
                                               <select class="form-control" id="selectArticulo" name="categoria"
                                                     ng-model="formData.articulo"
-                                                    ng-options="item.codigoArticulo+' - ' + item.descripcionArticulo for item in artList">
+                                                    ng-options="item.codigoArticulo+' - ' + item.descripcionArticulo for item in artList"
+                                                    ng-change="seleccionarArticulo()" >
                                                 <option value="">-- Seleccione --</option>
                                             </select>
                                         </div>
@@ -31,8 +32,10 @@
                     </div>
                 </form>
                 <div class="modal-footer center">
-                    <button type="submit" ng-click="save()" class="btn btn-primary"><i class="fa fa-save"></i> Imprimir
-                    </button>
+                    <!--<button id="btn_imprimir_revision" type="submit" ng-click="print()" class="btn btn-primary"><i class="fa fa-save"></i> Imprimir
+                    </button>-->
+                    <a target="_blank" href="" class="btn btn-primary" data-toggle="modal" id="btn_imprimir_revision"
+                       type="button"><i class="fa fa-print"></i> Imprimir</a>
 
                 </div>
 
@@ -46,8 +49,7 @@
 <!-- /.row -->
 
 
-<hr>
-<div list-Articulo></div>
+
 
 
 
