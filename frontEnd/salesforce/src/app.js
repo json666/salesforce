@@ -45,6 +45,11 @@ var app = angular.module('app', ['ngCookies','ngRoute']).factory('serviceShare',
           templateUrl: 'src/views/reportes/reporte_etiqueta.html',
           controller: 'ReportesController'
       }).
+
+      when('/pdf', {
+          templateUrl: 'src/views/reportePdf.html',
+          controller: 'ReportePdfController'
+      }).
       otherwise({
 		  redirectTo: '/home'});
 
