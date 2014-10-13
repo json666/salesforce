@@ -1,7 +1,7 @@
 package com.bo.openlogics.sales.controller;
 
 
-import com.bo.openlogic.core.bean.JsonResult;
+import com.bo.openlogics.core.bean.JsonResult;
 import com.bo.openlogics.sales.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

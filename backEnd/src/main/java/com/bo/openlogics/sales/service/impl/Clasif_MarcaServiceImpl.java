@@ -1,10 +1,9 @@
 package com.bo.openlogics.sales.service.impl;
 
-import com.bo.openlogic.core.bean.JsonResult;
+import com.bo.openlogics.core.bean.JsonResult;
 import com.bo.openlogics.sales.beans.parametricas.MarcaBean;
 import com.bo.openlogics.sales.dozer.UtilTransport;
 import com.bo.openlogics.sales.model.Clasif_Marca;
-
 import com.bo.openlogics.sales.repository.Clasif_MarcaRepository;
 import com.bo.openlogics.sales.service.Clasif_MarcaService;
 import org.apache.log4j.Logger;

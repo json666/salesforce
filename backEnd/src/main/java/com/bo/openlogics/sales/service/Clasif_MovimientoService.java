@@ -1,7 +1,7 @@
 package com.bo.openlogics.sales.service;
 
 
-import com.bo.openlogic.core.bean.JsonResult;
+import com.bo.openlogics.core.bean.JsonResult;
 
 /**
  * Created by json on 15/09/14.

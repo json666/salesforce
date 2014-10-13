@@ -1,10 +1,9 @@
 package com.bo.openlogics.sales.service.impl;
 
-import com.bo.openlogic.core.bean.JsonResult;
+import com.bo.openlogics.core.bean.JsonResult;
 import com.bo.openlogics.sales.beans.parametricas.ProveedoreBean;
 import com.bo.openlogics.sales.dozer.UtilTransport;
 import com.bo.openlogics.sales.model.Clasif_Proveedor;
-
 import com.bo.openlogics.sales.repository.Clasif_ProveedorRespository;
 import com.bo.openlogics.sales.service.Clasif_ProveedorService;
 import org.springframework.beans.factory.annotation.Autowired;

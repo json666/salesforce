@@ -1,14 +1,8 @@
 package com.bo.openlogics.sales.service;
 
-import com.bo.openlogic.core.bean.JsonResult;
-import com.bo.openlogics.sales.model.FileMeta;
-
-import org.springframework.web.bind.annotation.RequestParam;
+import com.bo.openlogics.core.bean.JsonResult;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-
-import javax.servlet.http.HttpServletResponse;
-import java.util.LinkedList;
 
 /**
  * Created by osanchez on 1/10/14.

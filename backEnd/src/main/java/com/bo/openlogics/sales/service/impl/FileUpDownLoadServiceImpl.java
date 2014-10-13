@@ -1,28 +1,20 @@
 package com.bo.openlogics.sales.service.impl;
 
-import com.bo.openlogic.core.bean.JsonResult;
+import com.bo.openlogics.core.bean.JsonResult;
 import com.bo.openlogics.sales.model.FileMeta;
-
 import com.bo.openlogics.sales.service.FileUpDownLoadService;
 import com.bo.openlogics.sales.util.LectorArchivosProperties;
-import org.springframework.core.io.FileSystemResource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.StringTokenizer;
 
 /**
  * Created by osanchez on 1/10/14.

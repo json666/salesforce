@@ -1,6 +1,6 @@
 package com.bo.openlogics.sales.service;
 
-import com.bo.openlogic.core.bean.JsonResult;
+import com.bo.openlogics.core.bean.JsonResult;
 import com.bo.openlogics.sales.model.Clasif_Unidad;
 
 

@@ -1,7 +1,7 @@
 package com.bo.openlogics.sales.service.impl;
 
 
-import com.bo.openlogic.core.bean.JsonResult;
+import com.bo.openlogics.core.bean.JsonResult;
 import com.bo.openlogics.sales.model.*;
 import com.bo.openlogics.sales.repository.*;
 import com.bo.openlogics.sales.service.Bodega_ArticuloService;

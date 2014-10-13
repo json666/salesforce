@@ -1,14 +1,12 @@
 package com.bo.openlogics.sales.service.impl;
 
-import com.bo.openlogic.core.bean.JsonResult;
+import com.bo.openlogics.core.bean.ArticulosReportes;
+import com.bo.openlogics.core.bean.JsonResult;
 import com.bo.openlogics.sales.barcode.BarCodeGenerator;
 import com.bo.openlogics.sales.barcode.impl.BarCodeGeneratorImpl;
 import com.bo.openlogics.sales.beans.ArticuloBean;
 import com.bo.openlogics.sales.beans.parametricas.*;
-
-import com.bo.openlogic.core.bean.ArticulosReportes;
 import com.bo.openlogics.sales.dozer.UtilTransport;
-
 import com.bo.openlogics.sales.model.*;
 import com.bo.openlogics.sales.repository.*;
 import com.bo.openlogics.sales.service.Clasif_ArticuloService;
