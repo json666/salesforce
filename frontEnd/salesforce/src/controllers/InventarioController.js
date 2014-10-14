@@ -178,7 +178,8 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
                     console.log('STATUS' + data.success);
                     if (data.success) {
                         $scope.formData = null;
-                        inventarioService.articuloList($scope);
+                        $scope.listadoArticuloshabilitados();
+//                        inventarioService.articuloList($scope);
 
                         $("#ModalArticulo").modal('hide');
                         $('#alertSucces').modal('show');
@@ -187,14 +188,14 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
                         $("#ModalArticulo").modal('hide');
                         $('#alertSucces').modal('show');
                         $("#mensajeAlertSucces").text('Verifique el codigo de Articulo ya se encuentra Registrado');
-                        $scope.formData = null;
-                        inventarioService.articuloList($scope);
+//                        inventarioService.articuloList($scope);
                     }
 
                 }).error(function (data) {   //
                     $('#alertError').modal('show');
                     $("#mensajeAlertError").text(data.result + 'Error! intente nuevamente');
-                    inventarioService.articuloList($scope);
+//                    inventarioService.articuloList($scope);
+                    $('#dataTableProductos').show()
 
                 });
             }
@@ -241,74 +242,77 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
 
 
 // lista articulos begin
-    var oTable = $('#dataTableProductos');
-    $http.get(service+'/articulosHabilitados').success(
-        function (data, status, headers, config) {
-            $scope.tableProveedores = data.result;
-            oTable = $('#dataTableProductos').dataTable(
-                {
-                    "bJQueryUI":true,
-                    "bAutoWidth":true,
-                    "bProcessing":true,
-                    "oLanguage":{
-                        "sUrl":"src/js/i18n/dataTable_es.txt"
-                    },
-                    "aaData":$scope.tableProveedores,
-                    "aoColumns":[
+    $scope.listadoArticuloshabilitados = function () {
+        var oTable = $('#dataTableProductos');
+        $http.get(service + '/articulosHabilitados').success(
+            function (data, status, headers, config) {
+                $scope.tableProveedores = data.result;
+                oTable = $('#dataTableProductos').dataTable(
+                    {
+                        "bJQueryUI": true,
+                        "bAutoWidth": true,
+                        "bProcessing": true,
+                        "oLanguage": {
+                            "sUrl": "src/js/i18n/dataTable_es.txt"
+                        },
+                        "aaData": $scope.tableProveedores,
+                        "aoColumns": [
 //                        {
 //                            "mData": "id",
 //                            "bSearchable": false,
 //                            "bVisible": false
 //                        },
-                        {
-                            "mData":null,
-                            "bSortable":  false
-                        },
-                        {
-                            "mData": "id"
-                        },
-                        {
-                            "mData":"descripcionArticulo"
-                        },
-                        {
-                            "mData":"cantidadReorden"
-                        },
-                        {
-                            "mData":"precioCosto"
-                        },
-                        {
-                            "bSortable": false,
-                            "mData":function (oObj) {
-                                var a = " <a href='#/inventarios/"+oObj.id+"' class='btn btn-primary'><i class='fa fa-edit'></i></a>";
-                                return a;
+                            {
+                                "mData": null,
+                                "bSortable": false
+                            },
+                            {
+                                "mData": "id"
+                            },
+                            {
+                                "mData": "descripcionArticulo"
+                            },
+                            {
+                                "mData": "cantidadReorden"
+                            },
+                            {
+                                "mData": "precioCosto"
+                            },
+                            {
+                                "bSortable": false,
+                                "mData": function (oObj) {
+                                    var a = " <a href='#/inventarios/" + oObj.id + "' class='btn btn-primary'><i class='fa fa-edit'></i></a>";
+                                    return a;
 
-                            }
+                                }
 //                                <div style="float: right"><button class="btn btn-primary btn-sm" data-toggle='modal'  data-target="#ModalArticulo"><i class="fa fa-plus"></i> Reg. Producto</button></div>
 
-                        },
-                        {
-                            "mData":function (oObj) {
-                                var b = " <a href='#/cliente-info/"+oObj.id+"' class='btn btn-danger'><i class='fa fa-trash-o'></i></a>";
-                                return b;
+                            },
+                            {
+                                "mData": function (oObj) {
+                                    var b = " <a href='#/cliente-info/" + oObj.id + "' class='btn btn-danger'><i class='fa fa-trash-o'></i></a>";
+                                    return b;
+                                }
                             }
-                        }
 
 
-                    ],
-                    "fnRowCallback":function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
-                        $('td:eq(0)', nRow).html(iDisplayIndexFull + 1);
-                        return nRow;
-                    },
-                    "bDestroy": true
+                        ],
+                        "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+                            $('td:eq(0)', nRow).html(iDisplayIndexFull + 1);
+                            return nRow;
+                        },
+                        "bDestroy": true
 
-                });
+                    });
 
-        }).
-        error(function (data, status, headers, config) {
-            alert('Error:'+data.result);
-            // called asynchronously if an error occurs
-            // or server returns response with an error status.
-        });
+            }).
+            error(function (data, status, headers, config) {
+                alert('Error:' + data.result);
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+            });
+    }
+    $scope.listadoArticuloshabilitados();
 
 //    lista articlus ends
 
