@@ -40,6 +40,96 @@
 </div>
 <!-- /.col-lg-12 -->
 
+<div aria-hidden="false" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="ModalMarca"
+     class="modal fade in">
+    <div class="modal-dialog" style="width:100%; max-width: 1024px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                <h4 id="myModalLabel" class="modal-title">Registro de Marca</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Datos de la Marca
+                            </div>
+                            <div class="panel-body">
+                                <!-- /.row (nested) -->
+                                <form>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="row">
+                                                <div class="col-lg-2">
+                                                    <div class="form-group">
+                                                        <label>CODIGO</label>
+                                                        <input class="form-control" ng-model="formDataMarca.codigoMarca">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <div class="form-group">
+                                                        <label>DESCRIPCION</label>
+                                                        <input class="form-control" ng-model="formDataMarca.descripcionMarca">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <div class="form-group">
+                                                        <label>FECHA DESDE</label>
+
+                                                        <div class="input-group date">
+                                                            <input class="form-control" ng-model="formDataMarca.fechaDesde" datepicker=""
+                                                                   type="text">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i>
+                                 </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-3">
+                                                    <div class="form-group">
+                                                        <label>FECHA HASTA</label>
+
+                                                        <div class="input-group date">
+                                                            <input class="form-control" ng-model="formDataMarca.fechaHasta" datepicker=""
+                                                                   type="text">
+                                    <span class="input-group-addon"><i class="fa fa-calendar"></i>
+                             </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </form>
+                <pre>
+                    {{formDataMarca}}
+                </pre>
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <!-- /.panel -->
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+
+            </div>
+            <div class="modal-footer">
+                <button type="submit" ng-click="saveMarca()" class="btn btn-primary"><i class="fa fa-save"></i> Guardar
+                </button>
+                <button type="reset" class="btn btn-default">Limpiar</button>
+                <button data-dismiss="modal" class="btn btn-danger" type="button">Cancelar</button>
+
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
 
 
 

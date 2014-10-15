@@ -29,7 +29,7 @@ public class Clasif_Categoria extends EntidadBase {
     @Column(name = "USUARIOA_ACT")
     private String usuarioAct ;
 
-    public   Clasif_Categoria(){
+    public Clasif_Categoria(){
 
     }
 

@@ -323,10 +323,10 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
             $http({
                 method: 'POST',
                 url: service + '/categoria/guardar',
-                data: JSON.stringify($scope.formData)
+                data: JSON.stringify($scope.formDataCategoria)
             }).success(function (response) {
                 result = response;
-                $scope.formData = null
+                $scope.formDataCategoria = null
                 $scope.listaCategorias();
                 $("#ModalCategoria").modal('hide')
                 $('#alertSucces').modal('show');
@@ -418,15 +418,19 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
 
 //begin clases
     //clases save
+    $scope.formDataClase = {
+        "clasif_categoria":null
+    }
+
     if (id == null || id.length == 0) {
         $scope.saveClase = function () {
             $http({
                 method: 'POST',
                 url: service + '/clases/guardar',
-                data: JSON.stringify($scope.formData)
+                data: JSON.stringify($scope.formDataClase)
             }).success(function (response) {
                 result = response;
-                $scope.formData = null;
+                $scope.formDataClase = null;
                 $scope.listadoClases();
                 $("#ModalClase").modal('hide')
                 $('#alertSucces').modal('show');
@@ -443,7 +447,7 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
         //get de form by Id    //
         $http({
             method: 'GET',
-            url: service + '/categoria'
+            url: service + '/clases'
         }).success(
             function (data, status) {
 //                $("#loading-div-background").css("display", "none");
@@ -457,7 +461,7 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
 
     $scope.listadoClases = function () {
         var oTable = $('#dataTableClases');
-        $http.get(service + '/categoria').success(
+        $http.get(service + '/clases').success(
             function (data, status, headers, config) {
                 $scope.tableProveedores = data.result;
                 oTable = $('#dataTableClases').dataTable(
@@ -476,7 +480,7 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
                                 "bSortable": false
                             },
                             {
-                                "mData": "descripcionCategoria"
+                                "mData": "descripcionClase"
                             },
                             {
                                 "bSortable": false,
@@ -518,14 +522,14 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
 //begin marcas
     //marcas save
     if (id == null || id.length == 0) {
-        $scope.saveClase = function () {
+        $scope.saveMarca = function () {
             $http({
                 method: 'POST',
                 url: service + '/marcas/guardar',
-                data: JSON.stringify($scope.formData)
+                data: JSON.stringify($scope.formDataMarca)
             }).success(function (response) {
                 result = response;
-                $scope.formData = null;
+                $scope.formDataMarca = null;
                 $scope.listadoMarcasProducto();
                 $("#ModalMarca").modal('hide')
                 $('#alertSucces').modal('show');
@@ -620,10 +624,10 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
             $http({
                 method: 'POST',
                 url: service + '/marcas/guardar',
-                data: JSON.stringify($scope.formData)
+                data: JSON.stringify($scope.formDataUnidad)
             }).success(function (response) {
                 result = response;
-                $scope.formData = null
+                $scope.formDataUnidad = null
                 $("#ModalMarca").modal('hide')
                 $('#alertSucces').modal('show');
                 $("#mensajeAlertSucces").text('Registro Guardado');

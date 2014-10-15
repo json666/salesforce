@@ -51,6 +51,26 @@ public class Clasif_ClaseServiceImpl implements Clasif_ClaseService {
             return new JsonResult(false,e.getMessage(),null);
         }
     }
+    @Override
+    public JsonResult listadoClases() {
+        try {
+            JsonResult jsonResult = null;
+            List<Clasif_Clase> listadoClase = clasif_claseRepository.findByDisabled(Boolean.FALSE);
+            List<ClaseBean> claseBeans= new ArrayList<ClaseBean>();
+            if (listadoClase.size() > 0) {
+                claseBeans=utilTransport.convert(listadoClase,ClaseBean.class);
+                jsonResult = new JsonResult(true, "Consulta exitosa.", claseBeans);
+            } else {
+                jsonResult = new JsonResult(true, "No existen proveedores.", null);
+            }
+
+            return jsonResult;
+        } catch (NullPointerException e) {
+            return new JsonResult(false, e.getMessage(), null);
+        } catch (Exception e) {
+            return new JsonResult(false, e.getMessage(), null);
+        }
+    }
 
     @Override
     public JsonResult saveClase(Clasif_Clase clasif_clase) {

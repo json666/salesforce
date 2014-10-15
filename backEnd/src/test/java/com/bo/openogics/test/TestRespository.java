@@ -1,5 +1,7 @@
 package com.bo.openogics.test;
 
+//import com.bo.openlogic.core.bean.JsonResult;
+import com.bo.openlogics.core.bean.JsonResult;
 import com.bo.openlogics.sales.beans.parametricas.ProveedoreBean;
 import com.bo.openlogics.sales.beans.parametricas.TipoMovimientoBean;
 import com.bo.openlogics.sales.model.*;

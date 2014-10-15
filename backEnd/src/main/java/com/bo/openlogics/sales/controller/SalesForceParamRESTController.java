@@ -167,6 +167,26 @@ public class SalesForceParamRESTController {
         }
     }
 
+    @RequestMapping(value = "/clases", method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResult findByClases() {
+        try{
+            JsonResult jsonResult=null;
+            jsonResult=clasif_claseService.listadoClases();
+            if(jsonResult!=null){
+                return jsonResult;
+            }else{
+                return jsonResult;
+            }
+        }catch(NullPointerException e){
+            e.printStackTrace();
+            return new JsonResult(false,"Error: "+e.getMessage(),null);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new JsonResult(false,"Error: "+e.getMessage(),null);
+        }
+    }
+
     //CLASES
     @RequestMapping(value = "/clases/guardar", method = RequestMethod.POST)
     @ResponseBody

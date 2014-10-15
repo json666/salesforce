@@ -37,11 +37,11 @@ app.directive('listArticulo', function () {
     };
 });
 
-app.directive('frmCategoria', function () {
-    return {
-        templateUrl: 'src/templates/categoriaSave.html'
-    };
-});
+//app.directive('frmCategoria', function () {
+//    return {
+//        templateUrl: 'src/templates/categoriaSave.html'
+//    };
+//});
 
 app.directive('listCategoria', function () {
     return {
@@ -61,11 +61,11 @@ app.directive('listClase', function () {
     };
 });
 
-app.directive('frmMarca', function () {
-    return {
-        templateUrl: 'src/templates/marcaSave.html'
-    };
-});
+//app.directive('frmMarca', function () {
+//    return {
+//        templateUrl: 'src/templates/marcaSave.html'
+//    };
+//});
 
 app.directive('listMarca', function () {
     return {

@@ -17,4 +17,6 @@ public interface Clasif_ClaseRepository extends JpaRepository<Clasif_Clase, Long
     public List<Clasif_Clase> findByCategoriaAndDisabled(@Param("idCategoria") Long idCategoria);
 
     public Clasif_Clase findByDescripcionClase(String descripcion);
+
+    public List<Clasif_Clase> findByDisabled(Boolean status);
 }
