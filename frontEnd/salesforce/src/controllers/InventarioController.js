@@ -165,7 +165,7 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
 
             if (!$("#artForm").valid()) {
                 $('#alertError').modal('show');
-                $("#mensajeAlertError").html('Error! debe llenar los campos requeridos')
+                $("#mensajeAlertError").html('Error! debe llenar los campos requeridos');
                 return false
             }
             else {
@@ -228,7 +228,8 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
                     keyboard: false
                 });
             }).error(function (data, status) {
-                alert("Error de conexion con el servidor.");
+                $('#alertError').modal('show');
+                $("#mensajeAlertError").text(data.result + 'Error! intente nuevamente');
             });
     }
 //Lista proveedores
@@ -243,9 +244,12 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
 
 // lista articulos begin
     $scope.listadoArticuloshabilitados = function () {
+        $("#loading").css('display','block');
         var oTable = $('#dataTableProductos');
         $http.get(service + '/articulosHabilitados').success(
+
             function (data, status, headers, config) {
+                $("#loading").css('display','none');
                 $scope.tableProveedores = data.result;
                 oTable = $('#dataTableProductos').dataTable(
                     {
@@ -333,7 +337,8 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
                 $("#mensajeAlertSucces").text('Registro Guardado');
 
             }).error(function (response) {   //
-                alert("ERROR! intente mas tarde")
+                $('#alertError').modal('show');
+                $("#mensajeAlertError").text(data.result + 'Error! intente nuevamente');
 
             });
         }
@@ -351,15 +356,18 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
                 console.log("#####categorias")
                 console.log(angular.toJson($scope.formDataCategoria));
             }).error(function (data, status) {
-                alert("Error de conexion con el servidor.");
+                $('#alertError').modal('show');
+                $("#mensajeAlertError").text(data.result + 'Error! intente nuevamente');
             });
     }
 
     //categorias list
     $scope.listaCategorias = function () {
+        $("#loading").css('display','block');
         var oTable = $('#dataTableCategorias');
         $http.get(service + '/categoria').success(
             function (data, status, headers, config) {
+                $("#loading").css('display','none');
                 $scope.tableProveedores = data.result;
                 oTable = $('#dataTableCategorias').dataTable(
                     {
@@ -407,7 +415,9 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
 
             }).
             error(function (data, status, headers, config) {
-                alert(data.result);
+                $('#alertError').modal('show');
+                $("#mensajeAlertError").text(data.result + 'Error! intente nuevamente');
+//                alert(data.result);
                 // called asynchronously if an error occurs
                 // or server returns response with an error status.
             });
@@ -434,10 +444,11 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
                 $scope.listadoClases();
                 $("#ModalClase").modal('hide')
                 $('#alertSucces').modal('show');
-                $("#mensajeAlertSucces").text('Registro Guardado');
+                $("#mensajeAlertSucces").text(response.message);
 
             }).error(function (response) {   //
-                alert("ERROR! intente mas tarde")
+                $('#alertError').modal('show');
+                $("#mensajeAlertError").text('Error! intente nuevamente');
 
             });
         }
@@ -455,14 +466,17 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
                 console.log("####categorias")
                 console.log(angular.toJson($scope.formDataClase));
             }).error(function (data, status) {
-                alert("Error de conexion con el servidor.");
+                $('#alertError').modal('show');
+                $("#mensajeAlertError").text(data.result + 'Error! intente nuevamente');
             });
     }
 
     $scope.listadoClases = function () {
+        $("#loading").css('display','block');
         var oTable = $('#dataTableClases');
         $http.get(service + '/clases').success(
             function (data, status, headers, config) {
+                $("#loading").css('display','none');
                 $scope.tableProveedores = data.result;
                 oTable = $('#dataTableClases').dataTable(
                     {
@@ -510,7 +524,8 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
 
             }).
             error(function (data, status, headers, config) {
-                alert(data.result);
+                $('#alertError').modal('show');
+                $("#mensajeAlertError").text(data.result + 'Error! intente nuevamente');
                 // called asynchronously if an error occurs
                 // or server returns response with an error status.
             });
@@ -536,7 +551,8 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
                 $("#mensajeAlertSucces").text('Registro Guardado');
 
             }).error(function (response) {   //
-                alert("ERROR! intente mas tarde")
+                $('#alertError').modal('show');
+                $("#mensajeAlertError").text(data.result + 'Error! intente nuevamente');
 
             });
         }
@@ -554,13 +570,16 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
                 console.log("####marcas")
                 console.log(angular.toJson($scope.formDataMarcas));
             }).error(function (data, status) {
-                alert("Error de conexion con el servidor.");
+                $('#alertError').modal('show');
+                $("#mensajeAlertError").text(data.result + 'Error! intente nuevamente');
             });
     }
     $scope.listadoMarcasProducto = function () {
+        $("#loading").css('display','block');
         var oTable = $('#dataTableMarcas');
         $http.get(service + '/marcas_producto').success(
             function (data, status, headers, config) {
+                $("#loading").css('display','none');
                 $scope.tableMarcas = data.result;
                 oTable = $('#dataTableMarcas').dataTable(
                     {
@@ -608,7 +627,8 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
 
             }).
             error(function (data, status, headers, config) {
-                alert(data.result);
+                $('#alertError').modal('show');
+                $("#mensajeAlertError").text(data.result + 'Error! intente nuevamente');
                 // called asynchronously if an error occurs
                 // or server returns response with an error status.
             });
@@ -628,9 +648,9 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
             }).success(function (response) {
                 result = response;
                 $scope.formDataUnidad = null
-                $("#ModalMarca").modal('hide')
+                $("#ModalUnidad").modal('hide')
                 $('#alertSucces').modal('show');
-                $("#mensajeAlertSucces").text('Registro Guardado');
+                $("#mensajeAlertSucces").text(response.message);
 
             }).error(function (response) {   //
                 alert("ERROR! intente mas tarde")

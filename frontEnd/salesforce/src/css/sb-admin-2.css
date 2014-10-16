@@ -446,3 +446,23 @@ legend{
     font-size: 18px;
     color: #777;
 }
+
+.red {
+    color: #D43F3A;
+    font-size: 18px;
+
+}
+.bolder{
+    font-weight: bolder;
+}
+
+.help-block{
+    position: absolute;
+    background: #222;
+    filter: alpha(opacity=50);
+    color:#ccc !important;
+    border-radius:5px ;
+    padding: 2px;
+    z-index: 100;
+
+}

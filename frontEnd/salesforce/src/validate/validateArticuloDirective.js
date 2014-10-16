@@ -51,7 +51,6 @@ app.directive('artForm', function () {
                 "formData.codigoArticulo": {
                     required: true,
                     maxlength: 36
-
                 },
                 "formData.nombreArticulo": {
                     required: true
@@ -59,8 +58,25 @@ app.directive('artForm', function () {
                 "formData.descripcionArticulo": {
                     required: true,
                     maxlength: 35
+                },
+                "formData.clasif_unidad": {
+                    required: true
+
+                },
+                "formData.clasif_marca": {
+                    required: true
+
+                },
+                "formData.clasif_categoria": {
+                    required: true
+
+                },
+                "formData.clasif_clase": {
+                    required: true
+
                 }
-//
+
+                //
             },
             highlight: function (element) {
                 $(element).closest('.form-group').addClass('has-error');

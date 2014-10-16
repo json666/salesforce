@@ -46,7 +46,7 @@
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label>UNIDAD</label>
-                                            <select class="form-control" id="selectUnidad" name="interes"
+                                            <select class="form-control" id="selectUnidad" name="formData.clasif_unidad"
                                                     ng-model="formData.clasif_unidad"
                                                     ng-options="item.descripcionUnidad for item in unidadList">
                                                 <option value="">-- Seleccione --</option>
@@ -59,7 +59,7 @@
                                     <div class="col-lg-4">
                                         <div class="form-group">
                                             <label>MARCA</label>
-                                            <select class="form-control" id="selectMarca" name="interes"
+                                            <select class="form-control" id="selectMarca" name="formData.clasif_marca"
                                                     ng-model="formData.clasif_marca"
                                                     ng-options="item.descripcionMarca for item in marcasList">
                                                 <option value="">-- Seleccione --</option>
@@ -70,7 +70,7 @@
                                     <div class="col-lg-4">
                                         <div class="form-group">
                                             <label>CATEGORIA</label>
-                                            <select class="form-control" id="selectCategoria" name="categoria"
+                                            <select class="form-control" id="selectCategoria" name="formData.clasif_categoria"
                                                     ng-model="formData.clasif_categoria"
                                                     ng-options="item.descripcionCategoria for item in categoriaList"
                                                     ng-change="cargarClase()">
@@ -81,7 +81,7 @@
                                     <div class="col-lg-4">
                                         <div class="form-group">
                                             <label>CLASE</label>
-                                            <select class="form-control" id="selectClase" name="clase"
+                                            <select class="form-control" id="selectClase" name="formData.clasif_clase"
                                                     ng-model="formData.clasif_clase"
                                                     ng-options="item.descripcionClase for item in claseList">
                                                 <option value="">-- Seleccione --</option>
