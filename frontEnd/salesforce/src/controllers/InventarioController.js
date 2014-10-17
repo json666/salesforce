@@ -148,6 +148,15 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
 
 
     }
+    $scope.calculaMargenGanancia = function () {
+        if ($scope.formData.precio != null && $scope.formData.precioCosto != null) {
+            var precio = $scope.formData.precio;
+            var precioCosto = $scope.formData.precioCosto;
+            $scope.formData.margenGanancia = precioCosto - precio;
+        } else {
+            console.log('Datos Nulos');
+        }
+    }
 
     if (id == null || id.length == 0) {
         //console.log('FORMDATA:' + angular.toJson($scope.formData));
@@ -265,7 +274,9 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
                                 "mData": "descripcionArticulo"
                             },
                             {
-                                "mData": "cantidadReorden"
+                                "mData": "codigoArticulo"
+                            },{
+                                "mData": "precio"
                             },
                             {
                                 "mData": "precioCosto"

@@ -70,7 +70,7 @@
                                                     <div class="form-group">
                                                         <label>DESCRIPCION</label>
                                                         <input class="form-control"
-                                                               ng-model="formDataClase.descripcionClase">
+                                                               ng-model="formDataClase.descripcionClase" capitalize>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-4">
@@ -80,7 +80,7 @@
                                                         <div class="input-group date">
                                                             <input class="form-control"
                                                                    ng-model="formDataClase.fechaDesde" datepicker=""
-                                                                   type="text">
+                                                                   type="text" >
                                 <span class="input-group-addon"><i class="fa fa-calendar"></i>
                                  </span>
                                                         </div>
@@ -119,6 +119,7 @@
                                     </div>
                                 </form>
                 <pre>
+                    {{formDataClase}}
                 </pre>
                             </div>
                             <!-- /.panel-body -->
