@@ -2,10 +2,7 @@ package com.bo.openlogics.sales.controller;
 
 
 import com.bo.openlogics.core.bean.JsonResult;
-import com.bo.openlogics.sales.model.Clasif_Bodega;
-import com.bo.openlogics.sales.model.Clasif_Categoria;
-import com.bo.openlogics.sales.model.Clasif_Clase;
-import com.bo.openlogics.sales.model.Clasif_Marca;
+import com.bo.openlogics.sales.model.*;
 import com.bo.openlogics.sales.service.*;
 import com.bo.openlogics.sales.service.impl.Clasif_ClaseServiceImpl;
 import org.apache.log4j.Logger;
@@ -13,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import com.bo.openlogics.sales.model.Clasif_Unidad;
 
 /**
  * Created by json on 14/09/14.
@@ -93,6 +91,28 @@ public class SalesForceParamRESTController {
                 return jsonResult;
             }else{
                 return jsonResult;
+            }
+        }catch(NullPointerException e){
+            e.printStackTrace();
+            return new JsonResult(false,"Error: "+e.getMessage(),null);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new JsonResult(false,"Error: "+e.getMessage(),null);
+        }
+    }
+
+    @RequestMapping(value = "/unidad_medida/guardar", method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResult saveUnidad(@RequestBody Clasif_Unidad clasif_unidad) {
+        try{
+            JsonResult jsonResult=null;
+            if(clasif_unidad!=null){
+
+                //sonResult= clasif_unidadService.save(clasif_unidad)
+                return jsonResult;
+
+            }else{
+                return new JsonResult(false,"El objeto Categoria tiene problemas.",null);
             }
         }catch(NullPointerException e){
             e.printStackTrace();

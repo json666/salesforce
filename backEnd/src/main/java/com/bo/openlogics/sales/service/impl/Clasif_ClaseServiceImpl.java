@@ -80,7 +80,7 @@ public class Clasif_ClaseServiceImpl implements Clasif_ClaseService {
             Clasif_Clase clasifClase=null;
             //clasifClase=clasif_claseRepository.findByDescripcionClase(clasif_clase.getDescripcionClase());
             //clasifClase=clasif_claseRepository.findOne(clasif_clase.getId());
-            if(clasifClase!=null){
+            if(clasif_clase!=null){
                 if(clasif_clase.getClasif_categoria()!=null){
                     clasif_categoria=clasif_categoriaRepository.findOne(clasif_clase.getClasif_categoria().getId());
                     clasif_clase.setClasif_categoria(clasif_categoria);
