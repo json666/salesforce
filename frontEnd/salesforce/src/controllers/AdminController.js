@@ -21,10 +21,13 @@ function AdminController($scope, $http, $cookies, $routeParams, serviceShare) {
                 data: JSON.stringify($scope.formData)
             }).success(function (response) {
                 result = response;
+
+                //alert(result.message)
+                $scope.formData = null;
+                $("#ModalProveedor").modal('hide');
+                $('#alertSucces').modal('show');
+                $("#mensajeAlertSucces").text(result.message);
                 $scope.listadoProveedores();
-                alert(result.message)
-                $scope.formData = null
-                $("#ModalProveedor").modal('hide')
             }).error(function (response) {   //
                 alert("ERROR! intente mas tarde")
 

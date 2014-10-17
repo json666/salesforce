@@ -57,7 +57,7 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
     console.log('PARTE UPLOAD IMAGE');
     $scope.formData.fotografia = {};
     $scope.cargarImagen = function () {
-        //$("#imageUpload").empty();
+        console.log('CARGANDO IMAGEN');
         $("#imageUpload").empty();
         $('<div id="content_image" style="width: 300px">' + '<img class="img-thumbnail img-responsive " src="src/img/upload.jpg">' + '</div> ').appendTo('#imageUpload');
 
@@ -70,18 +70,9 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
             headers: {'Content-Type': 'multipart/form-data'},
             dataType: 'json',
             method: 'POST',
-            //crossDomain:true,
             beforeSend: function (request) {
-                /*request.setRequestHeader("Access-control-Allow-Origin","*");
-                 request.setRequestHeader('Access-Control-Allow-Methods', 'OPTIONS,GET,POST,PUT,DELETE');
-                 request.setRequestHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-                 request.setRequestHeader('Access-Control-Allow-Credentials: true');*/
 
             },
-            /*xhrFields: {
-             withCredentials: true
-             },
-             forceIframeTransport: true,*/
             add: function (e, data) {
                 console.log('ADD' + service + '/uploadFiles');
                 var FileExt = (data.originalFiles[0].name).substring((data.originalFiles[0].name).lastIndexOf('.') + 1, data.originalFiles[0].name.length);
@@ -159,7 +150,7 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
     }
 
     if (id == null || id.length == 0) {
-        console.log('FORMDATA:' + angular.toJson($scope.formData));
+        //console.log('FORMDATA:' + angular.toJson($scope.formData));
 
         $scope.save = function () {
 
@@ -244,12 +235,12 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
 
 // lista articulos begin
     $scope.listadoArticuloshabilitados = function () {
-        $("#loading").css('display','block');
+        $("#loading").css('display', 'block');
         var oTable = $('#dataTableProductos');
         $http.get(service + '/articulosHabilitados').success(
 
             function (data, status, headers, config) {
-                $("#loading").css('display','none');
+                $("#loading").css('display', 'none');
                 $scope.tableProveedores = data.result;
                 oTable = $('#dataTableProductos').dataTable(
                     {
@@ -271,9 +262,6 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
                                 "bSortable": false
                             },
                             {
-                                "mData": "id"
-                            },
-                            {
                                 "mData": "descripcionArticulo"
                             },
                             {
@@ -281,6 +269,9 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
                             },
                             {
                                 "mData": "precioCosto"
+                            },
+                            {
+                                "mData": "margenGanancia"
                             },
                             {
                                 "bSortable": false,
@@ -363,11 +354,11 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
 
     //categorias list
     $scope.listaCategorias = function () {
-        $("#loading").css('display','block');
+        $("#loading").css('display', 'block');
         var oTable = $('#dataTableCategorias');
         $http.get(service + '/categoria').success(
             function (data, status, headers, config) {
-                $("#loading").css('display','none');
+                $("#loading").css('display', 'none');
                 $scope.tableProveedores = data.result;
                 oTable = $('#dataTableCategorias').dataTable(
                     {
@@ -429,7 +420,7 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
 //begin clases
     //clases save
     $scope.formDataClase = {
-        "clasif_categoria":null
+        "clasif_categoria": null
     }
 
     if (id == null || id.length == 0) {
@@ -472,11 +463,11 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
     }
 
     $scope.listadoClases = function () {
-        $("#loading").css('display','block');
+        $("#loading").css('display', 'block');
         var oTable = $('#dataTableClases');
         $http.get(service + '/clases').success(
             function (data, status, headers, config) {
-                $("#loading").css('display','none');
+                $("#loading").css('display', 'none');
                 $scope.tableProveedores = data.result;
                 oTable = $('#dataTableClases').dataTable(
                     {
@@ -575,11 +566,11 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
             });
     }
     $scope.listadoMarcasProducto = function () {
-        $("#loading").css('display','block');
+        $("#loading").css('display', 'block');
         var oTable = $('#dataTableMarcas');
         $http.get(service + '/marcas_producto').success(
             function (data, status, headers, config) {
-                $("#loading").css('display','none');
+                $("#loading").css('display', 'none');
                 $scope.tableMarcas = data.result;
                 oTable = $('#dataTableMarcas').dataTable(
                     {
@@ -731,15 +722,14 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
 // ends marcas
 
 
-
-    $scope.pdf = function(){
+    $scope.pdf = function () {
         alert("testaaaa")
 //    function demoFromHTML() {
         var pdf = new jsPDF('p', 'pt', 'letter')
             , source = $('#test')[0]
             , specialElementHandlers = {
                 // element with id of "bypass" - jQuery style selector
-                '#bypassme': function(element, renderer){
+                '#bypassme': function (element, renderer) {
                     // true = "handled elsewhere, bypass text extraction"
                     return true
                 }

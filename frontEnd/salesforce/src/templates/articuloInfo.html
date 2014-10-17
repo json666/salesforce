@@ -5,210 +5,201 @@
 <!--Datos del Producto-->
 <!--</div>-->
 <div class="panel-body">
-    <!-- /.row (nested) -->
-    <form>
-        <div class="row">
-            <div class="col-lg-8">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label>CODIGO ARTICULO</label>
-                            <!--<input class="form-control" ng-model="formData.id"-->
-                            <!--placeholder="codigoArticulo">-->
-                            {{formData.codigoArticulo}}
-                        </div>
+<!-- /.row (nested) -->
+<form>
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label>CODIGO ARTICULO</label>
+                        <!--<input class="form-control" ng-model="formData.id"-->
+                        <!--placeholder="codigoArticulo">-->
+                        {{formData.codigoArticulo}}
                     </div>
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label>NOMBRE PRODUCTO</label>
-                            <!--<input class="form-control" ng-model="formData.codigoArticulo"-->
-                            <!--placeholder="codigoArticulo">-->
-                            {{formData.nombreArticulo}}
-                        </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label>NOMBRE PRODUCTO</label>
+                        <!--<input class="form-control" ng-model="formData.codigoArticulo"-->
+                        <!--placeholder="codigoArticulo">-->
+                        {{formData.nombreArticulo}}
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label>DESCRIPCION</label>
+                        <!--<input class="form-control" ng-model="formData.descripcionArticulo"-->
+                        <!--placeholder="descripcionArticulo">-->
+                        {{formData.descripcionArticulo}}
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label>UNIDAD</label>
+                        <!--<select class="form-control" id="selectUnidad" name="interes"-->
+                        <!--ng-model="formData.clasif_unidad"-->
+                        <!--ng-options="item.descripcionUnidad for item in unidadList">-->
+                        <!--<option value="">-- Seleccione --</option>-->
+                        <!--</select>-->
+                        {{formData.clasif_unidad.descripcionUnidad}}
+                    </div>
+                </div>
+            </div>
+            <legend><i class="fa fa-info-circle"></i> Información Almacen</legend>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label>MARCA</label>
+                        <!--<select class="form-control" id="selectMarca" name="interes"-->
+                        <!--ng-model="formData.clasif_marca"-->
+                        <!--ng-options="item.id as item.clasif_marca for item in marcasList">-->
+                        <!--<option value="">-- Seleccione --</option>-->
+                        <!--</select>-->
+                        {{formData.clasif_marca.descripcionMarca}}
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label>CATEGORIA</label>
+                        <!--<select class="form-control" id="selectCategoria" name="categoria"-->
+                        <!--ng-model="formData.clasif_categoria"-->
+                        <!--ng-options="item.id for item in categoriaList"-->
+                        <!--ng-change="cargarClase()">-->
+                        <!--<option value="">-- Seleccione --</option>-->
+                        <!--</select>-->
+                        {{formData.clasif_categoria.descripcionCategoria}}
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label>CLASE</label>
+                        <!--<select class="form-control" id="selectClase" name="clase"-->
+                        <!--ng-model="formData.clasif_clase"-->
+                        <!--ng-options="item.descripcionClase for item in claseList">-->
+                        <!--<option value="">-- Seleccione --</option>-->
+                        <!--</select>-->
+                        {{formData.clasif_clase.descripcionClase}}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label>PRECIO</label>
+                        <!--<input class="form-control" ng-model="formData.precio" placeholder="precio">-->
+                        {{formData.precio}}
                     </div>
 
                 </div>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label>DESCRIPCION</label>
-                            <!--<input class="form-control" ng-model="formData.descripcionArticulo"-->
-                            <!--placeholder="descripcionArticulo">-->
-                            {{formData.descripcionArticulo}}
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            <label>UNIDAD</label>
-                            <!--<select class="form-control" id="selectUnidad" name="interes"-->
-                            <!--ng-model="formData.clasif_unidad"-->
-                            <!--ng-options="item.descripcionUnidad for item in unidadList">-->
-                            <!--<option value="">-- Seleccione --</option>-->
-                            <!--</select>-->
-                            {{formData.clasif_unidad.descripcionUnidad}}
-                        </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label>PRECIO COSTO</label>
+                        <!--<input class="form-control" ng-model="formData.precioCosto"-->
+                        <!--placeholder="precioCosto">-->
+                        {{formData.precioCosto}}
                     </div>
                 </div>
-                <legend><i class="fa fa-info-circle"></i> Información Almacen</legend>
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="form-group">
-                            <label>MARCA</label>
-                            <!--<select class="form-control" id="selectMarca" name="interes"-->
-                            <!--ng-model="formData.clasif_marca"-->
-                            <!--ng-options="item.id as item.clasif_marca for item in marcasList">-->
-                            <!--<option value="">-- Seleccione --</option>-->
-                            <!--</select>-->
-                            {{formData.clasif_marca.descripcionMarca}}
-                        </div>
-                    </div>
 
-                    <div class="col-lg-4">
-                        <div class="form-group">
-                            <label>CATEGORIA</label>
-                            <!--<select class="form-control" id="selectCategoria" name="categoria"-->
-                            <!--ng-model="formData.clasif_categoria"-->
-                            <!--ng-options="item.id for item in categoriaList"-->
-                            <!--ng-change="cargarClase()">-->
-                            <!--<option value="">-- Seleccione --</option>-->
-                            <!--</select>-->
-                            {{formData.clasif_categoria.descripcionCategoria}}
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="form-group">
-                            <label>CLASE</label>
-                            <!--<select class="form-control" id="selectClase" name="clase"-->
-                            <!--ng-model="formData.clasif_clase"-->
-                            <!--ng-options="item.descripcionClase for item in claseList">-->
-                            <!--<option value="">-- Seleccione --</option>-->
-                            <!--</select>-->
-                            {{formData.clasif_clase.descripcionClase}}
-                        </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label>METODO_COSTO</label>
+                        <!--<input class="form-control" ng-model="formData.metodoCosto"-->
+                        <!--placeholder="metodoCosto">-->
+                        {{formData.metodoCosto}}
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="form-group">
-                            <label>PRECIO</label>
-                            <!--<input class="form-control" ng-model="formData.precio" placeholder="precio">-->
-                            {{formData.precio}}
-                        </div>
-
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label>NIVEL REORDEN</label>
+                        <!--<input class="form-control" ng-model="formData.nivelReorden"-->
+                        <!--placeholder="nivelReorden">-->
+                        {{formData.nivelReorden}}
                     </div>
-                    <div class="col-lg-4">
-                        <div class="form-group">
-                            <label>PRECIO COSTO</label>
-                            <!--<input class="form-control" ng-model="formData.precioCosto"-->
-                            <!--placeholder="precioCosto">-->
-                            {{formData.precioCosto}}
-                        </div>
-                    </div>
-
                 </div>
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="form-group">
-                            <label>METODO_COSTO</label>
-                            <!--<input class="form-control" ng-model="formData.metodoCosto"-->
-                            <!--placeholder="metodoCosto">-->
-                            {{formData.metodoCosto}}
-                        </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label>CANTIDAD REORDEN</label>
+                        <!--<input class="form-control" ng-model="formData.cantidadReorden">-->
+                        {{mData.cantidadReorden}}
                     </div>
-                    <div class="col-lg-4">
-                        <div class="form-group">
-                            <label>NIVEL REORDEN</label>
-                            <!--<input class="form-control" ng-model="formData.nivelReorden"-->
-                            <!--placeholder="nivelReorden">-->
-                            {{formData.nivelReorden}}
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="form-group">
-                            <label>CANTIDAD REORDEN</label>
-                            <!--<input class="form-control" ng-model="formData.cantidadReorden">-->
-                            {{mData.cantidadReorden}}
-                        </div>
-                    </div>
-
                 </div>
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="form-group">
-                            <label>N_SERIE</label>
-                            <!--<input class="form-control" ng-model="formData.nSerie">-->
-                            {{formData.nSerie}}
-                        </div>
+
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label>N_SERIE</label>
+                        <!--<input class="form-control" ng-model="formData.nSerie">-->
+                        {{formData.nSerie}}
                     </div>
-                    <div class="col-lg-4">
-                        <div class="form-group">
-                            <label>FECHA DESDE</label>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label>FECHA DESDE</label>
 
-                            <div class="input-group date">
-                                <!--<input class="form-control" ng-model="formData.fechaDesde" datepicker=""-->
-                                <!--type="text">-->
-                                {{formData.fechaDesde | date:'dd-MM-yyyy'}}
-                                <!--<span class="input-group-addon"><i class="fa fa-calendar"></i>-->
-                                <!--</span>-->
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4">
-                        <div class="form-group">
-                            <label>FECHA HASTA</label>
-
-                            <div class="input-group date">
-                                <!--<input class="form-control" ng-model="formData.fechaHasta" datepicker=""-->
-                                <!--type="text">-->
-                                {{formData.fechaHasta | date:'dd-MM-yyyy'}}
-                                <!--<span class="input-group-addon"><i class="fa fa-calendar"></i>-->
-                                <!--</span>-->
-                            </div>
+                        <div class="input-group date">
+                            <!--<input class="form-control" ng-model="formData.fechaDesde" datepicker=""-->
+                            <!--type="text">-->
+                            {{formData.fechaDesde | date:'dd-MM-yyyy'}}
+                            <!--<span class="input-group-addon"><i class="fa fa-calendar"></i>-->
+                            <!--</span>-->
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-12">
-                    <!--<button type="submit" ng-click="save()" class="btn btn-primary"><i class="fa fa-save"></i> Guardar</button>-->
-                    <!--<button type="reset" class="btn btn-default">Limpiar</button>-->
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label>FECHA HASTA</label>
+
+                        <div class="input-group date">
+                            <!--<input class="form-control" ng-model="formData.fechaHasta" datepicker=""-->
+                            <!--type="text">-->
+                            {{formData.fechaHasta | date:'dd-MM-yyyy'}}
+                            <!--<span class="input-group-addon"><i class="fa fa-calendar"></i>-->
+                            <!--</span>-->
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="col-lg-4">
-                <div class="img-thumbnail">
-
-                    <!--<img src="src/img/upload.jpg">-->
-                    <!--<img src="src/img/anillo.jpg">-->
-                    <div id="imageUpload">
+            <div class="col-lg-12">
+                <!--<button type="submit" ng-click="save()" class="btn btn-primary"><i class="fa fa-save"></i> Guardar</button>-->
+                <!--<button type="reset" class="btn btn-default">Limpiar</button>-->
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="img-thumbnail">
+                <div id="imageUpload">
                     <img ng-show="show" ng-src="data:image/JPEG;base64,{{formData.fotografia}}" width="290px"
                          title="Imagen del producto">
                     <img ng-show="!show" src="src/img/sin-imagen.png" class="img-responsive img-thumbnail">
-                    </div>
                 </div>
-                <hr>
-
-                <div class="img-rounded center">
-                    <!--<div class="col-lg-8">-->
-
-                    <label>CODIGO DE BARRAS</label><br>
-                    <img ng-src="data:image/JPEG;base64,{{formData.upc}}">
-
-
-
-                    <div class="center" style="margin-top:8px;">
-                        <button class="btn btn-primary"><i class="fa fa-print"> </i> Imprimir</button>
-                    </div>
-                    <!--</div>-->
-                </div>
-                <br>
-
             </div>
+            <hr>
+
+            <div class="img-rounded center">
+                <label>CODIGO DE BARRAS</label><br>
+                <img ng-src="data:image/JPEG;base64,{{formData.upc}}">
+                <div class="center" style="margin-top:8px;">
+                    <button class="btn btn-primary"><i class="fa fa-print"> </i> Imprimir</button>
+                </div>
+                <!--</div>-->
+            </div>
+            <br>
+
         </div>
-    </form>
-    <!--<pre>-->
-    <!--{{formData}}-->
-    <!--</pre>-->
+    </div>
+</form>
+<!--<pre>-->
+<!--{{formData}}-->
+<!--</pre>-->
 </div>
 <!-- /.panel-body -->
 </div>

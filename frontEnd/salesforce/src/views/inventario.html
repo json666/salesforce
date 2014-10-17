@@ -23,14 +23,16 @@
                                         <div class="form-group">
                                             <label for="codigoArticulo">CODIGO ARTICULO</label>
                                             <input class="form-control" ng-model="formData.codigoArticulo"
-                                                   id="codigoArticulo" placeholder="codigoArticulo" name="formData.codigoArticulo">
+                                                   id="codigoArticulo" placeholder="codigoArticulo"
+                                                   name="formData.codigoArticulo" capitalize>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label for="nombreArticulo">NOMBRE PRODUCTO</label>
                                             <input class="form-control" ng-model="formData.nombreArticulo"
-                                                   id="nombreArticulo" placeholder="nombreArticulo" name="formData.nombreArticulo">
+                                                   id="nombreArticulo" placeholder="nombreArticulo"
+                                                   name="formData.nombreArticulo" capitalize>
                                         </div>
                                     </div>
 
@@ -40,7 +42,8 @@
                                         <div class="form-group">
                                             <label for="descripcionArticulo">DESCRIPCION</label>
                                             <input class="form-control" ng-model="formData.descripcionArticulo"
-                                                   id="descripcionArticulo" placeholder="descripcionArticulo" name="formData.descripcionArticulo">
+                                                   id="descripcionArticulo" placeholder="descripcionArticulo"
+                                                   name="formData.descripcionArticulo" capitalize>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
@@ -70,7 +73,8 @@
                                     <div class="col-lg-4">
                                         <div class="form-group">
                                             <label>CATEGORIA</label>
-                                            <select class="form-control" id="selectCategoria" name="formData.clasif_categoria"
+                                            <select class="form-control" id="selectCategoria"
+                                                    name="formData.clasif_categoria"
                                                     ng-model="formData.clasif_categoria"
                                                     ng-options="item.descripcionCategoria for item in categoriaList"
                                                     ng-change="cargarClase()">
@@ -93,21 +97,22 @@
                                     <div class="col-lg-4">
                                         <div class="form-group">
                                             <label>PRECIO</label>
-                                            <input class="form-control" ng-model="formData.precio" placeholder="precio">
+                                            <input class="form-control" ng-model="formData.precio" placeholder="precio" capitalize>
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="form-group">
                                             <label>PRECIO COSTO</label>
                                             <input class="form-control" ng-model="formData.precioCosto"
-                                                   placeholder="precioCosto">
+                                                   placeholder="precioCosto" capitalize>
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="form-group">
-                                            <label>METODO_COSTO</label>
-                                            <input class="form-control" ng-model="formData.metodoCosto"
-                                                   placeholder="metodoCosto">
+                                            <label>MARGEN GANACIA</label>
+                                            <input class="form-control" ng-model="formData.margenGanancia"
+
+                                                   placeholder="margenGanancia" capitalize >
                                         </div>
                                     </div>
                                 </div>
@@ -116,7 +121,7 @@
                                         <div class="form-group">
                                             <label>NIVEL REORDEN</label>
                                             <input class="form-control" ng-model="formData.nivelReorden"
-                                                   placeholder="nivelReorden">
+                                                   placeholder="nivelReorden" capitalize>
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
@@ -162,23 +167,20 @@
 
                             <div class="col-lg-4">
                                 <div id="imageUpload">
-                                <div class="center-block">
-                                    <!--<img src="src/img/upload.jpg" class="img-responsive img-thumbnail">-->
-                                </div>
+                                    <div class="center-block">
+                                    </div>
                                 </div>
 
                                 <br>
+                                <!--ng-model="formData.fotografia"-->
                                 <div class="col-lg-4">
                                     <div class="form-group center">
-                                        <!--<label>FOTOGRAFIA</label>-->
-                                        <!--<input type="file" ng-model="formData.fotografia" placeholder="fotografia">-->
-
                                     <span class="btn btn-primary btn-file">
                                     <i class="fa fa-upload"></i> Subir Imágen
                                         <input
                                                 class="inputFiles upload"
                                                 type="file"
-                                                ng-model="formData.fotografia"
+
                                                 ng-click="cargarImagen()"
                                                 accept="image/x-png, image/gif, image/jpeg"/>
                                    </span>
@@ -229,11 +231,6 @@
 </div>
 
 
-
-
-
-
-
 <div id="loading">
     <div id="load-div">
         <img src="src/img/load.gif" width="50px"/>
@@ -249,7 +246,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title red" id="myModalLabel"><i class="icon-warning-sign"></i><strong>
+                <h4 class="modal-title red" id="myModalLabel1"><i class="icon-warning-sign"></i><strong>
                     Advertencia </strong></h4>
             </div>
             <div class="modal-body">

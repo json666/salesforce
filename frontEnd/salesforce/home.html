@@ -51,11 +51,12 @@
     <script type="text/javascript" src="src/controllers/ComprasController.js"></script>
     <script type="text/javascript" src="src/controllers/LoginController.js"></script>
     <script type="text/javascript" src="src/controllers/ReportesController.js"></script>
-    <script type="text/javascript" src="src/controllers/ReportePdfController.js"></script>
+    <!--<script type="text/javascript" src="src/controllers/ReportePdfController.js"></script>-->
 
     <!--Directives-->
     <script type="text/javascript" src="src/directives/templateDirective.js"></script>
     <script type="text/javascript" src="src/directives/datapickerDirective.js"></script>
+    <script type="text/javascript" src="src/directives/CapitalizeDirective.js"></script>
     <script type="text/javascript" src="src/validate/validateArticuloDirective.js"></script>
 
     <script type="text/javascript" src="src/services/adminService.js"></script>
@@ -149,13 +150,19 @@
                     </ul>
                 </li>
                 <li clas="dropdown">
-                    <a data-target="" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-table"></i> Inventarios<span class="caret"></span> </a>
+                    <a data-target="" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-table"></i> Catalogos<span class="caret"></span> </a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="#/inventarios">Productos</a></li>
                         <li><a href="#/categorias">Categorias</a></li>
                         <li><a href="#/clases">Clases</a></li>
                         <li><a href="#/marcas">Marcas</a></li>
                         <li><a href="#/unidades">Unidades</a></li>
+
+                    </ul>
+                </li>
+                <li clas="dropdown">
+                    <a data-target="" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-shopping-cart"></i>Inventarios<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
                         <li><a href="#/inventarios">Inventario Físico</a></li>
                     </ul>
                 </li>
