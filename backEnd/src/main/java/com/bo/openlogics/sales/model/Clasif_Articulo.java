@@ -24,8 +24,8 @@ public class Clasif_Articulo extends EntidadBase {
     @Column(name = "CODIGO_ARTICULO")
     private String codigoArticulo ;
 
-    @Column(name = "METODO_COSTO")
-    private String metodoCosto;
+    @Column(name = "MARGEN_GANANCIA")
+    private Double margenGanancia;
 
     @Column(name = "PRECIO")
     private Double precio ;
@@ -74,11 +74,11 @@ public class Clasif_Articulo extends EntidadBase {
 
     }
 
-    public Clasif_Articulo(String nombreArticulo, String descripcionArticulo, String codigoArticulo, String metodoCosto, Double precio, Double precioCosto, byte[] upc, int nivelReorden, int cantidadReorden, int nSerie, byte[] fotografia, Date fechaDesde, Date fechaHasta, String usuarioAct, Clasif_Marca clasif_marca, Clasif_Unidad clasif_unidad, Clasif_Categoria clasif_categoria, Clasif_Clase clasif_clase) {
+    public Clasif_Articulo(String nombreArticulo, String descripcionArticulo, String codigoArticulo, Double margenGanancia, Double precio, Double precioCosto, byte[] upc, int nivelReorden, int cantidadReorden, int nSerie, byte[] fotografia, Date fechaDesde, Date fechaHasta, String usuarioAct, Clasif_Marca clasif_marca, Clasif_Unidad clasif_unidad, Clasif_Categoria clasif_categoria, Clasif_Clase clasif_clase) {
         this.nombreArticulo = nombreArticulo;
         this.descripcionArticulo = descripcionArticulo;
         this.codigoArticulo = codigoArticulo;
-        this.metodoCosto = metodoCosto;
+        this.margenGanancia=margenGanancia;
         this.precio = precio;
         this.precioCosto = precioCosto;
         this.upc = upc;
@@ -111,13 +111,7 @@ public class Clasif_Articulo extends EntidadBase {
         this.descripcionArticulo = descripcionArticulo;
     }
 
-    public String getMetodoCosto() {
-        return metodoCosto;
-    }
 
-    public void setMetodoCosto(String metodoCosto) {
-        this.metodoCosto = metodoCosto;
-    }
 
     public Double getPrecio() {
         return precio;
@@ -239,5 +233,13 @@ public class Clasif_Articulo extends EntidadBase {
 
     public void setUpc(byte[] upc) {
         this.upc = upc;
+    }
+
+    public Double getMargenGanancia() {
+        return margenGanancia;
+    }
+
+    public void setMargenGanancia(Double margenGanancia) {
+        this.margenGanancia = margenGanancia;
     }
 }

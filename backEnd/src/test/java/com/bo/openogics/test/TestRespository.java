@@ -161,7 +161,7 @@ public class TestRespository {
             clasifArticulo.setCodigoArticulo("JOAN0.0.2");
             clasifArticulo.setCantidadReorden(3);
             clasifArticulo.setPrecio(15000.0);
-            clasifArticulo.setMetodoCosto("250.0");
+            clasifArticulo.setMargenGanancia(250.0);
             clasifArticulo.setClasif_marca(clasifMarca);
             clasifArticulo.setClasif_clase(clasifClase);
             clasifArticulo.setClasif_unidad(clasifUnidad);

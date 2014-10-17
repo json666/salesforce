@@ -23,7 +23,7 @@ public class ArticuloBean implements Serializable {
     private String nombreArticulo ;
 
 
-    private String metodoCosto;
+    private Double margenGanancia;
 
 
     private Double precio ;
@@ -64,12 +64,12 @@ public class ArticuloBean implements Serializable {
 
     public ArticuloBean() {}
 
-    public ArticuloBean(Long id, String descripcionArticulo, String codigoArticulo, String nombreArticulo, String metodoCosto, Double precio, Double precioCosto, byte[] upc, int nivelReorden, int cantidadReorden, int nSerie, byte[] fotografia, Date fechaDesde, Date fechaHasta, String usuarioAct, ClaseBean claseBean, MarcaBean marcaBean, CategoriaBean categoriaBean, UnidadBean unidadBean) {
+    public ArticuloBean(Long id, String descripcionArticulo, String codigoArticulo, String nombreArticulo, Double margenGanancia, Double precio, Double precioCosto, byte[] upc, int nivelReorden, int cantidadReorden, int nSerie, byte[] fotografia, Date fechaDesde, Date fechaHasta, String usuarioAct, ClaseBean claseBean, MarcaBean marcaBean, CategoriaBean categoriaBean, UnidadBean unidadBean) {
         this.id = id;
         this.descripcionArticulo = descripcionArticulo;
         this.codigoArticulo = codigoArticulo;
         this.nombreArticulo = nombreArticulo;
-        this.metodoCosto = metodoCosto;
+        this.setMargenGanancia(margenGanancia);
         this.precio = precio;
         this.precioCosto = precioCosto;
         this.upc = upc;
@@ -87,7 +87,7 @@ public class ArticuloBean implements Serializable {
     }
 
     public ArticuloBean(Long id, String descripcionArticulo, String codigoArticulo,
-                        String metodoCosto, Double precio, Double precioCosto,
+                        Double margenGanancia, Double precio, Double precioCosto,
                         byte[] upc, int nivelReorden, int cantidadReorden,
                         int nSerie, byte[] fotografia, Date fechaDesde,
                         Date fechaHasta, String usuarioAct, ClaseBean claseBean,
@@ -95,7 +95,7 @@ public class ArticuloBean implements Serializable {
         this.id = id;
         this.descripcionArticulo = descripcionArticulo;
         this.codigoArticulo = codigoArticulo;
-        this.metodoCosto = metodoCosto;
+        this.setMargenGanancia(margenGanancia);
         this.precio = precio;
         this.precioCosto = precioCosto;
         this.upc = upc;
@@ -113,14 +113,14 @@ public class ArticuloBean implements Serializable {
     }
 
     public ArticuloBean(Long id, String descripcionArticulo, String codigoArticulo,
-                        String metodoCosto, Double precio, Double precioCosto,
+                        Double margenGanancia, Double precio, Double precioCosto,
                         byte[] upc, int nivelReorden, int cantidadReorden,
                         int nSerie, byte[] fotografia, Date fechaDesde,
                         Date fechaHasta, String usuarioAct, ClaseBean claseBean) {
         this.id = id;
         this.descripcionArticulo = descripcionArticulo;
         this.codigoArticulo = codigoArticulo;
-        this.metodoCosto = metodoCosto;
+        this.setMargenGanancia(margenGanancia);
         this.precio = precio;
         this.precioCosto = precioCosto;
         this.upc = upc;
@@ -160,13 +160,7 @@ public class ArticuloBean implements Serializable {
         this.codigoArticulo = codigoArticulo;
     }
 
-    public String getMetodoCosto() {
-        return metodoCosto;
-    }
 
-    public void setMetodoCosto(String metodoCosto) {
-        this.metodoCosto = metodoCosto;
-    }
 
     public Double getPrecio() {
         return precio;
@@ -286,5 +280,13 @@ public class ArticuloBean implements Serializable {
 
     public void setNombreArticulo(String nombreArticulo) {
         this.nombreArticulo = nombreArticulo;
+    }
+
+    public Double getMargenGanancia() {
+        return margenGanancia;
+    }
+
+    public void setMargenGanancia(Double margenGanancia) {
+        this.margenGanancia = margenGanancia;
     }
 }

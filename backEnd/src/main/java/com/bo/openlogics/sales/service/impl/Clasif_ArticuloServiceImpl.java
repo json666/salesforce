@@ -163,7 +163,7 @@ public class Clasif_ArticuloServiceImpl implements Clasif_ArticuloService {
                     categoriaBean= new CategoriaBean(articulo.getClasif_categoria().getId(),articulo.getClasif_categoria().getDescripcionCategoria());
                     logger.info("******Articulo 3*******");
                     articuloBean= new ArticuloBean(articulo.getId(),articulo.getDescripcionArticulo(),articulo.getCodigoArticulo(),
-                            articulo.getMetodoCosto(),articulo.getPrecio(),articulo.getPrecioCosto(),
+                            articulo.getMargenGanancia(),articulo.getPrecio(),articulo.getPrecioCosto(),
                             articulo.getUpc(),articulo.getNivelReorden(),articulo.getCantidadReorden(),
                             articulo.getnSerie(),articulo.getFotografia(),articulo.getFechaDesde(),articulo.getFechaHasta(),
                             articulo.getUsuarioAct(),claseBean,marcaBean,categoriaBean,unidadBean);
