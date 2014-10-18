@@ -101,19 +101,11 @@ public class SalesForceParamRESTController {
         }
     }
 
-    @RequestMapping(value = "/unidad_medida/guardar", method = RequestMethod.GET)
+    @RequestMapping(value = "/unidad_medida/guardar", method = RequestMethod.POST)
     @ResponseBody
     public JsonResult saveUnidad(@RequestBody Clasif_Unidad clasif_unidad) {
         try{
-            JsonResult jsonResult=null;
-            if(clasif_unidad!=null){
-
-                //sonResult= clasif_unidadService.save(clasif_unidad)
-                return jsonResult;
-
-            }else{
-                return new JsonResult(false,"El objeto Categoria tiene problemas.",null);
-            }
+            return clasif_unidadService.save(clasif_unidad);
         }catch(NullPointerException e){
             e.printStackTrace();
             return new JsonResult(false,"Error: "+e.getMessage(),null);

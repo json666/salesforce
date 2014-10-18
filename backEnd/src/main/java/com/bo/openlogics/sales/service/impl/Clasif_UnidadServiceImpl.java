@@ -29,20 +29,26 @@ public class Clasif_UnidadServiceImpl implements Clasif_UnidadService {
     UtilTransport utilTransport;
 
     @Override
-    public void save(Clasif_Unidad clasif_unidad) {
+    public JsonResult save(Clasif_Unidad clasif_unidad) {
+        JsonResult jsonResult=null;
         try{
             Clasif_Unidad clasifUnidad=null;
-            clasifUnidad= clasif_unidadRepository.findByCodigoUnidad(clasif_unidad.getCodigoUnidad());
-            if(clasifUnidad==null){
-                clasif_unidadRepository.save(clasif_unidad);
+            //clasifUnidad= clasif_unidadRepository.findByCodigoUnidad(clasif_unidad.getCodigoUnidad().toUpperCase());
+            if(clasif_unidad!=null){
+                clasifUnidad=clasif_unidadRepository.save(clasif_unidad);
+                jsonResult= new JsonResult(true,"El tipo Unidad se registro Satisfactoriamente.",null);
             }else{
+                jsonResult= new JsonResult(false,"Error, con el registro.",null);
                 logger.info("******La unidad ya esta registrada*******");
             }
         }catch(NullPointerException e){
             e.printStackTrace();
+            jsonResult= new JsonResult(false,e.getMessage(),null);
         }catch(Exception e){
             e.printStackTrace();
+            jsonResult= new JsonResult(false,e.getMessage(),null);
         }
+        return jsonResult;
     }
 
     @Override
