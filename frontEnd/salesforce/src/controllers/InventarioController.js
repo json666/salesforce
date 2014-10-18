@@ -645,14 +645,15 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
         $scope.saveUnidad = function () {
             $http({
                 method: 'POST',
-                url: service + '/marcas/guardar',
+                url: service + '/unidad_medida/guardar',
                 data: JSON.stringify($scope.formDataUnidad)
             }).success(function (response) {
                 result = response;
-                $scope.formDataUnidad = null
+                $scope.formDataUnidad = null;
                 $("#ModalUnidad").modal('hide')
                 $('#alertSucces').modal('show');
                 $("#mensajeAlertSucces").text(response.message);
+                $scope.listadoUnidades();
 
             }).error(function (response) {   //
                 alert("ERROR! intente mas tarde")
@@ -670,66 +671,70 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
             function (data, status) {
 //                $("#loading-div-background").css("display", "none");
                 console.log("###unidades");
-                $scope.formDataClase = data.result;
+                $scope.formDataUnidad = data.result;
                 console.log(angular.toJson(data.result));
             }).error(function (data, status) {
                 alert("Error de conexion con el servidor.");
             });
     }
-    var oTable = $('#dataTableUnidades');
-    $http.get(service + '/unidad_medida').success(
-        function (data, status, headers, config) {
-            $scope.tableUnidades = data.result;
-            oTable = $('#dataTableUnidades').dataTable(
-                {
-                    "bJQueryUI": true,
-                    "bAutoWidth": true,
-                    "bProcessing": true,
-                    "oLanguage": {
-                        "sUrl": "src/js/i18n/dataTable_es.txt"
-                    },
-                    "aaData": $scope.tableUnidades,
-                    "aoColumns": [
+    $scope.listadoUnidades=function(){
+        var oTable = $('#dataTableUnidades');
+        $http.get(service + '/unidad_medida').success(
+            function (data, status, headers, config) {
+                $scope.tableUnidades = data.result;
+                oTable = $('#dataTableUnidades').dataTable(
+                    {
+                        "bJQueryUI": true,
+                        "bAutoWidth": true,
+                        "bProcessing": true,
+                        "oLanguage": {
+                            "sUrl": "src/js/i18n/dataTable_es.txt"
+                        },
+                        "aaData": $scope.tableUnidades,
+                        "aoColumns": [
 //
-                        {
-                            "mData": null,
-                            "bSortable": false
-                        },
-                        {
-                            "mData": "descripcionUnidad"
-                        },
-                        {
-                            "bSortable": false,
-                            "mData": function (oObj) {
-                                var ad = " <a href='#/clientes/" + oObj.id + "' class='btn btn-primary'><i class='fa fa-edit'></i></a>";
-                                return ad;
+                            {
+                                "mData": null,
+                                "bSortable": false
+                            },
+                            {
+                                "mData": "descripcionUnidad"
+                            },
+                            {
+                                "bSortable": false,
+                                "mData": function (oObj) {
+                                    var ad = " <a href='#/clientes/" + oObj.id + "' class='btn btn-primary'><i class='fa fa-edit'></i></a>";
+                                    return ad;
 
+                                }
+
+                            },
+                            {
+                                "bSortable": false,
+                                "mData": function (oObj) {
+                                    var bd = " <a href='#/cliente-info/" + oObj.id + "' class='btn btn-danger'><i class='fa fa-trash-o'></i></a>";
+                                    return bd;
+                                }
                             }
 
+
+                        ],
+                        "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+                            $('td:eq(0)', nRow).html(iDisplayIndexFull + 1);
+                            return nRow;
                         },
-                        {
-                            "bSortable": false,
-                            "mData": function (oObj) {
-                                var bd = " <a href='#/cliente-info/" + oObj.id + "' class='btn btn-danger'><i class='fa fa-trash-o'></i></a>";
-                                return bd;
-                            }
-                        }
+                        "bDestroy": true
+                    });
 
+            }).
+            error(function (data, status, headers, config) {
+                alert(data.result);
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+            });
+    }
+    $scope.listadoUnidades();
 
-                    ],
-                    "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
-                        $('td:eq(0)', nRow).html(iDisplayIndexFull + 1);
-                        return nRow;
-                    },
-                    "bDestroy": true
-                });
-
-        }).
-        error(function (data, status, headers, config) {
-            alert(data.result);
-            // called asynchronously if an error occurs
-            // or server returns response with an error status.
-        });
 // ends marcas
 
 
