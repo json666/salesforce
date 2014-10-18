@@ -27,6 +27,8 @@ function LoginController($scope, $cookies, $http) {
                     //alert(JSON.stringify(data.result.nombreUsuario+'--'+data.result.rol));
                     $cookies.username = data.result.nombreUsuario;
 			        $cookies.usuarioperfil = data.result.rol;
+                    $cookies.nombres = data.result.nombres;
+                    $cookies.paterno = data.result.paterno;
                     location.href = 'home.html';
 //                  $cookies.usuarionombre = nombre;
 //			        $cookies.usuarioperfil = perfil;
