@@ -1,0 +1,33 @@
+[
+
+    {
+        "menu": "Movimientos",
+        "opciones": [
+            {
+                "titulo": "Movimientos",
+                "url": "#/compras"
+            },
+            {
+                "titulo": "Ventas",
+                "url": "#/movimientos"
+            }
+        ]
+
+    },
+
+    {
+        "menu": "Reportes",
+        "opciones": [
+            {
+                "titulo": "Generar Etiquetas",
+                "url": "#/reporte_etiqueta"
+            }
+        ]
+
+    }
+
+
+]
+
+
+

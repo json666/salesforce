@@ -1,0 +1,81 @@
+[
+    {
+        "menu": "Administración",
+        "opciones": [
+            {
+                "titulo": "Proveedores",
+                "url": "#/administracion"
+            },
+            {
+                "titulo": "Alamacenes",
+                "url": "#/almacenes"
+            }
+
+        ]
+
+    },
+    {
+        "menu": "Movimientos",
+        "opciones": [
+            {
+                "titulo": "Movimientos",
+                "url": "#/compras"
+            },
+            {
+                "titulo": "Ventas",
+                "url": "#/movimientos"
+            }
+        ]
+
+    },
+    {
+        "menu": "Catalogos",
+        "opciones": [
+            {
+                "titulo": "Productos",
+                "url": "#/inventarios"
+            },
+            {
+                "titulo": "Categorias",
+                "url": "#/categorias"
+            },
+            {
+                "titulo": "Clases",
+                "url": "#/clases"
+            },
+            {
+                "titulo": "Marcas",
+                "url": "#/marcas"
+            },
+            {
+                "titulo": "Unidades",
+                "url": "#/unidades"
+            }
+        ]
+    },
+    {
+        "menu": "Inventarios",
+        "opciones": [
+            {
+                "titulo": "Inventario Físico",
+                "url": "#/inventarios"
+            }
+
+        ]
+    },
+    {
+        "menu": "Reportes",
+        "opciones": [
+            {
+                "titulo": "Generar Etiquetas",
+                "url": "#/reporte_etiqueta"
+            }
+        ]
+
+    }
+
+
+]
+
+
+
