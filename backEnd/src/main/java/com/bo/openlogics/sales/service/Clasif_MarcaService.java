@@ -9,4 +9,5 @@ import com.bo.openlogics.sales.model.Clasif_Marca;
 public interface Clasif_MarcaService {
     public JsonResult saveMarca(Clasif_Marca clasif_marca);
     public JsonResult listadoMarcas();
+    public JsonResult getById(Long IdMarca) throws Exception;
 }

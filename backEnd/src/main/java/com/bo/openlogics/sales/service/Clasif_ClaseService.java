@@ -17,5 +17,7 @@ public interface Clasif_ClaseService {
 
     public JsonResult listadoClases();
 
+    public JsonResult getById(Long IdClase) throws Exception;
+
 
 }

@@ -73,6 +73,11 @@ public class Clasif_ClaseServiceImpl implements Clasif_ClaseService {
     }
 
     @Override
+    public JsonResult getById(Long IdClase) throws Exception {
+        return null;
+    }
+
+    @Override
     public JsonResult saveClase(Clasif_Clase clasif_clase) {
         JsonResult jsonResult = null;
         Clasif_Categoria clasif_categoria=null;

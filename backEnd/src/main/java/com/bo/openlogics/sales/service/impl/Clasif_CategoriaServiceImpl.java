@@ -3,6 +3,7 @@ package com.bo.openlogics.sales.service.impl;
 import com.bo.openlogics.core.bean.JsonResult;
 import com.bo.openlogics.sales.beans.parametricas.CategoriaBean;
 import com.bo.openlogics.sales.dozer.UtilTransport;
+import com.bo.openlogics.sales.model.Clasif_Articulo;
 import com.bo.openlogics.sales.model.Clasif_Categoria;
 import com.bo.openlogics.sales.repository.Clasif_CategoriaRepository;
 import com.bo.openlogics.sales.service.Clasif_CategoriaService;
@@ -72,5 +73,31 @@ public class Clasif_CategoriaServiceImpl implements Clasif_CategoriaService {
         } catch (Exception e) {
             return new JsonResult(false, e.getMessage(), null);
         }
+    }
+
+    @Override
+    public JsonResult getById(Long IdCategoria) throws Exception {
+        JsonResult jsonResult = null;
+        Clasif_Categoria clasif_categoria=null;
+        try {
+            /**
+             * TODO: Logica de negocio para buscar Articulo por id
+             */
+
+            clasif_categoria = clasif_categoriaRepository.findOne(IdCategoria);
+
+            if (clasif_categoria != null){
+                jsonResult=new JsonResult(true,"Categoria Seleccionada",clasif_categoria);
+            }
+            else{
+                jsonResult=new JsonResult(false,"Categoria no Existe",null);
+                logger.info("******Articulo no Existe*******");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            jsonResult=new JsonResult(false,e.getMessage(),null);
+        }
+        return jsonResult;
     }
 }
