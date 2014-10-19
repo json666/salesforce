@@ -34,10 +34,10 @@ public class Bodega_articulo extends EntidadBase {
     private Double costoTotal;
 
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.bodega_articulo", cascade = CascadeType.ALL)
+    //@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.bodega_articulo", cascade = CascadeType.ALL)
     //@Cascade({org.hibernate.annotations.CascadeType.ALL, org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
-    @JsonIgnore
-    private List<BodegaDetalleMovimiento> bodegaDetalleMovimientos;
+    //@JsonIgnore
+    //private List<BodegaDetalleMovimiento> bodegaDetalleMovimientos;
 
 
 
@@ -48,25 +48,25 @@ public class Bodega_articulo extends EntidadBase {
             inverseJoinColumns = {@JoinColumn(name = "CLASFARTICULO_ID", referencedColumnName = "id")})
     private List<Clasif_Articulo> clasif_articulos;*/
 
-    @ManyToOne
+    //@ManyToOne
     private Clasif_Articulo clasif_articulo;
 
 
     @Transient
     private Movimiento movimiento;
 
-    @ManyToOne(cascade=CascadeType.PERSIST, fetch = FetchType.LAZY)
+    //@ManyToOne(cascade=CascadeType.PERSIST, fetch = FetchType.LAZY)
     //@JoinColumn(name="CLASIF_BODEGA_ID")
     private Clasif_Bodega clasif_bodega;
 
     public Bodega_articulo() {}
 
-    public Bodega_articulo(String cantidad, Double monto, Double costoTotal, List<BodegaDetalleMovimiento> bodegaDetalleMovimientos,
+    public Bodega_articulo(String cantidad, Double monto, Double costoTotal, /*List<BodegaDetalleMovimiento> bodegaDetalleMovimientos,*/
                            Clasif_Articulo clasif_articulo, Movimiento movimiento, Clasif_Bodega clasif_bodega) {
         this.cantidad = cantidad;
         this.monto = monto;
         this.costoTotal = costoTotal;
-        this.bodegaDetalleMovimientos = bodegaDetalleMovimientos;
+        //this.bodegaDetalleMovimientos = bodegaDetalleMovimientos;
         this.setClasif_articulo(clasif_articulo);
         this.movimiento = movimiento;
         this.clasif_bodega = clasif_bodega;
@@ -88,7 +88,7 @@ public class Bodega_articulo extends EntidadBase {
         this.monto = monto;
     }
 
-    public List<BodegaDetalleMovimiento> getBodegaDetalleMovimientos() {
+    /*public List<BodegaDetalleMovimiento> getBodegaDetalleMovimientos() {
         if (bodegaDetalleMovimientos == null) {
             bodegaDetalleMovimientos = new ArrayList<BodegaDetalleMovimiento>();
         }
@@ -115,7 +115,7 @@ public class Bodega_articulo extends EntidadBase {
         this.getBodegaDetalleMovimientos().add(bodegaDetalleMovimiento);
         System.out.println("ABDM 5");
 
-    }
+    }*/
 
 
     public Movimiento getMovimiento() {

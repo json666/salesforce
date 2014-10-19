@@ -14,7 +14,7 @@ public class BodegaDetalleMovimientoPK implements Serializable {
     public BodegaDetalleMovimientoPK() {
     }
 
-    @ManyToOne
+    //@ManyToOne
     public Bodega_articulo getBodega_articulo() {
         return bodega_articulo;
     }
@@ -22,7 +22,7 @@ public class BodegaDetalleMovimientoPK implements Serializable {
     public void setBodega_articulo(Bodega_articulo bodega_articulo) {
         this.bodega_articulo = bodega_articulo;
     }
-    @ManyToOne
+    //@ManyToOne
     public Movimiento getMovimiento() {
         return movimiento;
     }
