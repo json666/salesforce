@@ -86,6 +86,8 @@
 //            var user = $cookies['username'];
         $scope.usuarionombre = $cookies['username'];
         $scope.usuarioperfil = $cookies['usuarioperfil'];
+        $scope.nombres = $cookies['nombres'];
+        $scope.apellido = $cookies['paterno'];
 
     }
 
@@ -118,9 +120,9 @@
 <ul class="nav navbar-top-links navbar-right">
 
 <!-- /.dropdown -->
-<li class="dropdown">
-    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-        Administrador <i class="fa fa-user fa-fw dark"></i> <i class="fa fa-caret-down"></i>
+<li class="dropdown" ng-controller="UsuarioController">
+    <a class="dropdown-toggle" data-toggle="dropdown">
+        {{nombres}} {{apellido}} - ({{usuarioperfil}})   <i class="fa fa-user fa-fw dark"></i> <i class="fa fa-caret-down"></i>
     </a>
     <ul class="dropdown-menu dropdown-user">
         <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
