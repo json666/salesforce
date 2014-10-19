@@ -43,6 +43,6 @@ SALESFORCE USUARIOS
  */
 
 INSERT INTO salesforce.usuarios(desabilitado, estado, materno, nombre_usuario, nombre, password, paterno, rol, email) VALUES (false, 'AC', 'admin', 'admin', 'admin', 'admin','admin', 'ADMINISTRADOR', 'admin@afrodita.com');
-INSERT INTO salesforce.usuarios(desabilitado, estado, materno, nombre_usuario, nombre, password, paterno, rol, email) VALUES (false, 'AC', 'CUISI', 'acuisi', 'CUISIS', 'acuisi','CUISI', 'ADMINISTRADOR', 'acuisi@afrodita.com');
---INSERT INTO salesforce.usuarios(desabilitado, estado, materno, nombre_usuario, nombre, password, paterno, rol, email) VALUES (false, 'AC', 'CUISI', 'acuisi', 'CUISIS', 'acuisi','CUISI', 'ADMINISTRADOR', 'acuisi@afrodita.com');
+INSERT INTO salesforce.usuarios(desabilitado, estado, materno, nombre_usuario, nombre, password, paterno, rol, email) VALUES (false, 'AC', 'CUISI', 'acuisi', 'CUISI', 'acuisi','CUISI', 'VENDEDOR', 'acuisi@afrodita.com');
+INSERT INTO salesforce.usuarios(desabilitado, estado, materno, nombre_usuario, nombre, password, paterno, rol, email) VALUES (false, 'AC', 'vendedor', 'vendedor', 'VENDEDOR', 'vendedor','VENDEDOR', 'VENDEDOR', 'vendedor@afrodita.com');
 
