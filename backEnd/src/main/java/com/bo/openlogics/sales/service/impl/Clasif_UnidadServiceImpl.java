@@ -72,4 +72,9 @@ public class Clasif_UnidadServiceImpl implements Clasif_UnidadService {
         }
     }
 
+    @Override
+    public JsonResult getById(Long IdUnidad) throws Exception {
+        return null;
+    }
+
 }

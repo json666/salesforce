@@ -72,4 +72,9 @@ public class Clasif_MarcaServiceImpl implements Clasif_MarcaService {
             return new JsonResult(false,"Error: "+e.getMessage(),null);
         }
     }
+
+    @Override
+    public JsonResult getById(Long IdMarca) throws Exception {
+        return null;
+    }
 }

@@ -12,4 +12,6 @@ public interface Clasif_CategoriaService {
     public JsonResult save(Clasif_Categoria clasif_categoria);
 
     public JsonResult listadoCategoria();
+
+    public JsonResult getById(Long IdCategoria) throws Exception;
 }
