@@ -43,6 +43,12 @@
                         <input class="form-control" readonly ng-model="compra.proveedor.direccion" placeholder="Dirección" capitalize>
                     </div>
                 </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label>NIT / CI </label>
+                        <input class="form-control" readonly ng-model="cxx" readonly capitalize>
+                    </div>
+                </div>
                 <div class="col-lg-2">
                 </div>
             </div>
@@ -58,12 +64,12 @@
                         </select>
                     </div>
                 </div>
-                    <div class="col-lg-4">
-                        <div class="form-group">
-                            <label>CANTIDAD EXISTENTE</label>
-                            <input class="form-control" ng-model="formData.direccion" placeholder="Cantidad existente" capitalize>
-                        </div>
-                    </div>
+                    <!--<div class="col-lg-4">-->
+                        <!--<div class="form-group">-->
+                            <!--<label>CANTIDAD EXISTENTE</label>-->
+                            <!--<input class="form-control" ng-model="formData.direccion" placeholder="Cantidad existente" capitalize>-->
+                        <!--</div>-->
+                    <!--</div>-->
                 </div>
 
 
@@ -94,36 +100,53 @@
 
 
         </tr>
+
         <tr>
-            <td colspan="6"><a class="btn btn-primary" href ng-click="addItem()" ><i class="fa fa-plus"> </i> Adicionar Producto</a></td>
-        </tr>
-        <tr>
-            <td colspan="4" align="right">
-                Sub Total
+            <td colspan="5" align="right">
+            Total   {{compra_sub_total() | currency}}
             </td>
             <td align="right">
-                {{compra_sub_total() | currency}}
+
             </td>
         </tr>
         <tr>
-            <td colspan="4" align="right">
-                Tax(%): <input ng-model="compra.tax" ng-validate="number" style="width:43px">
-            </td>
-            <td align="right">
-                {{calculate_tax() | currency}}
-            </td>
+            <td colspan="6" align="right"><a class="btn btn-primary" href ng-click="addItem()"><i class="fa fa-plus"> </i> Adicionar Producto</a></td>
         </tr>
         <tr>
-            <td colspan="4" align="right">
-                Total General:
+
+            <td width="30px;">
+                <buttom class="btn btn-primary" ng-click="dec(num)">Confirmar</buttom>
             </td>
-            <td align="right">
-                {{calculate_grand_total() | currency}}
-            </td>
+            <td colspan="5" align="right" ng-show="literal">
+            <strong>Total: {{tostring()}}</strong> ------------------>   Son: {{esc}}
+        </td>
         </tr>
+        <!--<tr>-->
+            <!--<td colspan="5" align="right">-->
+                <!--Tax(%): <input ng-model="compra.tax" ng-validate="number" style="width:43px">-->
+            <!--</td>-->
+            <!--<td align="right">-->
+                <!--{{calculate_tax() | currency}}-->
+            <!--</td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+            <!--<td colspan="4" align="right">-->
+                <!--Total General:-->
+            <!--</td>-->
+            <!--<td align="right">-->
+                <!--{{calculate_grand_total() | currency}}-->
+            <!--</td>-->
+            <!--<td width="30px;">-->
+                <!--<buttom class="btn btn-primary" ng-click="dec(num)">Confirmar</buttom>-->
+            <!--</td>-->
+        <!--</tr>-->
+        <tr>
+
+        </tr>
+
     </table>
 
-    <button class="btn btn-primary" ng-click="savecompra()"><i class="fa fa-save"></i> Guardar Compra</button>
+    <button ng-show="literal" class="btn btn-primary" ng-click="savecompra()"><i class="fa fa-save"></i> Guardar Compra</button>
 
 </div>
 <!-- /.col-lg-12 -->
