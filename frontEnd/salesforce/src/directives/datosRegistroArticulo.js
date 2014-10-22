@@ -4,15 +4,44 @@
 app.directive('datosRegistroArticulo', function () {
 
     //Funcion LINK que realiza la validacion
-    function link2(scope, element, attrs) {
+    function link(scope, element, attrs) {
         console.log('Directiva DATOS TRANSACCION');
         //Formulario que deseamos validar (lo agarramos como objeto jQuery)
-        var $form2 = $("#artForm");
+        var $form = $("#artForm");
 
+        var validateMethod = $.fn.validate;
+        $.fn.validate = function (o) {
+            if (o && o.rules) {
+                for (var name in o.rules) {
+                    var rule = o.rules[name];
+                    if ((rule.required != undefined) || (rule.requerido != undefined)) {
+                        if (rule.required === true) {
+                            var inputId = $('[name="' + name + '"]').attr("id");
+                            var label = $('label[for=' + inputId + ']');
+                            var nameFinal = name;
+                            nameFinal = nameFinal.replace(/\./g, '_');
+                            if ($("#requiredSpan" + nameFinal).length <= 0) {
+                                label.before("<span id=\"requiredSpan" + nameFinal + "\" class=\"red bolder\">*</span> ");
+                            }
+                        }
+                        else {
+                            var inputId = $('[name="' + name + '"]').attr("id");
+                            var label = $('label[for=' + inputId + ']');
+                            var nameFinal = name;
+                            nameFinal = nameFinal.replace(/\./g, '_');
+                            if ($("#requiredSpan" + nameFinal).length <= 0) {
+                                label.before("<span id=\"requiredSpan" + nameFinal + "\" class=\"green bolder\">*</span> ");
+                            }
+                        }
+                    }
+                }
+            }
+            return $.proxy(validateMethod, this)(o);
+        };
         /**
          * Definimos las reglas de validacion del formulario
          */
-        $form2.validate({
+        $form.validate({
             rules: {
                 "codArtInput": {
                     required: true
@@ -87,13 +116,13 @@ app.directive('datosRegistroArticulo', function () {
         });
 
         //Validar todos los campos despues de focus out
-        $form2.find(":input").bind("focusout", function (e) {
+        $form.find(":input").bind("focusout", function (e) {
             $(this).valid();
         });
     }
 
     return {
         restrict: 'E',
-        link: link2
+        link: link
     };
 });

@@ -5,6 +5,7 @@ app.directive('artForm', function () {
 
     //Funcion LINK que realiza la validacion
     function link(scope, element, attrs) {
+        alert("sdfsdf");
 
         //Formulario que deseamos validar (lo agarramos como objeto jQuery)
         var $form = $("#artForm");

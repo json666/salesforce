@@ -287,7 +287,7 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
                             {
                                 "bSortable": false,
                                 "mData": function (oObj) {
-                                    var a = " <a href='#/inventarios/" + oObj.id + "' class='btn btn-primary'><i class='fa fa-edit'></i></a>";
+                                    var a = " <a href='#/inventarios/" + oObj.id + "' class='btn btn-default'><i class='fa fa-search'></i></a>";
                                     return a;
 
                                 }
@@ -295,9 +295,20 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
 
                             },
                             {
+                                "bSortable": false,
                                 "mData": function (oObj) {
-                                    var b = " <a href='#/cliente-info/" + oObj.id + "' class='btn btn-danger'><i class='fa fa-trash-o'></i></a>";
+                                    var b = " <a href='#/inventarios/" + oObj.id + "' class='btn btn-primary'><i class='fa fa-edit'></i></a>";
                                     return b;
+
+                                }
+//                                <div style="float: right"><button class="btn btn-primary btn-sm" data-toggle='modal'  data-target="#ModalArticulo"><i class="fa fa-plus"></i> Reg. Producto</button></div>
+
+                            },
+                            {
+                                "bSortable": false,
+                                "mData": function (oObj) {
+                                    var c = " <a href='#/cliente-info/" + oObj.id + "' class='btn btn-danger'><i class='fa fa-trash-o'></i></a>";
+                                    return c;
                                 }
                             }
 
@@ -322,7 +333,52 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
 
 //    lista articlus ends
 
+
+
+    $scope.pdf = function () {
+        alert("testaaaa")
+//    function demoFromHTML() {
+        var pdf = new jsPDF('p', 'pt', 'letter')
+            , source = $('#test')[0]
+            , specialElementHandlers = {
+                // element with id of "bypass" - jQuery style selector
+                '#bypassme': function (element, renderer) {
+                    // true = "handled elsewhere, bypass text extraction"
+                    return true
+                }
+            }
+
+        margins = {
+            top: 80,
+            bottom: 60,
+            left: 40,
+            width: 522
+        };
+        pdf.fromHTML(
+            source // HTML string or DOM elem ref.
+            , margins.left // x coord
+            , margins.top // y coord
+            , {
+                'width': margins.width // max width of content on PDF
+                , 'elementHandlers': specialElementHandlers
+            },
+            function (dispose) {
+                // dispose: object with X, Y of the last line add to the PDF
+                //          this allow the insertion of new lines after html
+                pdf.save('Test.pdf');
+            },
+            margins
+        )
+//    }
+    }
+
+}
+
 //categorias begin
+function CategoriasController($scope, $http, $routeParams, serviceShare, paramService) {
+
+    var id = $routeParams.id;
+
     //categorias save
     if (id == null || id.length == 0) {
         $scope.saveCategoria = function () {
@@ -427,8 +483,12 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
     }
     $scope.listaCategorias();
 
+}
 
 //begin clases
+function ClasesController($scope, $http, $routeParams, serviceShare, paramService) {
+    var id = $routeParams.id;
+
     //clases save
     $scope.formDataClase = {
         "clasif_categoria": null
@@ -535,8 +595,11 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
     }
     $scope.listadoClases();
 
-
+}
 //begin marcas
+function MarcasController($scope, $http, $routeParams, serviceShare, paramService) {
+    var id = $routeParams.id;
+
     //marcas save
     if (id == null || id.length == 0) {
         $scope.saveMarca = function () {
@@ -638,8 +701,12 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
     }
     $scope.listadoMarcasProducto();
 
+}
 
-//begin unidades
+function UnidadesController($scope, $http, $routeParams, serviceShare, paramService) {
+    var id = $routeParams.id;
+
+    //begin unidades
     //unidades save
     if (id == null || id.length == 0) {
         $scope.saveUnidad = function () {
@@ -735,46 +802,5 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
     }
     $scope.listadoUnidades();
 
-// ends marcas
-
-
-    $scope.pdf = function () {
-        alert("testaaaa")
-//    function demoFromHTML() {
-        var pdf = new jsPDF('p', 'pt', 'letter')
-            , source = $('#test')[0]
-            , specialElementHandlers = {
-                // element with id of "bypass" - jQuery style selector
-                '#bypassme': function (element, renderer) {
-                    // true = "handled elsewhere, bypass text extraction"
-                    return true
-                }
-            }
-
-        margins = {
-            top: 80,
-            bottom: 60,
-            left: 40,
-            width: 522
-        };
-        pdf.fromHTML(
-            source // HTML string or DOM elem ref.
-            , margins.left // x coord
-            , margins.top // y coord
-            , {
-                'width': margins.width // max width of content on PDF
-                , 'elementHandlers': specialElementHandlers
-            },
-            function (dispose) {
-                // dispose: object with X, Y of the last line add to the PDF
-                //          this allow the insertion of new lines after html
-                pdf.save('Test.pdf');
-            },
-            margins
-        )
-//    }
-    }
-
 }
-
 

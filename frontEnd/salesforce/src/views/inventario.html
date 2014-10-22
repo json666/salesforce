@@ -22,18 +22,18 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for="codigoArticulo">CODIGO ARTICULO</label>
-                                        <input class="form-control codArtInput" ng-model="formData.codigoArticulo"
+                                        <input class="form-control " ng-model="formData.codigoArticulo"
                                                id="codigoArticulo" placeholder="codigoArticulo"
-                                               name="formData.codigoArticulo" capitalize>
+                                               name="codArtInput" capitalize>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for="nombreArticulo">NOMBRE PRODUCTO</label>
-                                        <input class="form-control nom_productoArtInput"
+                                        <input class="form-control "
                                                ng-model="formData.nombreArticulo"
                                                id="nombreArticulo" placeholder="nombreArticulo"
-                                               name="formData.nombreArticulo" capitalize>
+                                               name="nom_productoArtInput" capitalize>
                                     </div>
                                 </div>
 
@@ -42,17 +42,17 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for="descripcionArticulo">DESCRIPCION</label>
-                                        <input class="form-control descripcionArtInput"
+                                        <input class="form-control "
                                                ng-model="formData.descripcionArticulo"
                                                id="descripcionArticulo" placeholder="descripcionArticulo"
-                                               name="formData.descripcionArticulo" capitalize>
+                                               name="descripcionArtInput" capitalize>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label>UNIDAD</label>
-                                        <select class="form-control unidadArtInput" id="selectUnidad"
-                                                name="formData.clasif_unidad"
+                                        <select class="form-control " id="selectUnidad"
+                                                name="unidadArtInput"
                                                 ng-model="formData.clasif_unidad"
                                                 ng-options="item.descripcionUnidad for item in unidadList">
                                             <option value="">-- Seleccione --</option>
@@ -65,8 +65,8 @@
                                 <div class="col-lg-4">
                                     <div class="form-group">
                                         <label>MARCA</label>
-                                        <select class="form-control marcaArtInput" id="selectMarca"
-                                                name="formData.clasif_marca"
+                                        <select class="form-control " id="selectMarca"
+                                                name="marcaArtInput"
                                                 ng-model="formData.clasif_marca"
                                                 ng-options="item.descripcionMarca for item in marcasList">
                                             <option value="">-- Seleccione --</option>
@@ -77,8 +77,8 @@
                                 <div class="col-lg-4">
                                     <div class="form-group">
                                         <label>CATEGORIA</label>
-                                        <select class="form-control categoriaArtInput" id="selectCategoria"
-                                                name="formData.clasif_categoria"
+                                        <select class="form-control " id="selectCategoria"
+                                                name="categoriaArtInput"
                                                 ng-model="formData.clasif_categoria"
                                                 ng-options="item.descripcionCategoria for item in categoriaList"
                                                 ng-change="cargarClase()">
@@ -89,8 +89,8 @@
                                 <div class="col-lg-4">
                                     <div class="form-group">
                                         <label>CLASE</label>
-                                        <select class="form-control claseArtInput" id="selectClase"
-                                                name="formData.clasif_clase"
+                                        <select class="form-control " id="selectClase"
+                                                name="claseArtInput"
                                                 ng-model="formData.clasif_clase"
                                                 ng-options="item.descripcionClase for item in claseList">
                                             <option value="">-- Seleccione --</option>
@@ -103,25 +103,28 @@
                                     <div class="form-group">
                                         <label>PRECIO</label>
                                         <input class="form-control precioArtInput" ng-model="formData.precio"
-                                               placeholder="precio" numbers>
+                                               placeholder="precio" numbers
+                                                name="precioArtInput">
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="form-group">
                                         <label>PRECIO COSTO</label>
-                                        <input class="form-control precioCostoArtInput"
+                                        <input class="form-control "
                                                ng-model="formData.precioCosto"
                                                ng-change="calculaMargenGanancia()"
-                                               placeholder="precioCosto" numbers>
+                                               placeholder="precioCosto" numbers
+                                               name="precioCostoArtInput">
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="form-group">
                                         <label>MARGEN GANACIA</label>
-                                        <input class="form-control margenArtInput"
+                                        <input class="form-control "
                                                ng-model="formData.margenGanancia"
                                                disabled="true"
-                                               placeholder="margenGanancia" numbers>
+                                               placeholder="margenGanancia" numbers
+                                               name="margenArtInput">
                                     </div>
                                 </div>
                             </div>
@@ -129,14 +132,16 @@
                                 <div class="col-lg-4">
                                     <div class="form-group">
                                         <label>NIVEL REORDEN</label>
-                                        <input class="form-control nivelArtInput" ng-model="formData.nivelReorden"
-                                               placeholder="nivelReorden" numbers>
+                                        <input class="form-control " ng-model="formData.nivelReorden"
+                                               placeholder="nivelReorden" numbers
+                                               name="nivelArtInput">
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
-                                    <div class="form-group cantidadArtInput">
+                                    <div class="form-group ">
                                         <label>CANTIDAD REORDEN</label>
-                                        <input class="form-control" ng-model="formData.cantidadReorden" numbers>
+                                        <input class="form-control" ng-model="formData.cantidadReorden" numbers
+                                                name="cantidadArtInput">
                                     </div>
                                 </div>
 

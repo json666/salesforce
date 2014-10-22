@@ -29,19 +29,19 @@ var app = angular.module('app', ['ngCookies','ngRoute']).factory('serviceShare',
       }).
       when('/categorias', {
           templateUrl: 'src/views/categorias.html',
-          controller: 'InventarioController'
+          controller: 'CategoriasController'
       }).
       when('/clases', {
           templateUrl: 'src/views/clases.html',
-          controller: 'InventarioController'
+          controller: 'ClasesController'
       }).
       when('/marcas', {
           templateUrl: 'src/views/marcas.html',
-          controller: 'InventarioController'
+          controller: 'MarcasController'
       }).
       when('/unidades', {
           templateUrl: 'src/views/unidades.html',
-          controller: 'InventarioController'
+          controller: 'UnidadesController'
       }).
 
       when('/inventarios/:id', {
