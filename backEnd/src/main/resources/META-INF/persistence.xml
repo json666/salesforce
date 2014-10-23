@@ -6,7 +6,7 @@
         http://java.sun.com/xml/ns/persistence
         http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 
-    <persistence-unit name="jpa.salesforce">
+    <persistence-unit name="jpa.salesforce" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 
         <class>com.bo.openlogics.sales.model.Clasif_Articulo</class>
@@ -25,13 +25,17 @@
         <class>com.bo.openlogics.sales.model.Clasif_Bodega</class>
         <class>com.bo.openlogics.sales.model.Usuario</class>
         <class>com.bo.openlogics.sales.model.Articulo_Bodega</class>
+        <!--<class>com.bo.openlogics.sales.model.Compras</class>-->
+        <class>com.bo.openlogics.sales.model.DetalleComprasArticulos</class>
+
+
 
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
 
 		<properties>
 			<property name="hibernate.hbm2ddl.auto" value="update" />
-			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
-			<property name="hibernate.show_sql" value="false" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL82Dialect" />
+			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="true" />
 			<property name="hibernate.max_fetch_depth" value="10" />
 		</properties>

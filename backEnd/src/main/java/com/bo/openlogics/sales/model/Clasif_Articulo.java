@@ -1,5 +1,7 @@
 package com.bo.openlogics.sales.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -13,6 +15,8 @@ import java.util.Date;
 
 @Entity
 @Table(name = "CLASIF_ARTICULOS", schema = "SALESFORCE")
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Clasif_Articulo extends EntidadBase {
 
     @Column(name = "NOMBRE_ARTICULO")

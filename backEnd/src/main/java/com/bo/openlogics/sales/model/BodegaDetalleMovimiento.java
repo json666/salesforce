@@ -83,7 +83,7 @@ public class BodegaDetalleMovimiento implements Serializable{
     public void setCostoTotal(Double costoTotal) {
         this.costoTotal = costoTotal;
     }
-
+    /*
     @Override
     public boolean equals(Object o) {
         if (this== o) return true;
@@ -99,5 +99,5 @@ public class BodegaDetalleMovimiento implements Serializable{
     @Override
     public int hashCode() {
         return (getPk() != null ? getPk().hashCode() : 0);
-    }
+    }*/
 }

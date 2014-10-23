@@ -14,8 +14,11 @@ import java.io.Serializable;
 @MappedSuperclass
 public abstract class EntidadBase implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
     protected Long id;
 
     @Column(name = "DESABILITADO")
