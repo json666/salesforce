@@ -5,6 +5,7 @@ import org.springframework.data.annotation.*;
 import org.springframework.data.annotation.Transient;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -20,7 +21,7 @@ import java.util.List;
 @Table(name = "CLASIF_ARTICULOS", schema = "SALESFORCE")
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Clasif_Articulo extends EntidadBase {
+public class Clasif_Articulo extends EntidadBase implements Serializable {
 
     @Column(name = "NOMBRE_ARTICULO")
     private String nombreArticulo ;
@@ -77,8 +78,8 @@ public class Clasif_Articulo extends EntidadBase {
     @ManyToOne
     private Clasif_Clase clasif_clase;
 
-    @Transient
-    @OneToMany(mappedBy="articulo")
+
+    @OneToMany(mappedBy="clasif_articulo")
     private List<Compras_articulo> compras;
 
     public Clasif_Articulo(){

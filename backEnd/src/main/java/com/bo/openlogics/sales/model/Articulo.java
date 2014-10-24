@@ -19,7 +19,7 @@ import java.util.List;
 @Entity
 @Table(name = "ARTICULOS", schema = "SALESFORCE")
 public class Articulo extends EntidadBase {
-
+/*
     @Column(name = "NOMBRE_ARTICULO")
     private String nombreArticulo ;
 
@@ -73,4 +73,5 @@ public class Articulo extends EntidadBase {
     public void setCompras(List<Compras_articulo> compras) {
         this.compras = compras;
     }
+    */
 }

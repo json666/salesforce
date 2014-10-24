@@ -1,8 +1,6 @@
 package com.bo.openlogics.sales.model;
 
-import org.springframework.data.annotation.*;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Transient;
+
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -17,13 +15,15 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "COMPRAS_ARTICULO", schema = "SALESFORCE")
-//@IdClass(Compras_articuloId.class)
+@IdClass(Compras_articuloId.class)
+//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+//@Embeddable
 public class Compras_articulo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
 
-    @EmbeddedId
+    //@EmbeddedId
     private Compras_articuloId compras_articuloId;
 
 
@@ -36,16 +36,16 @@ public class Compras_articulo implements Serializable {
 
     @Id
     @ManyToOne
-    private Clasif_Articulo articulo;
+    private Clasif_Articulo clasif_articulo;
 
     public Compras_articulo(){
 
     }
 
-    public Compras_articulo(Integer cantidad, Compra compra, Clasif_Articulo articulo) {
+    public Compras_articulo(Integer cantidad, Compra compra, Clasif_Articulo clasif_articulo) {
         this.cantidad = cantidad;
         this.compra = compra;
-        this.articulo = articulo;
+        this.clasif_articulo = clasif_articulo;
     }
 
     public Integer getCantidad() {
@@ -64,11 +64,20 @@ public class Compras_articulo implements Serializable {
         this.compra = compra;
     }
 
-    public Clasif_Articulo getArticulo() {
-        return articulo;
+    public Clasif_Articulo getClasif_articulo() {
+        return clasif_articulo;
     }
 
-    public void setArticulo(Clasif_Articulo articulo) {
-        this.articulo = articulo;
+    public void setClasif_articulo(Clasif_Articulo clasif_articulo) {
+        this.clasif_articulo = clasif_articulo;
+    }
+
+
+    public Compras_articuloId getCompras_articuloId() {
+        return compras_articuloId;
+    }
+
+    public void setCompras_articuloId(Compras_articuloId compras_articuloId) {
+        this.compras_articuloId = compras_articuloId;
     }
 }

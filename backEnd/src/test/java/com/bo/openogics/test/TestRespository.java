@@ -278,7 +278,7 @@ public class TestRespository {
             compras_articulo.setCantidad(5);
 
             Clasif_Articulo clasif_articulo= clasif_articuloRepository.findOne(1L);
-            compras_articulo.setArticulo(clasif_articulo);
+            //compras_articulo.setArticulo(clasif_articulo);
             //Clasif_Articulo clasif_articulo1=clasif_articuloRepository.findOne(1L);
             //compras_articulo.setArticulo(clasif_articulo1);
             compras_articulos.add(compras_articulo);
@@ -288,11 +288,35 @@ public class TestRespository {
             compra.addComprasArticulos(compras_articulo);
             Compra compraReg=comprasRespository.save(compra);
 
-            for (Compras_articulo comprasArticulo : compras_articulos) {
+            System.out.println(compraReg.getId());
+
+            Compra compra1=comprasRespository.findOne(compraReg.getId());
+
+
+            //Compras_articulo compras_articulo1=new Compras_articulo();
+            //compras_articulo1.setCompra(compra1);
+            List<Clasif_Articulo> clasif_articulos= new ArrayList<Clasif_Articulo>();
+            clasif_articulos.add(clasif_articulo);
+
+            for (Clasif_Articulo clasifArticulo : clasif_articulos) {
+                Compras_articulo compras_articulo1=new Compras_articulo();
+                System.out.println("1");
+                compras_articulo1.setCompra(compra1);
+                System.out.println("2");
+                compras_articulo1.setClasif_articulo(clasifArticulo);
+                System.out.println("3");
+
+                comprasArticuloRepository.save(compras_articulo1);
+            }
+
+
+
+
+            /*for (Compras_articulo comprasArticulo : compras_articulos) {
                 compras_articulo.setCompra(compraReg);
 
                 comprasArticuloRepository.save(compras_articulo);
-            }
+            }*/
 //            comprasArticuloRepository.save()
 
 

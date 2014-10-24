@@ -3,6 +3,7 @@ package com.bo.openlogics.sales.model;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -15,7 +16,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "COMPRAS", schema = "SALESFORCE")
-public class Compra extends EntidadBase{
+public class Compra extends EntidadBase implements Serializable{
 
     //@OneToOne(optional = false, fetch = FetchType.LAZY, orphanRemoval = true, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     //@Cascade({org.hibernate.annotations.CascadeType.ALL, org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
@@ -28,6 +29,7 @@ public class Compra extends EntidadBase{
 
     /*@ManyToOne
     private Clasif_Articulo clasif_articulo;*/
+
 
     @OneToMany(mappedBy="compra")
     private List<Compras_articulo> articulos;

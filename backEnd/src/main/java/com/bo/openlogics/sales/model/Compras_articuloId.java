@@ -15,16 +15,13 @@ public class Compras_articuloId implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @Transient
+
     private  Long compra;
 
-    @Transient
-    private  Long articulo;
 
-    public Compras_articuloId(Long compra, Long articulo) {
-        this.compra = compra;
-        this.articulo = articulo;
-    }
+    private  Long clasif_articulo;
+
+
 
     public Long getCompra() {
         return compra;
@@ -34,11 +31,11 @@ public class Compras_articuloId implements Serializable {
         this.compra = compra;
     }
 
-    public Long getArticulo() {
-        return articulo;
+    public Long getClasif_articulo() {
+        return clasif_articulo;
     }
 
-    public void setArticulo(Long articulo) {
-        this.articulo = articulo;
+    public void setClasif_articulo(Long clasif_articulo) {
+        this.clasif_articulo = clasif_articulo;
     }
 }

@@ -17,10 +17,10 @@ import java.util.List;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type", visible = true)
 
-@AssociationOverrides({
+/*@AssociationOverrides({
         @AssociationOverride(name = "pk.compras", joinColumns = @JoinColumn(name = "compras_id")),
         @AssociationOverride(name = "pk.clasif_articulo", joinColumns = @JoinColumn(name = "clasif_articulo_id"))
-})
+})*/
 //@IdClass(DetalleComprasArticulosPK.class)
 public class DetalleComprasArticulos extends EntidadBase {
 
