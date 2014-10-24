@@ -28,7 +28,7 @@ public class Compras_articulo implements Serializable {
 
 
     @Column(name = "CANTIDAD")
-    private String cantidad;
+    private Integer cantidad;
 
     @Id
     @ManyToOne
@@ -42,17 +42,17 @@ public class Compras_articulo implements Serializable {
 
     }
 
-    public Compras_articulo(String cantidad, Compra compra, Clasif_Articulo articulo) {
+    public Compras_articulo(Integer cantidad, Compra compra, Clasif_Articulo articulo) {
         this.cantidad = cantidad;
         this.compra = compra;
         this.articulo = articulo;
     }
 
-    public String getCantidad() {
+    public Integer getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(String cantidad) {
+    public void setCantidad(Integer cantidad) {
         this.cantidad = cantidad;
     }
 

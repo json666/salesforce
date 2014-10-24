@@ -22,4 +22,7 @@ public interface Clasif_ArticuloService {
 
     public JsonResult getByIdArticuloReporte(Long id);
 
+
+
+
 }

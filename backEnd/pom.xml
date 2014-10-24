@@ -404,7 +404,7 @@
                 <db.populate.url>jdbc:postgresql://localhost:5432/salesforce</db.populate.url>
                 <db.populate.usuario>postgres</db.populate.usuario>
                 <db.populate.password>postgres</db.populate.password>
-                <application.url_reportes_service>http://localhost:8089/reportes/rest/</application.url_reportes_service>
+                <application.url_reportes_service>http://localhost:8080/reportes/rest/</application.url_reportes_service>
                 <reportes.local.output.folder>d:/reportOutput</reportes.local.output.folder>
                 <reportes.servlet.output.folder>d:/reportOutput</reportes.servlet.output.folder>
                 <reportes.servlet.output.folder.image>d:/var/image/</reportes.servlet.output.folder.image>

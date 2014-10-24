@@ -30,13 +30,14 @@
         <class>com.bo.openlogics.sales.model.Compra</class>
         <!--<class>com.bo.openlogics.sales.model.Articulo</class>-->
         <class>com.bo.openlogics.sales.model.Compras_articulo</class>
+        <class>com.bo.openlogics.sales.model.Cliente</class>
 
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
 
 		<properties>
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL82Dialect" />
-			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.show_sql" value="false" />
 			<property name="hibernate.format_sql" value="true" />
 			<property name="hibernate.max_fetch_depth" value="10" />
 		</properties>

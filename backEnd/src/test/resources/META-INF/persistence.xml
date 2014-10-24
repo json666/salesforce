@@ -30,6 +30,7 @@
         <class>com.bo.openlogics.sales.model.Compra</class>
         <!--<class>com.bo.openlogics.sales.model.Articulo</class>-->
         <class>com.bo.openlogics.sales.model.Compras_articulo</class>
+        <class>com.bo.openlogics.sales.model.Cliente</class>
 
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
 

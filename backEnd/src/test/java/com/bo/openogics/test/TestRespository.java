@@ -78,6 +78,15 @@ public class TestRespository {
     @Autowired
     Clasif_BodegaRepository clasif_bodegaRepository;
 
+    @Autowired
+    ComprasService comprasService;
+
+    @Autowired
+    ComprasRespository  comprasRespository;
+
+    @Autowired
+    ComprasArticuloRepository comprasArticuloRepository;
+
     private Logger logger = Logger.getLogger(TestRespository.class);
 
     @Test
@@ -255,6 +264,47 @@ public class TestRespository {
             e.printStackTrace();
         }
         System.out.println("JSON:" + jsonArt);
+    }
+
+    @Test
+    public void saveCompra(){
+        Compra compra= new Compra();
+        Clasif_Bodega clasifBodega =clasif_bodegaRepository.findOne(1L);
+        compra.setNroCompra(001);
+        compra.setClasif_bodega(clasifBodega);
+        Compras_articulo compras_articulo= new Compras_articulo();
+        List<Compras_articulo> compras_articulos=new ArrayList<Compras_articulo>();
+        try {
+            compras_articulo.setCantidad(5);
+
+            Clasif_Articulo clasif_articulo= clasif_articuloRepository.findOne(1L);
+            compras_articulo.setArticulo(clasif_articulo);
+            //Clasif_Articulo clasif_articulo1=clasif_articuloRepository.findOne(1L);
+            //compras_articulo.setArticulo(clasif_articulo1);
+            compras_articulos.add(compras_articulo);
+            compra.setArticulos(compras_articulos);
+            //Compra compraReg=comprasRespository.save(compra);
+
+            compra.addComprasArticulos(compras_articulo);
+            Compra compraReg=comprasRespository.save(compra);
+
+            for (Compras_articulo comprasArticulo : compras_articulos) {
+                compras_articulo.setCompra(compraReg);
+
+                comprasArticuloRepository.save(compras_articulo);
+            }
+//            comprasArticuloRepository.save()
+
+
+
+            //comprasService.save(compra);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+
     }
 
 
