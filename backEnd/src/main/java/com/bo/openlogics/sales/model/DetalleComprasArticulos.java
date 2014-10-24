@@ -26,7 +26,7 @@ public class DetalleComprasArticulos extends EntidadBase {
 
 
 
-    @Column(name = "CANTIDAD_EXISTENTE")
+    /*@Column(name = "CANTIDAD_EXISTENTE")
     private Integer cantidadExistente;
 
     @Temporal(TemporalType.DATE)
@@ -90,5 +90,5 @@ public class DetalleComprasArticulos extends EntidadBase {
 
     public void setClasif_articulos(List<Clasif_Articulo> clasif_articulos) {
         this.clasif_articulos = clasif_articulos;
-    }
+    }   */
 }

@@ -1,5 +1,7 @@
 package com.bo.openlogics.sales.model;
 
+import org.springframework.data.annotation.Transient;
+
 import java.io.Serializable;
 
 /**
@@ -13,8 +15,10 @@ public class Compras_articuloId implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @Transient
     private  Long compra;
 
+    @Transient
     private  Long articulo;
 
     public Compras_articuloId(Long compra, Long articulo) {

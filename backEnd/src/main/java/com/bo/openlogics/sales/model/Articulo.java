@@ -1,5 +1,7 @@
 package com.bo.openlogics.sales.model;
 
+import org.springframework.data.annotation.Transient;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -27,6 +29,7 @@ public class Articulo extends EntidadBase {
     @Column(name = "CODIGO_ARTICULO")
     private String codigoArticulo ;
 
+    @Transient
     @OneToMany(mappedBy="articulo")
     private List<Compras_articulo> compras;
 

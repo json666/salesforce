@@ -1,6 +1,8 @@
 package com.bo.openlogics.sales.model;
 
+import org.springframework.data.annotation.*;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -20,6 +22,7 @@ public class Compras_articulo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+
     @EmbeddedId
     private Compras_articuloId compras_articuloId;
 
@@ -33,13 +36,13 @@ public class Compras_articulo implements Serializable {
 
     @Id
     @ManyToOne
-    private Articulo articulo;
+    private Clasif_Articulo articulo;
 
     public Compras_articulo(){
 
     }
 
-    public Compras_articulo(String cantidad, Compra compra, Articulo articulo) {
+    public Compras_articulo(String cantidad, Compra compra, Clasif_Articulo articulo) {
         this.cantidad = cantidad;
         this.compra = compra;
         this.articulo = articulo;
@@ -61,11 +64,11 @@ public class Compras_articulo implements Serializable {
         this.compra = compra;
     }
 
-    public Articulo getArticulo() {
+    public Clasif_Articulo getArticulo() {
         return articulo;
     }
 
-    public void setArticulo(Articulo articulo) {
+    public void setArticulo(Clasif_Articulo articulo) {
         this.articulo = articulo;
     }
 }

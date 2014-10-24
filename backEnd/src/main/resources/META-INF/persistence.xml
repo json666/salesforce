@@ -26,9 +26,9 @@
         <class>com.bo.openlogics.sales.model.Usuario</class>
         <class>com.bo.openlogics.sales.model.Articulo_Bodega</class>
         <!--<class>com.bo.openlogics.sales.model.Compras</class>-->
-        <class>com.bo.openlogics.sales.model.DetalleComprasArticulos</class>
+        <!--<class>com.bo.openlogics.sales.model.DetalleComprasArticulos</class>-->
         <class>com.bo.openlogics.sales.model.Compra</class>
-        <class>com.bo.openlogics.sales.model.Articulo</class>
+        <!--<class>com.bo.openlogics.sales.model.Articulo</class>-->
         <class>com.bo.openlogics.sales.model.Compras_articulo</class>
 
         <exclude-unlisted-classes>false</exclude-unlisted-classes>

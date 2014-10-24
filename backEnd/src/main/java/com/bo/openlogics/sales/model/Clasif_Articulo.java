@@ -1,9 +1,12 @@
 package com.bo.openlogics.sales.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.data.annotation.*;
+import org.springframework.data.annotation.Transient;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -73,6 +76,10 @@ public class Clasif_Articulo extends EntidadBase {
 
     @ManyToOne
     private Clasif_Clase clasif_clase;
+
+    @Transient
+    @OneToMany(mappedBy="articulo")
+    private List<Compras_articulo> compras;
 
     public Clasif_Articulo(){
 

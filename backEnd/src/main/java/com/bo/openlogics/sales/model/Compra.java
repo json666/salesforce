@@ -15,11 +15,14 @@ import java.util.List;
 @Table(name = "COMPRAS", schema = "SALESFORCE")
 public class Compra extends EntidadBase{
 
-    @Column(name = "CANTIDAD_EXISTENTE")
-    private String cantidadExistente;
+    @OneToOne(optional = false, fetch = FetchType.EAGER, orphanRemoval = true)
+    private Clasif_Bodega clasif_bodega;
 
-    @ManyToOne
-    private Clasif_Articulo clasif_articulo;
+    @Column(name = "NUMERO_COMPRA")
+    private Integer nroCompra;
+
+    /*@ManyToOne
+    private Clasif_Articulo clasif_articulo;*/
 
     @OneToMany(mappedBy="compra")
     private List<Compras_articulo> articulos;
@@ -28,27 +31,24 @@ public class Compra extends EntidadBase{
 
     }
 
-    public Compra(String cantidadExistente, Clasif_Articulo clasif_articulo, List<Compras_articulo> articulos) {
-        this.cantidadExistente = cantidadExistente;
-        this.clasif_articulo = clasif_articulo;
+    public Compra(Integer nroCompra, List<Compras_articulo> articulos) {
+        this.nroCompra = nroCompra;
         this.articulos = articulos;
     }
 
-    public String getCantidadExistente() {
-        return cantidadExistente;
+    public Compra(Clasif_Bodega clasif_bodega, Integer nroCompra, List<Compras_articulo> articulos) {
+        this.clasif_bodega = clasif_bodega;
+        this.nroCompra = nroCompra;
+        this.articulos = articulos;
     }
 
-    public void setCantidadExistente(String cantidadExistente) {
-        this.cantidadExistente = cantidadExistente;
-    }
-
-    public Clasif_Articulo getClasif_articulo() {
+    /*public Clasif_Articulo getClasif_articulo() {
         return clasif_articulo;
     }
 
     public void setClasif_articulo(Clasif_Articulo clasif_articulo) {
         this.clasif_articulo = clasif_articulo;
-    }
+    } */
 
     public List<Compras_articulo> getArticulos() {
         return articulos;
@@ -56,5 +56,13 @@ public class Compra extends EntidadBase{
 
     public void setArticulos(List<Compras_articulo> articulos) {
         this.articulos = articulos;
+    }
+
+    public Integer getNroCompra() {
+        return nroCompra;
+    }
+
+    public void setNroCompra(Integer nroCompra) {
+        this.nroCompra = nroCompra;
     }
 }
