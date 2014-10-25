@@ -95,7 +95,7 @@ public class TestRespository {
         try {
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
             Clasif_Marca clasifMarca = new Clasif_Marca();
-            clasifMarca.setCodigoMarca("002");
+            //clasifMarca.setCodigoMarca("002");
             clasifMarca.setDescripcionMarca("SAMSUNG");
             clasifMarca.setUsuarioAct("");
 
@@ -113,7 +113,7 @@ public class TestRespository {
         try {
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
             Clasif_Marca clasifMarca = new Clasif_Marca();
-            clasifMarca.setCodigoMarca("001");
+            //clasifMarca.setCodigoMarca("001");
             clasifMarca.setDescripcionMarca("COCA COLA");
             clasifMarca.setUsuarioAct("");
 
@@ -133,7 +133,7 @@ public class TestRespository {
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
             Clasif_Unidad clasifUnidad = new Clasif_Unidad();
 
-            clasifUnidad.setCodigoUnidad("001");
+            //clasifUnidad.setCodigoUnidad("001");
             clasifUnidad.setDescripcionUnidad("KILO");
             clasifUnidad.setUsuarioAct("");
             clasifUnidad.setFechaDesde(formatter.parse("06/09/2014"));
@@ -161,7 +161,7 @@ public class TestRespository {
 
     @Test
     public void saveArticulo() {
-        try {
+        /*try {
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
             Clasif_Articulo clasifArticulo = new Clasif_Articulo();
             Clasif_Marca clasifMarca = clasif_marcaRepository.findByCodigoMarca("0001");
@@ -187,7 +187,7 @@ public class TestRespository {
 
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        } */
     }
 
     @Test
@@ -284,7 +284,7 @@ public class TestRespository {
             String jsonArt = null;
             ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
             //compra.addComprasArticulos(compras_articulo);
-            //Compra compraReg=comprasRespository.save(compra);
+            Compra compraReg=comprasRespository.save(compra);
             //System.out.println("ID:"+compraReg.getId());
             //Compra compra1=comprasRespository.findOne(compraReg.getId());
             List<Clasif_Articulo> clasif_articulos= new ArrayList<Clasif_Articulo>();
@@ -293,7 +293,7 @@ public class TestRespository {
             for (Clasif_Articulo clasifArticulo : clasif_articulos) {
                 Compras_articulo compras_articulo1=new Compras_articulo();
                 System.out.println("1");
-                compras_articulo1.setCompra(compra);
+                compras_articulo1.setCompra(compraReg);
                 compras_articulo1.setCantidad(10);
                 System.out.println(compras_articulo1.getCantidad());
                 System.out.println("2");
