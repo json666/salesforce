@@ -25,6 +25,8 @@
         <class>com.bo.openlogics.sales.model.Clasif_Bodega</class>
         <class>com.bo.openlogics.sales.model.Usuario</class>
         <class>com.bo.openlogics.sales.model.Cliente</class>
+        <class>com.bo.openlogics.sales.model.Compras</class>
+        <class>com.bo.openlogics.sales.model.DetalleComprasArticulo</class>
 
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
 
