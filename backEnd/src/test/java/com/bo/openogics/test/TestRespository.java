@@ -1,12 +1,18 @@
 package com.bo.openogics.test;
 
 //import com.bo.openlogic.core.bean.JsonResult;
+
 import com.bo.openlogics.core.bean.JsonResult;
+import com.bo.openlogics.sales.beans.ArticuloBeanCompra;
+import com.bo.openlogics.sales.beans.ComprasBean;
+import com.bo.openlogics.sales.beans.parametricas.BodegaBean;
 import com.bo.openlogics.sales.beans.parametricas.ProveedoreBean;
 import com.bo.openlogics.sales.beans.parametricas.TipoMovimientoBean;
 import com.bo.openlogics.sales.model.*;
 import com.bo.openlogics.sales.repository.*;
 import com.bo.openlogics.sales.service.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.apache.log4j.Logger;
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -35,6 +41,7 @@ import java.util.List;
 @ContextConfiguration(locations = {"classpath:applicationContextTest.xml"})
 //@Transactional
 @TransactionConfiguration(defaultRollback = false)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class TestRespository {
 
     @Autowired
@@ -76,6 +83,12 @@ public class TestRespository {
     @Autowired
     Clasif_BodegaRepository clasif_bodegaRepository;
 
+    @Autowired
+
+    ComprasRepository comprasRepository;
+
+    @Autowired
+    ComprasService comprasService;
 
 
     private Logger logger = Logger.getLogger(TestRespository.class);
@@ -209,8 +222,8 @@ public class TestRespository {
             Clasif_Movimiento clasif_movimiento = new Clasif_Movimiento();
             clasif_movimiento = clasif_movimientoRepository.findOne(1L);
             Clasif_Proveedor clasif_proveedor = new Clasif_Proveedor();
-            Clasif_Bodega clasif_bodega= new Clasif_Bodega();
-            clasif_bodega=clasif_bodegaRepository.findOne(1L);
+            Clasif_Bodega clasif_bodega = new Clasif_Bodega();
+            clasif_bodega = clasif_bodegaRepository.findOne(1L);
             ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
             String jsonArt = ow.writeValueAsString(clasif_bodega);
             clasif_proveedor = clasif_proveedorRespository.findOne(1L);
@@ -240,13 +253,13 @@ public class TestRespository {
     }
 
     @Test
-    public void savesClaBodega(){
-        Clasif_Bodega clasif_bodega= new Clasif_Bodega();
+    public void savesClaBodega() {
+        Clasif_Bodega clasif_bodega = new Clasif_Bodega();
         clasif_bodega.setTipoBodega("GENERAL");
         clasif_bodega.setDescripcionBodega("ALMACEN CENTRAL (1).");
         clasif_bodega.setFechaHasta(new Date());
         clasif_bodega.setFechaHasta(new Date());
-        JsonResult jsonResult=clasif_bodegaService.saveClasifBodega(clasif_bodega);
+        JsonResult jsonResult = clasif_bodegaService.saveClasifBodega(clasif_bodega);
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         String jsonArt = null;
         try {
@@ -258,10 +271,83 @@ public class TestRespository {
     }
 
     @Test
+    @JsonIgnore
+    public void saveCompraArticulo() {
+        try {
+            Compras compras = new Compras();
 
-    public void saveCompra(){
+            compras.setCantidadExistente(10);
+            compras.setNroCompra(0012);
+            compras.setClasif_bodega(clasif_bodegaRepository.findOne(1L));
+            List<Clasif_Articulo> clasif_articulos = new ArrayList<Clasif_Articulo>();
+            clasif_articulos.add(clasif_articuloRepository.findOne(1L));
+            clasif_articulos.add(clasif_articuloRepository.findOne(2L));
+
+            for (Clasif_Articulo clasif_articulo : clasif_articulos) {
+                compras.addDetalleComprasArticulo(clasif_articulo);
+            }
+            /*ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+            String jsonArt = null;
+            jsonArt = ow.writeValueAsString(compras);
+            System.out.println("JSON A GUARDAR:" + jsonArt);*/
+            comprasRepository.save(compras);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
+    }
+
+    @Test
+    @Transactional(rollbackFor = Exception.class)
+    @JsonIgnore
+    public void saveCompra() {
+        try {
+            ComprasBean comprasBean= new ComprasBean();
+
+
+            comprasBean.setCantidadExistente(15);
+            comprasBean.setNroCompra(4);
+            BodegaBean bodegaBean= new BodegaBean();
+            bodegaBean.setDescripcionBodega("");
+            bodegaBean.setId(1L);
+            comprasBean.setBodegaBean(bodegaBean);
+            List<ArticuloBeanCompra> articuloBeanCompras= new ArrayList<ArticuloBeanCompra>();
+            ArticuloBeanCompra articuloBeanCompra= new ArticuloBeanCompra();
+
+            articuloBeanCompra.setId(1L);
+            articuloBeanCompras.add(articuloBeanCompra);
+            ArticuloBeanCompra articuloBeanCompra1= new ArticuloBeanCompra();
+            articuloBeanCompra1.setId(2L);
+            articuloBeanCompras.add(articuloBeanCompra1);
+            comprasBean.setArticuloBeanCompras(articuloBeanCompras);
+
+            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+            String jsonArt = null;
+            jsonArt = ow.writeValueAsString(comprasBean);
+            System.out.println("JSON A GUARDAR:" + jsonArt);
+
+            JsonResult jsonResult=comprasService.adicionarCompras(comprasBean);
+            System.out.println(jsonResult.getMessage());
+            /*
+            compras.setCantidadExistente(10);
+            compras.setNroCompra(0012);
+            compras.setClasif_bodega(clasif_bodegaRepository.findOne(1L));
+            List<Clasif_Articulo> clasif_articulos = new ArrayList<Clasif_Articulo>();
+            clasif_articulos.add(clasif_articuloRepository.findOne(1L));
+            clasif_articulos.add(clasif_articuloRepository.findOne(2L));
+
+            for (Clasif_Articulo clasif_articulo : clasif_articulos) {
+                compras.addDetalleComprasArticulo(clasif_articulo);
+            }
+            /*ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+            String jsonArt = null;
+            jsonArt = ow.writeValueAsString(compras);
+            System.out.println("JSON A GUARDAR:" + jsonArt);*/
+            //comprasRepository.save(compras);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
     }

@@ -1,6 +1,7 @@
 package com.bo.openlogics.sales.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -25,13 +26,13 @@ import java.util.List;
 public class Compras extends EntidadBase implements Serializable {
 
     @Column(name="NUMERO_COMPRA")
-    private BigDecimal nroCompra;
+    private Integer nroCompra;
 
     @Column(name="CANTIDAD_EXISTENTE")
-    private BigDecimal cantidadExistente;
+    private Integer cantidadExistente;
 
     @ManyToOne(fetch= FetchType.LAZY)
-    public Clasif_Bodega clasif_bodega;
+    private Clasif_Bodega clasif_bodega;
 
     @Transient
     private List<Clasif_Articulo> clasif_articulos;
@@ -43,11 +44,11 @@ public class Compras extends EntidadBase implements Serializable {
     public Compras() {
     }
 
-    public BigDecimal getNroCompra() {
+    public Integer getNroCompra() {
         return nroCompra;
     }
 
-    public void setNroCompra(BigDecimal nroCompra) {
+    public void setNroCompra(Integer nroCompra) {
         this.nroCompra = nroCompra;
     }
 
@@ -61,7 +62,7 @@ public class Compras extends EntidadBase implements Serializable {
     public void setDetalleComprasArticulos(List<DetalleComprasArticulo> detalleComprasArticulos) {
         this.detalleComprasArticulos = detalleComprasArticulos;
     }
-
+    @JsonIgnore
     public void addDetalleComprasArticulo(Clasif_Articulo clasif_articulo) {
         DetalleComprasArticulo detalleComprasArticulo = new DetalleComprasArticulo();
         detalleComprasArticulo.setCompras(this);
@@ -71,11 +72,11 @@ public class Compras extends EntidadBase implements Serializable {
         this.getDetalleComprasArticulos().add(detalleComprasArticulo);
     }
 
-    public BigDecimal getCantidadExistente() {
+    public Integer getCantidadExistente() {
         return cantidadExistente;
     }
 
-    public void setCantidadExistente(BigDecimal cantidadExistente) {
+    public void setCantidadExistente(Integer cantidadExistente) {
         this.cantidadExistente = cantidadExistente;
     }
 
@@ -94,5 +95,13 @@ public class Compras extends EntidadBase implements Serializable {
         }
 
         return compras;
+    }
+
+    public Clasif_Bodega getClasif_bodega() {
+        return clasif_bodega;
+    }
+
+    public void setClasif_bodega(Clasif_Bodega clasif_bodega) {
+        this.clasif_bodega = clasif_bodega;
     }
 }

@@ -18,7 +18,9 @@ import java.math.BigDecimal;
 public class DetalleComprasArticulo implements Serializable {
 
     @Column(name="CANTIDAD_EXISTENTE")
-    private BigDecimal cantidadExistente;
+    private Integer cantidadExistente;
+
+
 
     private DetalleComprasArticuloPK pk = new DetalleComprasArticuloPK();
 
@@ -27,11 +29,11 @@ public class DetalleComprasArticulo implements Serializable {
     public DetalleComprasArticulo() {
     }
 
-    public BigDecimal getCantidadExistente() {
+    public Integer getCantidadExistente() {
         return cantidadExistente;
     }
 
-    public void setCantidadExistente(BigDecimal cantidadExistente) {
+    public void setCantidadExistente(Integer cantidadExistente) {
         this.cantidadExistente = cantidadExistente;
     }
 

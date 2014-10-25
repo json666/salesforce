@@ -1,5 +1,7 @@
 package com.bo.openlogics.sales.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.ManyToOne;
 import java.io.Serializable;
 
@@ -14,6 +16,7 @@ public class DetalleComprasArticuloPK implements Serializable{
 
 
     @ManyToOne
+    @JsonIgnore
     public Compras getCompras() {
         return compras;
     }
@@ -23,6 +26,7 @@ public class DetalleComprasArticuloPK implements Serializable{
     }
 
     @ManyToOne
+    @JsonIgnore
     public Clasif_Articulo getClasif_articulo() {
         return clasif_articulo;
     }

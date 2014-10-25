@@ -8,6 +8,7 @@ import com.bo.openlogics.sales.model.Clasif_Proveedor;
 import com.bo.openlogics.sales.service.Clasif_ArticuloService;
 import com.bo.openlogics.sales.service.Clasif_BodegaService;
 import com.bo.openlogics.sales.service.Clasif_ProveedorService;
+import com.bo.openlogics.sales.service.ComprasService;
 import org.apache.log4j.Logger;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.ObjectWriter;
@@ -21,7 +22,7 @@ import org.springframework.web.bind.annotation.*;
  */
 
 @Controller
-@Transactional(readOnly = true)
+@Transactional
 public class SalesForceRESTController {
     @Autowired
     Clasif_ArticuloService clasif_articuloService;
@@ -34,6 +35,9 @@ public class SalesForceRESTController {
 
     @Autowired
     Clasif_BodegaService clasif_bodegaService;
+
+    @Autowired
+    ComprasService comprasService;
 
 
     private Logger logger = Logger.getLogger(SalesForceRESTController.class);
