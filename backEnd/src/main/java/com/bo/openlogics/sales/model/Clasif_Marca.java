@@ -17,8 +17,8 @@ import java.util.Date;
 @Table(name = "CLASIF_MARCAS", schema = "SALESFORCE")
 public class Clasif_Marca extends EntidadBase{
 
-    @Column(name = "CODIGO_MARCA")
-    private String codigoMarca;
+    /*@Column(name = "CODIGO_MARCA")
+    private String codigoMarca;*/
 
     @Column(name = "DESCRIPCION_MARCA")
     private String descripcionMarca;
@@ -34,8 +34,7 @@ public class Clasif_Marca extends EntidadBase{
 
     public Clasif_Marca(){}
 
-    public Clasif_Marca(String codigoMarca, String descripcionMarca, Date fechaDesde, Date fechaHasta, String usuarioAct) {
-        this.codigoMarca = codigoMarca;
+    public Clasif_Marca(String descripcionMarca, Date fechaDesde, Date fechaHasta, String usuarioAct) {
         this.descripcionMarca = descripcionMarca;
         this.fechaDesde = fechaDesde;
         this.fechaHasta = fechaHasta;
@@ -74,11 +73,5 @@ public class Clasif_Marca extends EntidadBase{
         this.usuarioAct = usuarioAct;
     }
 
-    public String getCodigoMarca() {
-        return codigoMarca;
-    }
 
-    public void setCodigoMarca(String codigoMarca) {
-        this.codigoMarca = codigoMarca;
-    }
 }

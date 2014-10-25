@@ -32,10 +32,10 @@ public class Clasif_MarcaServiceImpl implements Clasif_MarcaService {
         try {
             JsonResult jsonResult=null;
             Clasif_Marca clasifMarca = null;
-            System.out.println("COD_MARCA:"+clasif_marca.getCodigoMarca());
+
             System.out.println("ESTATUS:"+Boolean.FALSE);
-            clasifMarca = clasif_marcaRepository.findByCodigoMarca(clasif_marca.getCodigoMarca());
-            if (clasifMarca == null) {
+            //clasifMarca = clasif_marcaRepository.findByCodigoMarca(clasif_marca.getCodigoMarca());
+            if (clasif_marca != null) {
                 clasif_marcaRepository.save(clasif_marca);
                 jsonResult= new JsonResult(true,"Registrado.",null);
             } else {

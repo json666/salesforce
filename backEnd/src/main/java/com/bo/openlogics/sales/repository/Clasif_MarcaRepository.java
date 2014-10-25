@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface Clasif_MarcaRepository extends JpaRepository<Clasif_Marca,Long> {
 
-    public Clasif_Marca findByCodigoMarca(String codigoMarca);
+    //public Clasif_Marca findByCodigoMarca(String codigoMarca);
 
     public List<Clasif_Marca> findByDisabled(Boolean status);
 }

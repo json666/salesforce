@@ -9,6 +9,6 @@ import java.util.List;
  * Created by json on 7/09/14.
  */
 public interface Clasif_UnidadRepository extends JpaRepository<Clasif_Unidad,Long> {
-    public Clasif_Unidad findByCodigoUnidad(String codigoUnidad);
+    //public Clasif_Unidad findByCodigoUnidad(String codigoUnidad);
     public List<Clasif_Unidad> findByDisabled(Boolean status);
 }

@@ -19,6 +19,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
+
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -33,7 +34,7 @@ import java.util.List;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:applicationContextTest.xml"})
 //@Transactional
-//@TransactionConfiguration(defaultRollback = false)
+@TransactionConfiguration(defaultRollback = false)
 public class TestRespository {
 
     @Autowired
@@ -267,6 +268,7 @@ public class TestRespository {
     }
 
     @Test
+
     public void saveCompra(){
         Compra compra= new Compra();
         Clasif_Bodega clasifBodega =clasif_bodegaRepository.findOne(1L);
@@ -275,56 +277,36 @@ public class TestRespository {
         Compras_articulo compras_articulo= new Compras_articulo();
         List<Compras_articulo> compras_articulos=new ArrayList<Compras_articulo>();
         try {
-            compras_articulo.setCantidad(5);
-
+            //compras_articulo.setCantidad(5);
             Clasif_Articulo clasif_articulo= clasif_articuloRepository.findOne(1L);
-            //compras_articulo.setArticulo(clasif_articulo);
-            //Clasif_Articulo clasif_articulo1=clasif_articuloRepository.findOne(1L);
-            //compras_articulo.setArticulo(clasif_articulo1);
-            compras_articulos.add(compras_articulo);
-            compra.setArticulos(compras_articulos);
+            //compras_articulos.add(compras_articulo);
+            //compra.setArticulos(compras_articulos);
+            String jsonArt = null;
+            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+            //compra.addComprasArticulos(compras_articulo);
             //Compra compraReg=comprasRespository.save(compra);
-
-            compra.addComprasArticulos(compras_articulo);
-            Compra compraReg=comprasRespository.save(compra);
-
-            System.out.println(compraReg.getId());
-
-            Compra compra1=comprasRespository.findOne(compraReg.getId());
-
-
-            //Compras_articulo compras_articulo1=new Compras_articulo();
-            //compras_articulo1.setCompra(compra1);
+            //System.out.println("ID:"+compraReg.getId());
+            //Compra compra1=comprasRespository.findOne(compraReg.getId());
             List<Clasif_Articulo> clasif_articulos= new ArrayList<Clasif_Articulo>();
             clasif_articulos.add(clasif_articulo);
 
             for (Clasif_Articulo clasifArticulo : clasif_articulos) {
                 Compras_articulo compras_articulo1=new Compras_articulo();
                 System.out.println("1");
-                compras_articulo1.setCompra(compra1);
+                compras_articulo1.setCompra(compra);
+                compras_articulo1.setCantidad(10);
+                System.out.println(compras_articulo1.getCantidad());
                 System.out.println("2");
                 compras_articulo1.setClasif_articulo(clasifArticulo);
+                jsonArt = ow.writeValueAsString(compras_articulo1);
                 System.out.println("3");
-
+                System.out.println("JSON:" + jsonArt);
                 comprasArticuloRepository.save(compras_articulo1);
             }
 
-
-
-
-            /*for (Compras_articulo comprasArticulo : compras_articulos) {
-                compras_articulo.setCompra(compraReg);
-
-                comprasArticuloRepository.save(compras_articulo);
-            }*/
-//            comprasArticuloRepository.save()
-
-
-
-            //comprasService.save(compra);
-
         } catch (Exception e) {
             e.printStackTrace();
+            System.out.println(e.getMessage());
         }
 
 

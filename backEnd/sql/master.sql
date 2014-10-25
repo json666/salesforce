@@ -21,16 +21,16 @@ insert into SALESFORCE.CLASIF_CLASES (DESABILITADO, DESCRIPCION_CLASE, FECHA_DES
 /*
 SALESFORCE CLASIF_UNIDAD
  */
-INSERT INTO salesforce.clasif_unidades(desabilitado, codigo_unidad, descripcion_unidad, fecha_desde,fecha_hasta, usuario_act) VALUES (false, '1000', 'UNIDAD', now(),now(), 'JSON');
-INSERT INTO salesforce.clasif_unidades(desabilitado, codigo_unidad, descripcion_unidad, fecha_desde,fecha_hasta, usuario_act) VALUES (false, '1001', 'GRAMOS', now(),now(), 'JSON');
+INSERT INTO salesforce.clasif_unidades(desabilitado,  descripcion_unidad, fecha_desde,fecha_hasta, usuario_act) VALUES (false, 'UNIDAD', now(),now(), 'JSON');
+INSERT INTO salesforce.clasif_unidades(desabilitado,  descripcion_unidad, fecha_desde,fecha_hasta, usuario_act) VALUES (false, 'GRAMOS', now(),now(), 'JSON');
 /*
 SALESFORCE CLASIF_MARCA
  */
-INSERT INTO salesforce.clasif_marcas(desabilitado, codigo_marca, descripcion_marca, fecha_desde,fecha_hasta, usuario_act) VALUES (FALSE, '0001', 'AFRODITA', now(),now(), 'JSON');
-INSERT INTO salesforce.clasif_marcas(desabilitado, codigo_marca, descripcion_marca, fecha_desde,fecha_hasta, usuario_act) VALUES (FALSE, '0002', 'AFRODITA 2', now(),now(), 'JSON');
-INSERT INTO salesforce.clasif_marcas(desabilitado, codigo_marca, descripcion_marca, fecha_desde,fecha_hasta, usuario_act) VALUES (FALSE, '0003', 'AUGUSTA FERRIER', now(),now(), 'JSON');
-INSERT INTO salesforce.clasif_marcas(desabilitado, codigo_marca, descripcion_marca, fecha_desde,fecha_hasta, usuario_act) VALUES (FALSE, '0004', 'PROVEEDOR NACIONAL', now(),now(), 'JSON');
-INSERT INTO salesforce.clasif_marcas(desabilitado, codigo_marca, descripcion_marca, fecha_desde,fecha_hasta, usuario_act) VALUES (FALSE, '0005', 'RIO GRANDE', now(),now(), 'JSON');
+INSERT INTO salesforce.clasif_marcas(desabilitado, descripcion_marca, fecha_desde,fecha_hasta, usuario_act) VALUES (FALSE, 'AFRODITA', now(),now(), 'JSON');
+INSERT INTO salesforce.clasif_marcas(desabilitado, descripcion_marca, fecha_desde,fecha_hasta, usuario_act) VALUES (FALSE, 'AFRODITA 2', now(),now(), 'JSON');
+INSERT INTO salesforce.clasif_marcas(desabilitado, descripcion_marca, fecha_desde,fecha_hasta, usuario_act) VALUES (FALSE, 'AUGUSTA FERRIER', now(),now(), 'JSON');
+INSERT INTO salesforce.clasif_marcas(desabilitado, descripcion_marca, fecha_desde,fecha_hasta, usuario_act) VALUES (FALSE, 'PROVEEDOR NACIONAL', now(),now(), 'JSON');
+INSERT INTO salesforce.clasif_marcas(desabilitado, descripcion_marca, fecha_desde,fecha_hasta, usuario_act) VALUES (FALSE, 'RIO GRANDE', now(),now(), 'JSON');
 
 /*
 SALESFORCE CLASIF_MOVIMIENTO

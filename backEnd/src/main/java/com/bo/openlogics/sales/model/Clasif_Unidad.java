@@ -18,8 +18,8 @@ import java.util.Date;
 @Table(name = "CLASIF_UNIDADES", schema = "SALESFORCE")
 public class Clasif_Unidad extends EntidadBase
 {
-    @Column(name = "CODIGO_UNIDAD")
-    private String codigoUnidad;
+    /*@Column(name = "CODIGO_UNIDAD")
+    private String codigoUnidad;*/
 
     @Column(name = "DESCRIPCION_UNIDAD")
     private String descripcionUnidad;
@@ -35,9 +35,7 @@ public class Clasif_Unidad extends EntidadBase
 
     public Clasif_Unidad(){}
 
-
-    public Clasif_Unidad(String codigoUnidad, String descripcionUnidad, Date fechaDesde, Date fechaHasta, String usuarioAct) {
-        this.codigoUnidad = codigoUnidad;
+    public Clasif_Unidad(String descripcionUnidad, Date fechaDesde, Date fechaHasta, String usuarioAct) {
         this.descripcionUnidad = descripcionUnidad;
         this.fechaDesde = fechaDesde;
         this.fechaHasta = fechaHasta;
@@ -76,11 +74,5 @@ public class Clasif_Unidad extends EntidadBase
         this.usuarioAct = usuarioAct;
     }
 
-    public String getCodigoUnidad() {
-        return codigoUnidad;
-    }
 
-    public void setCodigoUnidad(String codigoUnidad) {
-        this.codigoUnidad = codigoUnidad;
-    }
 }

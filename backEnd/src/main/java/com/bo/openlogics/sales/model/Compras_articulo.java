@@ -31,11 +31,11 @@ public class Compras_articulo implements Serializable {
     private Integer cantidad;
 
     @Id
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Compra compra;
 
     @Id
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Clasif_Articulo clasif_articulo;
 
     public Compras_articulo(){

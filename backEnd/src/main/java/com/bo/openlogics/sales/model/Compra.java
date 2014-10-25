@@ -30,7 +30,7 @@ public class Compra extends EntidadBase implements Serializable{
     /*@ManyToOne
     private Clasif_Articulo clasif_articulo;*/
 
-
+    @Transient
     @OneToMany(mappedBy="compra")
     private List<Compras_articulo> articulos;
 
