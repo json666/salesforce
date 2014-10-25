@@ -5,7 +5,6 @@ import com.bo.openlogics.sales.model.Bodega_articulo;
 import com.bo.openlogics.sales.model.Clasif_Articulo;
 import com.bo.openlogics.sales.model.Clasif_Proveedor;
 
-import com.bo.openlogics.sales.service.Bodega_ArticuloService;
 import com.bo.openlogics.sales.service.Clasif_ArticuloService;
 import com.bo.openlogics.sales.service.Clasif_BodegaService;
 import com.bo.openlogics.sales.service.Clasif_ProveedorService;
@@ -30,8 +29,8 @@ public class SalesForceRESTController {
     @Autowired
     Clasif_ProveedorService clasif_proveedorService;
 
-    @Autowired
-    Bodega_ArticuloService bodega_articuloService;
+    /*@Autowired
+    Bodega_ArticuloService bodega_articuloService;*/
 
     @Autowired
     Clasif_BodegaService clasif_bodegaService;
@@ -237,7 +236,7 @@ public class SalesForceRESTController {
             String jsonArt = ow.writeValueAsString(bodega_articulo);
             System.out.println("JSON QUE VIENE DEL REST:" + jsonArt);
             JsonResult jsonResult = null;
-            jsonResult = bodega_articuloService.adicionarBodegaArticulo(bodega_articulo);
+            jsonResult = null;//bodega_articuloService.adicionarBodegaArticulo(bodega_articulo);
             logger.info("Se adiciono una bodega con id: "
                     + bodega_articulo.getId() + ".");
             if (jsonResult.getSuccess()) {

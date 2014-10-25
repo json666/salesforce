@@ -78,10 +78,6 @@ public class Clasif_Articulo extends EntidadBase implements Serializable {
     @ManyToOne
     private Clasif_Clase clasif_clase;
 
-
-    @OneToMany(mappedBy="clasif_articulo")
-    private List<Compras_articulo> compras;
-
     public Clasif_Articulo(){
 
     }

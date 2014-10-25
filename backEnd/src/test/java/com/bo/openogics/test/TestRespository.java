@@ -71,22 +71,12 @@ public class TestRespository {
     Clasif_ArticuloRepository clasif_articuloRepository;
 
     @Autowired
-    Bodega_ArticuloService bodega_articuloService;
-
-    @Autowired
     Clasif_BodegaService clasif_bodegaService;
 
     @Autowired
     Clasif_BodegaRepository clasif_bodegaRepository;
 
-    @Autowired
-    ComprasService comprasService;
 
-    @Autowired
-    ComprasRespository  comprasRespository;
-
-    @Autowired
-    ComprasArticuloRepository comprasArticuloRepository;
 
     private Logger logger = Logger.getLogger(TestRespository.class);
 
@@ -239,7 +229,7 @@ public class TestRespository {
             ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
             jsonArt = ow.writeValueAsString(bodegaArticulo);
             System.out.println("JSON ARMADO DE BEANS:" + jsonArt);
-            bodega_articuloService.adicionarBodegaArticulo(bodegaArticulo);
+            //bodega_articuloService.adicionarBodegaArticulo(bodegaArticulo);
         } catch (NullPointerException e) {
             e.printStackTrace();
             System.out.println(e.getMessage());
@@ -270,44 +260,7 @@ public class TestRespository {
     @Test
 
     public void saveCompra(){
-        Compra compra= new Compra();
-        Clasif_Bodega clasifBodega =clasif_bodegaRepository.findOne(1L);
-        compra.setNroCompra(001);
-        compra.setClasif_bodega(clasifBodega);
-        Compras_articulo compras_articulo= new Compras_articulo();
-        List<Compras_articulo> compras_articulos=new ArrayList<Compras_articulo>();
-        try {
-            //compras_articulo.setCantidad(5);
-            Clasif_Articulo clasif_articulo= clasif_articuloRepository.findOne(1L);
-            //compras_articulos.add(compras_articulo);
-            //compra.setArticulos(compras_articulos);
-            String jsonArt = null;
-            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-            //compra.addComprasArticulos(compras_articulo);
-            Compra compraReg=comprasRespository.save(compra);
-            //System.out.println("ID:"+compraReg.getId());
-            //Compra compra1=comprasRespository.findOne(compraReg.getId());
-            List<Clasif_Articulo> clasif_articulos= new ArrayList<Clasif_Articulo>();
-            clasif_articulos.add(clasif_articulo);
 
-            for (Clasif_Articulo clasifArticulo : clasif_articulos) {
-                Compras_articulo compras_articulo1=new Compras_articulo();
-                System.out.println("1");
-                compras_articulo1.setCompra(compraReg);
-                compras_articulo1.setCantidad(10);
-                System.out.println(compras_articulo1.getCantidad());
-                System.out.println("2");
-                compras_articulo1.setClasif_articulo(clasifArticulo);
-                jsonArt = ow.writeValueAsString(compras_articulo1);
-                System.out.println("3");
-                System.out.println("JSON:" + jsonArt);
-                comprasArticuloRepository.save(compras_articulo1);
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println(e.getMessage());
-        }
 
 
 
