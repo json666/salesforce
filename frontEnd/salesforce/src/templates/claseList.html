@@ -103,11 +103,10 @@
                                                 <div class="col-lg-4">
                                                     <div class="form-group">
                                                         <label>CATEGORIA</label>
-                                                        <select class="form-control" id="selectCategoria"
+                                                        <select class="form-control" id="selectCategoriaClase"
                                                                 name="categoria"
                                                                 ng-model="formDataClase.clasif_categoria"
-                                                                ng-options="item.descripcionCategoria for item in categoriaList"
-                                                                ng-change="cargarClase2()">
+                                                                ng-options="item.descripcionCategoria for item in categoriaClaseList">
                                                             <option value="">-- Seleccione --</option>
                                                         </select>
                                                     </div>
@@ -118,9 +117,6 @@
                                         </div>
                                     </div>
                                 </form>
-                <pre>
-                    {{formDataClase}}
-                </pre>
                             </div>
                             <!-- /.panel-body -->
                         </div>

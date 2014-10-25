@@ -14,15 +14,26 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
     paramService.paramMarcasList($scope);
     paramService.paramUnidadList($scope);
 
+    //$scope.cargarClase();
+
     $scope.formData = {}
     $http.get(service + '/categoria').success( //
         function (data) {
             var codigoCategoria;
-            $scope.categoriaList = data.result;
+            if(data.success){
+                $scope.categoriaList = data.result;
+            }else{
+                $("#ModalArticulo").modal('hide');
+                $('#alertSucces').modal('show');
+                $("#mensajeAlertSucces").text('Ocurrio un problema al cargar los datos');
+            }
+
         });
+    console.log("CODIGO");
+
 
     $scope.cargarClase = function () {
-        //console.log("CODIGO"+$scope.formData.clasif_categoria.id);
+        console.log("CODIGO"+$scope.formData.clasif_categoria.id);
         if ($scope.formData.clasif_categoria != null) {
             codigoCategoria = $scope.formData.clasif_categoria.id
         } else {
@@ -31,11 +42,19 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
 
         $http.get(service + '/categoria/' + codigoCategoria + '/clase').success( //
             function (data) {
-                $scope.claseList = data.result;
+                if(data.success){
+                    console.log('RESULT CATEGORIA');
+                    $scope.claseList = data.result;
+                }else{
+                    $("#ModalArticulo").modal('hide');
+                    $('#alertSucces').modal('show');
+                    $("#mensajeAlertSucces").text('Ocurrio un problema al cargar los datos Categoria');
+                }
+
             });
     }
 
-    $scope.cargarClase = function () {
+    /*$scope.cargarClase = function () {
 //        alert("sdfds");
         console.log("CODIGO" + $scope.formData.clasif_categoria.id);
         if ($scope.formData.clasif_categoria != null) {
@@ -48,7 +67,7 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
             function (data) {
                 $scope.claseList = data.result;
             });
-    }
+    }*/
     //console.log('CODIGO'+angular.toJson($scope.formData.clasif_categoria.id));
 // begin process the form proveedores
 
@@ -74,11 +93,12 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
 
             },
             add: function (e, data) {
+
                 console.log('ADD' + service + '/uploadFiles');
                 var FileExt = (data.originalFiles[0].name).substring((data.originalFiles[0].name).lastIndexOf('.') + 1, data.originalFiles[0].name.length);
                 if (FileExt.toLocaleLowerCase() == "png" || FileExt.toLocaleLowerCase() == "jpg" || FileExt.toLocaleLowerCase() == "gif") {
                     if (data.originalFiles[0].size <= 2097152) {//archivos <= 2 MB
-                        console.log('DATA IMAGE:' + data);
+                        //console.log('DATA IMAGE:' + data);
                         data.submit();
 
                     } else {
@@ -96,6 +116,8 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
                 //alert('...........Loading');
                 //$scope.loading=true;
                 $("#loading-div-background-img").css("display", "block");
+                $("#imageUpload").empty();
+                $('<div id="content_image" style="width: 300px">' + '<img class="img-thumbnail img-responsive " src="src/img/upload.jpg">' + '</div> ').appendTo('#imageUpload');
             },
             headers: {
                 'Access-Control-Allow-Origin': '*'
@@ -108,13 +130,16 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
                     //$("#imagenUpload").find("img").css("display", "block");
                     if (data.result.result[0] != null) {
                         $scope.formData.fotografia = data.result.result[0].bytes;
-                        console.log('TOJSONBYTES:' + angular.toJson(data.result.result[0].bytes));
+                        //console.log('TOJSONBYTES:' + angular.toJson(data.result.result[0].bytes));
                         console.log('DONE 2::::::::::::::::::::::::');
                         console.log('DONE 3::::::::::::::::::::::::');
-                        console.log('IMAGEN..');
+                        //console.log('IMAGEN..:'+angular.toJson(data.result.result));
+
                         $.each(data.result.result, function (index, file) {
+                            console.log('DATO A MOSTRAR:'+index+'------'+angular.toJson(file.fileName));
                             $("#imageUpload").empty();
                             $('<div id="content_image" style="max-width: 350px">' + '<img class="img-thumbnail img-responsive" src="' + service + '/getImage/' + index + '">' + '</div> ').appendTo('#imageUpload');
+                            //$('<div id="content_image" style="max-width: 350px">' + '<img ng-show="show" ng-src="data:image/JPEG;base64,"'+file.bytes+'">' + '</div> ').appendTo('#imageUpload');
                         });
 
 
@@ -224,8 +249,9 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
                     $scope.show = true;
                 }
                 $("#ModalArticuloInfo").modal({
-                    backdrop: false,
-                    keyboard: false
+                    show: true,
+                    backdrop: 'static',
+                    keyboard:false
                 });
             }).error(function (data, status) {
                 $('#alertError').modal('show');
@@ -488,8 +514,26 @@ function CategoriasController($scope, $http, $routeParams, serviceShare, paramSe
 //begin clases
 function ClasesController($scope, $http, $routeParams, serviceShare, paramService) {
     var id = $routeParams.id;
-
     //clases save
+
+    $scope.cargarCategoria=function(){
+        console.log('CATEGORIA');
+        $http.get(service + '/categoria').success( //
+            function (data) {
+                var codigoCategoria;
+                if(data.success){
+                    $scope.categoriaClaseList = data.result;
+                }else{
+                    $("#ModalClase").modal('hide');
+                    $('#alertSucces').modal('show');
+                    $("#mensajeAlertSucces").text('Ocurrio un problema al cargar los datos');
+                }
+
+            });
+    }
+    $scope.cargarCategoria();
+
+
     $scope.formDataClase = {
         "clasif_categoria": null
     }

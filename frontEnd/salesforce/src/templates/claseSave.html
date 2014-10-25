@@ -43,11 +43,10 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="form-group">
-                                        <label>CATEGORIA</label>
+                                        <label>CATEGORIAB</label>
                                         <select class="form-control" id="selectCategoria" name="categoria"
                                                 ng-model="formData.clasif_categoria"
-                                                ng-options="item.descripcionCategoria for item in categoriaList"
-                                                ng-change="cargarClase()">
+                                                ng-options="item.descripcionCategoria for item in categoriaList">
                                             <option value="">-- Seleccione --</option>
                                         </select>
                                     </div>
@@ -58,8 +57,6 @@
                         </div>
                     </div>
                 </form>
-                <pre>
-                </pre>
             </div>
             <!-- /.panel-body -->
         </div>
