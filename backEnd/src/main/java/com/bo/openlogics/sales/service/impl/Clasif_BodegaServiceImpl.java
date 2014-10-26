@@ -3,6 +3,7 @@ package com.bo.openlogics.sales.service.impl;
 import com.bo.openlogics.core.bean.JsonResult;
 import com.bo.openlogics.sales.beans.ClasifBodegaBean;
 import com.bo.openlogics.sales.dozer.UtilTransport;
+import com.bo.openlogics.sales.model.Clasif_Articulo;
 import com.bo.openlogics.sales.model.Clasif_Bodega;
 import com.bo.openlogics.sales.repository.Clasif_BodegaRepository;
 import com.bo.openlogics.sales.service.Clasif_BodegaService;
@@ -30,7 +31,6 @@ public class Clasif_BodegaServiceImpl implements Clasif_BodegaService {
         Clasif_Bodega clasifBodega = null;
         try {
             System.out.println(clasif_bodega.getId());
-            //clasifBodega = clasif_bodegaRepository.findOne(clasif_bodega.getId());
             System.out.println(clasifBodega);
             if (clasif_bodega != null) {
                 clasifBodega = clasif_bodegaRepository.save(clasif_bodega);
@@ -83,5 +83,30 @@ public class Clasif_BodegaServiceImpl implements Clasif_BodegaService {
         }catch(Exception e){
             return new JsonResult(false,"Error: "+e.getMessage(),null);
         }
+    }
+
+    @Override
+    public JsonResult buscarBodegaById(Long IdBodega) throws Exception {
+        JsonResult jsonResult = null;
+        Clasif_Bodega clasif_bodega;
+        try {
+            /**
+             * TODO: Logica de negocio para buscar Bodega por id
+             */
+
+            clasif_bodega = clasif_bodegaRepository.findOne(IdBodega);
+
+            if (clasif_bodega != null){
+                jsonResult=new JsonResult(true,"Articulo Seleccionado",clasif_bodega);
+            }
+            else{
+                jsonResult=new JsonResult(false,"Articulo no Existe",null);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            jsonResult=new JsonResult(false,e.getMessage(),null);
+        }
+        return jsonResult;
     }
 }

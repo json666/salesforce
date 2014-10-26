@@ -6,10 +6,8 @@ import com.bo.openlogics.sales.model.Bodega_articulo;
 import com.bo.openlogics.sales.model.Clasif_Articulo;
 import com.bo.openlogics.sales.model.Clasif_Proveedor;
 
-import com.bo.openlogics.sales.service.Clasif_ArticuloService;
-import com.bo.openlogics.sales.service.Clasif_BodegaService;
-import com.bo.openlogics.sales.service.Clasif_ProveedorService;
-import com.bo.openlogics.sales.service.ComprasService;
+import com.bo.openlogics.sales.model.Cliente;
+import com.bo.openlogics.sales.service.*;
 import org.apache.log4j.Logger;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.ObjectWriter;
@@ -39,6 +37,9 @@ public class SalesForceRESTController {
 
     @Autowired
     ComprasService comprasService;
+
+    @Autowired
+    ClienteService clienteService;
 
 
     private Logger logger = Logger.getLogger(SalesForceRESTController.class);
@@ -291,4 +292,70 @@ public class SalesForceRESTController {
             return new JsonResult(false, "Error: " + e.getMessage(), null);
         }
     }
+
+    @RequestMapping(value = "bodega/buscar/{idBodega}", method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResult buscarBodegaById(@PathVariable Long idBodega) {
+        try {
+            JsonResult jsonResult = null;
+            jsonResult = clasif_bodegaService.buscarBodegaById(idBodega);
+            if (jsonResult.getSuccess()) {
+                return jsonResult;
+            } else {
+                return new JsonResult(false, jsonResult.getMessage(), null);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new JsonResult(false, "Error: " + e.getMessage(), null);
+        }
+    }
+
+    @RequestMapping(value = "clientes/detalle", method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResult listadoClientesDetalle() {
+        try{
+            return clienteService.listadoClientesGeneral();
+        }catch(NullPointerException e){
+            e.printStackTrace();
+            return new JsonResult(false,"Error: "+e.getMessage(),null);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new JsonResult(false,"Error: "+e.getMessage(),null);
+        }
+    }
+
+    @RequestMapping(value = "/cliente/guardar", method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResult saveCliente(@RequestBody Cliente cliente) {
+        try {
+            JsonResult jsonResult = null;
+            if (cliente != null) {
+                jsonResult = clienteService.saveCliente(cliente);
+                return jsonResult;
+            } else {
+                return new JsonResult(false, "El objeto Cliente tiene problemas.", null);
+            }
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+            return new JsonResult(false, "Error: " + e.getMessage(), null);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new JsonResult(false, "Error: " + e.getMessage(), null);
+        }
+    }
+
+    @RequestMapping(value = "cliente/buscar/{numero}", method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResult buscarClienteByNumero(@PathVariable String numero) {
+        try {
+            JsonResult jsonResult = null;
+            jsonResult = clienteService.buscarByNroDocumento(numero);
+            return jsonResult;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new JsonResult(false, "Error: " + e.getMessage(), null);
+        }
+    }
+
+
 }

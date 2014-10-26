@@ -37,6 +37,9 @@ public class SalesForceParamRESTController {
     @Autowired
     Clasif_BodegaService clasif_bodegaService;
 
+    @Autowired
+    ClienteService clienteService;
+
     private Logger logger = Logger.getLogger(SalesForceParamRESTController.class);
 
     @RequestMapping(value = "/marcas_producto", method = RequestMethod.GET)
@@ -270,6 +273,20 @@ public class SalesForceParamRESTController {
             JsonResult jsonResult=null;
             jsonResult=clasif_bodegaService.listadoClasifBodega();
             return jsonResult;
+        }catch(NullPointerException e){
+            e.printStackTrace();
+            return new JsonResult(false,"Error: "+e.getMessage(),null);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new JsonResult(false,"Error: "+e.getMessage(),null);
+        }
+    }
+
+    @RequestMapping(value = "/clientes", method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResult listadoClientes() {
+        try{
+            return clienteService.listadoCliente();
         }catch(NullPointerException e){
             e.printStackTrace();
             return new JsonResult(false,"Error: "+e.getMessage(),null);

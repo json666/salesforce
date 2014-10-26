@@ -90,6 +90,9 @@ public class TestRespository {
     @Autowired
     ComprasService comprasService;
 
+    @Autowired
+    ClienteService clienteService;
+
 
     private Logger logger = Logger.getLogger(TestRespository.class);
 
@@ -351,6 +354,29 @@ public class TestRespository {
 
 
     }
+    @Test
+    public void saveCliente(){
+        Cliente cliente= new Cliente();
+        try{
+            cliente.setDireccion("");
+            cliente.setNombre("JUAN");
+            cliente.setPateno("LUCAS");
+            cliente.setNroDocumento("123456789");
+            cliente.setRazonSocial("LUCAS & ASOC");
+            cliente.setFechaDesde(new Date());
+            cliente.setFechaHasta(new Date());
+
+            ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+            String jsonArt = null;
+            jsonArt = ow.writeValueAsString(cliente);
+            System.out.println("JSON A GUARDAR:" + jsonArt);
+            clienteService.saveCliente(cliente);
+
+        }catch(Exception e){
+                          e.printStackTrace();
+        }
+    }
+
 
 
 }

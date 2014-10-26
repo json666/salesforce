@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * Created by osanchez on 24/10/14.
@@ -17,7 +18,7 @@ public class Cliente extends EntidadBase {
     private String nombre;
 
     @Column(name = "PATERNO")
-    private String pateno;
+    private String paterno;
 
     @Column(name = "MATERNO")
     private String materno;
@@ -31,17 +32,34 @@ public class Cliente extends EntidadBase {
     @Column(name = "DIRECCION")
     private String direccion;
 
+    @Column(name = "FECHA_DESDE")
+    private Date fechaDesde;
+
+    @Column(name = "FECHA_HASTA")
+    private Date fechaHasta ;
+
 
     public Cliente() {
     }
 
-    public Cliente(String nombre, String pateno, String materno, String razonSocial, String nroDocumento, String direccion) {
+    public Cliente(String nombre, String paterno, String materno, String razonSocial, String nroDocumento, String direccion) {
         this.nombre = nombre;
-        this.pateno = pateno;
+        this.paterno = paterno;
         this.materno = materno;
         this.razonSocial = razonSocial;
         this.nroDocumento = nroDocumento;
         this.direccion = direccion;
+    }
+
+    public Cliente(String nombre, String paterno, String materno, String razonSocial, String nroDocumento, String direccion, Date fechaDesde, Date fechaHasta) {
+        this.nombre = nombre;
+        this.paterno = paterno;
+        this.materno = materno;
+        this.razonSocial = razonSocial;
+        this.nroDocumento = nroDocumento;
+        this.direccion = direccion;
+        this.fechaDesde = fechaDesde;
+        this.fechaHasta = fechaHasta;
     }
 
     public String getNombre() {
@@ -52,12 +70,12 @@ public class Cliente extends EntidadBase {
         this.nombre = nombre;
     }
 
-    public String getPateno() {
-        return pateno;
+    public String getPaterno() {
+        return paterno;
     }
 
     public void setPateno(String pateno) {
-        this.pateno = pateno;
+        this.paterno = pateno;
     }
 
     public String getMaterno() {
@@ -90,5 +108,21 @@ public class Cliente extends EntidadBase {
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
+    }
+
+    public Date getFechaDesde() {
+        return fechaDesde;
+    }
+
+    public void setFechaDesde(Date fechaDesde) {
+        this.fechaDesde = fechaDesde;
+    }
+
+    public Date getFechaHasta() {
+        return fechaHasta;
+    }
+
+    public void setFechaHasta(Date fechaHasta) {
+        this.fechaHasta = fechaHasta;
     }
 }

@@ -11,4 +11,5 @@ public interface Clasif_BodegaService {
     public JsonResult saveClasifBodega(Clasif_Bodega clasif_bodega);
     public JsonResult listadoClasifBodega();
     public JsonResult getClasif_Bodega();
+    public JsonResult buscarBodegaById(Long IdBodega) throws Exception;
 }
