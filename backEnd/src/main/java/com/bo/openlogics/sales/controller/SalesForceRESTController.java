@@ -357,5 +357,22 @@ public class SalesForceRESTController {
         }
     }
 
+    @RequestMapping(value = "articulo/buscar/{codigo}", method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResult getByCodigoArticuloCompra(@PathVariable String codigo) {
+        try {
+            JsonResult jsonResult = null;
+            jsonResult = clasif_articuloService.buscarArticuloBeanCompraByCodigoArticulo(codigo);
+            if (jsonResult.getSuccess()) {
+                return jsonResult;
+            } else {
+                return new JsonResult(false, jsonResult.getMessage(), null);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new JsonResult(false, "Error: " + e.getMessage(), null);
+        }
+    }
+
 
 }

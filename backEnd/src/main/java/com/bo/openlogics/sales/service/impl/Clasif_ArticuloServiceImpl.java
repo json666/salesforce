@@ -5,6 +5,7 @@ import com.bo.openlogics.core.bean.JsonResult;
 import com.bo.openlogics.sales.barcode.BarCodeGenerator;
 import com.bo.openlogics.sales.barcode.impl.BarCodeGeneratorImpl;
 import com.bo.openlogics.sales.beans.ArticuloBean;
+import com.bo.openlogics.sales.beans.ArticuloBeanCompra;
 import com.bo.openlogics.sales.beans.parametricas.*;
 import com.bo.openlogics.sales.dozer.UtilTransport;
 import com.bo.openlogics.sales.model.*;
@@ -323,4 +324,33 @@ public class Clasif_ArticuloServiceImpl implements Clasif_ArticuloService {
         }
         return jsonResult;
     }
+
+    @Override
+    public JsonResult buscarArticuloBeanCompraByCodigoArticulo(String codigoArticulo) throws Exception {
+        JsonResult jsonResult = null;
+        Clasif_Articulo clasifArticulo;
+        ArticuloBeanCompra articuloBeanCompra=null;
+        try {
+            /**
+             * TODO: Logica de negocio para buscar Articulo por id
+             */
+            System.out.println("CODIGO ART SERVER:"+codigoArticulo);
+            clasifArticulo = clasif_articuloRepository.findByCodigoArticulo(codigoArticulo);
+            articuloBeanCompra=utilTransport.convert(clasifArticulo,ArticuloBeanCompra.class);
+            if (articuloBeanCompra != null){
+                jsonResult=new JsonResult(true,"Articulo Seleccionado",articuloBeanCompra);
+            }
+            else{
+                jsonResult=new JsonResult(false,"Articulo no Existe",null);
+                logger.info("******Articulo no Existe*******");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            jsonResult=new JsonResult(false,e.getMessage(),null);
+        }
+        return jsonResult;
+    }
+
+
 }

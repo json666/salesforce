@@ -15,6 +15,8 @@ public class ArticuloBeanCompra implements Serializable {
 
     private Double precio ;
 
+    private Integer cantidadExistente;
+
 
     public ArticuloBeanCompra() {
     }
@@ -24,6 +26,15 @@ public class ArticuloBeanCompra implements Serializable {
         this.codigoArticulo = codigoArticulo;
         this.nombreArticulo = nombreArticulo;
         this.precio = precio;
+
+    }
+
+    public ArticuloBeanCompra(Long id, String codigoArticulo, String nombreArticulo, Double precio, Integer cantidadExistente) {
+        this.id = id;
+        this.codigoArticulo = codigoArticulo;
+        this.nombreArticulo = nombreArticulo;
+        this.precio = precio;
+        this.cantidadExistente = cantidadExistente;
     }
 
     public Long getId() {
@@ -56,5 +67,13 @@ public class ArticuloBeanCompra implements Serializable {
 
     public void setPrecio(Double precio) {
         this.precio = precio;
+    }
+
+    public Integer getCantidadExistente() {
+        return cantidadExistente;
+    }
+
+    public void setCantidadExistente(Integer cantidadExistente) {
+        this.cantidadExistente = cantidadExistente;
     }
 }

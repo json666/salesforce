@@ -78,6 +78,9 @@ public class Clasif_Articulo extends EntidadBase implements Serializable {
     @ManyToOne
     private Clasif_Clase clasif_clase;
 
+    @Transient
+    private Integer cantidad;
+
     public Clasif_Articulo(){
 
     }
@@ -249,5 +252,13 @@ public class Clasif_Articulo extends EntidadBase implements Serializable {
 
     public void setMargenGanancia(Double margenGanancia) {
         this.margenGanancia = margenGanancia;
+    }
+
+    public Integer getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(Integer cantidad) {
+        this.cantidad = cantidad;
     }
 }

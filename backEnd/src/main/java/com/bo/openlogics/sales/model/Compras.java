@@ -62,13 +62,13 @@ public class Compras extends EntidadBase implements Serializable {
     public void setDetalleComprasArticulos(List<DetalleComprasArticulo> detalleComprasArticulos) {
         this.detalleComprasArticulos = detalleComprasArticulos;
     }
+
     @JsonIgnore
     public void addDetalleComprasArticulo(Clasif_Articulo clasif_articulo) {
         DetalleComprasArticulo detalleComprasArticulo = new DetalleComprasArticulo();
         detalleComprasArticulo.setCompras(this);
         detalleComprasArticulo.setClasif_articulo(clasif_articulo);
-
-        detalleComprasArticulo.setCantidadExistente(this.getCantidadExistente());
+        detalleComprasArticulo.setCantidadExistente(clasif_articulo.getCantidad());
         this.getDetalleComprasArticulos().add(detalleComprasArticulo);
     }
 

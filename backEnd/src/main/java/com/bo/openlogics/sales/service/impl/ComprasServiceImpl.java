@@ -49,12 +49,16 @@ public class ComprasServiceImpl implements ComprasService {
             
             for (ArticuloBeanCompra articuloBeanCompra : comprasBean.getArticuloBeanCompras()) {
                 clasif_articulo=null;
+
                 clasif_articulo=clasif_articuloRepository.findOne(articuloBeanCompra.getId());
+                clasif_articulo.setCantidad(articuloBeanCompra.getCantidadExistente());
                 clasif_articulos.add(clasif_articulo);
+
             }
 
             for (Clasif_Articulo clasif_articulo1 : clasif_articulos) {
                 compras.addDetalleComprasArticulo(clasif_articulo1);
+
             }
 
             comprasRepository.save(compras);
