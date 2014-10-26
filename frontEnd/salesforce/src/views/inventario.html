@@ -50,7 +50,7 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label>UNIDAD</label>
+                                        <label for="selectUnidad">UNIDAD</label>
                                         <select class="form-control " id="selectUnidad"
                                                 name="unidadArtInput"
                                                 ng-model="formData.clasif_unidad"
@@ -64,7 +64,7 @@
                             <div class="row">
                                 <div class="col-lg-4">
                                     <div class="form-group">
-                                        <label>MARCA</label>
+                                        <label for="selectMarca">MARCA</label>
                                         <select class="form-control " id="selectMarca"
                                                 name="marcaArtInput"
                                                 ng-model="formData.clasif_marca"
@@ -76,7 +76,7 @@
 
                                 <div class="col-lg-4">
                                     <div class="form-group">
-                                        <label>CATEGORIA</label>
+                                        <label for="selectCategoria">CATEGORIA</label>
                                         <select class="form-control " id="selectCategoria"
                                                 name="categoriaArtInput"
                                                 ng-model="formData.clasif_categoria"
@@ -88,7 +88,7 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="form-group">
-                                        <label>CLASE</label>
+                                        <label for="selectClase">CLASE</label>
                                         <select class="form-control " id="selectClase"
                                                 name="claseArtInput"
                                                 ng-model="formData.clasif_clase"
@@ -101,16 +101,17 @@
                             <div class="row">
                                 <div class="col-lg-4">
                                     <div class="form-group">
-                                        <label>PRECIO</label>
-                                        <input class="form-control precioArtInput" ng-model="formData.precio"
+                                        <label for="precio">PRECIO</label>
+                                        <input class="form-control precioArtInput" id="precio"
+                                               ng-model="formData.precio"
                                                placeholder="precio" numbers
                                                 name="precioArtInput">
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="form-group">
-                                        <label>PRECIO COSTO</label>
-                                        <input class="form-control "
+                                        <label for="precioCosto">PRECIO COSTO</label>
+                                        <input class="form-control " id="precioCosto"
                                                ng-model="formData.precioCosto"
                                                ng-change="calculaMargenGanancia()"
                                                placeholder="precioCosto" numbers
@@ -119,8 +120,8 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="form-group">
-                                        <label>MARGEN GANACIA</label>
-                                        <input class="form-control "
+                                        <label for="margenGanancia">MARGEN GANACIA</label>
+                                        <input class="form-control" id="margenGanancia"
                                                ng-model="formData.margenGanancia"
                                                disabled="true"
                                                placeholder="margenGanancia" numbers
@@ -131,16 +132,18 @@
                             <div class="row">
                                 <div class="col-lg-4">
                                     <div class="form-group">
-                                        <label>NIVEL REORDEN</label>
-                                        <input class="form-control " ng-model="formData.nivelReorden"
+                                        <label for="nivelReorden">NIVEL REORDEN</label>
+                                        <input class="form-control" id="nivelReorden"
+                                               ng-model="formData.nivelReorden"
                                                placeholder="nivelReorden" numbers
                                                name="nivelArtInput">
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="form-group ">
-                                        <label>CANTIDAD REORDEN</label>
-                                        <input class="form-control" ng-model="formData.cantidadReorden" numbers
+                                        <label for="cantidadReorden">CANTIDAD REORDEN</label>
+                                        <input class="form-control" id="cantidadReorden"
+                                               ng-model="formData.cantidadReorden" numbers
                                                 name="cantidadArtInput">
                                     </div>
                                 </div>

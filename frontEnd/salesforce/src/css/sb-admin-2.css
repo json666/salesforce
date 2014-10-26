@@ -450,6 +450,7 @@ legend{
 .red {
     color: #D43F3A;
     font-size: 18px;
+    vertical-align: middle;
 
 }
 .bolder{
@@ -457,12 +458,31 @@ legend{
 }
 
 .help-block{
-    position: absolute;
-    background: #222;
-    filter: alpha(opacity=50);
-    color:#ccc !important;
-    border-radius:5px ;
-    padding: 2px;
-    z-index: 100;
+    /*position: absolute;*/
+    /*background: #222;*/
+    /*filter: alpha(opacity=50);*/
+    /*color:#ccc !important;*/
+    /*border-radius:5px ;*/
+    /*padding: 2px;*/
+    /*z-index: 100;*/
+
+
+    /* label classes */
+    margin-top: 2px;
+    margin-bottom: 0px !important;
+    /*position: absolute;*/
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: 75%;
+    font-weight: bold;
+    line-height: 1;
+    color: #ffffff !important;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+
+    /* label danger classes */
+    background-color: #d9534f;
 
 }
