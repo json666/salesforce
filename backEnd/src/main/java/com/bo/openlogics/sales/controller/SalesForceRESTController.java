@@ -1,6 +1,7 @@
 package com.bo.openlogics.sales.controller;
 
 import com.bo.openlogics.core.bean.JsonResult;
+import com.bo.openlogics.sales.beans.ComprasBean;
 import com.bo.openlogics.sales.model.Bodega_articulo;
 import com.bo.openlogics.sales.model.Clasif_Articulo;
 import com.bo.openlogics.sales.model.Clasif_Proveedor;
@@ -41,6 +42,24 @@ public class SalesForceRESTController {
 
 
     private Logger logger = Logger.getLogger(SalesForceRESTController.class);
+
+    /**
+     * Descripcion: Registra una compra;
+     */
+
+    @RequestMapping(value = "/compra/guardar", method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResult adicionarCompras(@RequestBody ComprasBean comprasBean) {
+        try {
+            return comprasService.adicionarCompras(comprasBean);
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+            return new JsonResult(false, "Error: " + e.getMessage(), null);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new JsonResult(false, "Error: " + e.getMessage(), null);
+        }
+    }
 
     /**
      * Descripcion: Registra un Articulo;
