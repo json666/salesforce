@@ -279,7 +279,8 @@ public class TestRespository {
         try {
             Compras compras = new Compras();
 
-            compras.setCantidadExistente(10);
+            compras.setPrecioCompra(552.0);
+            compras.setFechaRegistro(new Date());
             compras.setNroCompra(0012);
             compras.setClasif_bodega(clasif_bodegaRepository.findOne(1L));
             List<Clasif_Articulo> clasif_articulos = new ArrayList<Clasif_Articulo>();
@@ -309,7 +310,8 @@ public class TestRespository {
             ComprasBean comprasBean= new ComprasBean();
 
 
-            comprasBean.setCantidadExistente(15);
+            comprasBean.setPrecioCompra(552.0);
+            comprasBean.setFechaRegistro(new Date());
             comprasBean.setNroCompra(4);
             BodegaBean bodegaBean= new BodegaBean();
             bodegaBean.setDescripcionBodega("");
@@ -332,8 +334,8 @@ public class TestRespository {
 
             JsonResult jsonResult=comprasService.adicionarCompras(comprasBean);
             System.out.println(jsonResult.getMessage());
-            /*
-            compras.setCantidadExistente(10);
+
+            /*compras.setCantidadExistente(10);
             compras.setNroCompra(0012);
             compras.setClasif_bodega(clasif_bodegaRepository.findOne(1L));
             List<Clasif_Articulo> clasif_articulos = new ArrayList<Clasif_Articulo>();
