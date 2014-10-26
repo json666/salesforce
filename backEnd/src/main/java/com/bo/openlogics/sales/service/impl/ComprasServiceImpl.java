@@ -4,9 +4,11 @@ import com.bo.openlogics.core.bean.JsonResult;
 import com.bo.openlogics.sales.beans.ArticuloBeanCompra;
 import com.bo.openlogics.sales.beans.ComprasBean;
 import com.bo.openlogics.sales.model.Clasif_Articulo;
+import com.bo.openlogics.sales.model.Clasif_Proveedor;
 import com.bo.openlogics.sales.model.Compras;
 import com.bo.openlogics.sales.repository.Clasif_ArticuloRepository;
 import com.bo.openlogics.sales.repository.Clasif_BodegaRepository;
+import com.bo.openlogics.sales.repository.Clasif_ProveedorRespository;
 import com.bo.openlogics.sales.repository.ComprasRepository;
 import com.bo.openlogics.sales.service.ComprasService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +33,9 @@ public class ComprasServiceImpl implements ComprasService {
     
     @Autowired
     Clasif_ArticuloRepository clasif_articuloRepository;
+
+    @Autowired
+    Clasif_ProveedorRespository clasif_proveedorRespository;
     
 
     @Override
@@ -45,6 +50,7 @@ public class ComprasServiceImpl implements ComprasService {
             compras.setNroCompra(comprasBean.getNroCompra());
             compras.setPrecioCompra(comprasBean.getPrecioCompra());
             compras.setFechaRegistro(comprasBean.getFechaRegistro());
+            compras.setClasif_proveedor(clasif_proveedorRespository.findOne(comprasBean.getProveedoreBean().getId()));
             compras.setClasif_bodega(clasif_bodegaRepository.findOne(comprasBean.getBodegaBean().getId()));
             clasif_articulos= new ArrayList<Clasif_Articulo>();
             

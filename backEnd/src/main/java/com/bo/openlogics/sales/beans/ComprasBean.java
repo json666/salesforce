@@ -1,6 +1,7 @@
 package com.bo.openlogics.sales.beans;
 
 import com.bo.openlogics.sales.beans.parametricas.BodegaBean;
+import com.bo.openlogics.sales.beans.parametricas.ProveedoreBean;
 import com.bo.openlogics.sales.model.Clasif_Articulo;
 import com.bo.openlogics.sales.model.Clasif_Bodega;
 
@@ -25,6 +26,8 @@ public class ComprasBean implements Serializable {
     private Double precioCompra;
 
     private Date fechaRegistro;
+
+    private ProveedoreBean proveedoreBean;
 
 
 
@@ -73,5 +76,13 @@ public class ComprasBean implements Serializable {
 
     public void setFechaRegistro(Date fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
+    }
+
+    public ProveedoreBean getProveedoreBean() {
+        return proveedoreBean;
+    }
+
+    public void setProveedoreBean(ProveedoreBean proveedoreBean) {
+        this.proveedoreBean = proveedoreBean;
     }
 }

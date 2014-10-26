@@ -309,10 +309,14 @@ public class TestRespository {
         try {
             ComprasBean comprasBean= new ComprasBean();
 
-
+            ProveedoreBean proveedoreBean=new ProveedoreBean();
+            proveedoreBean.setId(1L);
+            proveedoreBean.setNombre("YANAPAX");
+            proveedoreBean.setNumeroDocumento("4851800");
             comprasBean.setPrecioCompra(552.0);
             comprasBean.setFechaRegistro(new Date());
             comprasBean.setNroCompra(4);
+            comprasBean.setProveedoreBean(proveedoreBean);
             BodegaBean bodegaBean= new BodegaBean();
             bodegaBean.setDescripcionBodega("");
             bodegaBean.setId(1L);

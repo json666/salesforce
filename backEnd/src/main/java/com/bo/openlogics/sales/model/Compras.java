@@ -38,6 +38,9 @@ public class Compras extends EntidadBase implements Serializable {
     @ManyToOne(fetch= FetchType.LAZY)
     private Clasif_Bodega clasif_bodega;
 
+    @ManyToOne(fetch= FetchType.LAZY)
+    private Clasif_Proveedor clasif_proveedor;
+
     @Transient
     private List<Clasif_Articulo> clasif_articulos;
 
@@ -120,5 +123,11 @@ public class Compras extends EntidadBase implements Serializable {
     }
 
 
+    public Clasif_Proveedor getClasif_proveedor() {
+        return clasif_proveedor;
+    }
 
+    public void setClasif_proveedor(Clasif_Proveedor clasif_proveedor) {
+        this.clasif_proveedor = clasif_proveedor;
+    }
 }
