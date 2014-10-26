@@ -5,7 +5,7 @@
             <strong>Lista de Marcas</strong>
 
             <div style="float: right">
-                <button class="btn btn-primary btn-sm" data-toggle='modal' data-target="#ModalMarca"><i
+                <button class="btn btn-primary btn-sm" data-toggle='modal' data-target="#ModalMarca" ng-click="regMarcas()"><i
                         class="fa fa-plus"></i> Reg. Marca
                 </button>
             </div>
@@ -57,30 +57,28 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="panel panel-default">
-                            <div class="panel-heading">
-                                Datos de la Marca
-                            </div>
                             <div class="panel-body">
                                 <!-- /.row (nested) -->
-                                <form>
+                                <datos-Registro-Marca>
+                                <form id="marcaForm">
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="row">
                                                 <div class="col-lg-4">
                                                     <div class="form-group">
-                                                        <label>DESCRIPCION</label>
-                                                        <input class="form-control"
-                                                               ng-model="formDataMarca.descripcionMarca" capitalize>
+                                                        <label for="descripcionMarca">DESCRIPCION</label>
+                                                        <input class="form-control" id="descripcionMarca"
+                                                               ng-model="formDataMarca.descripcionMarca"
+                                                               name="descripcionMarca"capitalize>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-3">
                                                     <div class="form-group">
-                                                        <label>FECHA DESDE</label>
-
+                                                        <label for="fechaDesde">FECHA DESDE</label>
                                                         <div class="input-group date">
-                                                            <input class="form-control"
+                                                            <input class="form-control" id="fechaDesde"
                                                                    ng-model="formDataMarca.fechaDesde" datepicker=""
-                                                                   type="text">
+                                                                   name="fechaDesde" type="text">
                                 <span class="input-group-addon"><i class="fa fa-calendar"></i>
                                  </span>
                                                         </div>
@@ -89,12 +87,12 @@
 
                                                 <div class="col-lg-3">
                                                     <div class="form-group">
-                                                        <label>FECHA HASTA</label>
+                                                        <label for="fechaHasta">FECHA HASTA</label>
 
                                                         <div class="input-group date">
-                                                            <input class="form-control"
+                                                            <input class="form-control" id="fechaHasta"
                                                                    ng-model="formDataMarca.fechaHasta" datepicker=""
-                                                                   type="text">
+                                                                   name="fechaHasta" type="text">
                                     <span class="input-group-addon"><i class="fa fa-calendar"></i>
                              </span>
                                                         </div>
@@ -106,6 +104,7 @@
                                         </div>
                                     </div>
                                 </form>
+                                </datos-Registro-Marca>
                             </div>
                             <!-- /.panel-body -->
                         </div>

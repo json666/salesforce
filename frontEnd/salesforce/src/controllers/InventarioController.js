@@ -16,6 +16,17 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
 
     //$scope.cargarClase();
 
+    /**
+     * Limpia formulario
+    */
+    $scope.regPro = function(){
+        $scope.formData = {}
+        var validator = $("#artForm").validate();
+        validator.resetForm();
+        $(".form-group").removeClass('has-error');
+        console.log("-----------------------Registrar nuevo producto--------------------")
+    }
+
     $scope.formData = {}
     $http.get(service + '/categoria').success( //
         function (data) {
@@ -167,7 +178,7 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
 
     $scope.cancel = function () {
         var validator = $("#artForm").validate();
-        validator.resetForm()
+        validator.resetForm();
         $(".form-group").removeClass('has-error');
         $("#imageUpload").empty();
 
@@ -361,43 +372,6 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
 
 
 
-    $scope.pdf = function () {
-        alert("testaaaa")
-//    function demoFromHTML() {
-        var pdf = new jsPDF('p', 'pt', 'letter')
-            , source = $('#test')[0]
-            , specialElementHandlers = {
-                // element with id of "bypass" - jQuery style selector
-                '#bypassme': function (element, renderer) {
-                    // true = "handled elsewhere, bypass text extraction"
-                    return true
-                }
-            }
-
-        margins = {
-            top: 80,
-            bottom: 60,
-            left: 40,
-            width: 522
-        };
-        pdf.fromHTML(
-            source // HTML string or DOM elem ref.
-            , margins.left // x coord
-            , margins.top // y coord
-            , {
-                'width': margins.width // max width of content on PDF
-                , 'elementHandlers': specialElementHandlers
-            },
-            function (dispose) {
-                // dispose: object with X, Y of the last line add to the PDF
-                //          this allow the insertion of new lines after html
-                pdf.save('Test.pdf');
-            },
-            margins
-        )
-//    }
-    }
-
 }
 
 //categorias begin
@@ -405,9 +379,29 @@ function CategoriasController($scope, $http, $routeParams, serviceShare, paramSe
 
     var id = $routeParams.id;
 
-    //categorias save
+    /**
+     * Limpia formulario categorias
+     */
+    $scope.regCategorias = function(){
+        $scope.formDataCategoria = {}
+        var validator = $("#categoriaForm").validate();
+        validator.resetForm();
+        $(".form-group").removeClass('has-error');
+        console.log("-----------------------Registrar nuevo producto--------------------")
+    }
+
+    /**
+     * Guarda Categorias
+     */
     if (id == null || id.length == 0) {
         $scope.saveCategoria = function () {
+
+            if (!$("#categoriaForm").valid()) {
+                $('#alertError').modal('show');
+                $("#mensajeAlertError").html('Error! debe llenar los campos requeridos');
+                return false
+            }
+            else{
             $http({
                 method: 'POST',
                 url: service + '/categoria/guardar',
@@ -425,6 +419,7 @@ function CategoriasController($scope, $http, $routeParams, serviceShare, paramSe
                 $("#mensajeAlertError").text(data.result + 'Error! intente nuevamente');
 
             });
+        }
         }
         //inventarioService.saveArticulo($scope.formData);
 
@@ -538,26 +533,49 @@ function ClasesController($scope, $http, $routeParams, serviceShare, paramServic
         "clasif_categoria": null
     }
 
+    /**
+     * Limpia formulario clases
+     */
+    $scope.regClases = function(){
+        $scope.formDataCategoria = {}
+        var validator = $("#claseForm").validate();
+        validator.resetForm();
+        $(".form-group").removeClass('has-error');
+        console.log("-----------------------Registrar nueva clase--------------------")
+    }
+
+    /**
+     * Guarda Clases
+     */
     if (id == null || id.length == 0) {
         $scope.saveClase = function () {
-            $http({
-                method: 'POST',
-                url: service + '/clases/guardar',
-                data: JSON.stringify($scope.formDataClase)
-            }).success(function (response) {
-                result = response;
-                $scope.formDataClase = null;
-                $scope.listadoClases();
-                $("#ModalClase").modal('hide')
-                $('#alertSucces').modal('show');
-                $("#mensajeAlertSucces").text(response.message);
 
-            }).error(function (response) {   //
+            if (!$("#claseForm").valid()) {
                 $('#alertError').modal('show');
-                $("#mensajeAlertError").text('Error! intente nuevamente');
+                $("#mensajeAlertError").html('Error! debe llenar los campos requeridos');
+                return false
+            }
+            else {
+                $http({
+                    method: 'POST',
+                    url: service + '/clases/guardar',
+                    data: JSON.stringify($scope.formDataClase)
+                }).success(function (response) {
+                    result = response;
+                    $scope.formDataClase = null;
+                    $scope.listadoClases();
+                    $("#ModalClase").modal('hide')
+                    $('#alertSucces').modal('show');
+                    $("#mensajeAlertSucces").text(response.message);
 
-            });
-        }
+                }).error(function (response) {   //
+                    $('#alertError').modal('show');
+                    $("#mensajeAlertError").text('Error! intente nuevamente');
+
+                });
+            }
+            }
+
         //inventarioService.saveArticulo($scope.formData);
 
     } else {
@@ -644,26 +662,47 @@ function ClasesController($scope, $http, $routeParams, serviceShare, paramServic
 function MarcasController($scope, $http, $routeParams, serviceShare, paramService) {
     var id = $routeParams.id;
 
-    //marcas save
+    /**
+     * Limpia formulario marcas
+     */
+    $scope.regMarcas = function(){
+        $scope.formDataMarca = {}
+        var validator = $("#marcaForm").validate();
+        validator.resetForm();
+        $(".form-group").removeClass('has-error');
+        console.log("-----------------------Registrar nueva marca--------------------")
+    }
+
+    /**
+     * Guarda Marca
+     */
     if (id == null || id.length == 0) {
         $scope.saveMarca = function () {
-            $http({
-                method: 'POST',
-                url: service + '/marcas/guardar',
-                data: JSON.stringify($scope.formDataMarca)
-            }).success(function (response) {
-                result = response;
-                $scope.formDataMarca = null;
-                $scope.listadoMarcasProducto();
-                $("#ModalMarca").modal('hide')
-                $('#alertSucces').modal('show');
-                $("#mensajeAlertSucces").text('Registro Guardado');
 
-            }).error(function (response) {   //
+            if (!$("#marcaForm").valid()) {
                 $('#alertError').modal('show');
-                $("#mensajeAlertError").text(data.result + 'Error! intente nuevamente');
+                $("#mensajeAlertError").html('Error! debe llenar los campos requeridos');
+                return false
+            }
+            else {
+                $http({
+                    method: 'POST',
+                    url: service + '/marcas/guardar',
+                    data: JSON.stringify($scope.formDataMarca)
+                }).success(function (response) {
+                    result = response;
+                    $scope.formDataMarca = null;
+                    $scope.listadoMarcasProducto();
+                    $("#ModalMarca").modal('hide')
+                    $('#alertSucces').modal('show');
+                    $("#mensajeAlertSucces").text('Registro Guardado');
 
-            });
+                }).error(function (response) {   //
+                    $('#alertError').modal('show');
+                    $("#mensajeAlertError").text(data.result + 'Error! intente nuevamente');
+
+                });
+            }
         }
         //inventarioService.saveArticulo($scope.formData);
 
@@ -749,27 +788,46 @@ function MarcasController($scope, $http, $routeParams, serviceShare, paramServic
 
 function UnidadesController($scope, $http, $routeParams, serviceShare, paramService) {
     var id = $routeParams.id;
+    /**
+     * Limpia formulario unidades
+     */
+    $scope.saveUnidad = function(){
+        $scope.formDataUnidad = {}
+        var validator = $("#unidadForm").validate();
+        validator.resetForm();
+        $(".form-group").removeClass('has-error');
+        console.log("-----------------------Registrar nueva clase--------------------")
+    }
 
-    //begin unidades
-    //unidades save
+    /**
+     * Guarda Unidades
+     */
     if (id == null || id.length == 0) {
         $scope.saveUnidad = function () {
-            $http({
-                method: 'POST',
-                url: service + '/unidad_medida/guardar',
-                data: JSON.stringify($scope.formDataUnidad)
-            }).success(function (response) {
-                result = response;
-                $scope.formDataUnidad = null;
-                $("#ModalUnidad").modal('hide')
-                $('#alertSucces').modal('show');
-                $("#mensajeAlertSucces").text(response.message);
-                $scope.listadoUnidades();
 
-            }).error(function (response) {   //
-                alert("ERROR! intente mas tarde")
+            if (!$("#unidadForm").valid()) {
+                $('#alertError').modal('show');
+                $("#mensajeAlertError").html('Error! debe llenar los campos requeridos');
+                return false
+            }
+            else {
+                $http({
+                    method: 'POST',
+                    url: service + '/unidad_medida/guardar',
+                    data: JSON.stringify($scope.formDataUnidad)
+                }).success(function (response) {
+                    result = response;
+                    $scope.formDataUnidad = null;
+                    $("#ModalUnidad").modal('hide')
+                    $('#alertSucces').modal('show');
+                    $("#mensajeAlertSucces").text(response.message);
+                    $scope.listadoUnidades();
 
-            });
+                }).error(function (response) {   //
+                    alert("ERROR! intente mas tarde")
+
+                });
+            }
         }
         //inventarioService.saveArticulo($scope.formData);
 

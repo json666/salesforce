@@ -10,6 +10,9 @@ app.directive('datepicker', function() {
                     scope.$apply(function() {
                         ngModel.$setViewValue(dateText);
                     });
+                },
+                onClose: function() {
+                    $( this ).valid();
                 }
             });
 

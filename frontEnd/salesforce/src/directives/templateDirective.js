@@ -37,21 +37,10 @@ app.directive('listArticulo', function () {
     };
 });
 
-//app.directive('frmCategoria', function () {
-//    return {
-//        templateUrl: 'src/templates/categoriaSave.html'
-//    };
-//});
 
 app.directive('listCategoria', function () {
     return {
         templateUrl: 'src/templates/categoriaList.html'
-    };
-});
-
-app.directive('frmClase', function () {
-    return {
-        templateUrl: 'src/templates/claseSave.html'
     };
 });
 
@@ -60,12 +49,6 @@ app.directive('listClase', function () {
         templateUrl: 'src/templates/claseList.html'
     };
 });
-
-//app.directive('frmMarca', function () {
-//    return {
-//        templateUrl: 'src/templates/marcaSave.html'
-//    };
-//});
 
 app.directive('listMarca', function () {
     return {
