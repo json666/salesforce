@@ -46,10 +46,11 @@
                                                     <td>{{prov.nombre}}</td>
                                                     <td>
                                                         <button ng-click="select(prov.id)"
-                                                                class="btn btn-small btn-primary"
+                                                                class="btn btn-info btn-circle"
                                                                 data-dismiss="modal"><i
                                                                 class="fa fa-check"></i></button>
                                                     </td>
+
                                                     <!--<a href="#/edit/{{user.id}}" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-pencil"></i></button-->
 
 
@@ -59,7 +60,7 @@
                                             </table>
                                         </div>
                                         <div class="panel-footer">
-                                            <buton class="btn btn-danger" ng-click="closeprov()">x</buton>
+                                            <buton class="btn btn-danger" ng-click="closeprov()">Cancelar</buton>
                                         </div>
                                     </div>
                                 </div>
@@ -100,9 +101,9 @@
                             <div class="form-group">
                                 <label>BODEGA</label>
                                 <select class="form-control unidadArtInput" id="selectUnidad"
-                                        name="select" ng-click="selectBodega()"
+                                        name="select"
                                         ng-model="compra.bodegaBean"
-                                        ng-options="bodega.descripcionBodega for bodega in bodegaList">
+                                        ng-options="bodega as bodega.descripcionBodega for bodega in bodegaList">
                                     <option value="">-- Seleccione --</option>
                                 </select>
                             </div>

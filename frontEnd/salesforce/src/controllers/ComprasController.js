@@ -15,17 +15,18 @@ function ComprasController($scope, $http, $cookies, $routeParams, serviceShare) 
     }).success(function (data) { $scope.provList = data.result; });
     }
 
-    $scope.selectBodega = function(){
+//    $scope.selectBodega = function(){
         $http({
             method: 'GET',
             url: service+'/clasificador_bodega'
         }).success(function (data) { $scope.bodegaList = data.result; });
-    }
-
+//    }
 
     $scope.fecha = new Date();
+    var fechaR = $scope.fecha
 
     $scope.compra = {
+        fechaRegistro:fechaR,
         proveedoreBean: {
             id: null},
         "bodegaBean": {id:null},
@@ -111,7 +112,6 @@ function ComprasController($scope, $http, $cookies, $routeParams, serviceShare) 
                     headers : { 'Content-Type': 'application/json; charset=utf-8' }
                 }).success(function (response) {
                     result = response;
-                    $scope.formDataUnidad = null;
                     $('#alertSucces').modal('show');
                     $("#mensajeAlertSucces").text(response.message);
 //                    $scope.listadoCompras();
