@@ -6,6 +6,7 @@ import com.bo.openlogics.sales.dozer.UtilTransport;
 import com.bo.openlogics.sales.model.Clasif_Proveedor;
 import com.bo.openlogics.sales.repository.Clasif_ProveedorRespository;
 import com.bo.openlogics.sales.service.Clasif_ProveedorService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +27,8 @@ public class Clasif_ProveedorServiceImpl implements Clasif_ProveedorService {
 
     @Autowired
     UtilTransport utilTransport;
+
+    private Logger logger = Logger.getLogger(Clasif_ProveedorServiceImpl.class);
 
     @Override
     public JsonResult save(Clasif_Proveedor clasif_proveedor) {
@@ -91,6 +94,32 @@ public class Clasif_ProveedorServiceImpl implements Clasif_ProveedorService {
         } catch (Exception e) {
             return new JsonResult(false, e.getMessage(), null);
         }
+    }
+
+    @Override
+    public JsonResult getByIdProv(Long IdProveedor) throws Exception {
+        JsonResult jsonResult = null;
+        Clasif_Proveedor clasif_proveedor=null;
+        try {
+            /**
+             * TODO: Logica de negocio para buscar Articulo por id
+             */
+
+            clasif_proveedor = clasif_proveedorRespository.findOne(IdProveedor);
+
+            if (clasif_proveedor != null){
+                jsonResult=new JsonResult(true,"Proveedor Seleccionado",clasif_proveedor);
+            }
+            else{
+                jsonResult=new JsonResult(false,"Proveedor no Existe",null);
+                logger.info("******Proveedor no Existe*******");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            jsonResult=new JsonResult(false,e.getMessage(),null);
+        }
+        return jsonResult;
     }
 
 }

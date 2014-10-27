@@ -486,3 +486,10 @@ legend{
     background-color: #d9534f;
 
 }
+
+#box-proveedor{
+    position: absolute;
+    z-index: 1000;
+    display: none;
+    width: 350px;
+}

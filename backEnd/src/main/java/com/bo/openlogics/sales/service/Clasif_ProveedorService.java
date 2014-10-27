@@ -14,4 +14,6 @@ public interface Clasif_ProveedorService {
 
     public JsonResult listadoProveedoresHabilitados();
 
+    public JsonResult getByIdProv(Long IdProveedor) throws Exception;
+
 }

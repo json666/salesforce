@@ -1,7 +1,39 @@
-/**
-* HomeController
-*/
+
 function ComprasController($scope, $http, $cookies, serviceShare) {
+
+    $scope.showprov = function(){
+        $("#box-proveedor").fadeIn("slow")
+
+        $http({
+       method: 'GET',
+            url: service+'/proveedores'
+    }).success(function (data) { $scope.provList = data.result; });
+
+
+}
+
+    $scope.closeprov = function(){
+        $("#box-proveedor").fadeOut("slow")
+    }
+
+    $scope.select =function(id){
+        console.log("Proveedor Seleccionado:"+id);
+        $http({
+            method:'GET',
+            url:service+'/proveedor/get/' + id
+        }).success(
+            function (data, status) {
+                $scope.datosproveedor = data.result;
+//                var pp = $scope.datosproducto.id;
+//                console.log("Id producto:*****************************"+pp);
+//                $scope.formData.producto.id = pp;
+                console.log($scope.datosproveedor)
+//                $("#saveSol").show();
+//            console.log(angular.toJson(data.result));
+            }).error(function (data, status, headers, config) {
+                alert("Error de conexion con el servidor.");
+            });
+    }
 
     $scope.numeroDocumento = "YANAPAX SRL"
     $scope.direccion = "Ave. los leones nro. 5898 Alto Obrrajes"
@@ -73,16 +105,18 @@ function ComprasController($scope, $http, $cookies, serviceShare) {
 
 
 
-//    alert($scope.totalint);
+    /**
+    *Variables para Número Literal
+    */
 
     var o=new Array("diez", "once", "doce", "trece", "catorce", "quince", "dieciséis", "diecisiete", "dieciocho", "diecinueve", "veinte", "veintiuno", "veintidós", "veintitrés", "veinticuatro", "veinticinco", "veintiséis", "veintisiete", "veintiocho", "veintinueve");
     var u=new Array("cero", "uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve");
     var d=new Array("", "", "", "treinta", "cuarenta", "cincuenta", "sesenta", "sesenta", "ochenta", "noventa");
     var c=new Array("", "ciento", "doscientos", "trescientos", "cuatrocientos", "quinientos", "seiscientos", "setecientos", "ochocientos", "novecientos");
 
-
-
-
+    /**
+     * funcion para convertir int to string
+     */
     $scope.dec = function(n){
         $scope.num = $scope.tostring();
         console.log($scope.num)

@@ -125,6 +125,24 @@ public class SalesForceRESTController {
         }
     }
 
+    @RequestMapping(value = "proveedor/get/{idProveedor}", method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResult getByIdProv(@PathVariable Long idProveedor) {
+        try {
+            JsonResult jsonResult = null;
+            jsonResult = clasif_proveedorService.getByIdProv(idProveedor);
+//            return new JsonResult(true, Clasif_ArticuloService.getById(idArticulo));
+            if (jsonResult.getSuccess()) {
+                return jsonResult;
+            } else {
+                return new JsonResult(false, jsonResult.getMessage(), null);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new JsonResult(false, "Error: " + e.getMessage(), null);
+        }
+    }
+
     @RequestMapping(value = "/articulosHabilitados", method = RequestMethod.GET)
     @ResponseBody
     public JsonResult listadoAriculosHabilitados() {
