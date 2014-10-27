@@ -68,3 +68,9 @@ app.directive('listMov', function () {
     };
 });
 
+app.directive('listBodega', function () {
+    return {
+        templateUrl: 'src/templates/bodegaList.html'
+    };
+});
+

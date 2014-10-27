@@ -906,3 +906,138 @@ function UnidadesController($scope, $http, $routeParams, serviceShare, paramServ
 
 }
 
+/*
+REGISTRO BODEGAS
+ */
+
+//begin marcas
+function BodegasController($scope, $http, $routeParams, serviceShare, paramService) {
+    var id = $routeParams.id;
+
+    /**
+     * Limpia formulario marcas
+     */
+    $scope.regBodega = function(){
+        $scope.formDataBodegas = {}
+        var validator = $("#BodegaForm").validate();
+        validator.resetForm();
+        $(".form-group").removeClass('has-error');
+        console.log("-----------------------Registrar nueva Bodega--------------------")
+    }
+
+    /**
+     * Guarda Marca
+     */
+    if (id == null || id.length == 0) {
+        $scope.saveBodega = function () {
+
+            if (!$("#BodegaForm").valid()) {
+                $('#alertError').modal('show');
+                $("#mensajeAlertError").html('Error! debe llenar los campos requeridos');
+                return false
+            }
+            else {
+                $http({
+                    method: 'POST',
+                    url: service + '/clasificadorBodega/guardar',
+                    data: JSON.stringify($scope.formDataBodegas)
+                }).success(function (response) {
+                    result = response;
+                    $scope.formDataBodegas = null;
+                    $scope.listadoBodegas();
+                    $("#ModalBodega").modal('hide')
+                    $('#alertSucces').modal('show');
+                    $("#mensajeAlertSucces").text('Registro Guardado Satisfactoriamente.');
+
+                }).error(function (response) {   //
+                    $('#alertError').modal('show');
+                    $("#mensajeAlertError").text(data.result + 'Error! intente nuevamente');
+
+                });
+            }
+        }
+        //inventarioService.saveArticulo($scope.formData);
+
+    } else {
+        //get de form by Id    //
+        $http({
+            method: 'GET',
+            url: service + '/clasif_Bodega'
+        }).success(
+            function (data, status) {
+//                $("#loading-div-background").css("display", "none");
+                $scope.formDataBodegas = data.result;
+                console.log("####marcas")
+                console.log(angular.toJson($scope.formDataMarcas));
+            }).error(function (data, status) {
+                $('#alertError').modal('show');
+                $("#mensajeAlertError").text(data.result + 'Error! intente nuevamente');
+            });
+    }
+    $scope.listadoBodegas = function () {
+        $("#loading").css('display', 'block');
+        var oTable = $('#dataTableMarcas');
+        $http.get(service + '/clasif_Bodega').success(
+            function (data, status, headers, config) {
+                $("#loading").css('display', 'none');
+                $scope.tableBodegas = data.result;
+                oTable = $('#dataTableBodegas').dataTable(
+                    {
+                        "bJQueryUI": true,
+                        "bAutoWidth": true,
+                        "bProcessing": true,
+                        "oLanguage": {
+                            "sUrl": "src/js/i18n/dataTable_es.txt"
+                        },
+                        "aaData": $scope.tableBodegas,
+                        "aoColumns": [
+//
+                            {
+                                "mData": null,
+                                "bSortable": false
+                            },
+                            {
+                                "mData": "tipoBodega"
+                            },
+                            {
+                                "mData": "descripcionBodega"
+                            },
+                            {
+                                "bSortable": false,
+                                "mData": function (oObj) {
+                                    var ad = " <a href='#/clientes/" + oObj.id + "' class='btn btn-primary'><i class='fa fa-edit'></i></a>";
+                                    return ad;
+
+                                }
+
+                            },
+                            {
+                                "bSortable": false,
+                                "mData": function (oObj) {
+                                    var bd = " <a href='#/cliente-info/" + oObj.id + "' class='btn btn-danger'><i class='fa fa-trash-o'></i></a>";
+                                    return bd;
+                                }
+                            }
+
+
+                        ],
+                        "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+                            $('td:eq(0)', nRow).html(iDisplayIndexFull + 1);
+                            return nRow;
+                        },
+                        "bDestroy": true
+                    });
+
+            }).
+            error(function (data, status, headers, config) {
+                $('#alertError').modal('show');
+                $("#mensajeAlertError").text(data.result + 'Error! intente nuevamente');
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+            });
+// ends marcas
+    }
+    $scope.listadoBodegas();
+
+}
+

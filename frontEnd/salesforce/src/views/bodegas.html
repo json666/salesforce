@@ -1,0 +1,59 @@
+<h2>
+    <small><i class="fa fa-table"></i> Bodegas</small>
+</h2>
+
+<div list-Bodega></div>
+
+<div id="loading">
+    <div id="load-div">
+        <img src="src/img/load.gif" width="50px"/>
+
+        <div style="position: relative; padding-top: 10px;">Procesando...</div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="alertError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+     style="z-index: 1050">
+    <div class="modal-dialog" style="width: 300px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title red" id="myModalLabel"><i class="icon-warning-sign"></i><strong>
+                    Advertencia </strong></h4>
+            </div>
+            <div class="modal-body">
+                <p id="mensajeAlertError"></p>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">OK</button>
+                <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="alertSucces" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+     style="z-index: 1050">
+    <div class="modal-dialog" style="width: 300px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title green" id=""><i class="icon-ok-sign"></i><strong> Confirmacion </strong></h4>
+            </div>
+            <div class="modal-body">
+                <p id="mensajeAlertSucces"></p>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" ng-click="load()" class="btn btn-success" data-dismiss="modal">OK</button>
+                <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div><!-- /.modal -->
