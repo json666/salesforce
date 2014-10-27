@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -28,8 +29,11 @@ public class Compras extends EntidadBase implements Serializable {
     @Column(name="NUMERO_COMPRA")
     private Integer nroCompra;
 
-    @Column(name="CANTIDAD_EXISTENTE")
-    private Integer cantidadExistente;
+    @Column(name="PRECIO_COMPRA")
+    private Double precioCompra;
+
+    @Column(name="FECHA_REGISTRO")
+    private Date fechaRegistro;
 
     @ManyToOne(fetch= FetchType.LAZY)
     private Clasif_Bodega clasif_bodega;
@@ -52,6 +56,30 @@ public class Compras extends EntidadBase implements Serializable {
         this.nroCompra = nroCompra;
     }
 
+    public Clasif_Bodega getClasif_bodega() {
+        return clasif_bodega;
+    }
+
+    public void setClasif_bodega(Clasif_Bodega clasif_bodega) {
+        this.clasif_bodega = clasif_bodega;
+    }
+
+    public Double getPrecioCompra() {
+        return precioCompra;
+    }
+
+    public void setPrecioCompra(Double precioCompra) {
+        this.precioCompra = precioCompra;
+    }
+
+    public Date getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public void setFechaRegistro(Date fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
+    }
+
     public List<DetalleComprasArticulo> getDetalleComprasArticulos() {
         if (detalleComprasArticulos == null) {
             detalleComprasArticulos = new ArrayList<DetalleComprasArticulo>();
@@ -72,13 +100,7 @@ public class Compras extends EntidadBase implements Serializable {
         this.getDetalleComprasArticulos().add(detalleComprasArticulo);
     }
 
-    public Integer getCantidadExistente() {
-        return cantidadExistente;
-    }
 
-    public void setCantidadExistente(Integer cantidadExistente) {
-        this.cantidadExistente = cantidadExistente;
-    }
 
     @JsonCreator
     public static Compras ToObject(String jsonString) {
@@ -97,11 +119,6 @@ public class Compras extends EntidadBase implements Serializable {
         return compras;
     }
 
-    public Clasif_Bodega getClasif_bodega() {
-        return clasif_bodega;
-    }
 
-    public void setClasif_bodega(Clasif_Bodega clasif_bodega) {
-        this.clasif_bodega = clasif_bodega;
-    }
+
 }

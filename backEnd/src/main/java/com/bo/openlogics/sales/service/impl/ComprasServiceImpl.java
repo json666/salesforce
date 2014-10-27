@@ -43,7 +43,8 @@ public class ComprasServiceImpl implements ComprasService {
         try{
             compras= new Compras();
             compras.setNroCompra(comprasBean.getNroCompra());
-            compras.setCantidadExistente(comprasBean.getCantidadExistente());
+            compras.setPrecioCompra(comprasBean.getPrecioCompra());
+            compras.setFechaRegistro(comprasBean.getFechaRegistro());
             compras.setClasif_bodega(clasif_bodegaRepository.findOne(comprasBean.getBodegaBean().getId()));
             clasif_articulos= new ArrayList<Clasif_Articulo>();
             
@@ -51,6 +52,7 @@ public class ComprasServiceImpl implements ComprasService {
                 clasif_articulo=null;
 
                 clasif_articulo=clasif_articuloRepository.findOne(articuloBeanCompra.getId());
+                System.out.println("CANTIDAD:"+articuloBeanCompra.getCantidadExistente());
                 clasif_articulo.setCantidad(articuloBeanCompra.getCantidadExistente());
                 clasif_articulos.add(clasif_articulo);
 

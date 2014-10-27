@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -19,11 +20,12 @@ public class ComprasBean implements Serializable {
 
     private Integer nroCompra;
 
-
-    private Integer cantidadExistente;
-
-
     private BodegaBean bodegaBean;
+
+    private Double precioCompra;
+
+    private Date fechaRegistro;
+
 
 
     private List<ArticuloBeanCompra> articuloBeanCompras;
@@ -31,12 +33,7 @@ public class ComprasBean implements Serializable {
     public ComprasBean() {
     }
 
-    public ComprasBean(Integer nroCompra, Integer cantidadExistente, BodegaBean bodegaBean, List<ArticuloBeanCompra> articuloBeanCompras) {
-        this.nroCompra = nroCompra;
-        this.cantidadExistente = cantidadExistente;
-        this.bodegaBean = bodegaBean;
-        this.articuloBeanCompras = articuloBeanCompras;
-    }
+
 
     public Integer getNroCompra() {
         return nroCompra;
@@ -44,14 +41,6 @@ public class ComprasBean implements Serializable {
 
     public void setNroCompra(Integer nroCompra) {
         this.nroCompra = nroCompra;
-    }
-
-    public Integer getCantidadExistente() {
-        return cantidadExistente;
-    }
-
-    public void setCantidadExistente(Integer cantidadExistente) {
-        this.cantidadExistente = cantidadExistente;
     }
 
     public BodegaBean getBodegaBean() {
@@ -68,5 +57,21 @@ public class ComprasBean implements Serializable {
 
     public void setArticuloBeanCompras(List<ArticuloBeanCompra> articuloBeanCompras) {
         this.articuloBeanCompras = articuloBeanCompras;
+    }
+
+    public Double getPrecioCompra() {
+        return precioCompra;
+    }
+
+    public void setPrecioCompra(Double precioCompra) {
+        this.precioCompra = precioCompra;
+    }
+
+    public Date getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public void setFechaRegistro(Date fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
     }
 }
