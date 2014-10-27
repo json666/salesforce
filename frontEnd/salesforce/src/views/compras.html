@@ -1,262 +1,257 @@
-<h2><small> Modulo Compras</small></h2>
+<h2>
+    <small> Modulo Compras</small>
+</h2>
 
 <div class="row">
-<div class="col-lg-12">
+    <div class="col-lg-12">
 
         <!-- /.row (nested) -->
+        <div class="panel panel-default">
+            <div class="panel-heading center">
+                Datos Provedor
+            </div>
 
-
-
-
-
-    <div class="panel panel-default">
-        <div class="panel-heading center">
-            Datos Provedor
-        </div>
-        <div class="panel-body">
-        <form>
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="form-group input-group">
-                        <input class="form-control" ng-model="numeroDocumento" placeholder="Nit o CI" capitalize type="text">
+            <div class="panel-body">
+                <form>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="form-group input-group">
+                                <input class="form-control" ng-model="numeroDocumento" placeholder="Nit o CI" capitalize
+                                       type="text">
                                             <span class="input-group-btn">
-                                                <button class="btn btn-default" type="button" ng-click="showprov()"><i class="fa fa-search"></i>
+                                                <button class="btn btn-default" type="button" ng-click="showprov()"><i
+                                                        class="fa fa-search"></i>
                                                 </button>
                                             </span>
-                        <div class="col-lg-12" id="box-proveedor">
-                            <div class="panel panel-primary">
-                                <div class="panel-heading">
-                                    Lista de Proveedores
-                                </div>
-                                <div class="panel-body">
-                                    <table class="table table-striped table-bordered table-hover">
-                                        <thead>
-                                        <tr>
-                                            <!--<th>#</th>-->
-                                            <th>Documento</th>
-                                            <th>Nombre</th>
-                                            <th></th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr ng-repeat="prov in provList | filter:f | orderBy:sort:reverse">
-                                            <!--<td><span class="badge">{{$index + 1}}</span></td>-->
-                                            <td>{{prov.numeroDocumento}}</td>
-                                            <td>{{prov.nombre}}</td>
-                                            <td>
-                                                <button ng-click="select(prov.id)" class="btn btn-small btn-primary"
-                                                        data-dismiss="modal"><i
-                                                        class="fa fa-check"></i></button>
-                                            </td>
-                                            <!--<a href="#/edit/{{user.id}}" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-pencil"></i></button-->
+
+                                <div class="col-lg-12" id="box-proveedor">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            Lista de Proveedores
+                                        </div>
+                                        <div class="panel-body">
+                                            <table class="table table-striped table-bordered table-hover">
+                                                <thead>
+                                                <tr>
+                                                    <!--<th>#</th>-->
+                                                    <th>Documento</th>
+                                                    <th>Nombre</th>
+                                                    <th></th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr ng-repeat="prov in provList | filter:f | orderBy:sort:reverse">
+                                                    <!--<td><span class="badge">{{$index + 1}}</span></td>-->
+                                                    <td>{{prov.numeroDocumento}}</td>
+                                                    <td>{{prov.nombre}}</td>
+                                                    <td>
+                                                        <button ng-click="select(prov.id)"
+                                                                class="btn btn-small btn-primary"
+                                                                data-dismiss="modal"><i
+                                                                class="fa fa-check"></i></button>
+                                                    </td>
+                                                    <!--<a href="#/edit/{{user.id}}" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-pencil"></i></button-->
 
 
-                                            <!--<td><a href="#/usuarioremove/{{id}}" class="btn btn-small btn-danger"><i class="icon-trash"></i></a></td>-->
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="panel-footer">
-                                    <buton class="btn btn-danger" ng-click="closeprov()">x</buton>
+                                                    <!--<td><a href="#/usuarioremove/{{id}}" class="btn btn-small btn-danger"><i class="icon-trash"></i></a></td>-->
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="panel-footer">
+                                            <buton class="btn btn-danger" ng-click="closeprov()">x</buton>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+
+                        </div>
+                        <div class="col-lg-6"><strong>FECHA:</strong> {{fecha | date:'dd-MM-yyyy h:m:s'}}</div>
+                    </div>
+                    <div class="row">
+
+
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>NOMBRE</label>
+                                <input class="form-control" readonly ng-model="proveedoreBean.nombre"
+                                       placeholder="Nombre" capitalize>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>DIRECCIÓN</label>
+                                <input class="form-control" readonly ng-model="proveedoreBean.direccion"
+                                       placeholder="Dirección" capitalize>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>NIT / CI </label>
+                                <input class="form-control" readonly ng-model="proveedoreBean.numeroDocumento" readonly
+                                       capitalize>
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
                         </div>
                     </div>
-
-                </div>
-            <div class="col-lg-6"><strong>FECHA:</strong> {{fecha | date:'dd-MM-yyyy h:m:s'}}</div>
-            </div>
-            <div class="row">
-
-
-                <div class="col-lg-4">
-                    <div class="form-group">
-                        <label>NOMBRE</label>
-                        <input class="form-control" readonly ng-model="compra.proveedor.nombre" placeholder="Nombre" capitalize>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="form-group">
-                        <label>DIRECCIÓN</label>
-                        <input class="form-control" readonly ng-model="compra.proveedor.direccion" placeholder="Dirección" capitalize>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="form-group">
-                        <label>NIT / CI </label>
-                        <input class="form-control" readonly ng-model="cxx" readonly capitalize>
-                    </div>
-                </div>
-                <div class="col-lg-2">
-                </div>
-            </div>
-                <div class="row">
-                <div class="col-lg-4">
-                    <div class="form-group">
-                        <label>BODEGA</label>
-                        <select class="form-control unidadArtInput" id="selectUnidad"
-                                name="formData.clasif_unidad"
-                                ng-model="formData.clasif_unidad"
-                                ng-options="item.descripcionUnidad for item in unidadList">
-                            <option value="">-- Seleccione --</option>
-                        </select>
-                    </div>
-                </div>
-                    <!--<div class="col-lg-4">-->
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>BODEGA</label>
+                                <select class="form-control unidadArtInput" id="selectUnidad"
+                                        name="select" ng-click="selectBodega()"
+                                        ng-model="compra.bodegaBean"
+                                        ng-options="bodega.descripcionBodega for bodega in bodegaList">
+                                    <option value="">-- Seleccione --</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!--<div class="col-lg-4">-->
                         <!--<div class="form-group">-->
-                            <!--<label>CANTIDAD EXISTENTE</label>-->
-                            <!--<input class="form-control" ng-model="formData.direccion" placeholder="Cantidad existente" capitalize>-->
+                        <!--<label>CANTIDAD EXISTENTE</label>-->
+                        <!--<input class="form-control" ng-model="formData.direccion" placeholder="Cantidad existente" capitalize>-->
                         <!--</div>-->
-                    <!--</div>-->
-                </div>
+                        <!--</div>-->
+                    </div>
 
 
+                </form>
+            </div>
 
-        </form>
         </div>
+        <div class="panel-heading center">
+            Detalle Producto
+        </div>
+        <table class="table table-striped" align="center">
+            <tr>
+                <th>Id</th>
+                <th>Codigo</th>
+                <th>Articulo</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th style="text-align:right;">Total</th>
+                <th></th>
+            </tr>
+            <tr ng-repeat="item in compra.articuloBeanCompras">
+                <td><input ng-model="item.id"></td>
+                <td><input ng-model="item.codigoArticulo"></td>
+                <td><input ng-model="item.nombreArticulo"></td>
+                <td><input ng-model="item.precio" value="0.00" ng-required ng-validate="number" size="6"
+                           placeholder="0"></td>
+                <td><input ng-model="item.cantidadExistente" value="1" size="4" ng-required placeholder="0"></td>
+                <td align="right">{{item.precio * item.cantidadExistente | currency}}</td>
+                <td><a ng-click="removeItem(item)" class="btn btn-danger"><i class="fa fa-trash-o"></i></a></td>
 
-    </div>
-    <div class="panel-heading center">
-        Detalle Producto
-    </div>
-    <table class="table table-striped" align="center" >
-        <tr>
-            <th>Codigo</th>
-            <th>Producto</th>
-            <th>Cantidad</th>
-            <th>Precio</th>
-            <th style="text-align:right;">Total</th>
-            <th></th>
-        </tr>
-        <tr ng-repeat="item in compra.items">
-            <td><input ng-model="item.codigo" placeholder="Codigo"></td>
-            <td><input ng-model="item.description" placeholder="Producto"></td>
-            <td><input ng-model="item.qty" value="1" size="4" ng-required placeholder="qty"></td>
-            <td><input ng-model="item.cost" value="0.00" ng-required ng-validate="number" size="6" placeholder="cost"></td>
-            <td align="right">{{item.cost * item.qty | currency}}</td>
-            <td><a ng-click="removeItem(item)" class="btn btn-danger"><i class="fa fa-trash-o"></i></a></td>
 
+            </tr>
 
-        </tr>
+            <tr>
+                <td colspan="5" align="right">
+                    Total {{compra_sub_total() | currency}}
+                </td>
+                <td align="right">
 
-        <tr>
-            <td colspan="5" align="right">
-            Total   {{compra_sub_total() | currency}}
-            </td>
-            <td align="right">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6" align="right"><a class="btn btn-primary" href ng-click="addItem()"><i
+                        class="fa fa-plus"> </i> Adicionar Producto</a></td>
+            </tr>
+            <tr>
 
-            </td>
-        </tr>
-        <tr>
-            <td colspan="6" align="right"><a class="btn btn-primary" href ng-click="addItem()"><i class="fa fa-plus"> </i> Adicionar Producto</a></td>
-        </tr>
-        <tr>
-
-            <td width="30px;">
-                <buttom class="btn btn-primary" ng-click="dec(num)">Confirmar</buttom>
-            </td>
-            <td colspan="5" align="right" ng-show="literal">
-            <strong>Total: {{tostring()}}</strong> ------------------>   Son: {{esc}}
-        </td>
-        </tr>
-        <!--<tr>-->
+                <td width="30px;">
+                    <buttom class="btn btn-primary" ng-click="dec(num)">Confirmar</buttom>
+                </td>
+                <td colspan="5" align="right" ng-show="literal">
+                    <strong>Total: {{tostring()}}</strong> ------------------> Son: {{esc}}
+                </td>
+            </tr>
+            <!--<tr>-->
             <!--<td colspan="5" align="right">-->
-                <!--Tax(%): <input ng-model="compra.tax" ng-validate="number" style="width:43px">-->
+            <!--Tax(%): <input ng-model="compra.tax" ng-validate="number" style="width:43px">-->
             <!--</td>-->
             <!--<td align="right">-->
-                <!--{{calculate_tax() | currency}}-->
+            <!--{{calculate_tax() | currency}}-->
             <!--</td>-->
-        <!--</tr>-->
-        <!--<tr>-->
+            <!--</tr>-->
+            <!--<tr>-->
             <!--<td colspan="4" align="right">-->
-                <!--Total General:-->
+            <!--Total General:-->
             <!--</td>-->
             <!--<td align="right">-->
-                <!--{{calculate_grand_total() | currency}}-->
+            <!--{{calculate_grand_total() | currency}}-->
             <!--</td>-->
             <!--<td width="30px;">-->
-                <!--<buttom class="btn btn-primary" ng-click="dec(num)">Confirmar</buttom>-->
+            <!--<buttom class="btn btn-primary" ng-click="dec(num)">Confirmar</buttom>-->
             <!--</td>-->
-        <!--</tr>-->
-        <tr>
+            <!--</tr>-->
+            <tr>
 
-        </tr>
+            </tr>
 
-    </table>
+        </table>
 
-    <button ng-show="literal" class="btn btn-primary" ng-click="savecompra()"><i class="fa fa-save"></i> Guardar Compra</button>
+        <button ng-show="literal" class="btn btn-primary" ng-click="saveCompra()"><i class="fa fa-save"></i> Guardar
+            Compra
+        </button>
 
-</div>
-<!-- /.col-lg-12 -->
+    </div>
+    <pre>{{compra |json}}</pre>
+    <!-- /.col-lg-12 -->
 </div>
 <!-- /.row -->
 
-<div class="modal fade" id="proveedor" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
+<div id="loading">
+    <div id="load-div">
+        <img src="src/img/load.gif" width="50px"/>
+
+        <div style="position: relative; padding-top: 10px;">Procesando...</div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="alertError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+     style="z-index: 1050">
+    <div class="modal-dialog" style="width: 300px">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h3 class="modal-title"><small><i class="fa fa-list"></i> Lista de Proveedores</small></h3>
+                <h4 class="modal-title red" id="myModalLabel1"><i class="icon-warning-sign"></i><strong>
+                    Advertencia </strong></h4>
             </div>
-
             <div class="modal-body">
-                <div class="page-content">
-                    <div class="widget-box">
-                        <!--<h3 class="modal-title" align="center"></h3>-->
+                <p id="mensajeAlertError"></p>
 
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="dataTables_filter" style="padding:10px"><label></label> <input
-                                        type="search" ng-model="f" placeholder="Buscar..."/></div>
-                            </div>
-                        </div>
-
-                        <!--<div class="container2">-->
-                        <div class="widget-body" style="height: 400px; overflow-y: auto">
-
-                            <table class="table table-striped table-hover">
-                                <thead>
-                                <tr>
-                                    <th style="min-width: 20px;">#</th>
-                                    <th style="min-width: 20px;">ID</th>
-                                    <th style="min-width: 80px;">NOMBRE</th>
-                                    <th style="min-width: 80px;"><a ng-click="sort = 'numeroDocumento'; reverse=!reverse">DOCUMENTO</a></th>
-                                    <th style="min-width: 80px;">direccion</th>
-                                    <!--<th style="min-width: 80px;">TIPO CLIENTE</th>-->
-                                    <th style="width:35px;">SELECCIONAR</th>
-
-
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr ng-repeat="obj in provList | filter:f | orderBy:sort:reverse">
-                                    <td><span class="badge">{{$index + 1}}</span></td>
-                                    <td>{{obj.id}}</td>
-                                    <td>{{obj.nombre}}</td>
-                                    <td>{{obj.numeroDocumento}}</td>
-                                    <td>{{obj.direccion}}</td>
-                                    <!--<td>{{obj.tipoCliente}}</td>-->
-                                    <!--<td><a href="#/roldetail/{{rol.id}}" class="btn btn-info"><i class="icon-edit"></i></a></td>-->
-                                    <td>
-                                        <button ng-click="select(obj.id)" class="btn btn-small btn-primary"
-                                                data-dismiss="modal"><i
-                                                class="fa fa-check"></i></button>
-                                    </td>
-                                    <!--<a href="#/edit/{{user.id}}" class="btn btn-default btn-sm"><i class="glyphicon glyphicon-pencil"></i></button-->
-
-
-                                    <!--<td><a href="#/usuarioremove/{{id}}" class="btn btn-small btn-danger"><i class="icon-trash"></i></a></td>-->
-                                </tr>
-                                </tbody>
-                            </table>
-                            <div class="alert alert-warning center" ng-hide="provList.length"> Todavia no existen datos registrados!</div>
-                            <!--</div>-->
-                        </div>
-                    </div>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">OK</button>
+                <!--<button type="button" class="btn btn-primary">Save changes</button>-->
             </div>
         </div>
         <!-- /.modal-content -->
     </div>
     <!-- /.modal-dialog -->
-</div>
+</div><!-- /.modal -->
+
+<div class="modal fade" id="alertSucces" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+     style="z-index: 1050">
+    <div class="modal-dialog" style="width: 300px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title green" id=""><i class="icon-ok-sign"></i><strong> Confirmacion </strong></h4>
+            </div>
+            <div class="modal-body">
+                <p id="mensajeAlertSucces"></p>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" ng-click="load()" class="btn btn-success" data-dismiss="modal">OK</button>
+                <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div><!-- /.modal -->

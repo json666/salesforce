@@ -1,5 +1,10 @@
 
-function ComprasController($scope, $http, $cookies, serviceShare) {
+function ComprasController($scope, $http, $cookies, $routeParams, serviceShare) {
+
+    var id = $routeParams.id;
+    /**
+     * Muestra ventana de lista de proveedores
+     */
 
     $scope.showprov = function(){
         $("#box-proveedor").fadeIn("slow")
@@ -8,14 +13,28 @@ function ComprasController($scope, $http, $cookies, serviceShare) {
        method: 'GET',
             url: service+'/proveedores'
     }).success(function (data) { $scope.provList = data.result; });
-
-
-}
-
-    $scope.closeprov = function(){
-        $("#box-proveedor").fadeOut("slow")
     }
 
+    $scope.selectBodega = function(){
+        $http({
+            method: 'GET',
+            url: service+'/clasificador_bodega'
+        }).success(function (data) { $scope.bodegaList = data.result; });
+    }
+
+
+    $scope.fecha = new Date();
+
+    $scope.compra = {
+        proveedoreBean: {
+            id: null},
+        "bodegaBean": {id:null},
+        articuloBeanCompras: [{id:null}]
+    };
+
+    /**
+     * Selecciona Proveedor de la lista
+     */
     $scope.select =function(id){
         console.log("Proveedor Seleccionado:"+id);
         $http({
@@ -23,68 +42,38 @@ function ComprasController($scope, $http, $cookies, serviceShare) {
             url:service+'/proveedor/get/' + id
         }).success(
             function (data, status) {
-                $scope.datosproveedor = data.result;
-//                var pp = $scope.datosproducto.id;
-//                console.log("Id producto:*****************************"+pp);
-//                $scope.formData.producto.id = pp;
-                console.log($scope.datosproveedor)
+                $scope.proveedoreBean = data.result;
+                var idProv = $scope.proveedoreBean.id;/**/
+                console.log("Id producto:*****************************"+idProv);
+                $scope.compra.proveedoreBean.id = idProv;
+                console.log($scope.proveedoreBean)
 //                $("#saveSol").show();
 //            console.log(angular.toJson(data.result));
             }).error(function (data, status, headers, config) {
                 alert("Error de conexion con el servidor.");
             });
+        $("#box-proveedor").fadeOut("slow")
     }
 
-    $scope.numeroDocumento = "YANAPAX SRL"
-    $scope.direccion = "Ave. los leones nro. 5898 Alto Obrrajes"
-    $scope.fecha = new Date();
-//
-//    $scope.productoList = {
-//        items: [
-//            {
-//                "clave": 1,
-//                "producto": "Hydrogen",
-//                "cantidad": 2,
-//                "precio": 10,
-//                "importe": 20
-//
-//            }
-//]
-//    }
-//
-//
-//    $http({
-//        method: 'GET',
-//        url: service+'/proveedores'
-////        url: 'src/data/emp.json'
-//    }).success(function (data) { $scope.provList = data.result; });
-
-    var sample_compra = {
-        numeroDocumento:11111111,
-        tax: 13.00,
-        compra_number: 10,
-        proveedor:  {nombre: "Mr. John Doe", direccion: "1 Infinite Loop"},
-        items:[ {codigo:0001, qty:10, description:'Anillo de Oro', cost:9.95}]};
-
-    if(localStorage["compra"] == "" || localStorage["compra"] == null){
-        $scope.compra = sample_compra;
-    }
-    else{
-        $scope.compra =  JSON.parse(localStorage["compra"]);
+    /**
+     * Cierra ventana de lista de proveedores
+     */
+    $scope.closeprov = function(){
+        $("#box-proveedor").fadeOut("slow");
     }
     $scope.addItem = function() {
-        $scope.compra.items.push({codigo:"", qty:0, cost:0, description:""});
+        $scope.compra.articuloBeanCompras.push({id:"", codigoArticulo:0, nombreArticulo:0, precio:"",cantidadExistente:""});
         $scope.literal = false;
     }
 
     $scope.removeItem = function(item) {
-        $scope.compra.items.splice($scope.compra.items.indexOf(item), 1);
+        $scope.compra.articuloBeanCompras.splice($scope.compra.articuloBeanCompras.indexOf(item), 1);
     }
 
     $scope.compra_sub_total = function() {
         var total = 0.00;
-        angular.forEach($scope.compra.items, function(item, key){
-            total += (item.qty * item.cost);
+        angular.forEach($scope.compra.articuloBeanCompras, function(item, key){
+            total += (item.cantidadExistente * item.precio);
         });
         return total;
     }
@@ -101,6 +90,55 @@ function ComprasController($scope, $http, $cookies, serviceShare) {
         return $scope.num = $scope.compra_sub_total();
         console.log("tstring func"+$scope.num)
 
+    }
+
+    /**
+     * Guarda Compra
+     */
+    if (id == null || id.length == 0) {
+        $scope.saveCompra = function () {
+
+//            if (!$("#unidadForm").valid()) {
+//                $('#alertError').modal('show');
+//                $("#mensajeAlertError").html('Error! debe llenar los campos requeridos');
+//                return false
+//            }
+//            else {
+                $http({
+                    method: 'POST',
+                    url: service + '/compra/guardar',
+                    data:($scope.compra),
+                    headers : { 'Content-Type': 'application/json; charset=utf-8' }
+                }).success(function (response) {
+                    result = response;
+                    $scope.formDataUnidad = null;
+                    $('#alertSucces').modal('show');
+                    $("#mensajeAlertSucces").text(response.message);
+//                    $scope.listadoCompras();
+
+                }).error(function (response) {   //
+                    alert("ERROR! intente mas tarde")
+
+                });
+            }
+//        }
+        //inventarioService.saveArticulo($scope.formData);
+
+    } else {
+        //get de form by Id    //
+        alert("TODO servicio de listado")
+//        $http({
+//            method: 'GET',
+//            url: service + '/compras'
+//        }).success(
+//            function (data, status) {
+////                $("#loading-div-background").css("display", "none");
+//                console.log("###unidades");
+//                $scope.formDataUnidad = data.result;
+//                console.log(angular.toJson(data.result));
+//            }).error(function (data, status) {
+//                alert("Error de conexion con el servidor.");
+//            });
     }
 
 
@@ -159,30 +197,5 @@ function ComprasController($scope, $http, $cookies, serviceShare) {
         $scope.literal = true
 
     }
-
-    //    $scope.nombre = "YANAPAX SRL"
-//    $scope.direccion = "Ave. los leones nro. 5898 Alto Obrrajes"
-//    $scope.fecha = new Date();
-//
-//    $scope.productoList = {
-//        items: [
-//            {
-//                "clave": 1,
-//                "producto": "Hydrogen",
-//                "cantidad": 2,
-//                "precio": 10,
-//                "importe": 20
-//
-//            }
-//]
-//    }
-//
-//
-//    $http({
-//        method: 'GET',
-//        url: service+'/proveedores'
-////        url: 'src/data/emp.json'
-//    }).success(function (data) { $scope.provList = data.result; });
-
 
 }
