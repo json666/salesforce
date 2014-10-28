@@ -35,10 +35,10 @@ public class Compras extends EntidadBase implements Serializable {
     @Column(name="FECHA_REGISTRO")
     private Date fechaRegistro;
 
-    @ManyToOne(fetch= FetchType.LAZY)
+    @ManyToOne(fetch= FetchType.EAGER)
     private Clasif_Bodega clasif_bodega;
 
-    @ManyToOne(fetch= FetchType.LAZY)
+    @ManyToOne(fetch= FetchType.EAGER)
     private Clasif_Proveedor clasif_proveedor;
 
     @Transient
@@ -84,9 +84,9 @@ public class Compras extends EntidadBase implements Serializable {
     }
 
     public List<DetalleComprasArticulo> getDetalleComprasArticulos() {
-        if (detalleComprasArticulos == null) {
-            detalleComprasArticulos = new ArrayList<DetalleComprasArticulo>();
-        }
+            if (detalleComprasArticulos == null) {
+                detalleComprasArticulos = new ArrayList<DetalleComprasArticulo>();
+            }
         return detalleComprasArticulos;
     }
 

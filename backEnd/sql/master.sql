@@ -1,13 +1,14 @@
 /*
 SALESFORCE CLASIF_CATEGORIAS
  */
-insert into SALESFORCE.CLASIF_CATEGORIAS (DESABILITADO, DESCRIPCION_CATEGORIA, FECHA_DESDE, FECHA_HASTA, USUARIOA_ACT) values (FALSE, 'JOYAS', now(), now(), 'JSON');
+/*insert into SALESFORCE.CLASIF_CATEGORIAS (DESABILITADO, DESCRIPCION_CATEGORIA, FECHA_DESDE, FECHA_HASTA, USUARIOA_ACT) values (FALSE, 'JOYAS', now(), now(), 'JSON');
 insert into SALESFORCE.CLASIF_CATEGORIAS (DESABILITADO, DESCRIPCION_CATEGORIA, FECHA_DESDE, FECHA_HASTA, USUARIOA_ACT) values (FALSE, 'BOJOUTERIA', now(), now(), 'JSON');
 insert into SALESFORCE.CLASIF_CATEGORIAS (DESABILITADO, DESCRIPCION_CATEGORIA, FECHA_DESDE, FECHA_HASTA, USUARIOA_ACT) values (FALSE, 'INSUMOS', now(), now(), 'JSON');
-
+*/
 /*
 SALESFORCE CLASIF_CLASES
  */
+ /*
 insert into SALESFORCE.CLASIF_CLASES (DESABILITADO, DESCRIPCION_CLASE, FECHA_DESDE, FECHA_HASTA, USUARIOA_ACT, CLASIF_CATEGORIA_ID) values (FALSE, 'ANILLO', now(), now(), 'JSON',2);
 insert into SALESFORCE.CLASIF_CLASES (DESABILITADO, DESCRIPCION_CLASE, FECHA_DESDE, FECHA_HASTA, USUARIOA_ACT, CLASIF_CATEGORIA_ID) values (FALSE, 'ARETES', now(), now(), 'JSON',2);
 insert into SALESFORCE.CLASIF_CLASES (DESABILITADO, DESCRIPCION_CLASE, FECHA_DESDE, FECHA_HASTA, USUARIOA_ACT, CLASIF_CATEGORIA_ID) values (FALSE, 'PULSERA', now(), now(), 'JSON',2);
@@ -17,27 +18,30 @@ insert into SALESFORCE.CLASIF_CLASES (DESABILITADO, DESCRIPCION_CLASE, FECHA_DES
 insert into SALESFORCE.CLASIF_CLASES (DESABILITADO, DESCRIPCION_CLASE, FECHA_DESDE, FECHA_HASTA, USUARIOA_ACT, CLASIF_CATEGORIA_ID) values (FALSE, 'PULSERA', now(), now(), 'JSON',3);
 insert into SALESFORCE.CLASIF_CLASES (DESABILITADO, DESCRIPCION_CLASE, FECHA_DESDE, FECHA_HASTA, USUARIOA_ACT, CLASIF_CATEGORIA_ID) values (FALSE, 'GRANALLA', now(), now(), 'JSON',1);
 insert into SALESFORCE.CLASIF_CLASES (DESABILITADO, DESCRIPCION_CLASE, FECHA_DESDE, FECHA_HASTA, USUARIOA_ACT, CLASIF_CATEGORIA_ID) values (FALSE, 'POST', now(), now(), 'JSON',1);
+*/
 
 /*
 SALESFORCE CLASIF_UNIDAD
  */
-INSERT INTO salesforce.clasif_unidades(desabilitado,  descripcion_unidad, fecha_desde,fecha_hasta, usuario_act) VALUES (false, 'UNIDAD', now(),now(), 'JSON');
+/*INSERT INTO salesforce.clasif_unidades(desabilitado,  descripcion_unidad, fecha_desde,fecha_hasta, usuario_act) VALUES (false, 'UNIDAD', now(),now(), 'JSON');
 INSERT INTO salesforce.clasif_unidades(desabilitado,  descripcion_unidad, fecha_desde,fecha_hasta, usuario_act) VALUES (false, 'GRAMOS', now(),now(), 'JSON');
+*/
 /*
 SALESFORCE CLASIF_MARCA
  */
-INSERT INTO salesforce.clasif_marcas(desabilitado, descripcion_marca, fecha_desde,fecha_hasta, usuario_act) VALUES (FALSE, 'AFRODITA', now(),now(), 'JSON');
+/*
+ INSERT INTO salesforce.clasif_marcas(desabilitado, descripcion_marca, fecha_desde,fecha_hasta, usuario_act) VALUES (FALSE, 'AFRODITA', now(),now(), 'JSON');
 INSERT INTO salesforce.clasif_marcas(desabilitado, descripcion_marca, fecha_desde,fecha_hasta, usuario_act) VALUES (FALSE, 'AFRODITA 2', now(),now(), 'JSON');
 INSERT INTO salesforce.clasif_marcas(desabilitado, descripcion_marca, fecha_desde,fecha_hasta, usuario_act) VALUES (FALSE, 'AUGUSTA FERRIER', now(),now(), 'JSON');
 INSERT INTO salesforce.clasif_marcas(desabilitado, descripcion_marca, fecha_desde,fecha_hasta, usuario_act) VALUES (FALSE, 'PROVEEDOR NACIONAL', now(),now(), 'JSON');
 INSERT INTO salesforce.clasif_marcas(desabilitado, descripcion_marca, fecha_desde,fecha_hasta, usuario_act) VALUES (FALSE, 'RIO GRANDE', now(),now(), 'JSON');
-
+*/
 /*
 SALESFORCE CLASIF_MOVIMIENTO
  */
- INSERT INTO salesforce.clasif_movimientos(desabilitado, clasif_movimientos, descripcion_movimiento,fecha_desde, fecha_hasta, usuario_act) VALUES (false, 'COMPRA','COMPRA DE MERCANCIA',now(),now(), 'JSON');
+ /*INSERT INTO salesforce.clasif_movimientos(desabilitado, clasif_movimientos, descripcion_movimiento,fecha_desde, fecha_hasta, usuario_act) VALUES (false, 'COMPRA','COMPRA DE MERCANCIA',now(),now(), 'JSON');
  INSERT INTO salesforce.clasif_movimientos(desabilitado, clasif_movimientos, descripcion_movimiento,fecha_desde, fecha_hasta, usuario_act) VALUES (false, 'VENTA','VENTA DE MERCANCIA',now(),now(), 'JSON');
-
+*/
 /*
 SALESFORCE USUARIOS
  */

@@ -27,6 +27,8 @@
         <class>com.bo.openlogics.sales.model.Cliente</class>
         <class>com.bo.openlogics.sales.model.Compras</class>
         <class>com.bo.openlogics.sales.model.DetalleComprasArticulo</class>
+        <class>com.bo.openlogics.sales.model.Ventas</class>
+        <class>com.bo.openlogics.sales.model.DetalleVentasArticulo</class>
 
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
 

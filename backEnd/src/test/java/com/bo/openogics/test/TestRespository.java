@@ -336,8 +336,8 @@ public class TestRespository {
             jsonArt = ow.writeValueAsString(comprasBean);
             System.out.println("JSON A GUARDAR:" + jsonArt);
 
-            JsonResult jsonResult=comprasService.adicionarCompras(comprasBean);
-            System.out.println(jsonResult.getMessage());
+            /*sonResult jsonResult=comprasService.adicionarCompras(comprasBean);
+            System.out.println(jsonResult.getMessage());*/
 
             /*compras.setCantidadExistente(10);
             compras.setNroCompra(0012);
