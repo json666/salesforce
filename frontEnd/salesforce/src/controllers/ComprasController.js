@@ -63,9 +63,17 @@ function ComprasController($scope, $http, $cookies, $routeParams, serviceShare) 
         $("#box-proveedor").fadeOut("slow");
     }
     $scope.addItem = function() {
-        $scope.compra.articuloBeanCompras.push({id:"", codigoArticulo:0, nombreArticulo:0, precio:"",cantidadExistente:""});
+        $scope.compra.articuloBeanCompras.push({id:"", codigoArticulo:"", nombreArticulo:0, precio:"",cantidadExistente:""});
         $scope.literal = false;
     }
+
+    $scope.change = function(){
+
+        console.log("on change");
+//        $scope.compra.articuloBeanCompras.push({id:"", codigoArticulo:0, nombreArticulo:0, precio:"",cantidadExistente:""});
+    }
+
+
 
     $scope.removeItem = function(item) {
         $scope.compra.articuloBeanCompras.splice($scope.compra.articuloBeanCompras.indexOf(item), 1);
@@ -99,12 +107,12 @@ function ComprasController($scope, $http, $cookies, $routeParams, serviceShare) 
     if (id == null || id.length == 0) {
         $scope.saveCompra = function () {
 
-//            if (!$("#unidadForm").valid()) {
-//                $('#alertError').modal('show');
-//                $("#mensajeAlertError").html('Error! debe llenar los campos requeridos');
-//                return false
-//            }
-//            else {
+            if (!$("#compraForm").valid()) {
+                $('#alertError').modal('show');
+                $("#mensajeAlertError").html('Error! debe llenar los campos requeridos');
+                return false
+            }
+            else {
                 $http({
                     method: 'POST',
                     url: service + '/compra/guardar',
@@ -121,7 +129,7 @@ function ComprasController($scope, $http, $cookies, $routeParams, serviceShare) 
 
                 });
             }
-//        }
+        }
         //inventarioService.saveArticulo($scope.formData);
 
     } else {
@@ -140,6 +148,35 @@ function ComprasController($scope, $http, $cookies, $routeParams, serviceShare) 
 //                alert("Error de conexion con el servidor.");
 //            });
     }
+
+    /**
+     * Carga datos de un Articulo
+     * @param codigoArticulo
+     */
+
+    $scope.buscaitem = function(codigoArticulo){
+        console.log("Producto:"+codigoArticulo);
+        $http({
+            method: 'GET',
+            url: service + '/articulo/buscar/' + codigoArticulo
+        }).success(
+            function (data) {
+                console.log("---->ARTICULO:" + codigoArticulo);
+                console.log(JSON.stringify(data));
+                $scope.formData = data.result;
+                if ($scope.formData != null){
+                $scope.compra.articuloBeanCompras=[];
+                $scope.compra.articuloBeanCompras.push({'id':$scope.formData.id,'codigoArticulo':$scope.formData.codigoArticulo,'nombreArticulo':$scope.formData.nombreArticulo,'precio':$scope.formData.precio})
+                }
+                else{
+                    $('#alertError').modal('show');
+                    $("#mensajeAlertError").text(data.message);
+                }
+                }).error(function (data, status) {
+                $('#alertError').modal('show');
+                $("#mensajeAlertError").text(data.result + 'Error! intente nuevamente');
+            });
+}
 
 
 
