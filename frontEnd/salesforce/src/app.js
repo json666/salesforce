@@ -49,6 +49,10 @@ var app = angular.module('app', ['ngCookies','ngRoute']).factory('serviceShare',
           templateUrl: 'src/views/inventario.html',
           controller: 'InventarioController'
       }).
+      when('/articulo/:id', {
+          templateUrl: 'src/views/articulo-info.html',
+          controller: 'InventarioController'
+      }).
       when('/movimientos', {
           templateUrl: 'src/views/movimiento.html',
           controller: 'MovimientoController'
