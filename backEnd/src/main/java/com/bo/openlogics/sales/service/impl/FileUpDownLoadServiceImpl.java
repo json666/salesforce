@@ -9,6 +9,7 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.imageio.ImageIO;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -75,6 +76,7 @@ public class FileUpDownLoadServiceImpl implements FileUpDownLoadService {
                     fileMeta.setFileName(mpf.getOriginalFilename());
                     fileMeta.setFileSize(mpf.getSize() / 1024 + " Kb");
                     fileMeta.setFileType(mpf.getContentType());
+
                     //fileMeta.setBytes(mpf.getBytes());
 
                     System.out.println("PATH"+LectorArchivosProperties.REPORTES_SERVLET_OUTPUT_FOLDER_IMAGE + mpf.getOriginalFilename());
@@ -83,6 +85,7 @@ public class FileUpDownLoadServiceImpl implements FileUpDownLoadService {
 
                     // copy file to local disk (make sure the path "e.g. D:/temp/files" exists)
                     FileCopyUtils.copy(mpf.getBytes(),fileOutputStream);
+                    //ImageIO.write(mpf.getBytes(), "gif", fileOutputStream);
 
 
                     //2.4 add to files

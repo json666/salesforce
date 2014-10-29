@@ -104,7 +104,7 @@ public class BarCodeGeneratorImpl implements BarCodeGenerator {
 
             try {
 
-                ImageIO.write(image, "png", imageFile);
+                ImageIO.write(image, "gif", imageFile);
 
             } catch (IOException e) {
                 e.printStackTrace();

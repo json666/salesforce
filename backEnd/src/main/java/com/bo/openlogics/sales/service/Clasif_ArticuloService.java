@@ -24,6 +24,8 @@ public interface Clasif_ArticuloService {
 
     public JsonResult buscarArticuloBeanCompraByCodigoArticulo(String codigoArticulo) throws Exception;
 
+    public JsonResult buscarArticuloEdit(Long idArticulo);
+
 
 
 

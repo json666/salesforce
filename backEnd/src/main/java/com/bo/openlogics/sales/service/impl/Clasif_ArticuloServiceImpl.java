@@ -165,8 +165,8 @@ public class Clasif_ArticuloServiceImpl implements Clasif_ArticuloService {
                     logger.info("******Articulo 3*******");
                     articuloBean= new ArticuloBean(articulo.getId(),articulo.getDescripcionArticulo(),articulo.getCodigoArticulo(),
                             articulo.getMargenGanancia(),articulo.getPrecio(),articulo.getPrecioCosto(),
-                            articulo.getUpc(),articulo.getNivelReorden(),articulo.getCantidadReorden(),
-                            articulo.getnSerie(),articulo.getFotografia(),articulo.getFechaDesde(),articulo.getFechaHasta(),
+                            articulo.getUpc(),articulo.getNivelReorden(),articulo.getCantidadReorden()
+                           ,articulo.getFotografia(),articulo.getFechaDesde(),articulo.getFechaHasta(),
                             articulo.getUsuarioAct(),claseBean,marcaBean,categoriaBean,unidadBean);
                     articuloBeans.add(articuloBean);
                     articuloBean=null;
@@ -339,6 +339,59 @@ public class Clasif_ArticuloServiceImpl implements Clasif_ArticuloService {
             articuloBeanCompra=utilTransport.convert(clasifArticulo,ArticuloBeanCompra.class);
             if (articuloBeanCompra != null){
                 jsonResult=new JsonResult(true,"Articulo Seleccionado",articuloBeanCompra);
+            }
+            else{
+                jsonResult=new JsonResult(false,"Articulo no Existe",null);
+                logger.info("******Articulo no Existe*******");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            jsonResult=new JsonResult(false,e.getMessage(),null);
+        }
+        return jsonResult;
+    }
+
+    @Override
+    public JsonResult buscarArticuloEdit(Long idArticulo) {
+        JsonResult jsonResult = null;
+        Clasif_Articulo clasifArticulo;
+        try {
+            /**
+             * TODO: Logica de negocio para buscar Articulo por id
+             */
+
+            clasifArticulo = clasif_articuloRepository.findOne(idArticulo);
+            ArticuloBean articuloBean=null;
+            MarcaBean marcaBean=null;
+            ClaseBean claseBean=null;
+            CategoriaBean categoriaBean=null;
+            UnidadBean unidadBean=null;
+            if (clasifArticulo != null){
+                articuloBean= new ArticuloBean();
+                articuloBean.setCodigoArticulo(clasifArticulo.getCodigoArticulo());
+                articuloBean.setCantidadReorden(clasifArticulo.getCantidadReorden());
+                claseBean=new ClaseBean(clasifArticulo.getClasif_clase().getId(),clasifArticulo.getClasif_clase().getDescripcionClase());
+                articuloBean.setClaseBean(claseBean);
+                marcaBean= new MarcaBean(clasifArticulo.getClasif_marca().getId(),clasifArticulo.getClasif_marca().getDescripcionMarca());
+                articuloBean.setMarcaBean(marcaBean);
+                categoriaBean= new CategoriaBean(clasifArticulo.getClasif_categoria().getId(),clasifArticulo.getClasif_categoria().getDescripcionCategoria());
+                articuloBean.setCategoriaBean(categoriaBean);
+                unidadBean= new UnidadBean(clasifArticulo.getClasif_unidad().getId(),clasifArticulo.getClasif_unidad().getDescripcionUnidad());
+                articuloBean.setUnidadBean(unidadBean);
+                articuloBean.setId(clasifArticulo.getId());
+                articuloBean.setFechaDesde(clasifArticulo.getFechaDesde());
+                articuloBean.setFechaHasta(clasifArticulo.getFechaHasta());
+                articuloBean.setPrecio(clasifArticulo.getPrecio());
+                articuloBean.setPrecioCosto(clasifArticulo.getPrecioCosto());
+                articuloBean.setMargenGanancia(clasifArticulo.getMargenGanancia());
+                articuloBean.setNivelReorden(clasifArticulo.getNivelReorden());
+                articuloBean.setDescripcionArticulo(clasifArticulo.getDescripcionArticulo());
+                articuloBean.setNombreArticulo(clasifArticulo.getNombreArticulo());
+                articuloBean.setUsuarioAct(clasifArticulo.getUsuarioAct());
+                articuloBean.setUpc(clasifArticulo.getUpc());
+                articuloBean.setFotografia(clasifArticulo.getFotografia());
+                jsonResult=new JsonResult(true,"Articulo Seleccionado",articuloBean);
             }
             else{
                 jsonResult=new JsonResult(false,"Articulo no Existe",null);

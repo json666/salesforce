@@ -41,7 +41,7 @@ public class ArticuloBean implements Serializable {
     private int cantidadReorden ;
 
 
-    private int nSerie ;
+
 
     private byte[] fotografia ;
 
@@ -64,7 +64,7 @@ public class ArticuloBean implements Serializable {
 
     public ArticuloBean() {}
 
-    public ArticuloBean(Long id, String descripcionArticulo, String codigoArticulo, String nombreArticulo, Double margenGanancia, Double precio, Double precioCosto, byte[] upc, int nivelReorden, int cantidadReorden, int nSerie, byte[] fotografia, Date fechaDesde, Date fechaHasta, String usuarioAct, ClaseBean claseBean, MarcaBean marcaBean, CategoriaBean categoriaBean, UnidadBean unidadBean) {
+    public ArticuloBean(Long id, String descripcionArticulo, String codigoArticulo, String nombreArticulo, Double margenGanancia, Double precio, Double precioCosto, byte[] upc, int nivelReorden, int cantidadReorden,byte[] fotografia, Date fechaDesde, Date fechaHasta, String usuarioAct, ClaseBean claseBean, MarcaBean marcaBean, CategoriaBean categoriaBean, UnidadBean unidadBean) {
         this.id = id;
         this.descripcionArticulo = descripcionArticulo;
         this.codigoArticulo = codigoArticulo;
@@ -75,7 +75,6 @@ public class ArticuloBean implements Serializable {
         this.upc = upc;
         this.nivelReorden = nivelReorden;
         this.cantidadReorden = cantidadReorden;
-        this.nSerie = nSerie;
         this.fotografia = fotografia;
         this.fechaDesde = fechaDesde;
         this.fechaHasta = fechaHasta;
@@ -89,7 +88,7 @@ public class ArticuloBean implements Serializable {
     public ArticuloBean(Long id, String descripcionArticulo, String codigoArticulo,
                         Double margenGanancia, Double precio, Double precioCosto,
                         byte[] upc, int nivelReorden, int cantidadReorden,
-                        int nSerie, byte[] fotografia, Date fechaDesde,
+                        byte[] fotografia, Date fechaDesde,
                         Date fechaHasta, String usuarioAct, ClaseBean claseBean,
                         MarcaBean marcaBean, CategoriaBean categoriaBean, UnidadBean unidadBean) {
         this.id = id;
@@ -101,7 +100,6 @@ public class ArticuloBean implements Serializable {
         this.upc = upc;
         this.nivelReorden = nivelReorden;
         this.cantidadReorden = cantidadReorden;
-        this.nSerie = nSerie;
         this.fotografia = fotografia;
         this.fechaDesde = fechaDesde;
         this.fechaHasta = fechaHasta;
@@ -115,7 +113,7 @@ public class ArticuloBean implements Serializable {
     public ArticuloBean(Long id, String descripcionArticulo, String codigoArticulo,
                         Double margenGanancia, Double precio, Double precioCosto,
                         byte[] upc, int nivelReorden, int cantidadReorden,
-                        int nSerie, byte[] fotografia, Date fechaDesde,
+                        byte[] fotografia, Date fechaDesde,
                         Date fechaHasta, String usuarioAct, ClaseBean claseBean) {
         this.id = id;
         this.descripcionArticulo = descripcionArticulo;
@@ -126,7 +124,6 @@ public class ArticuloBean implements Serializable {
         this.upc = upc;
         this.nivelReorden = nivelReorden;
         this.cantidadReorden = cantidadReorden;
-        this.nSerie = nSerie;
         this.fotografia = fotografia;
         this.fechaDesde = fechaDesde;
         this.fechaHasta = fechaHasta;
@@ -202,13 +199,6 @@ public class ArticuloBean implements Serializable {
         this.cantidadReorden = cantidadReorden;
     }
 
-    public int getnSerie() {
-        return nSerie;
-    }
-
-    public void setnSerie(int nSerie) {
-        this.nSerie = nSerie;
-    }
 
     public byte[] getFotografia() {
         return fotografia;
