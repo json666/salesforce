@@ -244,15 +244,63 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
         //get de form by Id    //
         $http({
             method: 'GET',
-            url: service + '/articulo/get/' + id
+            url: service + '/articulo/edicion/' + id
         }).success(
             function (data, status) {
 //                $("#loading-div-background").css("display", "none");
                 console.log("---->ARTICULO:" + id);
 
-                console.log(JSON.stringify(data));
+                //console.log(JSON.stringify(data));
 //                alert(JSON.stringify($scope.formData));//
-                $scope.formData = data.result;
+                //$scope.formData = data.result;
+                var hasta=new Date(data.result.fechaDesde);
+                var desde=new Date(data.result.fechaHasta);
+                $scope.formData.codigoArticulo=data.result.codigoArticulo;
+                $scope.formData.nombreArticulo=data.result.nombreArticulo;
+                $scope.formData.descripcionArticulo=data.result.descripcionArticulo;
+                $scope.formData.clasif_unidad=data.result.unidadBean;
+                $scope.formData.clasif_marca=data.result.marcaBean;
+                $scope.formData.clasif_categoria=data.result.categoriaBean;
+                $scope.formData.clasif_clase=data.result.claseBean;
+                $scope.formData.precio=data.result.precio;
+                $scope.formData.precioCosto=data.result.precioCosto;
+                $scope.formData.margenGanancia=data.result.margenGanancia;
+                $scope.formData.nivelReorden=data.result.nivelReorden;
+                $scope.formData.fechaDesde=hasta;
+                $scope.formData.fechaHasta=desde;
+                $scope.formData.cantidadReorden=data.result.cantidadReorden;
+
+                for ( i = 0; i < $scope.categoriaList.length; i++) {
+                    if ($scope.formData.clasif_categoria.id == data.result.categoriaBean.id) {
+                        $scope.formData.clasif_categoria = $scope.categoriaList[i];
+                    }
+                    var idCategoria=data.result.categoriaBean.id;
+                    $http.get(service + '/categoria/' + data.result.categoriaBean.id + '/clase').success( //
+                        function (data) {
+                            if(data.success){
+                                console.log('RESULT CATEGORIA');
+                                $scope.claseList = data.result;
+                                for ( i = 0; i < $scope.claseList.length; i++) {
+                                    if ($scope.formData.clasif_clase.id ==idCategoria) {
+                                        $scope.formData.clasif_clase = $scope.claseList[i];
+                                    }
+                                }
+                            }
+
+                        });
+                }
+                for ( i = 0; i < $scope.marcasList.length; i++) {
+                    if ($scope.formData.clasif_marca.id == data.result.marcaBean.id) {
+                        $scope.formData.clasif_marca = $scope.marcasList[i];
+                    }
+                }
+                for ( i = 0; i < $scope.unidadList.length; i++) {
+                    if ($scope.formData.clasif_unidad.id == data.result.unidadBean.id) {
+                        $scope.formData.clasif_unidad = $scope.unidadList[i];
+                    }
+                }
+
+                console.log('EDIT:'+angular.toJson($scope.formData));
                 if ($scope.formData.fotografia == null) {
                     alert("Imagen no disponible");
                     $scope.show = false
@@ -275,6 +323,7 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
     }
 
     $scope.edit = function(){
+        console.log(angular.toJson($scope.formData));
         $http({
             method  : 'POST',
             url     : service+'/articulo/editar',
