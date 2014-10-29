@@ -20,6 +20,8 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
      * Limpia formulario
     */
     $scope.regPro = function(){
+        $("edit").hide();
+        $("save").show();
         $scope.formData = {}
         var validator = $("#artForm").validate();
         validator.resetForm();
@@ -259,16 +261,43 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
                 } else {
                     $scope.show = true;
                 }
-                $("#ModalArticuloInfo").modal({
+                $("#ModalArticulo").modal({
                     show: true,
                     backdrop: 'static',
                     keyboard:false
                 });
+                $("#save").hide();
+                $("#edit").show();
             }).error(function (data, status) {
                 $('#alertError').modal('show');
                 $("#mensajeAlertError").text(data.result + 'Error! intente nuevamente');
             });
     }
+
+    $scope.edit = function(){
+        $http({
+            method  : 'POST',
+            url     : service+'/articulo/editar',
+            data    : ($scope.formData),  // pass in data as strings
+            headers : { 'Content-Type': 'application/json; charset=utf-8' }  // set the headers so angular passing info as form data (not request payload)
+
+        })
+            .success(function(data) {
+                console.log("editando..."+id);
+                $("#ModalArticulo").modal('hide');
+                $('#alertSucces').modal('show');
+                $("#mensajeAlertSucces").text(data.message);
+//
+            }).
+            // if not successful, bind errors to error variables
+            error(function(data, status, headers, config) {
+                $("#ModalArticulo").modal('hide');
+//                alert(data.result+"data error");
+                $('#alertError').modal('show');
+                $("#mensajeAlertError").text('Error! intente nuevamente' )
+            });
+    }
+
 //Lista proveedores
 
 
@@ -324,7 +353,7 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
                             {
                                 "bSortable": false,
                                 "mData": function (oObj) {
-                                    var a = " <a href='#/inventarios/" + oObj.id + "' class='btn btn-default'><i class='fa fa-search'></i></a>";
+                                    var a = " <a href='#/articulo/" + oObj.id + "' class='btn btn-default'><i class='fa fa-search'></i></a>";
                                     return a;
 
                                 }
