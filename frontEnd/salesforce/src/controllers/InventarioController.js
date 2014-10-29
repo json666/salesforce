@@ -110,7 +110,7 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
                 console.log('ADD' + service + '/uploadFiles');
                 var FileExt = (data.originalFiles[0].name).substring((data.originalFiles[0].name).lastIndexOf('.') + 1, data.originalFiles[0].name.length);
                 if (FileExt.toLocaleLowerCase() == "png" || FileExt.toLocaleLowerCase() == "jpg" || FileExt.toLocaleLowerCase() == "gif") {
-                    if (data.originalFiles[0].size <= 2097152) {//archivos <= 2 MB
+                    if (data.originalFiles[0].size <= 4097152) {//archivos <= 2 MB
                         //console.log('DATA IMAGE:' + data);
                         data.submit();
 
