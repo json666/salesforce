@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-function InventarioController($scope, $http, $cookies, $routeParams, serviceShare, paramService) {
+function InventarioController($scope, $http, $cookies, $routeParams, serviceShare, paramService, $filter) {
     console.log('--->admin');
     var id = $routeParams.id;
 
@@ -253,8 +253,12 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
                 //console.log(JSON.stringify(data));
 //                alert(JSON.stringify($scope.formData));//
                 //$scope.formData = data.result;
-                var hasta=new Date(data.result.fechaDesde);
-                var desde=new Date(data.result.fechaHasta);
+
+
+//              var hasta=new Date(data.result.fechaDesde);
+//                var desde=new Date(data.result.fechaHasta);
+                var hasta = $filter('date')(data.result.fechaDesde, "yyyy-MM-dd");
+                var desde = $filter('date')(data.result.fechaHasta, "yyyy-MM-dd");
                 $scope.formData.codigoArticulo=data.result.codigoArticulo;
                 $scope.formData.nombreArticulo=data.result.nombreArticulo;
                 $scope.formData.descripcionArticulo=data.result.descripcionArticulo;
