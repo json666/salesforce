@@ -43,15 +43,15 @@ app.directive('datosRegistroCompra', function () {
          */
         $form.validate({
             rules: {
-                "nombre": {
-                    required: true
-                },
-                "direccion": {
-                    required: true
-                },
-                "numeroDocumento": {
-                    required: true
-                },
+//                "nombre": {
+//                    required: true
+//                },
+//                "direccion": {
+//                    required: true
+//                },
+//                "numeroDocumento": {
+//                    required: true
+//                },
                 "select":{
                     required: true
                 }

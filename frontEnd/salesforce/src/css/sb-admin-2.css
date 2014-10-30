@@ -493,3 +493,9 @@ legend{
     display: none;
     width: 350px;
 }
+#box-cliente{
+    position: absolute;
+    z-index: 1000;
+    display: none;
+    width: 350px;
+}
