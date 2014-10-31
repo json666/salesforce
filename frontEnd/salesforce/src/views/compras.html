@@ -135,7 +135,7 @@
             </tr>
             <tr ng-repeat="item in compra.articuloBeanCompras">
                 <!--<td><input ng-model="item.id" ng-hide="true"></td>-->
-                <td><input class="form-control" ng-model="item.codigoArticulo" ng-blur="buscaitem(item.codigoArticulo)">
+                <td><input class="form-control" ng-model="item.codigoArticulo" ng-blur="buscaitem(item.codigoArticulo, $index)">
                 </td>
                 <td><input class="form-control" ng-model="item.nombreArticulo" disabled></td>
                 <td><input class="form-control" ng-model="item.precio" value="0.00" ng-required ng-validate="number"

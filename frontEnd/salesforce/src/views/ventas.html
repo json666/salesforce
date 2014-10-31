@@ -126,6 +126,7 @@
         <table class="table table-striped" align="center">
             <tr>
                 <!--<th ng-hide="true">Id</th>-->
+                <th>#</th>
                 <th>Codigo</th>
                 <th>Articulo</th>
                 <th>Precio</th>
@@ -135,7 +136,8 @@
             </tr>
             <tr ng-repeat="item in compra.articuloBeanCompras">
                 <!--<td><input ng-model="item.id" ng-hide="true"></td>-->
-                <td><input class="form-control" ng-model="item.codigoArticulo" ng-blur="buscaitem(item.codigoArticulo)">
+                <td><span class="badge">{{$index + 1}}</span></td>
+                <td><input class="form-control" ng-model="item.codigoArticulo" ng-blur="buscaitem(item.codigoArticulo, $index)">
                 </td>
                 <td><input class="form-control" ng-model="item.nombreArticulo" disabled></td>
                 <td><input class="form-control" ng-model="item.precio" value="0.00" ng-required ng-validate="number"
@@ -184,8 +186,8 @@
 
 
     </div>
-    <!--<pre>{{compra |json}}</pre>-->
-    <!-- /.col-lg-12 -->
+    <pre>{{compra |json}}</pre>
+     <!--/.col-lg-12 -->
 </div>
 <!-- /.row -->
 

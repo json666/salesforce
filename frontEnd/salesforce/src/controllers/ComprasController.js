@@ -33,6 +33,37 @@ function ComprasController($scope, $http, $cookies, $routeParams, serviceShare) 
         articuloBeanCompras: [{id:null}]
     };
 
+    $scope.compra.articuloBeanCompras=[];
+
+    /**
+     * Carga datos de un Articulo
+     * @param codigoArticulo
+     */
+
+    $scope.buscaitem = function(codigoArticulo){
+        console.log("Producto:"+codigoArticulo);
+        $http({
+            method: 'GET',
+            url: service + '/articulo/buscar/' + codigoArticulo
+        }).success(
+            function (data) {
+                console.log("---->ARTICULO:" + codigoArticulo, pos);
+                console.log(JSON.stringify(data));
+                $scope.formData = data.result;
+                if ($scope.formData != null){
+                    $scope.compra.articuloBeanCompras[pos]=({'id':$scope.formData.id,'codigoArticulo':$scope.formData.codigoArticulo,'nombreArticulo':$scope.formData.nombreArticulo,'precio':$scope.formData.precio})
+                }
+                else{
+                    $('#alertError').modal('show');
+                    $("#mensajeAlertError").text(data.message);
+                }
+            }).error(function (data, status) {
+                $('#alertError').modal('show');
+                $("#mensajeAlertError").text(data.result + 'Error! intente nuevamente');
+            });
+    }
+
+
     /**
      * Selecciona Proveedor de la lista
      */
@@ -149,34 +180,6 @@ function ComprasController($scope, $http, $cookies, $routeParams, serviceShare) 
 //            });
     }
 
-    /**
-     * Carga datos de un Articulo
-     * @param codigoArticulo
-     */
-
-    $scope.buscaitem = function(codigoArticulo){
-        console.log("Producto:"+codigoArticulo);
-        $http({
-            method: 'GET',
-            url: service + '/articulo/buscar/' + codigoArticulo
-        }).success(
-            function (data) {
-                console.log("---->ARTICULO:" + codigoArticulo);
-                console.log(JSON.stringify(data));
-                $scope.formData = data.result;
-                if ($scope.formData != null){
-                $scope.compra.articuloBeanCompras=[];
-                $scope.compra.articuloBeanCompras.push({'id':$scope.formData.id,'codigoArticulo':$scope.formData.codigoArticulo,'nombreArticulo':$scope.formData.nombreArticulo,'precio':$scope.formData.precio})
-                }
-                else{
-                    $('#alertError').modal('show');
-                    $("#mensajeAlertError").text(data.message);
-                }
-                }).error(function (data, status) {
-                $('#alertError').modal('show');
-                $("#mensajeAlertError").text(data.result + 'Error! intente nuevamente');
-            });
-}
 
 
 
