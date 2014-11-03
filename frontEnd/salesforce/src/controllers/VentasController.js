@@ -2,9 +2,7 @@
 function VentasController($scope, $http, $cookies, $routeParams, serviceShare) {
 
     var id = $routeParams.id;
-    /**
-     * Muestra ventana de lista de proveedores
-     */
+
 
     $scope.compra = {
         fechaRegistro:fechaR,
@@ -13,8 +11,11 @@ function VentasController($scope, $http, $cookies, $routeParams, serviceShare) {
         "bodegaBean": {id:null},
         articuloBeanCompras: [{id:null}]
     };
-    $scope.compra.articuloBeanCompras=[];
+    $scope.compra.articuloBeanCompras=[{id:"", codigoArticulo:"", nombreArticulo:null, precio:null,cantidadExistente:""}];
 
+    /**
+     * Muestra ventana de lista de proveedores
+     */
     $scope.showprov = function(){
         $("#box-cliente").fadeIn("slow")
 
@@ -66,7 +67,7 @@ function VentasController($scope, $http, $cookies, $routeParams, serviceShare) {
         $("#box-cliente").fadeOut("slow");
     }
     $scope.addItem = function() {
-        $scope.compra.articuloBeanCompras.push({id:"", codigoArticulo:"", nombreArticulo:0, precio:"",cantidadExistente:""});
+        $scope.compra.articuloBeanCompras.push({id:"", codigoArticulo:"", nombreArticulo:null, precio:null,cantidadExistente:""});
         $scope.literal = false;
     }
 
@@ -86,7 +87,6 @@ function VentasController($scope, $http, $cookies, $routeParams, serviceShare) {
                 console.log(JSON.stringify(data));
                 $scope.formData = data.result;
                 if ($scope.formData != null){
-
                     $scope.compra.articuloBeanCompras[pos]=({'id':$scope.formData.id,'codigoArticulo':$scope.formData.codigoArticulo,'nombreArticulo':$scope.formData.nombreArticulo,'precio':$scope.formData.precio})
 
                 }
@@ -99,6 +99,7 @@ function VentasController($scope, $http, $cookies, $routeParams, serviceShare) {
                 $("#mensajeAlertError").text(data.result + 'Error! intente nuevamente');
             });
     }
+
 
     $scope.change = function(){
 
@@ -138,7 +139,7 @@ function VentasController($scope, $http, $cookies, $routeParams, serviceShare) {
      * Guarda Compra
      */
     if (id == null || id.length == 0) {
-        $scope.saveCompra = function () {
+        $scope.saveVenta = function () {
 
             if (!$("#compraForm").valid()) {
                 $('#alertError').modal('show');

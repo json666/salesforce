@@ -2,10 +2,21 @@
 function ComprasController($scope, $http, $cookies, $routeParams, serviceShare) {
 
     var id = $routeParams.id;
+
+
+    $scope.compra = {
+        fechaRegistro:fechaR,
+        proveedoreBean: {
+            id: null},
+        "bodegaBean": {id:null},
+        articuloBeanCompras: [{id:null}]
+    };
+
+    $scope.compra.articuloBeanCompras=[{id:"", codigoArticulo:"", nombreArticulo:null, precio:null,cantidadExistente:""}];
+
     /**
      * Muestra ventana de lista de proveedores
      */
-
     $scope.showprov = function(){
         $("#box-proveedor").fadeIn("slow")
 
@@ -25,22 +36,14 @@ function ComprasController($scope, $http, $cookies, $routeParams, serviceShare) 
     $scope.fecha = new Date();
     var fechaR = $scope.fecha
 
-    $scope.compra = {
-        fechaRegistro:fechaR,
-        proveedoreBean: {
-            id: null},
-        "bodegaBean": {id:null},
-        articuloBeanCompras: [{id:null}]
-    };
 
-    $scope.compra.articuloBeanCompras=[];
 
     /**
      * Carga datos de un Articulo
      * @param codigoArticulo
      */
 
-    $scope.buscaitem = function(codigoArticulo){
+    $scope.buscaitem = function(codigoArticulo, pos){
         console.log("Producto:"+codigoArticulo);
         $http({
             method: 'GET',
@@ -93,8 +96,9 @@ function ComprasController($scope, $http, $cookies, $routeParams, serviceShare) 
     $scope.closeprov = function(){
         $("#box-proveedor").fadeOut("slow");
     }
+
     $scope.addItem = function() {
-        $scope.compra.articuloBeanCompras.push({id:"", codigoArticulo:"", nombreArticulo:0, precio:"",cantidadExistente:""});
+        $scope.compra.articuloBeanCompras.push({id:"", codigoArticulo:"", nombreArticulo:null, precio:null,cantidadExistente:""});
         $scope.literal = false;
     }
 
