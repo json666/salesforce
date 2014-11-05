@@ -19,17 +19,20 @@ public class ArticuloBeanVenta {
 
     private Double costoTotal;
 
+    private Integer stock;
+
     public ArticuloBeanVenta() {
     }
 
-    public ArticuloBeanVenta(Long id, String codigoArticulo, String nombreArticulo, Double precioCosto, Integer cantidad, Double monto, Double costoTotal) {
-        this.setId(id);
-        this.setCodigoArticulo(codigoArticulo);
-        this.setNombreArticulo(nombreArticulo);
-        this.setPrecioCosto(precioCosto);
-        this.setCantidad(cantidad);
-        this.setMonto(monto);
-        this.setCostoTotal(costoTotal);
+    public ArticuloBeanVenta(Long id, String codigoArticulo, String nombreArticulo, Double precioCosto, Integer cantidad, Double monto, Double costoTotal, Integer stock) {
+        this.id = id;
+        this.codigoArticulo = codigoArticulo;
+        this.nombreArticulo = nombreArticulo;
+        this.precioCosto = precioCosto;
+        this.cantidad = cantidad;
+        this.monto = monto;
+        this.costoTotal = costoTotal;
+        this.stock = stock;
     }
 
     public Long getId() {
@@ -86,5 +89,13 @@ public class ArticuloBeanVenta {
 
     public void setCostoTotal(Double costoTotal) {
         this.costoTotal = costoTotal;
+    }
+
+    public Integer getStock() {
+        return stock;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
     }
 }

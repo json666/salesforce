@@ -3,6 +3,7 @@ package com.bo.openogics.test;
 //import com.bo.openlogic.core.bean.JsonResult;
 
 import com.bo.openlogics.core.bean.JsonResult;
+import com.bo.openlogics.sales.beans.AlmacenBean;
 import com.bo.openlogics.sales.beans.ArticuloBeanCompra;
 import com.bo.openlogics.sales.beans.ComprasBean;
 import com.bo.openlogics.sales.beans.parametricas.BodegaBean;
@@ -383,6 +384,21 @@ public class TestRespository {
         }
     }
 
+    @Test
+    public void almacenes(){
 
+        List<AlmacenBean> almacenBeans=comprasRepository.listaInventarioByBodega(1L);
+        for (AlmacenBean almacenBean : almacenBeans) {
+            System.out.println(almacenBean.getCodigoArticulo()+"--"+almacenBean.getCantidadExistente()+"--"+almacenBean.getDescripcionArticulo());
+        }
 
+    }
+
+    @Test
+    public void articuloStock(){
+
+        //AlmacenBean almacenBeans=comprasRepository.listaArticuloCompraStock(1L, 1L);
+        //    System.out.println(almacenBeans.getCodigoArticulo()+"--"+almacenBeans.getCantidadExistente()+"--"+almacenBeans.getDescripcionArticulo());
+
+    }
 }

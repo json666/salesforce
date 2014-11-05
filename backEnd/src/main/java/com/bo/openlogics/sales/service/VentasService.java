@@ -9,5 +9,5 @@ import com.bo.openlogics.sales.beans.VentasBean;
  */
 public interface VentasService {
 
-    public JsonResult adicionarCompras(VentasBean ventasBean);
+    public JsonResult adicionarVentas(VentasBean ventasBean);
 }

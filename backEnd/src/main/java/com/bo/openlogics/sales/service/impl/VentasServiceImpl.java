@@ -26,7 +26,7 @@ public class VentasServiceImpl implements VentasService {
     Clasif_BodegaRepository clasif_bodegaRepository;
 
     @Override
-    public JsonResult adicionarCompras(VentasBean ventasBean) {
+    public JsonResult adicionarVentas(VentasBean ventasBean) {
         Ventas ventas=null;
         JsonResult jsonResult=null;
         List<Clasif_Articulo> clasif_articulos=null;
