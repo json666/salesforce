@@ -499,3 +499,24 @@ legend{
     display: none;
     width: 350px;
 }
+
+.width-10
+{
+   width: 10px !important;
+}
+
+.width-80
+{
+    width: 80px !important;
+}
+
+.width-100
+{
+    width: 100px !important;
+}
+
+.width-150
+{
+    width: 150px !important;
+}
+

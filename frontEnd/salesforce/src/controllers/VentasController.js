@@ -2,10 +2,20 @@
 function VentasController($scope, $http, $cookies, $routeParams, serviceShare) {
 
     var id = $routeParams.id;
+
+
+    $scope.compra = {
+        fechaRegistro:fechaR,
+        proveedoreBean: {
+            id: null},
+        "bodegaBean": {id:null},
+        articuloBeanCompras: [{id:null}]
+    };
+    $scope.compra.articuloBeanCompras=[{id:"", codigoArticulo:"", nombreArticulo:null, precio:null,cantidadExistente:""}];
+
     /**
      * Muestra ventana de lista de proveedores
      */
-
     $scope.showprov = function(){
         $("#box-cliente").fadeIn("slow")
 
@@ -25,13 +35,7 @@ function VentasController($scope, $http, $cookies, $routeParams, serviceShare) {
     $scope.fecha = new Date();
     var fechaR = $scope.fecha
 
-    $scope.compra = {
-        fechaRegistro:fechaR,
-        proveedoreBean: {
-            id: null},
-        "bodegaBean": {id:null},
-        articuloBeanCompras: [{id:null}]
-    };
+
 
     /**
      * Selecciona Cliente de la lista
@@ -63,7 +67,7 @@ function VentasController($scope, $http, $cookies, $routeParams, serviceShare) {
         $("#box-cliente").fadeOut("slow");
     }
     $scope.addItem = function() {
-        $scope.compra.articuloBeanCompras.push({id:"", codigoArticulo:"", nombreArticulo:0, precio:"",cantidadExistente:""});
+        $scope.compra.articuloBeanCompras.push({id:"", codigoArticulo:"", nombreArticulo:null, precio:null,cantidadExistente:""});
         $scope.literal = false;
     }
 
@@ -72,7 +76,7 @@ function VentasController($scope, $http, $cookies, $routeParams, serviceShare) {
      * @param codigoArticulo
      */
 
-    $scope.buscaitem = function(codigoArticulo){
+    $scope.buscaitem = function(codigoArticulo, pos){
         console.log("Producto:"+codigoArticulo);
         $http({
             method: 'GET',
@@ -83,8 +87,7 @@ function VentasController($scope, $http, $cookies, $routeParams, serviceShare) {
                 console.log(JSON.stringify(data));
                 $scope.formData = data.result;
                 if ($scope.formData != null){
-                    $scope.compra.articuloBeanCompras=[];
-                    $scope.compra.articuloBeanCompras.push({'id':$scope.formData.id,'codigoArticulo':$scope.formData.codigoArticulo,'nombreArticulo':$scope.formData.nombreArticulo,'precio':$scope.formData.precio})
+                    $scope.compra.articuloBeanCompras[pos]=({'id':$scope.formData.id,'codigoArticulo':$scope.formData.codigoArticulo,'nombreArticulo':$scope.formData.nombreArticulo,'precio':$scope.formData.precio})
 
                 }
                 else{
@@ -96,6 +99,7 @@ function VentasController($scope, $http, $cookies, $routeParams, serviceShare) {
                 $("#mensajeAlertError").text(data.result + 'Error! intente nuevamente');
             });
     }
+
 
     $scope.change = function(){
 
@@ -135,7 +139,7 @@ function VentasController($scope, $http, $cookies, $routeParams, serviceShare) {
      * Guarda Compra
      */
     if (id == null || id.length == 0) {
-        $scope.saveCompra = function () {
+        $scope.saveVenta = function () {
 
             if (!$("#compraForm").valid()) {
                 $('#alertError').modal('show');
