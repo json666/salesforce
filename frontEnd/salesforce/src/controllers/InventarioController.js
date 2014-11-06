@@ -183,6 +183,7 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
         validator.resetForm();
         $(".form-group").removeClass('has-error');
         $("#imageUpload").empty();
+        location.href = '#/inventarios';
 
 
     }
@@ -337,17 +338,18 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
         })
             .success(function(data) {
                 console.log("editando..."+id);
-                $("#ModalArticulo").modal('hide');
+//                $("#ModalArticulo").modal('hide');
                 $('#alertSucces').modal('show');
                 $("#mensajeAlertSucces").text(data.message);
 //
             }).
             // if not successful, bind errors to error variables
             error(function(data, status, headers, config) {
-                $("#ModalArticulo").modal('hide');
-//                alert(data.result+"data error");
+//                $("#ModalArticulo").modal('hide');
+//   alert(data.result+"data error");
                 $('#alertError').modal('show');
-                $("#mensajeAlertError").text('Error! intente nuevamente' )
+                $("#mensajeAlertError").text('Error! intente nuevamente')
+
             });
     }
 

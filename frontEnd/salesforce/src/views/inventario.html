@@ -2,7 +2,6 @@
 <h2>
     <small><i class="fa fa-table"></i> Inventarios</small>
 </h2>
-
 <div list-Articulo></div>
 
 <div aria-hidden="false" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="ModalArticulo"
@@ -210,11 +209,16 @@
 
         </div>
         <div class="modal-footer">
+            <div class="pull-left">
+            <button ng-click="link()" data-dismiss="modal" class="btn btn-default" type="button"><i
+                    class="fa fa-backward"></i> Volver
+            </button>
+            </div>
             <button type="submit" id="save" ng-click="save()" class="btn btn-primary"><i class="fa fa-save"></i> Guardar
             </button>
             <button type="submit" id="edit" style="display:none" ng-click="edit()" class="btn btn-primary"><i class="fa fa-save"></i> Guardar Modificaciones
             </button>
-            <button type="reset" class="btn btn-default">Limpiar</button>
+            <!--<button type="reset" class="btn btn-default">Limpiar</button>-->
             <button data-dismiss="modal" ng-click="cancel()" class="btn btn-danger" type="button">Cancelar</button>
 
         </div>
