@@ -20,6 +20,10 @@ var app = angular.module('app', ['ngCookies','ngRoute']).factory('serviceShare',
           templateUrl: 'src/views/admin.html',
           controller: 'AdminController'
       }).
+      when('/clientes', {
+          templateUrl: 'src/views/clientes.html',
+          controller: 'ClienteController'
+      }).
       when('/almacenes', {
           templateUrl: 'src/views/bodegas.html',
           controller: 'BodegasController'

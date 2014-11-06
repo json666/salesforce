@@ -73,4 +73,9 @@ app.directive('listBodega', function () {
         templateUrl: 'src/templates/bodegaList.html'
     };
 });
+app.directive('listCliente', function () {
+    return {
+        templateUrl: 'src/templates/clienteList.html'
+    };
+});
 

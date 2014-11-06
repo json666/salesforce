@@ -7,6 +7,10 @@
                 "url": "#/administracion"
             },
             {
+                "titulo": "Clientes",
+                "url": "#/clientes"
+            },
+            {
                 "titulo": "Almacenes",
                 "url": "#/almacenes"
             }
