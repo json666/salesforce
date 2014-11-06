@@ -3,25 +3,23 @@ package com.bo.openlogics.sales.beans;
 /**
  * Created by osanchez on 27/10/14.
  */
-public class AlmacenBean {
+public class ArticuloBeanStock {
     private Long idArticulo;
     private String descripcionArticulo;
     private String codigoArticulo;
-    private Integer cantidadExistente;
+    private Long cantidadExistente;
 
     private Double precioVenta;
 
-
-
-    public AlmacenBean() {
-    }
-
-    public AlmacenBean(Long idArticulo, String descripcionArticulo, String codigoArticulo, Integer cantidadExistente, Double precioVenta) {
+    public ArticuloBeanStock(Long idArticulo, String descripcionArticulo, String codigoArticulo, Long cantidadExistente, Double precioVenta) {
         this.idArticulo = idArticulo;
         this.descripcionArticulo = descripcionArticulo;
         this.codigoArticulo = codigoArticulo;
         this.cantidadExistente = cantidadExistente;
         this.precioVenta = precioVenta;
+    }
+
+    public ArticuloBeanStock() {
     }
 
     public Long getIdArticulo() {
@@ -48,11 +46,11 @@ public class AlmacenBean {
         this.codigoArticulo = codigoArticulo;
     }
 
-    public Integer getCantidadExistente() {
+    public Long getCantidadExistente() {
         return cantidadExistente;
     }
 
-    public void setCantidadExistente(Integer cantidadExistente) {
+    public void setCantidadExistente(Long cantidadExistente) {
         this.cantidadExistente = cantidadExistente;
     }
 
