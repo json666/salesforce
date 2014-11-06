@@ -1,5 +1,7 @@
 package com.bo.openlogics.sales.beans;
 
+import java.util.Date;
+
 /**
  * Created by osanchez on 27/10/14.
  */
@@ -9,6 +11,8 @@ public class AlmacenBean {
     private String codigoArticulo;
     private Integer cantidadExistente;
 
+    private Date fechaRegistro;
+
     private Double precioVenta;
 
 
@@ -16,11 +20,13 @@ public class AlmacenBean {
     public AlmacenBean() {
     }
 
-    public AlmacenBean(Long idArticulo, String descripcionArticulo, String codigoArticulo, Integer cantidadExistente, Double precioVenta) {
+
+    public AlmacenBean(Long idArticulo, String descripcionArticulo, String codigoArticulo, Integer cantidadExistente, Date fechaRegistro, Double precioVenta) {
         this.idArticulo = idArticulo;
         this.descripcionArticulo = descripcionArticulo;
         this.codigoArticulo = codigoArticulo;
         this.cantidadExistente = cantidadExistente;
+        this.fechaRegistro = fechaRegistro;
         this.precioVenta = precioVenta;
     }
 
@@ -62,5 +68,13 @@ public class AlmacenBean {
 
     public void setPrecioVenta(Double precioVenta) {
         this.precioVenta = precioVenta;
+    }
+
+    public Date getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public void setFechaRegistro(Date fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
     }
 }

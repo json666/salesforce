@@ -16,16 +16,16 @@ import java.util.List;
 public interface ComprasRepository extends JpaRepository<Compras,Long> {
 
 
-    @Query("SELECT new com.bo.openlogics.sales.beans.AlmacenBean(de.pk.clasif_articulo.id, de.pk.clasif_articulo.codigoArticulo,de.pk.clasif_articulo.descripcionArticulo,de.cantidadExistente,de.pk.clasif_articulo.precioCosto)" +
+    @Query("SELECT new com.bo.openlogics.sales.beans.AlmacenBean(de.pk.clasif_articulo.id, de.pk.clasif_articulo.codigoArticulo,de.pk.clasif_articulo.descripcionArticulo,de.cantidadExistente,co.fechaRegistro,de.pk.clasif_articulo.precioCosto)" +
             "FROM DetalleComprasArticulo de JOIN de.pk.compras co" +
             " WHERE co.clasif_bodega.id=:idBodega")
     public List<AlmacenBean> listaInventarioByBodega(@Param("idBodega") Long idBodega);
 
 
-    @Query("SELECT new com.bo.openlogics.sales.beans.ArticuloBeanStock(de.pk.clasif_articulo.id, de.pk.clasif_articulo.codigoArticulo,de.pk.clasif_articulo.descripcionArticulo, SUM(de.cantidadExistente), de.pk.clasif_articulo.precioCosto)" +
+    @Query("SELECT new com.bo.openlogics.sales.beans.ArticuloBeanStock(de.pk.clasif_articulo.id,de.pk.clasif_articulo.descripcionArticulo, de.pk.clasif_articulo.codigoArticulo, SUM(de.cantidadExistente), de.pk.clasif_articulo.precioCosto)" +
             "FROM DetalleComprasArticulo de JOIN de.pk.compras co" +
             " WHERE co.clasif_bodega.id=:idBodega" +
-            " AND de.pk.clasif_articulo.id=:idArticulo" +
+            " AND de.pk.clasif_articulo.codigoArticulo=:codArticulo" +
             " GROUP BY de.pk.clasif_articulo.id, de.pk.clasif_articulo.codigoArticulo, de.pk.clasif_articulo.descripcionArticulo,de.cantidadExistente, de.pk.clasif_articulo.descripcionArticulo,de.pk.clasif_articulo.precioCosto ")
-    public ArticuloBeanStock listaArticuloCompraStock(@Param("idBodega") Long idBodega, @Param("idArticulo") Long idArticulo );
+    public ArticuloBeanStock listaArticuloCompraStock(@Param("idBodega") Long idBodega, @Param("codArticulo") String idArticulo );
 }

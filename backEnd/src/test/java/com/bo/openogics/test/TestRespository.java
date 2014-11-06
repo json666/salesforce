@@ -388,18 +388,18 @@ public class TestRespository {
     @Test
     public void almadcenes(){
 
-        /*List<AlmacenBean> almacenBeans=comprasRepository.listaInventarioByBodega(1L);
+        List<AlmacenBean> almacenBeans=comprasRepository.listaInventarioByBodega(2L);
         for (AlmacenBean almacenBean : almacenBeans) {
             System.out.println(almacenBean.getCodigoArticulo()+"--"+almacenBean.getCantidadExistente()+"--"+almacenBean.getDescripcionArticulo()+"--"+almacenBean.getPrecioVenta());
-        } */
+        }
 
     }
 
     @Test
     public void articuloStock(){
 
-        ArticuloBeanStock articuloBeanStock=comprasRepository.listaArticuloCompraStock(1L, 27L);
-            System.out.println(articuloBeanStock.getCodigoArticulo()+"--"+articuloBeanStock.getCantidadExistente()+"--"+articuloBeanStock.getDescripcionArticulo()+"--"+articuloBeanStock.getPrecioVenta());
+        ArticuloBeanStock articuloBeanStock=comprasRepository.listaArticuloCompraStock(2L, "GA01");
+            System.out.println(articuloBeanStock.getCodigoArticulo()+"--"+articuloBeanStock.getStock()+"--"+articuloBeanStock.getDescripcionArticulo()+"--"+articuloBeanStock.getPrecioVenta());
 
     }
 }

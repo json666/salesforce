@@ -41,6 +41,9 @@ public class SalesForceRESTController {
     @Autowired
     ClienteService clienteService;
 
+    @Autowired
+    AlmacenService almacenService;
+
 
     private Logger logger = Logger.getLogger(SalesForceRESTController.class);
 
@@ -399,6 +402,40 @@ public class SalesForceRESTController {
             JsonResult jsonResult = null;
             jsonResult = clasif_articuloService.buscarArticuloEdit(idArticulo);
 //            return new JsonResult(true, Clasif_ArticuloService.getById(idArticulo));
+            if (jsonResult.getSuccess()) {
+                return jsonResult;
+            } else {
+                return new JsonResult(false, jsonResult.getMessage(), null);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new JsonResult(false, "Error: " + e.getMessage(), null);
+        }
+    }
+
+    @RequestMapping(value = "bodegaAlmacen/articulos/{idBodega}", method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResult getListadoBodega(@PathVariable Long idBodega) {
+        try {
+            JsonResult jsonResult = null;
+            jsonResult = almacenService.listadoBodega(idBodega);
+            if (jsonResult.getSuccess()) {
+                return jsonResult;
+            } else {
+                return new JsonResult(false, jsonResult.getMessage(), null);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new JsonResult(false, "Error: " + e.getMessage(), null);
+        }
+    }
+
+    @RequestMapping(value = "ventas/articulo/{idBodega}/{codArticulo}", method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResult getArticuloVentaStock(@PathVariable Long idBodega, @PathVariable String codArticulo) {
+        try {
+            JsonResult jsonResult = null;
+            jsonResult = almacenService.articuloStock(idBodega,codArticulo);
             if (jsonResult.getSuccess()) {
                 return jsonResult;
             } else {

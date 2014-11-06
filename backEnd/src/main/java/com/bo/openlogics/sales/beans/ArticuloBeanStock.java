@@ -7,19 +7,23 @@ public class ArticuloBeanStock {
     private Long idArticulo;
     private String descripcionArticulo;
     private String codigoArticulo;
-    private Long cantidadExistente;
-
+    private Long stock;
     private Double precioVenta;
+    private Integer cantidadVenta;
 
-    public ArticuloBeanStock(Long idArticulo, String descripcionArticulo, String codigoArticulo, Long cantidadExistente, Double precioVenta) {
+
+
+    public ArticuloBeanStock() {
+    }
+
+    public ArticuloBeanStock(Long idArticulo, String descripcionArticulo,
+                             String codigoArticulo, Long stock,
+                             Double precioVenta) {
         this.idArticulo = idArticulo;
         this.descripcionArticulo = descripcionArticulo;
         this.codigoArticulo = codigoArticulo;
-        this.cantidadExistente = cantidadExistente;
+        this.stock = stock;
         this.precioVenta = precioVenta;
-    }
-
-    public ArticuloBeanStock() {
     }
 
     public Long getIdArticulo() {
@@ -46,13 +50,7 @@ public class ArticuloBeanStock {
         this.codigoArticulo = codigoArticulo;
     }
 
-    public Long getCantidadExistente() {
-        return cantidadExistente;
-    }
 
-    public void setCantidadExistente(Long cantidadExistente) {
-        this.cantidadExistente = cantidadExistente;
-    }
 
     public Double getPrecioVenta() {
         return precioVenta;
@@ -60,5 +58,21 @@ public class ArticuloBeanStock {
 
     public void setPrecioVenta(Double precioVenta) {
         this.precioVenta = precioVenta;
+    }
+
+    public Long getStock() {
+        return stock;
+    }
+
+    public void setStock(Long stock) {
+        this.stock = stock;
+    }
+
+    public Integer getCantidadVenta() {
+        return cantidadVenta;
+    }
+
+    public void setCantidadVenta(Integer cantidadVenta) {
+        this.cantidadVenta = cantidadVenta;
     }
 }

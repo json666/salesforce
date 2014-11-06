@@ -1,6 +1,7 @@
 package com.bo.openlogics.sales.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.Type;
 import org.springframework.data.annotation.*;
 import org.springframework.data.annotation.Transient;
 
@@ -41,7 +42,7 @@ public class Clasif_Articulo extends EntidadBase implements Serializable {
     @Column(name = "PRECIO_COSTO")
     private Double precioCosto ;
 
-    @Lob
+    @Type(type = "org.hibernate.type.BinaryType")
     @Column(name = "UPC")
     private byte[] upc ;
 
@@ -53,7 +54,8 @@ public class Clasif_Articulo extends EntidadBase implements Serializable {
 
     @Column(name = "N_SERIE")
     private int nSerie ;
-    @Lob
+
+    @Type(type = "org.hibernate.type.BinaryType")
     @Column(name = "FOTOGRAFIA")
     private byte[] fotografia ;
 

@@ -90,13 +90,13 @@ public class Clasif_ArticuloServiceImpl implements Clasif_ArticuloService {
                 }
                 String codigoArticulo=clasif_articulo.getCodigoArticulo();
                 BarCodeGenerator barCodeGenerator= new BarCodeGeneratorImpl();
-                barCodeGenerator.drawToFile(LectorArchivosProperties.REPORTES_LOCAL_OUTPUT_FOLDER + "/barcode-"+codigoArticulo+"-afrodita.png",codigoArticulo);
-                File codigoBarras=new File(LectorArchivosProperties.REPORTES_LOCAL_OUTPUT_FOLDER + "/barcode-"+codigoArticulo+"-afrodita.png");
+                barCodeGenerator.drawToFile(LectorArchivosProperties.REPORTES_LOCAL_OUTPUT_FOLDER + "/barcode-"+codigoArticulo+"-afrodita.gif",codigoArticulo);
+                File codigoBarras=new File(LectorArchivosProperties.REPORTES_LOCAL_OUTPUT_FOLDER + "/barcode-"+codigoArticulo+"-afrodita.gif");
                 byte[] imageInByte;
-                BufferedImage originalImage = ImageIO.read(new File(LectorArchivosProperties.REPORTES_LOCAL_OUTPUT_FOLDER + "/barcode-"+codigoArticulo+"-afrodita.png"));
+                BufferedImage originalImage = ImageIO.read(new File(LectorArchivosProperties.REPORTES_LOCAL_OUTPUT_FOLDER + "/barcode-"+codigoArticulo+"-afrodita.gif"));
                 // convert BufferedImage to byte array
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                ImageIO.write(originalImage, "png", baos);
+                ImageIO.write(originalImage, "gif", baos);
                 baos.flush();
                 imageInByte = baos.toByteArray();
                 baos.close();
