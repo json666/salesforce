@@ -3,7 +3,6 @@ package com.bo.openlogics.sales.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -14,14 +13,8 @@ import java.util.Date;
 @Table(name = "CLIENTE", schema = "SALESFORCE")
 public class Cliente extends EntidadBase {
 
-    @Column(name = "NOMBRE")
-    private String nombre;
-
-    @Column(name = "PATERNO")
-    private String paterno;
-
-    @Column(name = "MATERNO")
-    private String materno;
+    @Column(name = "NOMBRE_COMERCIAL")
+    private String nombreComercial;
 
     @Column(name = "RAZON_SOCIAL")
     private String razonSocial;
@@ -31,6 +24,18 @@ public class Cliente extends EntidadBase {
 
     @Column(name = "DIRECCION")
     private String direccion;
+
+    @Column(name = "NUMERO_TELEFONO")
+    private String nroTelefono;
+
+    @Column(name = "NUMERO_CELULAR")
+    private String nroCelular;
+
+    @Column(name = "CORREO")
+    private String correo;
+
+    @Column(name = "CIUDAD")
+    public String ciudad;
 
     @Column(name = "FECHA_DESDE")
     private Date fechaDesde;
@@ -42,48 +47,17 @@ public class Cliente extends EntidadBase {
     public Cliente() {
     }
 
-    public Cliente(String nombre, String paterno, String materno, String razonSocial, String nroDocumento, String direccion) {
-        this.nombre = nombre;
-        this.paterno = paterno;
-        this.materno = materno;
+    public Cliente(String nombreComercial, String razonSocial, String nroDocumento, String direccion, String nroTelefono, String nroCelular, String correo, String ciudad, Date fechaDesde, Date fechaHasta) {
+        this.nombreComercial = nombreComercial;
         this.razonSocial = razonSocial;
         this.nroDocumento = nroDocumento;
         this.direccion = direccion;
-    }
-
-    public Cliente(String nombre, String paterno, String materno, String razonSocial, String nroDocumento, String direccion, Date fechaDesde, Date fechaHasta) {
-        this.nombre = nombre;
-        this.paterno = paterno;
-        this.materno = materno;
-        this.razonSocial = razonSocial;
-        this.nroDocumento = nroDocumento;
-        this.direccion = direccion;
+        this.nroTelefono = nroTelefono;
+        this.nroCelular = nroCelular;
+        this.correo = correo;
+        this.ciudad = ciudad;
         this.fechaDesde = fechaDesde;
         this.fechaHasta = fechaHasta;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getPaterno() {
-        return paterno;
-    }
-
-    public void setPateno(String pateno) {
-        this.paterno = pateno;
-    }
-
-    public String getMaterno() {
-        return materno;
-    }
-
-    public void setMaterno(String materno) {
-        this.materno = materno;
     }
 
     public String getRazonSocial() {
@@ -124,5 +98,37 @@ public class Cliente extends EntidadBase {
 
     public void setFechaHasta(Date fechaHasta) {
         this.fechaHasta = fechaHasta;
+    }
+
+    public String getNroTelefono() {
+        return nroTelefono;
+    }
+
+    public void setNroTelefono(String nroTelefono) {
+        this.nroTelefono = nroTelefono;
+    }
+
+    public String getNroCelular() {
+        return nroCelular;
+    }
+
+    public void setNroCelular(String nroCelular) {
+        this.nroCelular = nroCelular;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public String getNombreComercial() {
+        return nombreComercial;
+    }
+
+    public void setNombreComercial(String nombreComercial) {
+        this.nombreComercial = nombreComercial;
     }
 }
