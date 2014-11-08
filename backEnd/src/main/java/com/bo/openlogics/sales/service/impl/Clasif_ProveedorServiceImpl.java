@@ -122,4 +122,28 @@ public class Clasif_ProveedorServiceImpl implements Clasif_ProveedorService {
         return jsonResult;
     }
 
+    @Override
+    public JsonResult getByCodProv(String numeroDocumento) throws Exception {
+        JsonResult jsonResult = null;
+        Clasif_Proveedor clasif_proveedor=null;
+        try {
+
+            clasif_proveedor = clasif_proveedorRespository.findByCodigoProveedor(numeroDocumento);
+
+            if (clasif_proveedor != null){
+                jsonResult=new JsonResult(true,"Proveedor encontrado",clasif_proveedor);
+            }
+            else{
+                jsonResult=new JsonResult(false,"Proveedor no Existe",null);
+                logger.info("******Proveedor no Existe*******");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            jsonResult=new JsonResult(false,e.getMessage(),null);
+        }
+        return jsonResult;
+
+    }
+
 }

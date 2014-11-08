@@ -68,6 +68,29 @@ function ComprasController($scope, $http, $cookies, $routeParams, serviceShare) 
 
 
     /**
+     * Setea Proveedor
+     */
+    $scope.setprov =function(numeroDocumento){
+        alert(numeroDocumento);
+        console.log("Proveedor Seleccionado:"+numeroDocumento);
+        $http({
+            method:'GET',
+            url:service+'/proveedor/' + numeroDocumento
+        }).success(
+            function (data, status) {
+                $scope.proveedoreBean = data.result;
+                var idProv = $scope.proveedoreBean.id;/**/
+                console.log("Id producto:*****************************"+idProv);
+                $scope.compra.proveedoreBean.id = idProv;
+                console.log($scope.proveedoreBean)
+//                $("#saveSol").show();
+//            console.log(angular.toJson(data.result));
+            }).error(function (data, status, headers, config) {
+                alert("Error de conexion con el servidor.");
+            });
+        $("#box-proveedor").fadeOut("slow")
+    }
+    /**
      * Selecciona Proveedor de la lista
      */
     $scope.select =function(id){
