@@ -3,6 +3,7 @@ package com.bo.openlogics.sales.service.impl;
 import com.bo.openlogics.core.bean.JsonResult;
 import com.bo.openlogics.sales.model.FileMeta;
 import com.bo.openlogics.sales.service.FileUpDownLoadService;
+import com.bo.openlogics.sales.util.ImageOperations;
 import com.bo.openlogics.sales.util.LectorArchivosProperties;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
@@ -11,6 +12,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferByte;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -55,8 +57,11 @@ public class FileUpDownLoadServiceImpl implements FileUpDownLoadService {
         //1. build an iterator
         Iterator<String> itr = request.getFileNames();
         MultipartFile mpf = null;
+
+        ImageOperations imageOperations=null;
         JsonResult jsonResult = null;
         jsonResult = new JsonResult();
+        imageOperations= new ImageOperations();
         try {
             //2. get each file
             //files.remove();
@@ -73,16 +78,20 @@ public class FileUpDownLoadServiceImpl implements FileUpDownLoadService {
                         files.pop();
 
                     //2.3 create new fileMeta
+                    BufferedImage bufferedImage=ImageOperations.getScaledImage(mpf.getBytes(),500,500);
+                    byte[] imageBytes=((DataBufferByte)bufferedImage.getData().getDataBuffer()).getData();
                     fileMeta = new FileMeta();
                     fileMeta.setFileName(mpf.getOriginalFilename());
                     fileMeta.setFileSize(mpf.getSize() / 1024 + " Kb");
+
                     fileMeta.setFileType(mpf.getContentType());
 
                     //fileMeta.setBytes(mpf.getBytes());
 
                     System.out.println("PATH"+LectorArchivosProperties.REPORTES_SERVLET_OUTPUT_FOLDER_IMAGE + mpf.getOriginalFilename());
-                    fileMeta.setBytes(mpf.getBytes());
+                    fileMeta.setBytes(imageBytes);
                     FileOutputStream fileOutputStream=new FileOutputStream(LectorArchivosProperties.REPORTES_SERVLET_OUTPUT_FOLDER_IMAGE + mpf.getOriginalFilename());
+
 
                     // copy file to local disk (make sure the path "e.g. D:/temp/files" exists)
                     FileCopyUtils.copy(mpf.getBytes(),fileOutputStream);
