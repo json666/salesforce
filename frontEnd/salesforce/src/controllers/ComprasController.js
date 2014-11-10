@@ -5,7 +5,7 @@ function ComprasController($scope, $http, $cookies, $routeParams, serviceShare) 
 
 
     $scope.compra = {
-        fechaRegistro:fechaR,
+        fechaRegistro:$scope.fecha,
         proveedoreBean: {
             id: null},
         "bodegaBean": {id:null},

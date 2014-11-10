@@ -274,6 +274,8 @@ function InventarioController($scope, $http, $cookies, $routeParams, serviceShar
                 $scope.formData.fechaDesde=hasta;
                 $scope.formData.fechaHasta=desde;
                 $scope.formData.cantidadReorden=data.result.cantidadReorden;
+                $scope.formData.fotografia=data.result.fotografia;
+                $scope.formData.upc=data.result.upc;
 
                 for ( i = 0; i < $scope.categoriaList.length; i++) {
                     if ($scope.formData.clasif_categoria.id == data.result.categoriaBean.id) {
