@@ -16,7 +16,7 @@ function VentasController($scope, $http, $cookies, $routeParams, serviceShare) {
     /**
      * Muestra ventana de lista de proveedores
      */
-    $scope.showprov = function(){
+    $scope.showcli = function(){
         $("#box-cliente").fadeIn("slow")
 
         $http({
@@ -240,6 +240,39 @@ function VentasController($scope, $http, $cookies, $routeParams, serviceShare) {
         console.log("literal --->"+$scope.esc)
         $scope.literal = true
 
+    }
+
+    /**
+     *
+     * @returns {boolean}
+     * Registra cliente
+     */
+    $scope.saveCliente = function () {
+
+        if (!$("#ClienteForm").valid()) {
+            $('#alertError').modal('show');
+            $("#mensajeAlertError").html('Error! debe llenar los campos requeridos');
+            return false
+        }
+        else {
+            $http({
+                method: 'POST',
+                url: service + '/cliente/guardar',
+                data: JSON.stringify($scope.formDataClientes)
+            }).success(function (response) {
+                result = response;
+                $scope.formDataClientes = null;
+//                $scope.listadoClientes();
+                $("#ModalCliente").modal('hide')
+                $('#alertSucces').modal('show');
+                $("#mensajeAlertSucces").text('Registro Guardado Satisfactoriamente.');
+
+            }).error(function (response) {   //
+                $('#alertError').modal('show');
+                $("#mensajeAlertError").text(data.result + 'Error! intente nuevamente');
+
+            });
+        }
     }
 
 }
