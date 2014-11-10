@@ -63,8 +63,12 @@
             {
                 "titulo": "Inventario Físico",
                 "url": "#/inventarios"
-            }
+            },
 
+            {
+                "titulo": "Articulos Stock",
+                "url": "#/articulos-stock"
+            }
         ]
     },
     {
