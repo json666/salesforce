@@ -520,3 +520,12 @@ legend{
     width: 150px !important;
 }
 
+
+.form-control[readonly] .blue-bg{
+    background: lightskyblue;
+}
+
+.blue-bg{
+    background: #D9EDF7 !important;
+    color: #31708F;
+}

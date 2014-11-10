@@ -16,4 +16,6 @@ public interface Clasif_ProveedorService {
 
     public JsonResult getByIdProv(Long IdProveedor) throws Exception;
 
+    public JsonResult getByCodProv(String CodProveedor) throws Exception;
+
 }

@@ -8,10 +8,10 @@
         <!-- /.row (nested) -->
         <div class="panel panel-default">
             <div class="panel-heading center">
-                Datos Provedor
+                Datos Cliente
             </div>
 
-            <form id="compraForm">
+            <form id="ventaForm">
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-4">
@@ -20,7 +20,7 @@
                                        capitalize
                                        type="text">
                                             <span class="input-group-btn">
-                                                <button class="btn btn-default" type="button" ng-click="showprov()"><i
+                                                <button class="btn btn-default" type="button" ng-click="showcli()"><i
                                                         class="fa fa-search"></i>
                                                 </button>
                                             </span>
@@ -44,7 +44,7 @@
                                                 <tr ng-repeat="cli in cliList | filter:f | orderBy:sort:reverse">
                                                     <!--<td><span class="badge">{{$index + 1}}</span></td>-->
                                                     <td>{{cli.nroDocumento}}</td>
-                                                    <td>{{cli.nombre}} {{prov.nombre}}</td>
+                                                    <td>{{cli.razonSocial}}</td>
                                                     <td>
                                                         <button ng-click="select(cli.nroDocumento)"
                                                                 class="btn btn-info btn-circle"
@@ -68,14 +68,25 @@
                             </div>
 
                         </div>
-                        <div class="col-lg-6"><strong>FECHA:</strong> {{fecha | date:'dd-MM-yyyy h:m:s'}}</div>
+                        <div class="col-lg-4">
+                            <buttom class="btn btn-primary" data-toggle='modal' data-target="#ModalCliente">
+                        <i class="fa fa-user"></i>
+                            Reg.Cliente
+                        </buttom>
+
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-inline pull-right">
+                                <strong>FECHA:</strong>
+                                <input class="form-control blue-bg" readonly value="{{fecha | date:'dd-MM-yyyy h:m:s'}}"> </div>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-4">
                             <div class="form-group">
-                                <label for="nombre">NOMBRE</label>
+                                <label for="nombre">NOMBRE / RAZON SOCIAL</label>
                                 <input class="form-control" id="nombre"
-                                       readonly ng-model="proveedoreBean.nombre"
+                                       readonly ng-model="proveedoreBean.razonSocial"
                                        placeholder="Nombre"
                                        name="nombre" capitalize>
                             </div>
@@ -267,3 +278,129 @@
     </div>
     <!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+<div aria-hidden="false" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="ModalCliente"
+     class="modal fade in">
+    <div class="modal-dialog" style="width:100%; max-width: 1024px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                <h4 id="myModalLabel" class="modal-title">Registro de Cliente</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <!-- /.row (nested) -->
+                                <!--<datos-Registro-Bodega>-->
+                                <form id="ClienteForm">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="row">
+                                                <div class="col-lg-4">
+                                                    <div class="form-group">
+                                                        <label for="nombreComercial">NOMBRE COMERCIAL</label>
+                                                        <input class="form-control" id="nombreComercial"
+                                                               ng-model="formDataClientes.nombreComercial"
+                                                               name="nombreComercial" capitalize>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <div class="form-group">
+                                                        <label for="razonSocial">RAZON SOCIAL</label>
+                                                        <input class="form-control" id="razonSocial"
+                                                               ng-model="formDataClientes.razonSocial"
+                                                               name="razonSocial" capitalize>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <div class="form-group">
+                                                        <label for="nroDocumento">NUMERO DOCUMENTO</label>
+                                                        <input class="form-control" id="nroDocumento"
+                                                               ng-model="formDataClientes.nroDocumento"
+                                                               name="nroDocumento" capitalize>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-4">
+                                                    <div class="form-group">
+                                                        <label for="correo">CORREO</label>
+                                                        <input class="form-control" id="correo"
+                                                               ng-model="formDataClientes.correo"
+                                                               name="correo">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <div class="form-group">
+                                                        <label for="ciudad">CIUDAD</label>
+                                                        <input class="form-control" id="ciudad"
+                                                               ng-model="formDataClientes.ciudad"
+                                                               name="ciudad" capitalize>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-3">
+                                                    <div class="form-group">
+                                                        <label for="fechaDesde">FECHA DESDE</label>
+
+                                                        <div class="input-group date">
+                                                            <input class="form-control" id="fechaDesde"
+                                                                   ng-model="formDataClientes.fechaDesde"
+                                                                   datepicker=""
+                                                                   name="fechaDesde" type="text">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i>
+                                 </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-3">
+                                                    <div class="form-group">
+                                                        <label for="fechaHasta">FECHA HASTA</label>
+
+                                                        <div class="input-group date">
+                                                            <input class="form-control" id="fechaHasta"
+                                                                   ng-model="formDataClientes.fechaHasta"
+                                                                   datepicker=""
+                                                                   name="fechaHasta" type="text">
+                                    <span class="input-group-addon"><i class="fa fa-calendar"></i>
+                             </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </form>
+                                <!--</datos-Registro-Bodega>-->
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <!-- /.panel -->
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+
+            </div>
+            <pre>
+                {{formDataClientes}}
+            </pre>
+            <div class="modal-footer">
+                <button type="submit" ng-click="saveCliente()" class="btn btn-primary"><i class="fa fa-save"></i> Guardar
+                </button>
+                <button type="reset" class="btn btn-default">Limpiar</button>
+                <button data-dismiss="modal" class="btn btn-danger" type="button">Cancelar</button>
+
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

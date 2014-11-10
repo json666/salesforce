@@ -17,7 +17,7 @@
                             <div class="col-lg-4">
                                 <div class="form-group input-group">
                                     <input class="form-control" ng-model="numeroDocumento" placeholder="Nit o CI"
-                                           capitalize
+                                           capitalize ng-blur="setprov(numeroDocumento)"
                                            type="text">
                                             <span class="input-group-btn">
                                                 <button class="btn btn-default" type="button" ng-click="showprov()"><i
@@ -68,7 +68,12 @@
                                 </div>
 
                             </div>
-                            <div class="col-lg-6"><strong>FECHA:</strong> {{fecha | date:'dd-MM-yyyy h:m:s'}}</div>
+                            <div class="col-lg-4"></div>
+                            <div class="col-lg-4">
+                                <div class="form-inline pull-right">
+                                    <strong>FECHA:</strong>
+                                <input class="form-control blue-bg" readonly value="{{fecha | date:'dd-MM-yyyy h:m:s'}}"> </div>
+                                </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-4">

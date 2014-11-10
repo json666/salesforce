@@ -11,7 +11,6 @@
 REGISTRO CLIENTES
  */
 
-//begin marcas
 function ClienteController($scope, $http, $routeParams, serviceShare, paramService) {
     var id = $routeParams.id;
 
